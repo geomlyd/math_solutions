@@ -1,0 +1,133 @@
+\chapter{Functions on Euclidean Space}
+
+\section{Norm and Inner Product}
+
+\begin{exercise}{7}
+    A linear transformation $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ is \textbf{norm preserving} if $\lvert T(x) \rvert = \lvert x \rvert$ and \textbf{inner product preserving} if $\langle Tx, Ty \rangle = \langle x, y \rangle$.
+
+    a. Prove that $T$ is norm preserving if and only if $T$ is inner product preserving.
+
+    b. Prove that such a linear transformation $T$ is 1-1 and $T^{-1}$ is of the same sort.
+\end{exercise}
+
+\begin{solution}
+
+    a. Let $x, y \in \mathbb{R}^n$. Firstly, we observe the following relationship between the standard Euclidean norm and inner product:
+    $$\langle x + y, x + y \rangle = \langle x, x \rangle + 2\langle x, y \rangle + \langle y, y \rangle \implies \lvert \lvert x+ y \rvert \rvert^2 = \lvert \lvert x \rvert \rvert^2 + \lvert \lvert y \rvert \rvert^2 + 2\langle x, y \rangle$$
+    $$\implies \langle x, y \rangle = \frac{\lvert \lvert x + y \rvert \rvert^2 - \lvert \lvert x \rvert \rvert^2 - \lvert \lvert y \rvert \rvert^2}{2}$$
+
+    Thus, we have that if $T$ is norm-preserving, then for any two $x, y \in \mathbb{R}^n$ it holds that
+    $$\lvert \lvert T(x) \rvert \rvert = \lvert \lvert x \rvert \rvert, \lvert \lvert T(y) \rvert \rvert = \lvert \lvert y \rvert \rvert, \lvert \lvert T(x+y) \rvert \rvert = \lvert \lvert x + y\rvert \rvert$$
+     Therefore:
+    $$\langle T(x), T(y) \rangle  = \frac{\lvert \lvert T(x) + T(y) \rvert \rvert^2 - \lvert \lvert T(x) \rvert \rvert^2 - \lvert \lvert T(y) \rvert \rvert^2}{2} = $$
+    $$ = \frac{\lvert \lvert T(x + y) \rvert \rvert^2 - \lvert \lvert x \rvert \rvert^2 - \lvert \lvert y \rvert \rvert^2}{2} = \frac{\lvert \lvert x + y \rvert \rvert^2 - \lvert \lvert x \rvert \rvert^2 - \lvert \lvert y \rvert \rvert^2}{2} = \langle x, y \rangle$$
+
+    , therefore $T$ is also inner product preserving. For the other direction, if $T$ is inner product preserving, then more specifically for any $x \in \mathbb{R}^n$:
+    $$\lvert \lvert T(x) \rvert \rvert^2 = \langle T(x), T(x) \rangle = \langle x, x \rangle = \lvert 
+    \lvert x \rvert \rvert^2$$
+
+    , which means $T$ is norm preserving.
+
+    b. Firstly, recall that for linear operators it suffices to show that they are injective in order to show that they are invertible. Therefore, we only need to examine $T(x) = 0$. $T(x) = 0$ by the definition of the inner product is equivalent to $\lvert \lvert T(x) \rvert \rvert = 0$. But then because $T$ is norm preserving, we have that $\lvert \lvert x \rvert \rvert = \lvert \lvert T(x) \rvert \rvert = 0$, and by the same equivalency as before this means $x = 0$, therefore $T$ is injective. This means that it is also invertible, i.e.\ $T^{-1}$ is well defined. 
+
+    Now, for any $x \in \mathbb{R}^n$, we have that $T^{-1}(x) = y$, such that $T(y) = x$. Since $T$ is norm preserving we have that:
+    $$\lvert \lvert T(y) \rvert \rvert = \lvert \lvert y \rvert \rvert \implies \lvert \lvert x \rvert \rvert = \lvert \lvert T^{-1}(x) \rvert \rvert$$
+
+    , therefore $T^{-1}$ is also norm preserving.
+\end{solution}
+
+\begin{exercise}{8}
+    If $x, y \in \mathbb{R}^n$ are non-zero, the \textbf{angle} between $x$ and $y$, denoted $\angle (x, y)$, is defined as $\text{arccos}(\frac{\langle x, y \rangle}{\lvert \lvert x \rvert \rvert \cdot \lvert \lvert y \rvert \rvert})$, which makes sense by the Cauchy-Schwarz inequality. The linear transformation $T$ is \textbf{angle preserving} if $T$ is 1-1, and for $x, y \neq 0$ we have $\angle(Tx, Ty) = \angle(x, y)$.
+
+    a. Prove that if $T$ is norm preserving, then $T$ is angle preserving.
+
+    b. If there is a basis $x_1, \ldots, x_n \in \mathbb{R}^n$ and numbers $\lambda_1, \ldots \lambda_n$ such that $T(x_i) = \lambda_i x_i$, prove that if $T$ is angle preserving then all $\lvert \lambda_i \rvert$ are equal.
+
+    c. What are all angle preserving $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$?
+\end{exercise}
+
+\begin{solution}
+    
+    a. Suppose $T$ is norm preserving. Then, as we saw in exercise 7, it is also inner product preserving. Then, for $x, y \in \mathbb{R}^n$:
+    $$\angle(T(x), T(y)) = \text{arccos}(\frac{\langle T(x), T(y) \rangle}{\lvert \lvert T(x) \rvert \rvert \cdot \lvert \lvert T(y) \rvert \rvert}) = \text{arccos}(\frac{\langle x, y \rangle}{\lvert \lvert x \rvert \rvert \cdot \lvert \lvert y \rvert \rvert}) = \angle(x, y)$$
+
+    b. In order to simplify our computations, we will first convert the basis $x_1, \ldots, x_n$ to a basis $y_1, \ldots, y_n$ such that $y_i = \frac{x_i}{\lvert \lvert x_i \rvert \rvert}$, i.e.\ the new basis consists of unit length vectors. Now consider any two $y_i, y_i$ vectors of this basis. These are clearly non-zero, and also linearly independent, which means that $y_i+y_j, y_i-y_j$ are non-zero as well. Since $T$ is angle preserving, it must hold that:
+    
+    $$\angle(T(y_i+y_j), T(y_i-y_j)) = \angle(y_i+y_j, y_i-y_j)$$
+    $$\implies \text{arccos}(\frac{\langle T(y_i+y_j), T(y_i-y_j) \rangle}{\lvert \lvert T(y_i-y_j) \rvert \rvert \cdot \lvert \lvert T(y_i+y_j) \rvert \rvert}) = \text{arccos}(\frac{\langle y_i+y_j, y_i-y_j \rangle}{\lvert \lvert y_i+y_j \rvert \rvert \cdot \lvert \lvert y_i-y_j \rvert \rvert}$$
+    $$\implies \frac{\langle \lambda_i y_i + \lambda_j y_j, \lambda_i y_i - \lambda_j y_j\rangle}{\lvert \lvert \lambda_i y_i - \lambda_j y_j \rvert \rvert \cdot \lvert \lvert \lambda_i y_i + \lambda_j y_j \rvert \rvert} = \frac{1 - \langle y_i, y_j \rangle + \langle y_j, y_i \rangle - 1}{\lvert \lvert y_i+y_j \rvert \rvert \cdot \lvert \lvert y_i - y_j \rvert \rvert}$$
+    $$\implies \langle \lambda_i y_i + \lambda_j y_j, \lambda_i y_i - \lambda_j y_j \rangle = 0 \implies \lambda_i^2 - \lambda_i \lambda_j \langle y_i, y_j \rangle + \lambda_i \lambda_j \langle y_i, y_j \rangle - \lambda_j^2 = 0$$
+    $$\implies \lambda_i^2 = \lambda_j^2 \implies \lvert \lambda_i \rvert = \lvert \lambda_j \rvert$$
+
+    , where throughout the derivation we used the fact that $\lvert \lvert y_i \rvert \rvert = \lvert \lvert y_j \rvert \rvert = 1$.
+
+    c. By the Polar Decomposition, we know that $T=S\sqrt{T^*T}$ for some isometry $S$. If $T$ is angle preserving, then for any two non-zero $x, y$ it must be the case that:
+    $$\frac{\langle S\sqrt{T^*T}(x), S\sqrt{T^*T}(y) \rangle}{\lvert \lvert S\sqrt{T^*T}(x) \rvert \rvert \cdot \lvert \lvert S\sqrt{T^*T}(y) \rvert \rvert} = \frac{\langle x, y \rangle}{\lvert \lvert x \rvert \rvert \cdot \lvert \lvert y \rvert \rvert} \implies \frac{\langle \sqrt{T^*T}(x), \sqrt{T^*T}(y) \rangle}{\lvert \lvert \sqrt{T^*T}(x) \rvert \rvert \cdot \lvert \lvert \sqrt{T^*T}(y) \rvert \rvert} = \frac{\langle x, y \rangle}{\lvert \lvert x \rvert \rvert \cdot \lvert \lvert y \rvert \rvert}$$
+
+    , where we omitted the arccos for brevity and used the properties of isometries. Observe that this means that $\sqrt{T^*T}$ is angle preserving. Additionally, this operator is positive and self-adjoint, which means that by the Real Spectral Theorem there exists an orthonormal basis of $\mathbb{R}^n$ with respect to which its matrix is diagonal. Every entry on the diagonal of this matrix must be positive, since $\sqrt{T^*T}$ is positive. Since these entries are precisely the eigenvalues of $\sqrt{T^*T}$, and since it is angle preserving, by part (b) we obtain that they must all be equal in absolute values, and consequently equal (since they are positive). Therefore, $T = SaI = aS$, for some isometry $S$ and some positive number $a$.
+
+    Conversely, if $T = aS$ for some isometry $S$ and a positive number $a$, the properties of isometries and the definition of angle preserving operators yields that $T$ is indeed angle preserving (we have but to observe that $a^2$ will appear both on the numerator and denominator of the argument of arccos).
+
+    \end{solution}
+
+    \begin{exercise}{9}
+        If $0 \leq \theta \leq \pi$, let $T \in \mathbb{R}^2 \rightarrow \mathbb{R}^2$ have the matrix $\begin{pmatrix}
+            \text{cos} \theta & \text{sin} \theta \\ -\text{sin} \theta & \text{cos} \theta
+        \end{pmatrix}$. Show that $T$ is angle preserving and if $x \neq 0$, then $\angle(x, Tx) = \theta$.
+    \end{exercise}
+
+    \begin{solution}
+
+        From Linear Algebra we know that this matrix corresponds to an isometry in $\mathbb{R}^2$. By part (c) of exercise 8 above, $T$ is angle preserving, since it equals an isometry times (a multiple of) the identity. For a non-zero $x = (x_1, x_2)$ we have that:
+        $$\angle(x, Tx) = \text{arccos}(\frac{\langle x, Tx \rangle}{\lvert \lvert x \rvert \rvert \cdot \lvert \lvert Tx \rvert \rvert}) = \text{arccos}(\frac{\langle (x_1, x_2), (\text{cos} \theta x_1 + \text{sin} \theta x_2, -\text{sin} \theta x_1 + \text{cos} \theta x_2) \rangle}{\lvert \lvert x \rvert \rvert \cdot \lvert \lvert x \rvert \rvert})$$
+        $$= \text{arccos}(\frac{\text{cos} \theta x_1^2 + \text{sin} \theta x_1x_2 - \text{sin} \theta x_1x_2 + \text{cos} \theta x_2^2}{\lvert \lvert x \rvert \rvert^2}) = \text{arccos}(\frac{\text{cos} \theta \lvert \lvert x \rvert \rvert^2}{\lvert \lvert x \rvert \rvert^2}) = \text{arccos}(\text{cos}\theta) = \theta$$
+    \end{solution}
+
+    \begin{exercise}{10}
+        If $T: \mathbb{R}^m \rightarrow \mathbb{R}^n$ is a linear transformation, show that there is a number $M$ such that $\lvert \lvert T(h) \rvert \rvert \leq M \lvert \lvert h \rvert \rvert$ for $h \in \mathbb{R}^m$. \textit{Hint:} Estimate $\lvert \lvert T(h) \rvert \rvert$ in terms of $\lvert \lvert h \rvert \rvert$ and the entries in the matrix of $T$.
+    \end{exercise}
+
+    \begin{solution}
+
+        We have seen in Hubbard and Hubbard that the following analogue of the Cauchy-Schwarz inequality holds for any matrix $A$ and any vector $b$:
+        $$\lvert \lvert A b \rvert \rvert \leq \lvert \lvert A \rvert \rvert \cdot \lvert \lvert b \rvert \rvert$$
+
+        , where $\lvert \lvert A \rvert \rvert$ indicates the Frobenius norm of $A$, i.e.\ $\lvert \lvert A \rvert \rvert = \sqrt{\sum_{i, j} A_{i, j}^2}$. Additionally, we know that for any linear transformation $T$, $T(h) = \mathcal{M}(T)\mathcal{M}(h)$, where $\mathcal{M}$ indicates the matrices with respect to the standard bases of $\mathbb{R}^m, \mathbb{R}^n$. Therefore, we have that:
+        $$\lvert \lvert T(h) \rvert \rvert = \lvert \lvert \mathcal{M}(T) \mathcal{M}(h) \rvert \rvert \leq \lvert \lvert \mathcal{M}(T) \rvert \rvert \cdot \lvert \lvert h \rvert \rvert$$.
+
+        If we set $M = \lvert \lvert \mathcal{M}(T) \rvert \rvert$ we obtain the inequality requested by the exercise.
+    \end{solution}
+
+    \begin{exercise}{13}
+        If $x, y \in \mathbb{R}^n$, then $x$ and $y$ are called perpendicular (or orthogonal) if $\langle x, y \rangle = 0$. If $x, y$ are perpendicular, prove that $\lvert \lvert x + y \rvert \rvert^2 = \lvert \lvert x \rvert \rvert^2 + \lvert \lvert y \rvert \rvert^2$.
+    \end{exercise}
+
+    \begin{solution}
+
+        By the properties of the inner product and the definition of the associated norm we have that:
+        $$\lvert \lvert x + y \rvert \rvert^2 = \langle x + y, x + y \rangle = \langle x, x \rangle + \langle x, y \rangle + \langle y, x \rangle + \langle y, y \rangle = \lvert \lvert x \rvert \rvert^2 + 0 + 0 + \lvert \lvert y \rvert \rvert^2 = \lvert \lvert x \rvert \rvert^2 + \lvert \lvert y \rvert \rvert^2$$
+    \end{solution}
+
+    \begin{exercise}{26}
+        Let $A = \{(x, y) \in \mathbb{R}^2 : x > 0, 0 < y < x^2\}$.
+
+        (a) Show that every straight line through (0, 0) contains an interval around (0, 0) which is in $\mathbb{R}^2 - A$.
+
+        (b) Define $f: \mathbb{R}^2 \rightarrow \mathbb{R}$ by $f(x) = 0$ if $x \notin A$ and $f(x) = 1$ if $x \in A$. For $h \in \mathbb{R}^2$ define $g_h : \mathbb{R} \rightarrow \mathbb{R}$ by $g_h(t) = f(th)$. Show that each $g_h$ is continuous at 0, but $f$ is not continuous at (0, 0).
+    \end{exercise}
+
+    \begin{solution}
+
+        (a) Let us first consider the case of non-vertical lines, i.e.\ lines of the form $y = ax$. The points lying on this line are of the form $(x, ax)$. We are thus interested in examining when is it the case that $(x, ax) \notin A$. This happens precisely whenever $x \leq 0$ or $0 \geq ax$ or $ax \geq x^2$. There are two cases:
+        \begin{itemize}
+            \item $a \leq 0$: then the second inequality holds for all non-negative $x$. The first inequality holds trivially for all negative $x$. Thus it suffices to pick e.g. the line segment from $(-a, -a^2)$ to $(a, a^2)$, and this will lie entirely in $\mathbb{R}^2 - A$. Geometrically, this line has a negative or zero slope, and as such it never intersects the area between the parabola $y = x^2$ and the horizontal axis.
+            \item $a > 0$: Then the first inequality again holds trivially for all non-positive $x$.  For positive $x$, we divide both sides of the third inequality with $x$ to obtain $a \geq x$. Thus for all $ 0 < x \leq a$, the points $(x, ax)$ lie in $\mathbb{R}^2 - A$. Pick, therefore, the line segment from $(-a, -a^2)$ to $(a, a^2)$. Geometrically, we have found the intersection of the line with the parabola $y=x^2$ and, for aesthetic purposes, made the line segment symmetric around $(0, 0)$.
+        \end{itemize}
+        In either case, the line segment from $(-a, -a^2)$ to $(a, a^2)$ lies in $\mathbb{R}^2 - A$.
+
+        Now we examine the case of the vertical line $x = 0$. Here the line segment $(0, -1)$ to $(0, 1)$ works trivially: indeed, any point with $x = 0$ satisfies the first of the inequalities, $x \leq 0$. We have thus found an interval of the desired form for all lines through the origin.
+
+        (b) The value of $f$ at $(0, 0)$ is $f((0,0)) = 0$ since $(0,0) \notin A$. Consider the sequence of points $i \rightarrow p_i = (\frac{1}{i}, \frac{1}{i^2} - \frac{1}{2i^3})$. As $i \rightarrow \infty$, both the $x$- and the $y$-coordinate here tend to 0. Therefore, this sequence of points in $\mathbb{R}^2$ tends to $(0, 0)$. For $f$ to be continuous, it must be the case that $\text{lim}_{i \rightarrow \infty} f(p_i) = f((0,0)) = 0$. Each $p_i$ clearly has an $x$ coordinate $x_i$ which satisfies $x_i > 0$. Furthermore, its $y$-coordinate is $y_i = \frac{1}{i^2} - \frac{1}{2i^3} = \frac{2i - 1}{2i^3}$. For any integer $i \geq 1$, this is clearly positive. Additionally, $y_i - x_i^2 = -\frac{1}{2i^3} < 0 \implies y_i < x_i^2$. This means that all $p_i$ are in $A$, and thus $f(p_i) = 1$. Obviously, the limit of this constant sequence of $f(p_i)$ as $i \rightarrow \infty$ is $1 \neq 0$, therefore $f$ is not continuous at the origin.
+
+        Now consider any $g_h$ such that $g_h(t) = f(th), h \in \mathbb{R}^2$. $th$ defines a line in $\mathbb{R}^2$ that passes through the origin. From (a) we know that there exists a line segment around which lies entirely in $\mathbb{R}^2 - A$, and thus $f$ evaluated on any point $p$ of it is $f(p) = 0$. Let $p_1, p_2$ be the endpoints of this line segment. Then $p_1 = t_1h, p_2 = t_2h$ and WLOG $t_1 < t_2$ (we proved that this is a non-degenerate line segment, thus $t_1$ cannot equal $t_2$). But then for all $t \in [t_1, t_2]$, $g_h(t) = f(th) = 0$. Clearly, this implies that $g_h$ is continuous at 0, since it is constant on an interval around it (and on 0 itself).
+    \end{solution}

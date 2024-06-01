@@ -1,0 +1,607 @@
+\chapter{Differentiation}
+
+\begin{exercise}{1}
+    We study some properties of the operation of taking the trace; this will provide some background for the Euclidean norm. All the results obtained below apply, mutatis mutandis, to End$(\mathbb{R}^n)$ as well.
+
+    (i) Verify that $\text{tr}: \text{Mat}(n, \mathbb{R}) \rightarrow \mathbb{R}$ is a linear mapping, and that, for $A, B \in \text{Mat}(n, \mathbb{R})$,
+
+    $$\text{tr} A = \text{tr} A^T, \text{tr} AB = \text{tr} BA, \text{tr} BAB^{-1} = \text{tr} A$$
+
+    if $B \in \textbf{GL}(n, \mathbb{R})$. Deduce that the mapping tr vanishes on \textit{commutators} in $\text{Mat}(n, \mathbb{R})$, that is, for $A, B \in \text{Mat}(n, \mathbb{R})$,
+
+    $$\text{tr}([A, B]) = 0, \text{where    } [A, B] = AB-BA.$$
+
+    Define a bilinear functional $\langle \cdot, \cdot, \rangle : \text{Mat}(n, \mathbb{R}) \times \text{Mat}(n, \mathbb{R}) \rightarrow \mathbb{R}$ by $\langle A, B \rangle = \text{tr}(A^TB)$.
+
+    (ii) Show that $\langle A, B \rangle = \text{tr}(B^TA) = \text{tr}(AB^T) = \text{tr}(BA^T)$.
+
+    (iii) Let $a_j$ be the $j$-th column vector of $A \in \text{Mat}(n, \mathbb{R})$, thus $a_j = Ae_j$. Verify, for $A, B \in \text{Mat}(n, \mathbb{R})$:
+    $$A^TB = (\langle a_i, b_j \rangle)_{1 \leq i, j \leq n}, \langle A, B \rangle = \sum_{1 \leq j \leq n} \langle a_j, b_j \rangle$$.
+
+    (iv) Prove that $\langle \cdot, \cdot \rangle$ defines an inner product on $\text{Mat}(n, \mathbb{R})$, and that the corresponding norm equals the Euclidean norm on $\text{Mat}(n, \mathbb{R}$
+
+    (v) Using part (ii), show that the decomposition from Lemma 2.1.4 is an orthogonal direct sum, in other words, $\langle A, B \rangle = 0$ if $A \in \text{End}^+(\mathbb{R}^n)$ and $B \in \text{End}^-(\mathbb{R}^n)$. Verify that $\text{dim End}^{\pm}(\mathbb{R}^n) = \frac{1}{2}(n\pm1)$.
+
+    Define the bilinear functional $B : \text{Mat}(n, \mathbb{R}) \times \text{Mat}(n, \mathbb{R}) \rightarrow \mathbb{R}$ by $B(A, A') = \text{tr}(AA')$.
+    
+    (vi) Prove that $B$ satisfies $B(A_{\pm}, A_{\pm}) \gtrless 0$, for $0 \neq A_{\pm} \in \text{End}^{\pm}(\mathbb{R}^n)$.
+
+    Finally, we show that the trace is completely determined by some of the properties listed in part (i).
+
+    (vii) Let $\tau : \text{Mat}(n, \mathbb{R}) \rightarrow \mathbb{R}$ be a linear mapping satisfying $\tau(AB) = \tau(BA)$, for all $A, B \in \text{Mat}(n, \mathbb{R})$. Prove
+    $$\tau = \frac{1}{n}\tau(I)tr$$
+
+    \textbf{Hint:} Note that $\tau$ vanishes on commutators. Let $E_{ij} \in \text{Mat}(n, \mathbb{R})$ be given by having a single 1 at position $(i, j)$ and zeros elsewhere. Then the statement is immediate from $[E_{ij}, E_{jj}] = E_{ij}$ for $i \neq j$, and $[E_{ij}, E_{ji}] = E_{ii} - E_{jj}$.
+    
+\end{exercise}
+
+\begin{solution}
+    
+    (i) We know the following from Linear Algebra (the proofs are simple, and based on the definition of the trace of a matrix):
+    \begin{itemize}
+        \item For $A, B$ square matrices, it holds that $\text{tr}(A+B) = \text{tr}(A) + \text{tr}(B)$.
+        \item For $A$ square matrix and $\lambda \in \mathbb{R}$, it holds that $\text{tr}(\lambda A) = \lambda \text{tr}(A)$.
+    \end{itemize}
+    Therefore, tr is indeed a linear mapping. For the properties requested, we have that:
+    \begin{itemize}
+        \item Taking the transpose of a matrix leaves the diagonal unchanged, therefore the sum of the diagonal elements is also unchanged. This equals the trace of the transpose, which means that $\text{tr}(A^T) = \text{tr}(A)$.
+        \item This is something that we have also already seen in Linear Algebra, and the proof once more follows from the definition. We have that $\text{tr}(AB) = \sum_i (AB)_{i,i} = \sum_i \sum_j A_{ij}B_{ji}, \text{tr}(BA) = \sum_i (BA)_{i, i} = \sum_i \sum_j B_{ij}A_{ji}$, and these are of course equal, since they sum the exact same products.
+        \item Using the above property, for an invertible matrix $B$ we obtain that $\text{tr}(BAB^{-1}) = \text{tr}((BA)B^{-1}) = \text{tr}(B^{-1}(BA)) = \text{tr}(IA) = \text{tr}(A)$.
+    \end{itemize}
+    We additionally have that $\text{tr}([A, B]) = \text{tr}(AB - BA) = \text{tr}(AB) - \text{tr}(BA) = \text{tr}(AB) - \text{tr}(AB) = 0$.
+
+    (ii) Using the definition and the properties we proved in (i), we have that:
+    \begin{itemize}
+        \item $\text{tr}(B^TA) = \text{tr}((B^TA)^T) = \text{tr}(A^TB) = \langle A, B \rangle$
+        \item $\text{tr}(AB^T) = \text{tr}(B^TA) = \langle A, B \rangle$
+        \item $\text{tr}(BA^T) = \text{tr}(A^TB) = \langle A, B \rangle$
+    \end{itemize}
+
+    (iii) The $(i, j)$-th element of $A^TB$ equals the following (by the definition of matrix multiplication and the transpose):
+    
+    $$(A^TB)_{i, j} = \sum_{k} A^T_{i, k} B_{k, j} = \sum_{k} A_{k, i} B_{k, j}$$
+
+    Each term of the last sum is nothing but the standard Euclidean inner product of $a_i, b_j$. Therefore, $(A^TB)_{i, j} = \langle a_i, b_j \rangle$.
+
+    We now also have that $\langle A, B \rangle = \text{tr}(A^TB) = \sum_{1 \leq j \leq n} (A^TB)_{j, j} = \sum_{1 \leq j \leq n} \langle a_j, b_j \rangle$.
+
+    (iv) To show that $\langle \cdot, \cdot \rangle$ defines an inner product for square matrices, we have that (by using results previously proved in the exercise):
+    \begin{itemize}
+        \item \textbf{Additivity in the first slot}: We have that $\langle A_1 + A_2, B \rangle = \text{tr}((A_1+A_2)^TB) = \text{tr}((A_1^T+A_2^T)B) = \text{tr}(A_1^TB + A_2^TB) = \text{tr}(A_1^TB) + \text{tr}(A_2^TB) = \langle A_1, B \rangle + \langle A_2, B \rangle$.
+        \item \textbf{Homogeneity in the first slot}: We have that $\langle \lambda A, B \rangle = \text{tr}((\lambda A)^TB) = \text{tr}(\lambda A^TB) = \text{tr}(\lambda(A^TB)) = \lambda \text{tr}(A^TB)$.
+        \item \textbf{Symmetry:} Note that in $\mathbb{R}^n$ we care about symmetry instead of conjugate symmetry, thus: $\langle B, A \rangle = \text{tr}(B^TA) = \langle A, B \rangle$ by part (ii).
+
+        \item \textbf{Positivity}: We have that $\langle A, A \rangle =  \sum_{1 \leq j \leq n} \langle a_j, a_j \rangle \geq 0$, by the positivity of the Euclidean inner product for vectors.
+
+        \item  \textbf{Definiteness}: By the immediately preceding bullet, we have that $\langle A, A \rangle$ is a sum of non-negative quantities, each of which is zero iff the $j$-th column of $A$ is zero (definiteness of the Euclidean inner product). This leads us to the conclusion that $\langle A, A \rangle$ is zero iff all of its columns are zero, which means that $A$ is the zero matrix, which is the zero element for matrices, thus proving definiteness of $\langle \cdot, \cdot \rangle$.
+    \end{itemize}
+
+    Therefore, $\langle \cdot, \cdot \rangle$ does indeed define an inner product for square matrices. The associated norm is $\lvert \lvert A \rvert \rvert = \sqrt{\langle A, A \rangle} = \sqrt{\sum_{1 \leq j \leq n} \langle a_j, a_j \rangle} = \sqrt{\sum_{i, j} A_{i, j} A_{i, j}}$ which indeed equals the Euclidean norm for the matrix $A$.\bigskip
+    
+    (v) Lemma 2.1.4 states that the vector space $\text{End}(\mathbb{R}^n)$ of operators in $\mathbb{R}^n$ can be written as a direct sum of the subspace $\text{End}^+(\mathbb{R}^n)$ of self-adjoint operators and the subspace $\text{End}^-(\mathbb{R}^n$ of anti-adjoint operators (that is, operators for which $A^* = -A$). In particular:
+    $$\text{End}(\mathbb{R}^n) = \text{End}^+\mathbb{R}^n \oplus \text{End}^-(\mathbb{R}^n)$$
+
+    , since any operator $T$ can be written as $T = \frac{1}{2}(T+T^*) + \frac{1}{2}(T-T^*)$.
+
+    Consider then $A \in \text{End}^+(\mathbb{R}^n), B \in \text{End}^-(\mathbb{R}^n)$. Using the defining properties of these operators and part (ii), we obtain that:
+
+    $$\langle A, B \rangle = \text{tr}(B^*A) = \text{tr}(-BA) = -\text{tr}(BA) = -\text{tr}(AB) = -\text{tr}(A^*B) = -\langle A, B \rangle$$
+
+    Clearly, this implies that $\langle A, B \rangle$. Now let $x, y$ be the dimensions of $\text{End}^+(\mathbb{R}^n), \text{End}^-(\mathbb{R}^n)$ respectively. Due to the direct sum and the fact that $\text{dim End}(\mathbb{R}^n) = n^2$, we have that $x+y = n^2$. Recall also the isomorphism between operators and square matrices,and the fact that in $\mathbb{R}^n$ self-adjoint operators are precisely those whose matrix wrt. the standard basis equals its transpose. Such a matrix is fully defined by choosing the elements on and above the diagonal. In total, these are $n + \frac{n^2 - n}{2} = \frac{n(n+1)}{2}$. 
+    
+    In particular, such a matrix can be written uniquely as a sum of a linearly independent list of matrices consisting of either a one on the diagonal and zeros everywhere else, or a one in positions $(i, j), (j, i), i \neq j$, and zeros everywhere else. These are again in total $\frac{n(n+1)}{2}$. We conclude that the dimension $x$ equals $\frac{n(n+1)}{2}$, and thus that $y = n^2 - \frac{n(n+1)}{2} = \frac{n(n-1)}{2}$
+
+    (vi) Consider first a self-adjoint $A$. Then, we have that:
+    $$B(A, A) = \text{tr}(AA) = \text{tr}(A^*A) = \langle A, A \rangle$$
+
+    This is clearly greater than zero if $A$ is not zero, by the properties of the inner product. For an anti-adjoint $A$ we have that:
+    $$B(A, A) = \text{tr}(AA) = \text{tr}((-A^*)A) = -\text{tr}(A^*A) = \langle A, A \rangle$$
+
+    By the exact same reasoning as before, for a non-zero $A$ this is clearly less than zero.
+
+    (vii) Since $\tau$ is a linear mapping, it is uniquely determined by its values on a basis of $\text{Mat}(n, \mathbb{R})$. Observe that the $E_{ij}$ given in the hint form such a basis. Consider the value of $\tau$ on the commutator $[A, B] = AB - BA$. By its linearity and its given defining property, it must hold that:
+    $$\tau([A, B]) = \tau(AB-BA) = \tau(AB) - \tau(BA) = \tau(AB) - \tau(AB) = 0$$
+
+    For $i \neq j$, it holds that $[E_{ij}, E_{jj}] = E_{ij}E_{jj} - E_{jj}E_{ij} = E_{ij} - 0 = E_{ij}$ (since $E_{ij}$ maps everything to zero except for mapping $e_i$ to $e_j$ and $E_{jj}$ maps everything to zero except for mapping $e_j$ to $e_j$. By the above observation regarding commutators, we conclude that:
+    $$\tau(E_{ij}) = 0$$
+
+    For $i = j$, it holds that $[E_{ij}, E_{ji}] = E_{ii} - E_{jj}$. Again, we conclude that:
+    $$\tau(E_{ii} - E_{jj}) = 0 \implies \tau(E_{ii}) = \tau(E_{jj})$$
+
+    This means that $\tau$ maps every vector $E_{ij}, i \neq j$ to zero, and maps \textit{all} vectors $E_{ii}$ to the same value, let it be called $a$. By its linearity, observe that:
+    $$\tau(I) = \tau(E_{11}+E_{22} + \ldots + E_{nn}) = na \implies a = \frac{1}{n}\tau(I)$$
+
+    Finally, observe that the trace is also a linear function, maps $E_{ij}, i \neq j$ to zero and maps each $E_{ii}$ to 1 (since the trace equals the sum of the diagonal). But then it becomes clear that for all vectors $E_{ij}$ it holds that 
+    $$\tau(E_{ij}) = a \text{tr}(E_{ij}) = \frac{1}{n}\tau(I)\text{tr}(E_{ij})$$
+
+    , and since these are linear mappings, this also holds for any matrix, i.e.\ $\tau = \frac{1}{n}\tau(I)\text{tr}$.
+\end{solution}
+\newpage
+\begin{exercise}{4}
+    Suppose $A \in \text{End}(\mathbb{R}^n)$ is an orthogonal transformation, that is, $\lvert \lvert Ax \rvert \rvert = \lvert \lvert x \rvert \rvert$, for all $x \in \mathbb{R}^n$.
+
+    (i) Show that $A \in \text{Aut}(\mathbb{R}^n)$ and that $A^{-1}$ is orthogonal.
+
+    (ii) Deduce from the polarization identity in Lemma 1.1.5.(iii) that
+    $$\langle A^*Ax, y \rangle = \langle Ax, Ay \rangle = \langle x, y \rangle, x, y \in \mathbb{R}^n$$
+
+    (iii) Prove $A^*A = I$ and deduce that $\text{det} A = \pm 1$. Furthermore, using (i) show that $A^*$ is orthogonal, thus $AA* = I$; and also obtain $\langle Ae_i, Ae_j \rangle = \langle A^*e_i, A^*e_j \rangle = \langle e_i, e_j \rangle = \delta_{i, j}$, where $e_1, \ldots, e_n$ is the standard basis for $\mathbb{R}^n$. Conclude that the column and row vectors, respectively, in the corresponding matrix of $A$ form an orthonormal basis for $\mathbb{R}^n$.
+
+    (iv) Deduce from (iii) that the corresponding matrix $A = (a_{ij}) \in \textbf{GL}(n, \mathbb{R})$ is \textit{orthogonal} with coefficients in $\mathbb{R}$ and belongs to the \textit{orthogonal group} $\textbf{O}(n, \mathbb{R})$, which means that it satisfies $A^TA = I$; in addition, deduce
+    $$\sum_{1 \leq k \leq n} a_{ki}a_{kj} = \sum_{1 \leq k \leq n}a_{ik}a_{jk} = \delta_{ij}, 1 \leq i, j \leq n$$
+\end{exercise}
+
+\begin{solution}
+
+    (i) We need to show that $A$ is a bijection. Since $A$ is an operator, it suffices to show that it is injective. Consider then an $x$ such that $Ax = 0$. We then have that $\lvert \lvert Ax \rvert \rvert = 0$, which, since $A$ is an isometry, implies $\lvert \lvert x \rvert \rvert = 0$, which means $x = 0$, therefore $A$ is injective and thus bijective. Therefore, $A^{-1}$ is well defined in $\mathbb{R}^n$.
+
+    Now consider any $y \in \mathbb{R}^n$. It holds that $A^{-1}y = x$ such that $Ax = y$. Since $A$ is an isometry, we have that:
+    $$\lvert \lvert Ax \rvert \rvert = \lvert \lvert x \rvert \rvert \implies \lvert \lvert y \rvert \rvert = \lvert \lvert A^{-1}y \rvert \rvert$$
+
+    This means that $A^{-1}$ is also an isometry (in the terminology of this book, an orthogonal transformation).
+
+    (ii) From the polarization identity we obtain that:
+    $$\langle Ax, Ay \rangle = \frac{1}{4}(\lvert \lvert Ax + Ay \rvert \rvert^2 - \lvert \lvert Ax - Ay \rvert \rvert^2) = \frac{1}{4}(\lvert \lvert A(x+y) \rvert \rvert^2 - \lvert \lvert A(x-y) \rvert \rvert^2)$$
+    $$\implies \langle Ax, Ay \rangle = \frac{1}{4}(\lvert \lvert x + y \rvert \rvert^2 - \lvert \lvert x - y \rvert \rvert^2) = \langle x, y \rangle$$
+
+    By the definition of the adjoint, we also have that:
+    $$\langle A^*Ax, y \rangle = \langle Ax, (A^*)^*y \rangle = \langle Ax, Ay \rangle$$
+
+    (iii) Let $x$ be any element of $\mathbb{R}^n$. Using the properties proved in (ii), we have that:
+    $$\langle A^*Ax - x, A^*Ax - x \rangle = \langle A^*Ax, A^*Ax \rangle + \langle x, x \rangle - 2\langle A^*Ax, x \rangle = $$
+    $$\langle x, A^*Ax \rangle + \langle x, x \rangle - 2\langle x, x \rangle = \langle x, x \rangle + \langle x, x \rangle - 2 \langle x, x \rangle = 0$$
+
+    By the properties of the inner product, the only way this can be true is if $A^*Ax - x = 0 \implies A^*Ax = x$. Since $x$ was selected arbitrarily, this means that $A^*A = I$. Because in $\mathbb{R}$ $A$ and $A^*$ have the same eigenvalues with the same multiplicities, and thus equal determinants, this also implies that:
+    $$\text{det}(A^*A) = \text{det}(I) \implies \text{det}(A^*)\text{det}(A) = 1 \implies \text{det}(A)^2 = 1 \implies \text{det}(A) = \pm 1$$
+    
+    Since $A^*A = I$, $A^*$ is a left inverse of $A$, and from Linear Algebra we know that this means that $A^*$ is the inverse of $A$. Therefore, $A^* = A^{-1}$, and from (i) we know that $A^{-1}$ is an isometry/orthogonal.
+
+    For any two $e_i, e_j$ of the standard basis of $\mathbb{R}^n$, we have that:
+    $$\langle Ae_i, Ae_j \rangle = \langle e_i, e_j \rangle = \delta_{ij}$$
+    , since the standard basis is orthonormal (and thus $\langle e_i, e_j \rangle = 0, i \neq j, \langle e_i, e_j \rangle = 1, i = j$). Also:
+    $$\langle A^*e_i, A^*e_j \rangle = \langle e_i, (A^*)^*A^*e_j \rangle = \langle e_i, AA^*e_j \rangle = \langle e_i, e_j \rangle = \delta_{ij}$$
+
+    From the first of those equations, we deduce that the columns of $A$ are orthonormal vectors. Furthermore, since they are $n$ in total, they must form a basis for $\mathbb{R}^n$. With respect to the standard basis, we know that the matrix of $A^*$ equals the transpose of the matrix of $A$. From the second of those equations, we then have that the columns of this matrix are also orthonormal and $n$ in total. Thus, the columns of the transpose of $\mathcal{M}(A)$, i.e.\ the rows of $\mathcal{M}(A)$, also form an orthonormal basis for $\mathbb{R}^n$.
+
+    (iv) This is immediately obvious from the definitions of the general linear group and orthogonal group of matrices. The given sum $\sum_{1 \leq k \leq n} a_{ki}a_{kj}$ is nothing but the Euclidean inner product of the $i$-th and $j$-th columns of $\mathcal{M}(A)$, which from (iii) equals $\delta_{ij}$. Similarly, the given sum $\sum_{1 \leq k \leq n} a_{ik}a_{jk}$ is nothing but the Euclidean inner product of the $i$-th and $j$-th rows of $\mathcal{M}(A)$, which again from (iii) equals $\delta_{ij}$.
+\end{solution}
+
+\begin{exercise}{5}
+    Let $\textbf{SO}(3, \mathbb{R}$ be the special orthogonal group in $\mathbb{R}^3$, consisting of the orthogonal matrices in $\text{Mat}(3, \mathbb{R})$ with determinant equal to 1. One then has, for every $R \in \textbf{SO}(3, \mathbb{R})$, see Exercise 2.4,
+    $$R \in \textbf{GL}(3, \mathbb{R}), R^TR = I, \text{det} R = 1$$
+    Prove that for every $R \in \textbf{SO}(3, \mathbb{R})$ there exist $a \in \mathbb{R}, 0 \leq a \leq \pi$ and $v \in \mathbb{R}^3$ with $\lvert \lvert v \rvert \rvert = 1$ with the following properties: $R$ fixes $v$ and maps the linear subspace $N_v$ orthogonal to $v$ into itself; in $N_v$ the action of $R$ is that of rotation by the angle $a$ such that, for $0 < a < \pi$ and for all $y \in N_v$, one has $\text{det}(v \ y \ Ry) > 0$.
+
+    We write $R=R_{a, v}$, which is referred to as the counterclockwise rotation in $\mathbb{R}^3$ by the angle $a$ around the axis of rotation $\mathbb{R}v$.
+\end{exercise}
+
+\begin{solution}
+
+    We begin by observing that since $R$ is an orthogonal matrix, the corresponding linear transformation $T$ must be an isometry. Indeed, for any $v \in \mathbb{R}^3$ we have that:
+    $$\lvert \lvert T v \rvert \rvert^2 = \langle Tv, Tv \rangle = \langle v, T*Tv \rangle = \langle v, R^TRv \rangle = \langle v, Iv \rangle = \lvert \lvert v \rvert \rvert^2$$
+    
+    Since $\mathbb{R}^3$ has odd dimension, $T$ must have a real eigenvalue $\lambda$. Furthermore, because $\lvert \lvert T v \rvert \rvert = \lvert \lvert v \rvert \rvert$, $\lambda$ can only be 1 or -1. We claim that it cannot be the case that the only real eigenvalue is -1, because then the determinant of $T$ could not be 1. We prove this by contradiction. Recall that the determinant of $T$ equals the product of the eigenvalues of $T_c$ each raised to the corresponding multiplicity. Besides $\lambda$, $T_c$ can only have at most two more eigenvalues, $\lambda_1, \lambda_2$. If this is the case, because $T_c$ is the complexification of $T$, it must hold that $\lambda_2 = \overline{\lambda_1}$. But then if $\lambda = -1, \lambda \cdot \lambda_1 \cdot \lambda_2 = -1\cdot \lvert \lambda_1 \rvert^2$, and this cannot be equal to 1. The only other possibility is for $\lambda_1, \lambda_2$ to both be real. But then they would have to be either 1 or -1. If $\lambda = \lambda_1 = \lambda_2 = -1$ their product is -1, contradiction.
+    
+    Therefore, 1 is an eigenvalue of $T$ and there must exist a non-zero corresponding eigenvector $v$ with norm 1. Since $T$ is an isometry, it is normal. Again from Linear Algebra, we know then that the orthogonal complement of $v$, $N_v$ is invariant under $T$. Note also that $N_v$ must have dimension 2, since $\mathbb{R}^3 = \text{span}\{v\} \oplus N_v$. Since $T$ is an isometry, it must be the case that $T|_{N_v}$ is also an isometry. In a two-dimensional real vector space, we know that we can always find an orthonormal basis with respect to which the matrix of the isometry is either of the form:
+    $$\begin{pmatrix}
+        \text{cos} a & -\text{sin} a \\
+        \text{sin} a & \text{cos} a
+    \end{pmatrix}$$
+
+    , with $a \in [0, \pi]$, or of the form $\begin{pmatrix}
+        1 & 0 \\ 0 & -1
+    \end{pmatrix}$ or $\begin{pmatrix}
+        -1 & 0 \\ 0 & 1
+    \end{pmatrix}$. In our case, these last two can be ruled out because they would lead to $T$ having a determinant of -1. Therefore, since $N_v$ has dimension 2 we can choose an orthonormal basis $v_1, v_2$ for $N_v$ with respect to which $\mathcal{M}(T)$ has the first of the three forms described above. Putting this together with the facts that $\mathbb{R}^3 = \text{span}\{v\} \oplus N_v$, $Tv = v$ and $N_v$ is the orthogonal complement of $\text{span}\{v\}$ we obtain that the matrix of $T$ with respect to the orthonormal basis $v, v_1, v_2$ must be of the form:
+    $$\begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & \text{cos} a & -\text{sin} a \\
+        0 & \text{sin} a & \text{cos} a
+    \end{pmatrix}$$
+    It becomes clear that for any vector in $N_v$, $T$ rotates the vector by the angle $a$, and that this is counterclockwise, by the geometric definition of measuring angles between vectors. Also, from the definition of invariant subspaces, $T$ maps $N_v$ into itself. Therefore, we only need to show that $\text{det}(v \ y \ Ry)$ for all $y \in N_v$. We have that (where everything is with respect to our basis $v, v_1, v_2$):
+    
+    $$(v \ y \ Ry) = \begin{pmatrix}
+        1 & y_1 & y_1 \\ 0 & y_2 & \text{cos} a y_2 - \text{sin} a y_3 \\ 0 & y_3 & \text{sin} a y_2 + \text{cos} a y_3
+    \end{pmatrix}$$
+
+    Observe that for this matrix, the terms of the determinant sum that take the first column element from the second or third row are zero. Therefore, the determinant is:
+    $$\text{det}(v \ y \ Ry) = \text{sign}(1, 2, 3)1\cdot y_2 \cdot (\text{sin}a y_2 + \text{cos} a y_3) + \text{sign}(1, 3, 2)1 \cdot y_3 \cdot (\text{cos}a y_2 - \text{sin} a y_3)$$
+    $$= {y_2}^2 \text{sin}a + y_2 y_3 \text{cos}a - y_2 y_3 \text{cos} a + {y_3}^2 \text{sin} a = \text{sin}a({y_2}^2 + {y_3}^2)$$
+
+    Because $a \in [0, \pi]$, this determinant is always non-negative, and is zero whenever $y_2, y_3 = 0$, which means that $y$ is a multiple of $v$. Since $y \in N_v$ this can only happen if $y = 0$ (which also makes intuitive sense, because then $Ry = 0$).
+\end{solution}
+
+\begin{exercise}{6}
+    Assume a differentiable function $f: \mathbb{R} \rightarrow \mathbb{R}$ has a zero, so $f(x) = 0$ for some $x \in \mathbb{R}$.
+    Suppose $x_0 \in \mathbb{R}$ is a first approximation to this zero and consider the tangent line to the graph $\{(x, f(x)) \lvert x \in \text{dom}(F)\}$ of $f$ at $(x_0, f(x_0)$; this is the set
+    $$\{(x, y) \in \mathbb{R}^2 \lvert y -f(x_0) = f'(x_0)(x - x_0)\}$$
+    Then determine the intercept $x_1$ of that line with the $x$-axis, in other words $x_1 \in \mathbb{R}$ for which $-f(x_0) = f'(x_0)(x_1 - x_0)$, or, under the assumption that $A^{-1} = f'(x_0) \neq 0$,
+    
+    $$x_1 = F(x_0) \text{ where } F(x) = x - Af(x)$$
+    
+    It seems plausible that $x_1$ is nearer the required zero $x$ than $x_0$, and that iteration of this procedure will get us nearer still.
+    In other words, we hope that the sequence $(x_k)_{k \in \mathbb{N}_0}$ with $x_{k+1} = F(x_k)$ converges to the required zero $x$, for which then $F(x) = x$.
+    Now we formalize this heuristic argument.
+
+    Let $x_0 \in \mathbb{R}^n, \delta > 0$, and let $V = V(x_0; \delta)$ be the closed ball in $\mathbb{R}^n$ of center $x_0$ and radius $\delta$; furthermore, let $f: V \rightarrow \mathbb{R}^n$.
+    Assume $A \in \text{Aut}(\mathbb{R}^n)$ and a number $\epsilon$ with $0 \leq \epsilon < 1$ to exist such that:
+
+    (i) the mapping $F: V \rightarrow \mathbb{R}^n$ with $F(x) = x - A(f(x))$ is a contraction with contraction factor $\leq \epsilon$;
+
+    (ii) $\lvert \lvert A f(x_0) \rvert \rvert \leq (1 - \epsilon) \delta$
+
+    Prove that there exists a unique $x \in V$ with
+    $$f(x) = 0; \text{ and also } \lvert \lvert x - x_0 \rvert \rvert \leq 
+    \frac{1}{1 - \epsilon}\lvert \lvert A f(x_0) \rvert \rvert$$
+\end{exercise}
+
+\begin{solution}
+
+    Since $V$ is closed and $F$ is a contraction, we would like to use the contraction lemma. 
+    However, this requires $F$ to map $V$ to itself.
+    For this we should therefore show that for any $x \in V$ it also holds that $F(x) \in V$,
+    which is equivalent to showing that $\lvert \lvert F(x) - x_0 \rvert \rvert \leq \delta$.
+    We know that $F$ is a contraction, which means that:
+    $$\lvert \lvert F(x) - F(x_0) \rvert \rvert \leq \epsilon \lvert \lvert x - x_0 \rvert \rvert \implies \lvert \lvert F(x) - x_0 + A(f(x_0)) \rvert \rvert \leq \epsilon \lvert \lvert x - x_0 \rvert \rvert$$
+    $$\implies \Bigl \lvert \lvert \lvert F(x) - x_0 \rvert \rvert - \lvert \lvert A(f(x_0)) \rvert \rvert \Bigr \rvert \leq \epsilon \lvert \lvert x - x_0 \rvert \rvert \implies \lvert \lvert F(x) - x_0 \rvert \rvert - \lvert \lvert A(f(x_0)) \rvert \rvert \leq \epsilon \lvert \lvert x - x_0 \rvert \rvert$$
+    $$\implies \lvert \lvert F(x) - x_0 \rvert \rvert \leq \epsilon\delta + (1 - \epsilon)\delta \implies \lvert \lvert F(x) - x_0 \rvert \rvert \leq \delta,$$
+    which is precisely the condition we require for the contraction lemma.
+    By applying it we have that there exists a unique $x \in V$ such that:
+    $$F(x) = x \implies x - A(f(x)) = x \implies A(f(x)) = 0$$
+    Because $A$ is invertible, the only way this can hold is if $f(x) = 0$.
+    Furthermore, again from the contraction lemma we know that:
+    $$\lvert \lvert x - x_0 \rvert \rvert \leq \frac{1}{1 - \epsilon}\lvert \lvert F(x_0) - x_0 \rvert \rvert \implies \lvert \lvert x - x_0 \rvert \rvert \leq \frac{1}{1 - \epsilon} \lvert \lvert A f(x_0) \rvert \rvert$$
+\end{solution}
+
+\begin{exercise}{8}
+    Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be differentiable.
+
+    (i) Prove that $f$ is constant if $D f = 0$.
+
+    \textbf{Hint}: Recall that the result is known if $n = 1$ and use directional derivatives.
+
+    Let $f: \mathbb{R}^n \rightarrow \mathbb{R}^p$ be differentiable.
+
+    (ii) Prove that $f$ is constant if $D_f = 0$.
+
+    (iii) Let $L \in L(\mathbb{R}^n, \mathbb{R}^p)$, and suppose $Df(x) = L$, for every $x \in \mathbb{R}^n$. Prove the existence of $c \in \mathbb{R}^p$ with $f(x) = Lx + c$, for every $x \in \mathbb{R}^n$.
+\end{exercise}
+
+\begin{solution}
+
+    (i) Suppose $f$ is not constant. Then there exist $x, y, x \neq y$ such that $f(x) \neq f(y)$. This means also that $y - x \neq 0$. Then let $g: \mathbb{R} \rightarrow \mathbb{R}$ be $g(t) = f(t(y - x) + x)$, in which case $g(0) = f(x), g(1) = f(y)$. Because $f$ is differentiable, so is $g$ (composition of differentiable functions). Then, apply the Mean Value Theorem in the interval $[0, 1]$ to obtain that there exists $c \in (0, 1)$ such that:
+    $$g'(c) = \frac{g(1) -g(0)}{1 - 0} = f(y) - f(x) \neq 0$$
+
+    But then observe that:
+    $$g'(c) = \lim_{h \rightarrow 0} \frac{g(c + h) - g(c)}{h} = \lim_{h \rightarrow 0} \frac{f((c+h)(y - x) +x) - f(c(y - x) + x)}{h}$$
+    $$ = \lim_{h \rightarrow 0}  \frac{f(h(y -x) + c(y - x) + x) - f(c(y - x) + x)}{h}$$
+
+    , which equals precisely the directional derivative of $f$ along the vector $y - x$ at $c(y - x) + x$. Because this equals $[D f(c(y -x) +x)](y - x)$, and $D f = 0$, it must be zero, which is a contradiction.
+
+    (ii) Again, suppose $f$ is not constant. Then there exist $x = (x_1, \ldots, x_n), y = (y_1, \ldots y_n), x \neq y$ such that $f(x) = (z_1, \ldots, z_p) \neq (w_1, \ldots, w_p) = f(y)$. As a consequence, $z_j \neq w_j$ for at least one $j$. Then consider the function $g: \mathbb{R}^n \rightarrow \mathbb{R}, g(x_1, \ldots, x_n) = f_j (x_1, \ldots, x_n)$. It is the case that:
+    $$[D g] (x)= [D f] (x)_{j, .}$$
+
+    , that is, the derivative of $g$ at any $x$ equals the $j$-th row of the derivative of $f$ at $x$. Therefore, $D_g$ is also zero (a row of zeros). But then by part (i), $g$ is constant, and thus $g(z) = f_j(z)$ must be equal to $g(w) = f_j(w)$, a contradiction. Therefore $f$ is constant.
+
+    (iii) Consider the function $g: \mathbb{R}^n \rightarrow \mathbb{R}^p, g(x) = f(x) - Lx$. At any given $x$, we know that the derivative of $Lx$ is $L$ (clearly, the ``best linear approximation'' of a linear approximation is itself). Furthermore, we are given that $D f = L$. By the addition rule for derivatives, we have firstly that $g$ is differentiable and secondly that:
+    $$[D g](x) = [D f](x) - L = L - L = 0$$
+
+    But then by part (ii), $g$ is constant, therefore there exists $c \in \mathbb{R}^p$ such that $g(x) = c$ for all $x \in \mathbb{R}^n$. This means of course that $f(x) - Lx = c \implies f(x) = Lx + c$.
+\end{solution}
+
+\begin{exercise}{9}
+    Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be homogeneous of degree 1, in the sense that $f(tx) = tf(x)$ for all $x \in \mathbb{R}^n$ and $t \in \mathbb{R}$. Show that $f$ has directional derivatives at 0 in all directions. Prove that $f$ is differentiable at 0 if and only if $f$ is linear, which is the case if and only if $f$ is additive.
+\end{exercise}
+
+\begin{solution}
+
+    Observe first that $f(\mathbf{0}) = f(0 \cdot \mathbf{0}) = 0f(\mathbf{0}) = 0$. Now, pick any $v \in \mathbb{R}^n$ and examine the definition of the directional derivative of $f$ along $v$ at 0:
+    $$\lim_{h \rightarrow 0} \frac{f(0 + hv) - f(0)}{h} = \lim_{h\rightarrow 0}\frac{f(hv) - 0}{h} = \lim_{h \rightarrow 0} \frac{hf(v)}{h} = f(v)$$
+
+    , where we used the fact that $f$ is homogeneous. 
+    We observe then that this limit always evaluates to some number, namely, to the corresponding $f(v)$. 
+    This means that all directional derivatives of $f$ at 0 exist. 
+    Now we examine the second claim of the exercise. 
+    We observe first that if $f$ is linear, it is clearly additive, whereas if it is additive, since we are given that it is homogeneous, it is then also linear. 
+    This means that it suffices to prove that ``$f$ is differentiable at 0 if and only if it is additive''
+    We have that:
+
+    $\implies$: Suppose first that $f$ is differentiable at 0.
+    Then $[D f(0]$ is a unique linear transformation, with the property that the directional derivative of $f$ along any $v$ at 0 equals $[D f(0)](v)$.
+    Pick any two $a, b \in \mathbb{R}^n$.
+    We then have that:
+    $$[D f(0)](a+b) = f(a+b)$$
+    , since the directional derivative of $f$ at 0 along any $v$ equals $f(v)$. 
+    Additionally, $[D f(0)]$ is linear, and therefore:
+    $$[D f(0)](a+b) = [D f(0)](a) + [D f(0)](b) = f(a) + f(b)$$
+    , again by using the same property for the directional derivatives of $f$ at 0.
+    But then we have shown that $f(a+b) = f(a) + f(b)$, which means precisely that $f$ is additive.
+
+    $\impliedby$: Now suppose $f$ is additive. 
+    We know from the first part of the exercise that all directional derivatives of $f$ at 0 exist. 
+    If $e_1, \ldots, e_n$ are the vectors of the standard basis of $\mathbb{R}^n$, then we know that the corresponding directional derivatives of $f$ at 0 are equal to $f(e_1), \ldots, f(e_n)$.
+    Let then $L$ be the linear transformation such that $L(e_i) = f(e_i)$ (linear transformations are completely defined by their values on a basis).
+    Consider any vector $h = \sum_{i=1}^{n} a_i e_i$ which tends to zero.
+    Then:
+    $$\lim_{h \rightarrow 0} \frac{1}{\lvert \lvert h \rvert \rvert}( f(0+ h) - f(0) - L(h) ) = \lim_{h \rightarrow 0} \frac{1}{\lvert \lvert h \rvert \rvert} ( f(\sum_{i=1}^{n} a_i e_i) - f(0) - L(\sum_{i=1}^{n} a_i e_i) )$$
+    $$= \lim_{h \rightarrow 0} \frac{1}{\lvert \lvert h \rvert \rvert}( \sum_{i=1}^{n} a_i f(e_i) - 0 - \sum_{i=1}^{n} a_i L(e_i) ) = 0$$
+
+    , where we used the linearity of both $f$ and $L$.
+    This limit being equal to 0 means precisely that $f$ is differentiable at 0.
+    
+\end{solution}
+
+\newpage
+
+\begin{exercise}{10}
+    Let $g$ be as in Example 1.3.11, that is:
+    $$g(x) = \begin{cases}
+        \frac{x_1 x_2^2}{x_1^2 + x_2^4},\ x \neq 0 \\
+        0,\ x = 0
+    \end{cases}$$ 
+    Then we define $f: \mathbb{R}^2 \rightarrow \mathbb{R}$ by
+    $$f(x) = x_2 g(x) = \begin{cases}
+        \frac{x_1 x_2^3}{x_1^2 + x_2^4},\ x \neq 0 \\
+        0,\ x = 0
+    \end{cases}$$
+
+    Show that $D_v f(0) = 0$ for all $v \in \mathbb{R}^2$; and deduce that $D f(0) = 0$, if $f$ were differentiable at 0. Prove that $D_v f(x)$ is well-defined for all $v, x \in \mathbb{R}^2$, and that $v \mapsto D_v f(x)$ belongs to $\mathcal{L}(\mathbb{R}^2, \mathbb{R})$, for all $x \in \mathbb{R}^2$.
+    Nevertheless, verify that $f$ is not differentiable at 0 by showing
+    $$\lim_{x_2 \rightarrow 0} \frac{\lvert f(x_2^2, x_2) \rvert}{\lvert \lvert (x_2^2, x_2) \rvert \rvert} = \frac{1}{2}$$
+\end{exercise}
+
+\begin{solution}
+
+    Pick any $v \in \mathbb{R}^2, v \neq 0$ and examine the definition of the directional derivative of $f$ along $v$ at 0:
+    $$\lim_{h \rightarrow 0} \frac{f(0 + hv) - f(0)}{h} = \lim_{h \rightarrow 0} \frac{\frac{(hv_1)(hv_2)^3}{(hv_1)^2 + (hv_2)^4} - 0}{h} = \lim_{h \rightarrow 0} \frac{h^4 v_1 v_2^3}{h^3v_1^2 + h^4 v_2^4} = \lim_{h \rightarrow 0} \frac{h v_1 v_2^3}{v_1^2 + hv_2^4}$$
+
+    If $v_1 = 0$, it has to be the case that $v_2 \neq 0$, in which case the limit clearly evaluates to 0. 
+    If $v_2  = 0$, it has to be the case that $v_1 \neq 0$, in which case again the limit evaluates to 0.
+    If both $v_1, v_2 \neq 0$, then the denominator tends to $v_1^2$ and the numerator tends to 0, which again means that the limit evaluates to 0.
+    Therefore, the limit can indeed be show to equal 0 for all $v \in \mathbb{R}^2 \setminus {0}$.
+    Thus, \textit{if} $f$ were differentiable at 0, it would have to be the case that $D_f(0) = 0$, since it would have to equal a linear transformation which maps all vectors to zero.
+    
+    We have already shown that $D_v f(x)$ is zero whenever $x = 0$. For $x \neq 0$, observe that $f$ is defined as a rational function with a non-zero numerator. 
+    This is then clearly a differentiable function, which means $D_f (x)$ exists, and then we know that the directional derivative along $v$ at $x$ is nothing but $[D_f(x)](v)$, so obviously the function $v \mapsto D_v f(x)$ is linear.
+
+    However, we will now show that the zero matrix/function does not fulfill the definition of being the derivative of $f$ at 0, that is, we will show that:
+
+    $$\lim_{h \rightarrow 0}\frac{1}{\lvert \lvert h \rvert \rvert}( (f(0 + h) - f(0)) - Lh ) \neq 0$$
+
+    Consider approaching $0$ with a sequence of points $i \rightarrow (\frac{1}{i^2}, \frac{1}{i}), i > 0$. This corresponds to the limit:
+
+    $$\lim_{x_2 \rightarrow 0} \frac{1}{\lvert \lvert (x_2^2, x_2) \rvert \rvert}(f(x_2^2, x_2) - 0 - 0h) = \lim_{x_2 \rightarrow 0}\frac{1}{\sqrt{x_2^4 + x_2^2}}(\frac{x_2^2x_2^3}{x_2^4 + x_2^4}) = \lim_{x_2 \rightarrow 0} \frac{x_2}{2x_2\sqrt{1 + x_2^2}} = \frac{1}{2}$$
+
+    Since this is not zero, the limit as $h \rightarrow 0$ cannot be zero either, thus showing that $f$ is not differentiable at 0 (since we showed that if it were, it would have to hold that $D_f(0) = 0$).
+    
+\end{solution}
+
+\newpage
+
+\begin{exercise}{11}
+    Define $f: \mathbb{R}^2 \rightarrow \mathbb{R}$ by
+    $$f(x) = \begin{cases}
+        \frac{x_1^3}{\lvert \lvert x \rvert \rvert^2}, & x \neq 0\\
+        0, & x = 0
+    \end{cases}$$
+    Prove that $f$ is continuous on $\mathbb{R}^2$. 
+    Show that directional derivatives of $f$ at 0 in all directions do exist. Verify, however, that $f$ is not differentiable at 0. 
+    Compute
+    $$D_1 f(x) = 1 + x_2^2\frac{x_1^2 - x_2^2}{\lvert \lvert x \rvert \rvert^4}, D_2 f(x) = -\frac{2x_1^3x_2}{\lvert \lvert x \rvert \rvert^4} \ (x \in \mathbb{R}^2 \setminus \{0\})$$
+    In particular, both partial derivatives of $f$ are well-defined on all of $\mathbb{R}^2$. Deduce that at least one of these partial derivatives has to be discontinuous at 0. To see this explicitly, note that
+    $$D_1 f(tx) = D_1 f(x), D_2 f(tx) = D_2 f(x) (t \in \mathbb{R} \setminus \{0\}, x \in \mathbb{R}^2)$$
+    This means that the partial derivatives assume constant values along every line through the origin under omission of the origin. More precisely, in every neighborhood of 0 the function $D_1 f$ assumes every value in $[0, \frac{9}{8}]$ while $D_2 f$ assumes every value in $[-\frac{3}{8}\sqrt{3}, \frac{3}{8}\sqrt{3}]$. Accordingly, in this case both partial derivatives are discontinuous at 0.
+\end{exercise}
+
+\begin{solution}
+
+    For $x \neq 0$, $f$ is continuous as a fraction of two continuous functions. In order for $f$ to be continuous at 0 it has to be the case that $\lim_{x \rightarrow 0} f(x) = f(0) = 0$. We have that:
+    $$\Biggl \lvert \frac{x_1^3}{\lvert \lvert x \rvert \rvert^2} \Biggr \rvert = \Biggl \lvert \frac{x_1^3}{x_1^2 + x_2^2} \Biggr \rvert = \Biggl \lvert \frac{x_1}{1 + (\frac{x_2}{x_1})^2} \Biggr \rvert \leq \lvert x_1 \rvert$$
+
+    , since we are dividing $\lvert x_1 \rvert$ with a quantity that is always at least 1. Now, as $x \rightarrow 0$, $\lvert x_1 \rvert \rightarrow 0$, which means that the LHS is upper-bounded by a quantity that tends to zero, which means that it must itself tend to zero. This means precisely that $\lim_{x \rightarrow 0} f(x) = f(0) = 0$. Therefore $f$ is continuous on $\mathbb{R}^2$.
+
+    Now, for computing the directional derivative of $f$ at 0 along $v$ we set 
+    $$g(h) = f(0 + hv) = f(hv) = \frac{h^3v_1^3}{h^2v_1^2 + h^2v_2^2} = \frac{h v_1^3}{v_1^2 + v_2^2}$$
+    and we observe that $D_v f(0) = g'(0) = \frac{v_1^3}{v_1^2 + v_2^2}$. 
+    If $f$ were differentiable at 0 it would have to be the case that $D f(0) = \begin{pmatrix}
+        1 & 0
+    \end{pmatrix}$, which is obtained by substituting $v = (1, 0), v = (0, 1)$ in the formula above. 
+    It would also have to hold that:
+    $$\lim_{h \rightarrow 0} \frac{1}{\lvert \lvert h \rvert \rvert}( f(0 + h) - f(0) - D f(0) h) = 0 \implies \lim_{h \rightarrow 0} \frac{1}{\lvert \lvert h \rvert \rvert}( \frac{h_1^3}{h_1^2 + h_2^2} - 0 - \begin{pmatrix}
+        1 & 0
+    \end{pmatrix} \begin{pmatrix}
+        h_1 \\ h_2
+    \end{pmatrix}) = 0$$
+    $$\implies \lim_{h \rightarrow 0} \frac{1}{\lvert \lvert h \rvert \rvert}( \frac{h_1^3}{h_1^2 + h_2^2} - h_1) = 0 \implies \lim_{h \rightarrow 0} \frac{1}{\lvert \lvert h \rvert \rvert}( \frac{h_1^3 - h_1h_2^2}{h_1^2 + h_2^2}) = 0$$
+
+    Consider what happens when $h$ approaches 0 with $h_2 = 0$. Then the quantity inside the limit evaluates to:
+    $$\frac{h_1^3 - 0}{\lvert h_1 \rvert \cdot h_1^2} = \frac{h_1}{\lvert h_1 \rvert},$$
+    which tends to 1 for $h \rightarrow 0^+$ and to -1 for $h \rightarrow 0^-$. This shows that the limit above does not exist, and therefore $f$ cannot be differentiable at 0.
+
+    Now let us compute $D_1 f(x), D_2 f(x)$ for $x \neq 0$. By standard differentiation rules:
+    $$D_1 f(x) = \frac{\partial}{\partial x_1}( \frac{x_1^3}{x_1^2 + x_2^2}) = \frac{3x_1^2(x_1^2 + x_2^2) - 2x_1^4}{(x_1^2 + x_2^2)^2} = \frac{x_1^4 + 3x_1^2 x_2^2}{\lvert \lvert x \rvert \rvert^4} = \frac{x_1^4 + \lvert \lvert x \rvert \rvert^4 - \lvert \lvert x \rvert \rvert^4 + 3x_1^2 x_2^2}{\lvert \lvert x \rvert \rvert^4}$$
+    $$= 1 + \frac{x_1^4 - (x_1^2 + x_2^2)^2 + 3x_1^2 x_2^2}{\lvert \lvert x \rvert \rvert^4} = 1 + \frac{-2x_1^2 x_2^2 - x_2^4 + 3x_1^2 x_2^2}{\lvert \lvert x \rvert \rvert^4} = 1 + \frac{x_2^2(x_1^2 - x_2^2)}{\lvert \lvert x \rvert \rvert^4}$$
+    One can similarly obtain that $D_2 f(x) = -\frac{2x_1^3x_2}{\lvert \lvert x \rvert \rvert^4}$ (calculations omitted for brevity).
+
+    For both of these formulas one can notice that if we substitute $(x_1, x_2)$ by $(tx_1, tx_2)$, the powers are arranged in such a way that all $t$'s cancel out, the result being that $D_1 f(tx) = D_1 f(x), D_2 f(tx) = D_2 f(x)$.
+
+    Now consider a neighborhood around 0 containing an open ball $B_\epsilon(0)$. Observe that if we select a point $v$ inside this ball such that $v = (\sqrt{3}x, x)$ we have that:
+    $$D_1 f(v) = 1 + v^2 \frac{3v^2 - v^2}{(3v^2 + v^2)^2} = 1 + \frac{2v^4}{16v^4} = \frac{9}{8}$$
+    But recall that $D_1 f(0) = 1$, which means that if $D_1 f$ were continuous at 0, its limit as $x \rightarrow 0$ would have to be 0 also. 
+    However, the existence of a point $v$ with the above property for \textit{any} $\epsilon$ such that $D_1 f(v) = \frac{9}{8}$ implies that the limit cannot be zero. Therefore, $D_1 f$ is discontinuous at 0.
+
+    Similarly, if $D_2 f$ were continuous at 0, its limit would have to equal $D_2 f(0) = 0$. 
+    By the same argument as above, observe that for any $\epsilon > 0$ we can find $v \in B_\epsilon (0), v = (\sqrt{3}x, x)$, and then:
+    $$D_2 f(v) = -2 \frac{(\sqrt{3}x)^3x}{(3x^2 + x^2)^2} = - \frac{2\sqrt{3}\cdot3x^4}{16x^4} = -\frac{3\sqrt{3}}{8}$$
+    The existence of this point shows that the limit of $D_2 f$ as $x \rightarrow 0$ cannot be zero, and thus $D_2 f$ is not continuous at 0.
+    
+\end{solution}
+
+\begin{exercise}{12}
+    Theorem 2.3.4 states that:
+
+    Let $U \subset \mathbb{R}^n$ be an open set, let $a \in U$ and $f: U \rightarrow \mathbb{R}^p$. Then $f$ is differentiable at $a$ if $f$ is partially differentiable in a neighborhood of $a$ and all its partial derivatives are continuous at $a$.
+
+    
+    Let the notation be as in the above theorem, but with $n \geq 2$. 
+    Show that the conclusion of the theorem remains valid under the weaker assumption that $n - 1$ partial derivatives of $f$ exist in a neighborhood of $a$ and are continuous at $a$ while the remaining partial derivative merely exists at $a$.
+
+    \textbf{Hint:} Write
+    $$f(a + h) - f(a) = \sum_{n \geq j \geq 2} (f(a + h^{(j)}) - f(a + h^{(j - 1)}) + f(a + h^{(1)}) - f(a)$$
+
+    Apply the method of the theorem to the sum over $j$ and the definition of derivative to the remaining difference.
+
+    \textbf{Background}: As a consequence of this result we see that at least two different partial derivatives of $f$ must be discontinuous at $a$ if $f$ fails to be differentiable at $a$, compare with Example 2.3.5.
+\end{exercise}
+
+\begin{solution}
+
+    WLOG we will assume that the partial derivative of $f$ with respect to the first variable merely exists at $a$, and all others exist in a neighborhood of $a$ and are continuous at $a$ (this is because in all other cases everything below is the same up to a ``permutation'' of variables).
+    
+    We begin by restating the definition of $h^{(j)}$ that was used in the proof of theorem 2.3.4:
+    $$h^{(j)} = \sum_{1 \leq k \leq j} h_k e_k \in \mathbb{R}^n, n \geq j \geq 0$$
+    We also recall that $h^{(j)} = h^{(j-1)} + h_j e_j$.
+    Essentially, $h^{(j)}$ is a vector that lies in the span of the first $j$ vectors of the standard basis of $\mathbb{R}^n$.
+    The letter $h$ serves to remind us of the fact that it will be used as an infinitesimal ``perturbation'' vector.
+    Now, as given in the hint, observe that:
+    $$f(a + h) - f(a) = \sum_{n \geq j \geq 2} (f(a + h^{(j)}) - f(a + h^{(j-1)}) + f(a + h^{(1)}) - f(a),$$
+    where we see that almost all terms of the sum lead to cancellations of these ``partially perturbed'' $f(a + h^{(j)})$. 
+    Now, as in theorem 2.3.4, we define $g_j: \mathbb{R} \rightarrow \mathbb{R}$ as $g_j(t) = f(a + h^{(j-1)} + te^j)$.
+    We can thus rewrite:
+    $$f(a + h) - f(a) = \sum_{n \geq j \geq 2} (g_j(h_j) - g_j(0)) + g_1(h_1) - g_1(0)$$
+
+    For $j=2, \ldots, n$, the $j$-th partial derivative of $f$ exists in a neighborhood of $a$, which means that there exists an open interval in $\mathbb{R}$ containing 0 such that $g_j$ is differentiable on it.
+    Consider a sufficiently small $h$ such that each $h_j$ is contained in the corresponding interval for $g_j$.
+    As in the proof of 2.3.4, we can apply then the mean value theorem to each $g_j$ to obtain that there exist $\tau_j \in [0, h_j]$  such that:
+    $$D_j f(a + h^{(j - 1)} + \tau_j e_j) = g_j'(\tau_j) = \frac{f(a + h^{(j-1)} + h_je^j) - f(a + h^{(j-1)})}{h_j}$$
+    One can thus write that:
+    $$f(a + h) - f(a) = \sum_{n \geq j \geq 2} [D_j f(a + h^{(j-1)} + \tau_j e_j)] h_j + (g_1(h_1) - g_1(0))$$
+    We recall now that the remaining partial derivative at $a$ $(D_1 f(a))$ exists.
+    Equivalently, $g_1$ is differentiable at 0, which, from Hadamard's lemma means that there exists $\phi_1 \in \mathbb{R} \rightarrow \mathcal{L}(\mathbb{R}, \mathbb{R})$ such that $g_1(t) - g_1(0) = \phi_1(t)t$.
+    By a slight abuse of notation, $\phi_1(t)$ can be identified with a real number also denoted as $\phi_1(t)$.
+    Then let $\phi: \mathbb{R}^n \rightarrow \mathcal{L}(\mathbb{R}^n, \mathbb{R})$ be:
+    $$\phi(a + h) = \begin{pmatrix}
+        \phi_1(h_1) & D_2 f(a + h^{(1)} + \tau_2 e_2) & \ldots & D_n f(a + h^{(n-1)} + \tau_n e_n)
+    \end{pmatrix}$$
+    By the equations above one can see that $f(a+h) - f(a) = \phi(a + h)(h)$, and because $D_2 f, \ldots D_n f$ are all continuous at the indicated points and $\phi_1$ is continuous at 0, $\phi$ is continuous at $a$, which is precisely condition (ii) of the Hadamard lemma, which we know is equivalent to $f$ being differentiable at $a$.
+    
+\end{solution}
+
+\begin{exercise}{18}
+    Let $U = \mathbb{R}^2 \setminus \{(0, x_2) \lvert x_2 \geq 0\}$ and define $f: U \rightarrow \mathbb{R}$ by
+    $$f(x) = \begin{cases}
+        x_2^2, x_1 > 0 \text{ and } x_2 \geq 0 \\
+        0, x_1 < 0 \text{ and } x_2 < 0
+    \end{cases}$$
+
+    (i) Show that $D_1 f = 0$ on all of $U$ but that $f$ is not independent of $x_1$.
+
+    Now suppose that $U \subset \mathbb{R}^2$ is an open set having the property that for each $x_2 \in \mathbb{R}$ the set $\{ x_1 \in \mathbb{R} \lvert (x_1, x_2) \in \mathbb{U}\}$ is an interval.
+
+    (ii) Prove that $D_1 f = 0$ on all of $U$ implies that $f$ is independent of $x_1$.
+\end{exercise}
+
+\begin{solution}
+
+    (i) Let $x \in \mathbb{R}^2$.
+    If $x_1 < 0$, then $f(x) = 0$ and thus $D_1 f(x) = 0$.
+    If $x_1 > 0$, then $f(x) = x_2^2$, and thus again $D_1 f(x) = 0$.
+    However, observe that $f(-1, 1) = 0$ and $f(1, 1) = 1$, which means that when varying only $x_1$, the value of $f$ varies, so it cannot be independent of $x_1$. A one-dimensional analogue of this would be a function that is stepwise constant (e.g. $f :\mathbb{R} \setminus \{0\}, f(x) = 1, x < 1, f(x) = 2, x > 0$), and as such has derivative 0 in its entire domain but cannot be said to be independent (in this case, constant) of $x$.
+
+    (ii) We need to show that for any three $x_1, y_1, c \in \mathbb{R}$ such that $(x_1, c), (y_1, c) \in U$ it holds that $f(x_1, c) = f(y_1, c)$. 
+    In other words, that when $x_2$ is kept constant, $f$'s value cannot change.
+    We know that for a given $c, \{x_1 \in \mathbb{R} \lvert (x_1, c) \in U\}$ is an interval.
+    Let it be called $I$, with endpoints $a, b$ which it may or may not include.
+    Define $g: I \rightarrow \mathbb{R}, g(x) = f(x, c)$. 
+    Then it is the case that $g$ is differentiable, and that $g'(x) = D_1 f(x, c) = 0$.
+    In other words, $g$ has a derivative of 0 and its domain is an interval.
+    From calculus 1, we know that this means that $g$ is constant (one can prove this by contradiction and the mean value theorem), in other words that $g(x) = d \implies f(x, c) = d$ for all $x \in I$, which is exactly what we wanted to show.
+\end{solution}
+
+\begin{exercise}{22}
+    Let $U \subset \mathbb{R}^n$ and $V \subset \mathbb{R}^p$ be open and let $f: U \rightarrow V$ be a $C^1$ mapping.
+    Define $T f : U \times \mathbb{R}^n \rightarrow \mathbb{R}^p \times \mathbb{R}^p$, the \textit{tangent mapping } of $f$ to be the mapping given by
+    $$T f(x, h) = (f(x), Df(x) h)$$
+    Let $V \subset \mathbb{R}^p$ be open and let $V \rightarrow \mathbb{R}^q$ be a $C^1$ mapping.
+    Show that the chain rule takes the natural form
+    $$T(g \circ f) = Tg \circ T f: U \times \mathbb{R}^n \rightarrow \mathbb{R}^q \times \mathbb{R}^q$$
+\end{exercise}
+
+\begin{solution}
+
+    The chain rule states that for $x \in U$:
+    $$[D(g \circ f)](x)(h) = [D(g)](f(x))Df(x)(h)$$
+    By using the tangent mapping definition given in the exercise, we have that for $x \in U, h \in \mathbb{R}^n$:
+    $$T(g \circ f)(x, h) = ((g \circ f)(x), [D(g \circ f)](x)(h)) = (g(f(x)), [D(g)](f(x))Df(x)(h))$$
+    Consider now what the RHS of the given equality describes: we take the result of $Tf$ on $(x, h)$, which belongs in $V \times \mathbb{R}^p$ (a point in $V$ and a direction vector), and pass it as an argument to $Tg$, which indeed accepts arguments belonging in $V \times \mathbb{R}^p$ (a point in $V$ and a direction vector).
+    This is therefore well-defined.
+    Furthermore:
+    $$(Tg \circ Tf)(x, h) = Tg(Tf(x, h)) = Tg(f(x), Df(x)h) = (g(f(x)), [D(g)](f(x))Df(x)(h)),$$
+    which yields that $T(g \circ f) = Tg \circ Tf$.
+\end{solution}
+
+\begin{exercise}{32}
+    Let $f: \mathbb{R}^n \setminus \{0\} \rightarrow \mathbb{R}$ be a differentiable function.
+
+    (i) Let $x \in \mathbb{R}^n \setminus \{0\}$ be a fixed vector and define $g: \mathbb{R}_{+} \rightarrow \mathbb{R}$ by $g(t) = f(tx)$.
+    Show that $g'(t) = D f(tx)(x)$.
+
+    Assume $f$ to be positively homogeneous of degree $d \in \mathbb{R}$, that is, $f(tx) = t^df(x)$, for all $x \neq 0, t \in \mathbb{R}_{+}$.
+
+    (ii) Prove the following, known as Euler's identity:
+    $$Df(x)(x) = \langle x, \nabla f(x) \rangle = d f(x), x \in \mathbb{R}^n \setminus \{0\}$$
+
+    (iii) Conversely, prove that $f$ is positively homogeneous of degree $d$ if we have $Df(x)(x) = df(x)$, for every $x \in \mathbb{R}^n \setminus \{0\}$. \textbf{Hint}: Calculate the derivative of $t \mapsto t^{-d}g(t), t \in \mathbb{R}_{+}$.
+\end{exercise}
+
+\begin{solution}
+
+    (i) Set $h: \mathbb{R}^{+} \rightarrow \mathbb{R}^n, h(t) = tx$.
+    Then $h$ is differentiable, and it is the case that $Dh(t)(s) = x$.
+    Also, $g(t) = f(h(t))$, so as a composition of differentiable functions $g$ is also differentiable, and:
+    $$Dg(t)(s) = ([D(f)]h(t)))([Dh(t)](s)) = D(f)(tx)(x)$$
+
+    (ii) We know that for any differentiable $f: \mathbb{R}^n \rightarrow \mathbb{R}$:
+    $$\langle v, \nabla f(x) \rangle = [D f(x)](v)$$
+    Therefore $Df(x)(x) = \langle x, \nabla f(x) \rangle$.
+    By setting $g(t) = f(tx) = t^df(x)$, we have that $g'(t) = dt^{d-1}f(x)$.
+    Therefore, $g'(1) = df(x)$, while from part (i) we have that $g'(1) =  D(f)(x)(x)$.
+    This implies that $Df(x)(x) = d f(x) = \langle x, \nabla f(x) \rangle$.
+
+    (iii) First, we have that by the linearity of the derivative, $df(tx) = Df(tx)(tx) = t Df(tx)(x)$.
+    Then, by using the hint, we define $h(t) = t^{-d}g(t)$ with $g$ as in (i) and we observe that this is a differentiable function with:
+    $$h'(t) = g'(t)t^{-d} + (-d)t^{-d-1}g(t) = t^{-d}Df(tx)(x) + (-d)t^{-d-1}f(tx)$$
+    $$ = t^{-d}\frac{df(tx)}{t} - dt^{-d-1}f(tx) = 0$$
+    But then this means that $h$ is a constant function, therefore that $c = t^{-d}g(t) = t^{-d}f(tx)$ for some $c \in \mathbb{R}$. 
+    Also, by setting $t = 1$ we have that $c = f(x)$, which means that $t^{-d}f(tx) = f(x) \implies f(tx) = t^{d}f(x)$, i.e.\ that $f$ is positively homogeneous of degree $d$.
+    
+\end{solution}
+
+\begin{exercise}{44}
+    Let $A \in \mathbb{R}^{n \times n}$. We write $A = (a_1 \cdots a_n)$ if $a_j \in \mathbb{R}^n$ is the $j$-th column vector of $A, 1 \leq j \leq n$.
+    This means that we identify $\mathbb{R}^{n \times n}$ with $\mathbb{R}^n \times \ldots \mathbb{R}^n$.
+    Furthermore, we denote by $A^{\#}$ the complementary matrix as in Cramer's rule (so $A^{\#} = (a_{ij}^{\#} = ((-1)^{i - j}\det A_{ji})$, where $A_{ij}$ is the matrix obtained by deleting the $i$-th row and $j$-th column).
+
+    (i) Consider the function $\det: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}$ as an element of $\mathcal{L}^{n}(\mathbb{R}^n, \mathbb{R})$ via the identification above.
+    Now prove that its derivative $D (\det)(A) \in \mathcal{L}(\mathbb{R}^n, \mathbb{R})$ is given by
+    $$D(\det)(A) = \tr \circ A^{\#},$$
+    where $\tr$ denotes the trace of a matrix.
+    More explicitly:
+    $$D(\det)(A) H = \tr(A^{\#}H) = \langle (A^{\#})^T, H \rangle, H \in \mathbb{R}^{n \times n}$$
+    Here we use the result from exercise 2.1 (ii).
+    In particular, verify that $\nabla \det A = (A^{\#})^T$, the cofactor matrix, and
+    $$(D \det)(I) = \tr, (D \det)(A) = \det A (\tr \circ A^{-1}),$$
+    for $A$ invertible, by means of Cramer's rule.
+\end{exercise}
+
+\begin{solution}
+
+    (i) We have shown in exercise 2.15 of Spivak that:
+    $$D(\det)(a_1, \ldots, a_n)(h_1, \ldots, h_n) = \sum_{i=1}^{n} \det \begin{pmatrix}
+        a_1 \\ \vdots \\ h_i \\ \vdots \\ a_n
+    \end{pmatrix}$$    
+    We therefore have but to show that the RHS of the equation given in (i) equals the RHS of this equation.
+    We have that $(\tr \circ A^{\#})(H) = \tr(A^{\#} H)$.
+    Due to the trace we are only interested in the diagonal elements of the argument.
+    For the diagonal element of the $i$-th row, call it $d_i$, we get the following expression:
+    $$d_i = \sum_{j=1}^{n} (-1)^{i - j} (\det A_{ji}) h_{ji}$$
+\end{solution}

@@ -1,0 +1,568 @@
+\part{Metric Spaces}
+
+\chapter{Calculus Review}
+
+\section{The Real Numbers}
+
+\begin{exercise}{1}
+    If $A$ is a nonempty subset of $\mathbb{R}$ that is bounded below, show that $A$ has a greatest lower bound. That is, show that there is a number $m \in \mathbb{R}$ satisfying: (i) $m$ is a lower bound for $A$; and (ii) if $x$ is a lower bound for $A$. then $x \leq m$. [Hint: Consider the set $-A = \{-a : a \in A\}$ and show that $m = -\sup(-A)$ works.]
+\end{exercise}
+
+\begin{solution}
+
+    As pointed out in the hint, let $m = \sup(-A)$. Let also $B = \{-a: a \in A\}$ and $b$ be any element of $B$. Since $A$ is non-empty, $B$ is non-empty too. By the definition of $B$, $b = -a$ for some $a \in A$, Because $A$ is bounded below, it holds that there exists $l$ such that $l \leq a$. This means that $-l \geq -a \implies -l \geq b$. Therefore, $-l$ is an upper bound for $B$. By the completeness of real numbers, $B$ has a supremum, $m$. For any $a \in A$, $-a \in B$, therefore $-a \leq m \implies a \geq -m$. This means that $-m$ is a lower bound for $A$. For any lower bound $m'$ of $A$, it holds that $m' \leq a$ for all $a \in A$. This means that $-m' \geq -a$ for all $-a \in B$. But then $-m'$ is an upper bound for $B$, thus by the definition of the supremum, $-m' \geq m \implies m' \leq -m$. We have thus shown that $-m$ is the greatest lower bound of $A$.
+
+    
+\end{solution}
+
+\begin{exercise}{3}
+    Establish the following apparently different (but ``fancier'') characterization of the supremum. Let $A$ be a non-empty set of $\mathbb{R}$ that is bounded above. Prove that $s = \text{sup} A$ if and only if (i) $s$ is an upper bound for $A$, and (ii) for every $\epsilon > 0$ there is an $a \in A$ such that $a > s - \epsilon$. State and prove the corresponding result for the infinum of an non-empty subset of $\mathbb{R}$ that is bounded below.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: Suppose first that $s$ is the supremum of $A$. By the definition of the supremum, $s$ is indeed an upper bound for $A$. Suppose now that there exists $\epsilon > 0$ such that for every $a \in A$ it is the case that $a \leq s - \epsilon$. Observe that this means that $s - \epsilon$ is an upper bound for $A$, while it also holds that $s - \epsilon < s$. But this contradicts the definition of $s$ being the supremum of $A$.
+
+    We have arrived at a contradiction, and thus the negation of the assumed statement must hold. Namely, it must be the case that for every $\epsilon > 0$, there exists $a \in A$ such that $a > s - \epsilon$.
+
+    $\impliedby$: Suppose now that $s$ is an upper bound for $A$ and that for every $\epsilon > 0$ there is an $a \in A$ such that $a > s - \epsilon$. Suppose that $s$ is not the supremum of $A$. By the completeness of the real numbers, $A$ must have a supremum $t$. Because $s$ is an upper bound for $A$, it must hold that $t < s$. Set $\epsilon = s - t > 0$. By the definition of $s$, there exists $a \in A$ such that $a > s - \epsilon = s - (s - t) = t$. This contradicts the fact that $t$ is an upper bound for $A$. Therefore, $s$ must be the supremum of $A$.
+
+    The corresponding result for the infinum is that a number $s$ is the infinum of $A \subset \mathbb{R}$, with $A$ non-empty and bounded below, if and only if (i) $s$ is a lower bound for $A$ and (ii) for every $\epsilon > 0$, there exists $a \in A$ such that $a < s + \epsilon$. To prove this, we have that:
+
+    $\implies$: Suppose $s$ is the infinum of $A$. Then $s$ is a lower bound for $A$. Suppose that there exists $\epsilon > 0$ such that for every $a \in A, a \geq s + \epsilon$. But then $s + \epsilon > s$ is a lower bound for $A$, contradiction. The negation of our assumption leads to the desired property for $s$.
+
+    $\impliedby$: Now suppose $s$ is a lower bound for $A$ and for every $\epsilon > 0$, there exists $a \in A$ such that $a < s + \epsilon$. Suppose $s$ is not the infinum of $A$, and $t$ is instead. Because $s$ is a lower bound, $s < t$. Set $\epsilon = t - s$. Then there exists $a \in A$ such that $a < s + \epsilon = s + (t-s) = t$. But this contradicts the fact that $t$ is a lower bound for $A$. 
+
+    Note that this second proof can also be done by relating the infinum of $A$ to the supremum of $-A$, but since we have not yet proved this (exercise 1) we do not use it here.
+    
+\end{solution}
+
+\begin{exercise}{4}
+    Let $A$ be a nonempty subset of $\mathbb{R}$ that is bounded above. Show that there is a sequence of elements $x_n$ of $A$ that converges to $\sup A$.
+\end{exercise}
+
+\begin{solution}
+
+    Recall from exercise 3 that if $s = \sup A$, it holds that for every $\epsilon > 0$ there exists $a \in A$ such that $a > s - \epsilon$. Consider then the sequence that is formed by taking $x_i$ be an element of $A$ for which it holds that $x_i > s - \frac{1}{i}$. For any $\epsilon > 0$, take $M = \lceil\frac{1}{\epsilon}\rceil$. It then holds that $\frac{1}{M} \leq \epsilon$. Additionally, it is true by the definition of the sequence that $x_M > s - \lceil \frac{1}{M} \rceil \geq s -\epsilon \implies \epsilon > s - x_M$. Also, by the definition of the supremum, $s - x_M \geq 0$, thus $\lvert s - x_M \rvert < \epsilon$. Now, for any $j > M$ we have that $x_j > s - \frac{1}{j} \implies  \frac{1}{j} > s - x_j$. By the definition of the supremum, $s - x_j \geq 0$, thus $\lvert s - x_j \rvert < \frac{1}{j} < \frac{1}{M} \leq \epsilon$.
+
+    We have thus precisely proved that the limit of the sequence $x_i$ is the supremum $s$ of $A$.
+\end{solution}
+
+\begin{exercise}{5}
+    Suppose that $a_n \leq b$ for all $n$ and that $a = \text{lim}_{n\rightarrow \infty}a_n$ exists. Show that $a \leq b$. Conclude that $a \leq \sup\{a_n : n \in \mathbb{N}\}$.
+\end{exercise}
+
+\begin{solution}
+
+    Suppose that $a > b$, which means that $a - b > 0$. Set $\epsilon = a -b$. By the definition of the limit of a sequence, there exists $M > 0$ such that for all $n > M$, it holds that:
+    $$\lvert a - a_n \rvert < \epsilon \implies -\epsilon < a - a_n < \epsilon \implies a < a_n + \epsilon$$
+    It is the case that $a_n \leq b$ for all $n$, thus $a < b + \epsilon = b + (a -b) \implies a < a$, which is clearly a contradiction. Therefore $a \leq b$. Now because $s = \sup\{a_n : n \in \mathbb{N}\}$ is by definition a number for which $a_n \leq s$ for all $n$, the previous result applies, and thus $a \leq s = \sup\{a_n : n \in \mathbb{N}\}$.
+\end{solution}
+
+\begin{exercise}{6}
+    Prove that every convergent sequence of real numbers is bounded. Moreover, if $a_n$ is convergent, show that $\inf a_n \leq \text{lim}_{n \rightarrow \infty} a_n \leq \sup a_n$.
+\end{exercise}
+
+\begin{solution}
+
+    Suppose $a_n$ is a convergent sequence of real numbers, and suppose that it converges to $a \in \mathbb{R}$. By definition, for any $\epsilon > 0$, there exists $M > 0$ such that for every $n > M$ it holds that $\lvert a_n - a \rvert < \epsilon \implies a_n < a + \epsilon$. Pick any such $\epsilon$, e.g.\ $\epsilon = 1$. We can thus see that there exist \textit{at most} $M$ elements of the sequence, chosen from $a_1, a_2, \ldots a_M$ such that $a_i \geq a + \epsilon$. Let then $S$ be the ---possibly empty--- set of all such $a_i$. We can then see that the set $S \cup \{a + \epsilon\}$ has a finite number of elements. Thus its maximum element $s$ is well defined.  Observe then that $s \geq a_n$ for all elements of the sequence. Now recall from exercise 5 that the limit of the sequence is indeed at most equal to its supremum (which we showed is well defined, since at least one upper bound exists).
+
+    Again by the definition of the limit, for every $\epsilon > 0$ there exists $M > 0$ such that for $n > M$ it holds that $\lvert a_n - a \rvert < \epsilon \implies -\epsilon < a_n -a \implies a+ \epsilon < a_n$. Observe that we can thus apply a completely symmetric argument: pick, say, $\epsilon=1$ and then there are at most $M$ elements such that $a_n \leq a + \epsilon$. By constructing $S$ from these elements in the same way as above, the rest of the proof becomes completely symmetric, as is the part regarding $\inf a_n \leq \text{lim}_{n \rightarrow \infty} a_n$.
+\end{solution}
+
+\begin{exercise}{8}
+    Given $a < b$, show that there are, in fact, infinitely many distinct rationals between $a$ and $b$. The same goes for irrationals too.
+\end{exercise}
+
+\begin{solution}
+
+    Suppose that there are only a finite number of distinct rationals between $a$ and $b$, and call them $q_1, q_2, \ldots q_n$, listed in ascending order. This means $a < q_1 < q_2 < \ldots < q_n < b$. But then we have that $q_n, b$ are real numbers with $q_n < b$, and therefore there has to exist a rational number $q$ such that $q_n < r < b$. But this is a contradiction, because $q \neq q_i$ for all $i$ and $a < q < b$. Therefore there exists an infinite number of distinct rationals between $a$ and $b$.
+
+    Now suppose that there is only a finite number of irrationals $r_1, r_2, \ldots r_n$ between $a, b$, listed in ascending order. However, in exercise 7 we've seen that if $a < b$, there exists an irrational $x$ such that $a < x < b$. This means that in our case there exists an irrational $r$ such that $r_n < r <b$. Clearly, this is a contradiction since $r_i \neq r$ for all $i$. Therefore there exist infinitely many distinct irrationals between $a, b$.
+\end{solution}
+
+\begin{exercise}{13}
+    Let $a_n \geq 0$ for all $_n$, and let $s_n = \sum_{i=1}^{n}a_i$. Show that $(s_n)$ converges if and only if $(s_n)$ is bounded.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: Assume that $(s_n)$ converges to $s$. Then recall from exercise 6 that every convergent sequence is bounded, thus $s_n$ is indeed bounded.
+
+    
+    $\impliedby$: Suppose $(s_n)$ is bounded. Because $a_n \geq 0$, the sequence of partial sums $s_n$ increases monotonically. We know then that a monotone, bounded sequence always converges, thus $(s_n)$  converges.
+\end{solution}
+
+\begin{exercise}{14}
+    Prove that a convergent sequence is Cauchy, and that any Cauchy sequence is bounded.
+\end{exercise}
+
+\begin{solution}
+
+    A sequence of real numbers is Cauchy if, for every $\epsilon > 0$, there is an integer $N \geq 1$ such that $\lvert x_n - x_m \rvert < \epsilon$ whenever $n, m \geq N$.
+
+    Let then $a_n$ be a convergent sequence that converges to $a$, and select any $\epsilon > 0$. Then, by the definition of convergence, for $\epsilon' = \frac{\epsilon}{2}$ there exists $N > 0$ such that for all $n > N$ it holds that $\lvert a_n - a \rvert < \epsilon'$. Therefore, for any two $n, m > N$, it holds that:
+    $$\lvert x_n - x_m \rvert = \lvert x_n - a + a - x_m \rvert \leq \lvert x_n -a \rvert + \lvert x_m -a \rvert < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$$
+
+    , which is the defining property of Cauchy sequences. Now let $a_n$ be any Cauchy sequence. Suppose that $a_n$ is not bounded. Because $a_n$ is Cauchy, it must hold that for $\epsilon = 1$, there exists $N \geq 1$ such that for all $n, m > N$ it holds that $\lvert a_n - a_m \rvert < 1$. Let then $a_k$ be the first element of the sequence for which this inequality holds when setting $n=k$ and $m$ any other index $m > k$. This means that for any $m > k$, $\lvert a_m - a_k \rvert < 1$. In particular, this means that $a_m$ can never be larger than $a_k + 1$, therefore for all elements of the sequence after that point, $a_k+1$ is an upper bound. Then, because $k$ is finite, $m = \max\{a_1, \ldots, a_k\}$ is well defined. If we then set $s = \max\{m, a_k + 1\}$, we see that $s$ constitutes an upper bound for the entire sequence.
+
+    A symmetric argument can be applied to extract a lower bound for the sequence, thus any Cauchy sequence is bounded.
+\end{solution}
+
+\begin{exercise}{15}
+    Show that a Cauchy sequence with a convergent subsequence actually converges.
+\end{exercise}
+
+\begin{solution}
+
+    Let $a_n$ be a Cauchy sequence and $b_n = a_{f(n)}$ such that $f(j) > f(k)$ whenever $j > k$ be a convergent subsequence of it that converges to $b$. Pick any $\epsilon > 0$. Now it must be the case that there exists $N>0$ such that whenever $n > N$, $\lvert b_n - b \rvert < \frac{\epsilon}{2}$. Now because $a_n$ is Cauchy, there exists $ M > 0$ such that whenever $n, m > 0$, $\lvert a_n - a_m \rvert < \frac{\epsilon}{2}$. Set $K = \max\{N, M\}$ and observe then that for any $n > K$, it holds that:
+
+    $$\lvert a_n - b \rvert < \lvert a_n - b_{K+1} + b_{K+1} -b\rvert \leq \lvert a_n - b_{K+1} \rvert + \lvert b_{K+1} - b \rvert < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$$
+
+    , where in the last step we used the fact that $a_n$ is Cauchy (and $b_{K+1}$ is of course an element of it) for the first term and that $b_n$ converges to $b$ for the second term. We have thus shown that $a_n$ converges, and more specifically it converges to the limit of its convergent subsequence.
+\end{solution}
+
+\begin{exercise}{17}
+    Given real numbers $a$ and $b$ establish the following formulas: $\lvert a + b \rvert \leq \lvert a \rvert + \lvert b \rvert, \bigl\lvert \lvert a \lvert - \lvert b \rvert \bigr\rvert \leq \lvert a - b \rvert, \max\{a, b\} = \frac{1}{2}(a + b + \lvert a - b \rvert), \min\{a, b\} = \frac{1}{2}(a+b - \lvert a - b \rvert)$
+\end{exercise}
+
+\begin{solution}
+    \begin{itemize}
+        \item $\lvert a + b \rvert \leq \lvert a \rvert + \lvert b \rvert$: one way to do this is to observe that $\mathbb{R}$ is a vector space over the field $\mathbb{R}$ for which standard multiplication satisfies the properties of being an inner product. Thus we can use Axler's result of the triangle inequality for inner product spaces, whose proof does not assume that the triangle inequality holds for real numbers. Another way is to do a variant of this proof ``manually'':
+        $$(a+b)^2 = a^2 + b^2 + 2ab \leq \lvert a \rvert^2 + \rvert b \rvert^2 +2 \lvert a \rvert \cdot \lvert b \rvert = (\lvert a \rvert + \lvert b \rvert)^2$$
+        $$\implies \lvert a + b \rvert \leq \lvert a \rvert + \lvert b \rvert$$
+        , where we used some properties of the absolute value which easily follow from its definition ($\lvert a \rvert^2 = \lvert a \rvert^2, x \leq \lvert x \rvert$)., and we took square roots at the last step, observing that $\lvert a \rvert + \lvert b \rvert$ is always non-negative.
+        \item $\bigl\lvert \lvert a \lvert - \lvert b \rvert \bigr\rvert \leq \lvert a - b \rvert$: Quite similar to the above, we have that:
+        $$(\lvert a \rvert - \lvert b \rvert)^2 = \lvert a \rvert^2 + \lvert b \rvert^2 - 2\lvert a \rvert \cdot \lvert b \rvert \leq \lvert a \rvert^2 + \lvert b \rvert^2 - 2ab = (a - b)^2 \implies \bigl\lvert \lvert a \rvert - \lvert b \rvert \bigr\rvert \leq \lvert a - b \rvert$$
+
+        , where when taking square roots the absolute values are now necessary.
+
+        \item $\max\{a, b\} = \frac{1}{2}(a + b + \lvert a -b \rvert)$: It is either the case that $a \geq b$  or that $a \leq b$ (here we are using the fact that $\mathbb{R}$ is a totally ordered set). In the first case, we have that $\max\{a, b\} = a$ and also that $\lvert a - b \rvert = a -b$, which means $\frac{1}{2}(a + b + \lvert a - b \rvert) = \frac{1}{2}(a + b + a - b) = a = \max\{a, b\}$. The second case is almost exactly the same, except for $\lvert a - b \rvert$ evaluating to $b - a$.
+        \item $\min\{a, b\} = \frac{1}{2}(a + b - \lvert a - b \rvert)$: This is done in the same manner as above, again by utilizing the fact that for any two $a, b$, it either holds that $a \leq b$ or that $a \geq b$.
+    \end{itemize}
+\end{solution}
+
+\begin{exercise}{18}
+    (a) Given $a > -1, a \neq 0$, use induction to show that $(1+a)^n > 1 +na$ for any integer $n > 1$.
+    
+    (b) Use (a) to show that, for any $x > 0$, the sequence $(1 + \frac{x}{n})^n$ increases.
+
+    (c) If $a > 0$, show that $(1+a)^r > 1 + ra$ holds for any \textit{rational} exponent $r > 1$.
+
+    [Hint: If $r = \frac{p}{q}$, then apply (a) with $n = q$ and (b) with $x = ap$.]
+
+    (d) Finally, show that (c) holds for any \textit{real} exponent $r > 1$.
+\end{exercise}
+
+\begin{solution}
+    
+    (a) The base case of the induction is $n = 2$. We then have that:
+    $$(1 +a)^2 = 1 + 2a + a^2 > 1 + 2a$$
+    , since $a$ is not zero, meaning that $a^2 > 0$. Suppose now that the inequality holds for $n = k > 1$. Then we have that:
+    $$(1 +a)^{k+1} = (1+a)(1+a)^k > (1+a)(1 +ka) = 1 + ka + a + ka^2 = 1 + (k+1)a +ka^2 > 1 + (k+1)a$$
+
+    , where, crucially, we used the fact that $a > -1$, thus that $a + 1 > 0$, thus that we can multiply the inequality for $n = k$ with $(1+a)$. In the last step we again use the fact that $a \neq 0$, thus that $ka^2 > 0$.
+
+    (b) We'll work through this the same way as the book's examples, i.e., compute the ratio between two successive terms of the sequence:
+    
+    $$\frac{(1+\frac{x}{n+1})^{n+1}}{(1+\frac{x}{n})^n} = \Bigl(1+\frac{x}{n}\Bigr)\frac{(1+\frac{x}{n+1})^{n+1}}{(1+\frac{x}{n})^{n+1}} = \Bigl(1+\frac{x}{n}\Bigr)\Biggl(\frac{\frac{n+1+x}{n+1}}{\frac{n+x}{n}}\Biggr)^{n+1}$$
+    $$= \Bigl(1+\frac{x}{n}\Bigr)\Bigl(\frac{n^2+n+nx}{n^2+x+n+nx}\Bigr)^{n+1} = \Bigl(1+\frac{x}{n}\Bigr)\Biggl(1 - \frac{x}{n^2+x+n+nx}\Biggr)^{n+1} = \Bigl(1+\frac{x}{n}\Bigr) \Biggl(1 - \frac{x}{(x+n)(n+1)}\Biggr)^{n+1}$$
+
+    Now, for any $x > 0$ and $n$ positive integer we have that:
+    $$xn +n^2+n > 0 \implies xn + n^2 + n + x > x \implies (x+n)(n+1) > x \implies - (x+n)(n+1) < -x$$
+    $$\implies -1 < -\frac{x}{(x+n)(n+1)}$$
+
+    Also, $x > 0$ thus this quantity is never zero. Therefore, using it as an $a$ in the Bernoulli inequality (part (a)) we can obtain that:
+
+    $$\frac{(1+\frac{x}{n+1})^{n+1}}{(1+\frac{x}{n})^n} > \Bigl(1+\frac{x}{n}\Bigr)(1 - (n+1)\frac{x}{(x+n)(n+1)}) = \Bigl(1+\frac{x}{n}\Bigr)\Bigl(1 - \frac{x}{x+n}\Bigr) = \frac{x+n}{n}\cdot\frac{n}{x+n} = 1$$
+
+    , which means that the sequence $\bigl(1+\frac{x}{n}\bigr)$ does indeed increase.
+
+    (c)Consider any rational $r > 1$. $r$ can be written as $\frac{p}{q}$, where $p, q$ are positive integers, and in fact $p > q$. Setting $x = ap$ (for this part, $a > 0$) and observing that $p > q$, from part (b) we have that:
+
+    $$\Bigl(1 + \frac{ap}{q}\Bigr)^q < \Bigl(1+\frac{ap}{p}\Bigr)^p \implies \Bigl(1 + \frac{ap}{q}\Bigr)^q < (1 + a)^p$$
+
+    For $a > 0$, both quantities inside the parentheses are positive, and thus we can take $q$-th roots and obtain:
+    $$\Bigl(1 + \frac{ap}{q}\Bigr) < (1+a)^{\frac{p}{q}}$$
+
+    , which, since $r = \frac{p}{q}$, is the equivalent of the Bernoulli inequality for a rational exponent $r > 1$ and $ a > 0$.
+
+    (d) We know that we can approach any real number $r > 1$ with a sequence of rationals. Furthermore, the Bernoulli inequality will hold for all of those rationals that are larger than 1, so as we approach $r > 1$, the Bernoulli inequality will hold. Now, at the limit, this strict inequality holds as a non-strict inequality, thus we can conclude that:
+    $$(1+a)^r \geq 1 + ra$$
+    Now pick a rational $q$ such that $1 < q < r$ (such a rational always exists). Observe that:
+    $$(1+a)^r = (1+a)^{\frac{rq}{q}} = ((1+a)^q)^{\frac{r}{q}} > (1+qa)^{\frac{r}{q}}$$
+    , where we applied the Bernoulli inequality for $q$. Now, however, $\frac{r}{q}$ is a real number greater than 1, and hence we can use our non-strict inequality above to arrive at the desired result:
+    $$(1+a)^r > (1+qa)^{\frac{r}{q}} \geq 1 + q\frac{r}{q}a = 1 + ra \implies (1+a)^r > 1 + ra$$
+\end{solution}
+
+\begin{exercise}{21}
+    Let $p \geq 2$ be a fixed integer, and let $0 < x < 1$. If $x$ has a finite-length base $p$ decimal expansion, that is, if $x = a_1/p + \ldots + a_n/p^n$ with $a_n \neq 0$, prove that $x$ has precisely two base $p$ decimal expansions. Otherwise, show that the base $p$ decimal expansion for $x$ is unique. Characterize the numbers $0 < x < 1$ that have repeating base $p$ decimal expansions. How about eventually repeating?
+\end{exercise}
+
+\begin{solution}
+
+    We consider first the decimal expansion $0.a_1 a_2 \ldots a_n 0 0 \ldots$, with an infinite number of trailing zeros after the $n$-th decimal, and call the $i$-th decimal here $b_i$. As per the book's definition, this corresponds to an infinite series defined as $\sum_{i=1}^{\infty}b_i/p^i$. It's clear that the limit of this sum is $x$, since $x$ is precisely the sum of the first $n$ terms, and all of the terms after $n$ are zero. Thererefore, the expansion above indeed corresponds to $x$.
+
+    Now consider the decimal expansion corresponding to the series $\frac{a_1}{p} + \frac{a_2}{p^2}+ \ldots + \frac{a_n - 1}{p^n} + \sum_{k=n+1}^{\infty}\frac{p-1}{p^k}$. This would yield a series of decimals the first $n$ of which would equal $a_1, \ldots a_n - 1$ (note that because $a_n \neq 0, a_n -1$ causes no problems), while all decimals after that would equal $p-1$ (call the sequence of digits $c_i$). If we consider the limit of this series, we can see that the last term is a series summing to $\frac{1}{p^n}$, and that the first $n$ terms sum to $x - \frac{1}{p^n}$. Thus, the series as a whole tends to $x$, which means that it \textit{is} a decimal expansion for $x$.
+
+    We now have to show that there is no other decimal expansion for $x$. We will do this by selecting a decimal expansion $0.b_1 b_2 \ldots b_n b_{n+1} \ldots$ that is not equal to $0.a_1a_2 \ldots a_n 00\ldots$ and show that it must necessarily equal $0.a_1 a_2 \ldots (a_n-1) (p-1) (p-1)\ldots$\ . Let us then examine such a decimal expansion. Since it differs from $0.a_1 a_2 \ldots a_n 00\ldots$, there must exist a first $j$ such that $a_j \neq b_j$. Because both decimal expansions correspond to $x$, for the two series it must hold that:
+    $$\sum_{i=1}^{j-1}\frac{a_i}{p^i} + \sum_{i=j}^{\infty}\frac{a_i}{p^i} = \sum_{i=1}^{j-1}\frac{b_i}{p^i} + \sum_{i=j}^{\infty}\frac{b_i}{p^i} \implies \frac{a_j}{p^j} + \sum_{i=j+1}^{\infty} \frac{a_i}{p^i} = \frac{b_j}{p^j} + \sum_{i=j+1}^{\infty}\frac{b_i}{p^i}$$
+
+    , where we have erased from both sides the first $j-1$ digits that are equal (note that the set of these may be empty). Because we are manipulating convergent series, we can write:
+    $$\frac{a_j - b_j}{p^j} = \sum_{i=j+1}^{\infty}\frac{b_i - a_i}{p^i} = \sum_{i=j+1}^{n} \frac{b_i-a_i}{p^i} + \sum_{i=n+1}^{\infty}\frac{b_i}{p^i}$$
+
+    , where we noted that after the $n$-th digit, all $a_i$ are zero. Now, note that if $b_j > a_j$, the LHS here equals at most $-\frac{1}{p^j}$. At the same time, the RHS equals at least 0, which happens when $b_i = 0, i \geq n+1$ and all $b_i - a_i = 0, j+1 \leq i \leq n$. Clearly then, they can never be equal. On the other hand, if $b_j < a_j$ the LHS equals at least $\frac{1}{p^j}$. The RHS equals at most $\sum_{i=j+1}^{\infty} \frac{p-1}{p^i} = \frac{1}{p^j}$, and, crucially, this happens if all $b_i = p -1, i \geq n+1, b_i - a_i = p -1, j + 1 \leq i \leq n$. Because the value is achieved when all of the digits fulfill these conditions, the RHS will be strictly smaller than the LHS in all other cases. The consequence of this is that all $b_i$ starting at $i=n+1$ are equal to $p-1$. Additionally, all $a_i, j + 1\leq i \leq n$ have to be zero. But because $a_n \neq 0$, it must hold that $j + 1 > n$. That is, the first digit where the two expansions differ must be at least at position $n$. If this was strictly larger than $n$, the LHS would not achieve its minimum value ($a_j$ would be 0 and $b_j$ would be $p-1$), thus it could not equal the RHS, contradiction. Thus $j = n$. By these observations, the only digit for which we have not yet determined a value is at position $n$. Recall that $a_j - b_j$ must equal 1, which means that $b_j = a_j - 1$. In other words, $b_n = a_n - 1$, all $b_i = a_i, i < n$ and all $b_i = p - 1, i > n$, leading us to conclude that there exists no third possible representation.
+
+    Now we proceed to examine an $x$ with no finite-length base $p$ decimal expansion. Let $a_i, i =1, 2, \ldots$ be one of its expansions, which is necessarily infinite in length. We will show that this is unique by taking another expansion $b_i$ and showing that it must equal $a_i$ at all digits. Indeed, suppose that they differ, and that the first digit at which this happens is at position $j$. As we did above, we can write:
+    $$\sum_{i=1}^{j-1}\frac{a_i}{p^i} + \sum_{i=j}^{\infty}\frac{a_i}{p^i} = \sum_{i=1}^{j-1}\frac{b_i}{p^i} + \sum_{i=j}^{\infty}\frac{b_i}{p^i} \implies \frac{a_j}{p^j} + \sum_{i=j+1}^{\infty} \frac{a_i}{p^i} = \frac{b_j}{p^j} + \sum_{i=j+1}^{\infty}\frac{b_i}{p^i}$$
+
+    , and, again because the series converge, we can rewrite this as:
+    $$\frac{a_j - b_j}{p^j} = \sum_{i=j+1}^{\infty}\frac{b_i - a_i}{p^i}$$
+
+    If $b_j > a_j$ we again observe that the LHS equals at most $-\frac{1}{p^j}$. The RHS equals at least $\sum_{i=j+1}^{\infty}\frac{-(p-1)}{p^i} = -\frac{1}{p^j}$, which happens if all $b_i - a_i = -(p-1), i > j$. This cannot otherwise be true because this minimum value is achieved when all $b_i - a_i$ are minimized. The consequence is each $b_i = 0, a_i = p - 1, i > j$. However, this implies that $x$ can then be written as $0.b_1 b_2 \ldots b_j 0 0 \ldots$, which is a finite-length expansion since all trailing digits after $j$ are zeros. This is a contradiction. An exactly symmetrical argument applies when $b_j < a_j$, leading us to conclude that $b_j = a_j$ for \textit{all} $j$, thus $a_i$ is a unique expansion for $x$.
+
+    Now we examine $0 < x < 1$ that have an eventually repeating base $p$ decimal expansion. This means that there exists a finite-length ``unique'' first part of the number, consisting of $m$ digits, as well as a minimum ``period'' of repetition $n$ (this can also be zero, in which case the part below does not apply but the number is trivially rational), such that the number can be written as:
+    $$0.a_1 a_2 \ldots a_m a_{m+1} a_{m+2} a_{m+3} \ldots a_{m+n} a_{m+1} \ldots a_{m+n} \ldots$$
+
+    , where we have defined $n$ as the minimum integer for which this holds. Then observe that we can write:
+    $$x = (a_1 a_2 \ldots a_m)p^{-m} + (a_{m+1} a_{m+2}\ldots a_{m+n})p^{-m-n} + (a_{m+1} a_{m+2}\ldots a_{m+n})p^{-m-2n} + (a_{m+1} a_{m+2} \ldots a_{m+n})p^{-m-3n} + \ldots $$
+    $$= \frac{a_1 a_2 \ldots a_m}{p^m} + (a_{m+1} a_{m+2} \ldots a_{m+n})(\sum_{i=1}^{\infty} p^{-m-in}) = $$
+    $$\frac{a_1 a_2 \ldots a_m}{p^m} + \frac{a_{m+1} a_{m+2} \ldots a_{m+n}}{p^{m}(p^n - 1)}$$
+
+    , which is a sum of two quotients of integers, and therefore is a rational number. Note that for the case of repeating expansions everything above simplifies to $m=0$. Now we need to examine whether \textit{every} rational number can be written in this way, in other words, whether every rational number has an eventually repeating (which includes the trivially ``eventually repeating'' finite-length digit sequences) base $p$ decimal expansion.
+
+    Recall that a rational number can be written as the quotient of two integers. Furthermore, because we are interested in numbers in $[0, 1]$, we can restrict ourselves to $x = \frac{a}{b}$ where $a, b$ natural, non-zero numbers with $a < b$. We now recall that for finding a base $p$ decimal expansion for $x$ we can use the division algorithm iteratively. Namely, we first find the smallest power $p^n_1$ such that $ap^n_1 \geq b$, and then we use the division algorithm on $ap^n, b$. According to it, there will exist unique $q_1, r_1, 0 \leq r_1 < b \in \mathbb{N}$ such that $ap^{n_1} = bq_1 + r_1$. Notice that this implies that $\frac{a}{b} = \frac{q}{p^{n_1}} + \frac{r_1}{bp^{n_1}}$. The first $n_1-1$ digits of the decimal expansion of $x$ will be zeros, since for all powers $p^k, k<n$ it has to be that $ap^k < b \implies x < \frac{1}{p^k}$. Now notice that $q_1 \leq \frac{ap^{n_1}}{b} < p$ because $ap^{n_1-1} < b$ due to the choice of $n_1$. Therefore $q_1$ can be thought of as the $n_1$-th digit in the decimal expansion of $x$. If $r_1 = 0$, the decimal expansion is finished, and finite in length. Otherwise, we can apply the same procedure to $r_1, bp^{n_1}$ to obtain that $r_1p^{n_2} = bp^{n_1}q_2 + r_2$, where $n_2$ has been chosen in the same manner as above, and signifies that the next $n_2 - 1$ digits of $x$ will be zero, while the $n_2$-th will be $q_2$. Now we observe that if at any point $r_k$ becomes zero, the expansion is finite in length. Otherwise, we record this sequence of remainders. Each of them is in the range $(0, b)$. Therefore, after at most $b - 1$ steps we will encounter a remainder that has been encountered before. The consequence is that after this point, the sequence of digits is fully known, because we are always performing a division with $b$. Therefore, from that point on the decimal expansion will indeed be infinitely repeating, thus completing the proof.
+    
+\end{solution}
+
+\begin{exercise}{23}
+    If $a_n$ is convergent, show that $\text{liminf}_{n\rightarrow \infty} a_n = \text{limsup}_{n \rightarrow \infty} a_n = \text{lim}_{n \rightarrow \infty} a_n$.
+\end{exercise}
+
+\begin{solution}
+
+    We begin by showing $\text{liminf}_{n\rightarrow \infty} a_n = \text{lim}_{n \rightarrow \infty} a_n$. Let $L$ be the limit of $a_n$. By definition, $\text{liminf}_{n\rightarrow \infty} a_n = \sup_{n \geq 1} \{\inf\{a_n, a_{n+1}, \ldots\}\}$. Suppose first that this supremum did not exist, i.e.\ that it ``equals infinity''. Then for every $M > 0$ there must exist $N > 0$ such that $\inf\{a_N, a_{N+1}, \ldots\} > M$. But this in turn would mean that $a_n$ is not bounded and yet converges to $L$, a contradiction. Now suppose that the supremum equals $L + \epsilon, \epsilon > 0$. Then $L + \epsilon', \epsilon' < \epsilon$ cannot constitute an upper bound for the infimums. Thus there exists $N > 0$ such that $\inf\{a_N, a_{N+1}, \ldots\} > L + \epsilon'$, which means that for $n \geq N, a_n > L + \epsilon'$. This is a clear contradiction of the definition of limit, since $a_n$ cannot get more than $\epsilon'$-close to $L$. Therefore, the liminf of $a_n$ is at most $L$.
+
+    Now, by the definition of the limit, for any $\epsilon > 0$ there exists $N > 0$ such that for $n > N, \lvert a_n - L \rvert < \epsilon \implies a_n > L - \epsilon$. Notice that this means that $\inf\{a_{N}, a_{N+1}, \ldots\} \geq L - \epsilon$, which in turn means that the liminf of $a_n$, as an upper bound for these infimums, must equal at least $L - \epsilon$ for \textit{any} $\epsilon > 0$. At the same time, it equals at most $L$. The only possibility then is that $\text{liminf}_{n\rightarrow \infty} a_n = L$, which is what we are asked to prove.
+
+    The argument for showing that $\text{limsup}_{n\rightarrow \infty} a_n = L$ is exactly symmetrical.
+\end{solution}
+
+\begin{exercise}{24}
+    Show that $\text{lim sup}_{n \rightarrow \infty} (-a_n) = -\text{lim inf}_{n \rightarrow \infty} a_n$.
+\end{exercise}
+
+\begin{solution}
+
+    We begin by the definition of lim sup:
+    $$\text{lim sup}_{n \rightarrow \infty} (-a_n) = \inf_{n \geq 1}\{\sup\{-a_n, -a_{n+1}, \ldots\}\}$$
+
+    We recall from exercise 1 that if $-A = \{-a, a \in A\}$ for some set $A$, then $\inf A = -\sup(-A)$. This means that for any of the sets $\{-a_n, -a_{n+1}, \ldots\}$ it holds that $\sup\{-a_n, -a_{n+1}, \ldots\} = -\inf\{a_n, a_{n+1}, \ldots\}$.
+    Thus:
+    $$\text{lim sup}_{n \rightarrow \infty} (-a_n) = \inf_{n\geq 1}\{-\inf\{a_n, a_{n+1}, \ldots\}\}$$
+
+    Now observe that the ``outer'' infimum here is taken over the set $\{-\inf\{a_1, a_2, \ldots\}, -\inf\{a_2, a_3, \ldots\}, \ldots\}$. If we now set $A = \{-\inf\{a_1, a_2, \ldots\}, -\inf\{a_2, a_3, \ldots\}, \ldots\}$, then $-A = \{\inf\{a_1, a_2, \ldots\}, \inf\{a_2, a_3, \ldots\}, \ldots\}$. Therefore we can again apply the result of exercise 1 to get that:
+    $$\text{lim sup}_{n \rightarrow \infty} (-a_n) = \inf A = -\sup(-A) = -\sup_{n\geq1}\{\inf\{a_1, a_2, \ldots\}, \inf\{a_2, a_3, \ldots\}, \ldots\} = - \text{lim inf}_{n \rightarrow \infty} a_n$$
+\end{solution}
+
+\begin{exercise}{25}
+    If $\text{lim sup}_{n \rightarrow \infty} a_n = -\infty$, show that $a_n$ diverges to $-\infty$. If $\text{lim sup}_{n \rightarrow \infty} a_n = +\infty$, show that $a_n$ has a \textit{subsequence} that diverges to $+\infty$. What happens if $\text{lim inf}_{n \rightarrow \infty} = \pm \infty$?
+\end{exercise}
+
+\begin{solution}
+
+    We have that $\text{lim sup}_{n \rightarrow \infty} a_n = \inf_{n \geq 1}\{\sup\{a_n, a_{n+1}, \ldots\}\}$. If this ``equals negative infinity'', this means that the set over which the infimum is computed is not bounded below. In other words, for any $M < 0$, we can find $n \geq 1$ such that $\sup\{a_n, a_{n+1}, \ldots\} < M$. If the least upper bound of such a set is less than $M$, then clearly all elements of the set must also be less than $M$. This means that given an $M < 0$ we can always find an $n$ such that $a_k < M$ for all $k > n$, by appropriately picking the set as above. This means precisely that $a_n$ diverges to $-\infty$.
+
+    Now let us examine what happens if lim sup ``equals positive infinity''. This means that the set over which the infimum is computed is empty. To see why this is the case, suppose that it was not. Then either it has an lower bound or it does not (law of excluded middle). In the first case, the (corollary of the) Least Upper Bound axiom tells us that the infimum would have to equal some real number. In the second case, by definition we would write that the infimum equals $-\infty$. The only case left is thus for the set to be empty, and in this case we have defined (page 3-4 for the supremum, symmetric for the infimum) that $\inf \emptyset = +\infty$, since every real number is a lower bound for the empty set. For the set to be empty, it must be the case that \textit{all} $\sup\{a_n, a_{n+1}, \ldots\}$, i.e.\ for every $n$, are $+\infty$. This means that all of these sets are unbounded, i.e.\ that for every $n$, it is the case that $\{a_n, a_{n+1}, \ldots\}$ contains, for every $M > 0$, an element $a_{n_k}$ such that $a_{n_k} > M$. 
+    
+    Form then a subsequence $b_j$ of $a_n$ in the following way. Select $b_1$ to be the first element of $\{a_1, a_2, \ldots\}$ such that $b_1 > 1$, which is guaranteed to exist. Then select $b_2$ to be the first element of $\{a_2, a_3, \ldots\}$ such that $b_2 > 2, b_2 \neq b_1$. This is also guaranteed to exist, because if it did not, then all elements of $a_n$ after $b_1$ would be at most 2, which would mean that after that point $a_n$ is bounded and then at least one of the suprema above would be a real number, in which the set over which lim sup is computed would not be empty, a contradiction. Continue this way to pick any $b_j$ to never equal any of the previously selected elements, and then observe that this is a subsequence of $a_n$ that indeed diverges to $+\infty$.
+
+    For lim inf the cases are symmetrical.
+\end{solution}
+
+\begin{exercise}{26}
+    Prove the characterization of lim sup given above. That is, given a bounded sequence $(a_n)$, show that the number $M = \text{lim sup}_{n \rightarrow \infty} a_n$ satisfies (*) (page 12) and, conversely, that any number $M$ satisfying (*) must equal $\text{lim sup}_{n \rightarrow \infty} a_n$. State and prove the corresponding result for $m = \text{lim inf}_{n \rightarrow \infty} a_n$.
+\end{exercise}
+
+\begin{solution}
+
+    Suppose $M$ is the limit supremum of a bounded sequence $(a_n)$. This means that:
+    $$M = \inf_{n\geq 1}\{\sup\{a_n, a_{n+1}, \ldots\}\}$$
+    Now, pick any $\epsilon > 0$. Recall from exercise 3 that there must exist an element $s$ of the set of suprema such that $s < M + \epsilon$. This means that there must exist $N$ such that $s = \sup\{a_N, a_{N+1}, \ldots\} < M + \epsilon$. Now, by the definition of supremum, this means that for all $a_n, n \geq N$ it must hold that $a_n < M + \epsilon$. These are clearly infinitely many elements of the sequence, and thus the inequality stated here \textit{may} not be true only for \textit{finitely} many elements (up to and not including $a_N$). 
+    
+    Furthermore, suppose that $M - \epsilon < a_n$ is true for finitely many elements of the sequence, and call $N'$ the largest integer for which $M - \epsilon < a_{N'}$ (well defined due to the set containing finitely many elements). Then for all $n > N'$ it must hold that $M - \epsilon \geq a_n$, which means that $M - \epsilon < M$ constitutes an upper bound for all subsequences $a_n, a_{n+1}, \ldots, n > N'$, and thus $\sup\{a_n, a_{n+1}, \ldots\} \leq M - \epsilon$. But by the definition of lim sup, $M$ is the infimum of the set of suprema, yet is larger than any $\sup\{a_n, a_{n+1}, \ldots\}, n > N'$, a contradiction. Therefore $M - \epsilon < a_n$ has to hold for infinitely many $n$.
+
+    In the other direction, suppose $M$ satisfies (*). We need to show that $M = \inf_{n\geq 1}\{\sup\{a_n, a_{n+1}, \ldots\}\}$. Suppose first that $M$ is greater than the lim sup. By the definition of infimum, $M$ cannot then constitute a lower bound for the set of suprema. Therefore there exists $N > 0$ such that $\sup\{a_N, a_{N+1}, \ldots\} < M$. Set then $\epsilon = M - \sup\{a_N, a_{N+1}, \ldots\}$, in which case by (*) there must exist infinitely many $n$ such that $M - \epsilon < a_n \implies \sup\{a_N, a_{N+1}, \ldots\} < a_n$. But because $n$ are infinitely many, some of them are greater than $N$, and thus this inequality contradicts the definition of supremum for the subsequence starting at $N$. 
+    
+    Now suppose $M$ is smaller than the lim sup, in which case $\text{lim sup}_{n\rightarrow \infty} a_n > M$. Then $\text{lim sup}_{n\rightarrow \infty} a_n - M = \epsilon > 0$. This furthermore means that there exists $\epsilon' > 0, \epsilon' < \epsilon$. Now, there must exist infinite $n$ such that $a_n < M + \epsilon' < M + \epsilon = \text{lim sup}_{n \rightarrow \infty} a_n$. Observe that this means the following. First, that for some $N > 0$, for all $n \geq N, M + \epsilon'$ constitutes an upper bound for all $a_n$, i.e.\ $M + \epsilon' \geq \sup\{a_N, a_{N+1}, \ldots\}$. Second, that $M + \epsilon' < \inf_{n \geq 1}\{\sup\{a_n, a_{n+1}, \ldots\}\}$, which means that more specifically $M + \epsilon' < \sup\{a_N, a_{N+1}, \ldots\}$. We have arrived at a contradiction. Therefore $M$ cannot be smaller than the lim sup, leading us to conclude that these must in fact be equal.
+
+    For lim inf, the corresponding result is as follows. $m$ equals $\text{lim inf}_{n \rightarrow \infty} a_n$ if and only if for every $\epsilon > 0, a_n < m + \epsilon$ for infinitely many $n$ and $a_n > m - \epsilon$ for all but finitely many $n$. The proof would use symmetrical arguments.
+\end{solution}
+
+\begin{exercise}{27}
+    Prove that every sequence of real numbers $(a_n)$ has a subsequence $(a_{n_k})$ that converges to $\text{lim sup}_{_n \rightarrow \infty} a_n$. [Hint: If $M = \text{lim sup}_{n \rightarrow \infty} a_n = \pm \infty$], we must interpret the conclusion loosely; this case is handled in exercise 25. If $M \neq \pm \infty$, use (*) to choose $(a_{n_k})$ satisfying $\lvert a_{n_k} - M \rvert < 1/k$, for example. There is also a subsequence that converges to $\text{lim inf}_{n \rightarrow \infty} a_n$. Why?]
+\end{exercise}
+
+\begin{solution}
+
+    Firstly, as mentioned in the hint let us categorize the cases of $\pm\infty$. One, if lim sup equals $+\infty$ then $(a_n)$ has a subsequence diverging to $+\infty$. Two, if lim sup equals $-\infty$, then the sequence itself diverges to $-\infty$.
+
+    Now let's examine the case where lim sup equals some real number $M$. We consider the following sequence: $\epsilon_k = \frac{1}{k}$. By the characterization of the supremum, there exist infinitely many $n$ such that $M - \epsilon_1 < a_n$, and it also holds that \textit{for all but} finitely many $n, a_n < M + \epsilon_1$. Crucially, the second observation means that there exists a maximum $N$ for which the second inequality \textit{does not} hold. Therefore, the second inequality holds for all $n > N$ for some $N$. Additionally, the first inequality holds for infinitely many $n$, and thus infinitely many of those have to be greater than $N$. Therefore, there exist infinitely many $n$ such that $\lvert a_n - M \rvert < \epsilon_1$. Pick the first of those and call it $a_{1}$. 
+    
+    Precisely because these elements are always infinite in number, for any $k > 1$ we will always be able to pick an $a_k$ as above with the additional constraint that $a_k$ has not been picked before. Repeating this procedure will yield a subsequence $(a_{n_k})$ that clearly converges to $M$ because $e_k \rightarrow 0$ (and also decrease monotonically). This concludes the proof.
+
+    Because a symmetric characterization exists for lim inf, and because a symmetric version of exercise 25 also exists for it, there will also be a subsequence that converges to lim inf, regardless of whether it equals $\pm\infty$ or some real number.
+\end{solution}
+
+\begin{exercise}{29}
+    If $(a_{n_k})$ is a convergent subsequence of $(a_n)$, show that $\text{lim inf}_{n \rightarrow \infty} a_n \leq \lim_{k \rightarrow \infty} a_{n_k} \leq \text{lim sup}_{n \rightarrow \infty} a_n$.
+\end{exercise}
+
+\begin{solution}
+
+    By exercise 23, we know that $\text{lim inf}_{k \rightarrow \infty} a_{n_k} = \text{lim sup}_{k \rightarrow \infty} a_{n_k} = \lim_{k \rightarrow \infty} a_{n_k}$, since $(a_{n_k})$ converges. Recall the definition of lim sup for $(a_n), (a_{n_k})$:
+    $$\text{lim sup}_{n \rightarrow \infty} a_n = \inf_{n \geq 1}\{\sup\{a_n, a_{n+1}, \ldots\}\}, \text{lim sup}_{k \rightarrow \infty} a_{n_k} = \inf_{k \geq 1}\{\sup\{a_{n_k}, a_{n_{k+1}}, \ldots\}\}$$
+
+    We claim that the second lim sup equals at most the first one. To see why this is the case, observe that any $\sup\{a_{n_k}, a_{n_{k+1}}, \ldots\}$ is the supremum of a number of elements of $(a_n)$ starting at the $n_k$-th one and possibly excluding some elements after that. This means that $\{a_{n_k}, a_{n_{k+1}}, \ldots\} \subset \{a_{n_k}, a_{n_k + 1}, \ldots \}$, and thus by exercise 2, $\sup\{a_{n_k}, a_{n_{k+1}}, \ldots\} \leq \sup\{a_{n_k}, a_{n_k + 1}, \ldots\}$. Now suppose that the second lim sup was larger than the first. This would mean that at least one of $\sup\{a_n, a_{n+1}, \ldots\}$ is smaller than $\text{lim sup}_{k \rightarrow \infty} a_{n_k}$ (such that it cannot be the largest \textit{lower} bound for the set of suprema of subsequences of $(a_n)$). Suppose that this happens for $n = N$.
+    
+    But then because $(a_{n_k})$ has infinite terms, it has to be the case that for some $k, n_k > N$. Then $\sup\{a_{n_k}, a_{n_{k+1}}, \ldots\} \leq \sup\{a_{n_k}, a_{n_k +1}, \ldots\} \leq \sup\{a_N, a_{N+1}, \ldots\} < \text{lim sup}_{k \rightarrow \infty} a_{n_k}$. The first equality here was proved above, while the second is again based on exercise 3 applied on two subsequences, one starting at $N$ and one starting at $n_k$. But then $\text{lim sup}_{k \rightarrow \infty} a_{n_k}$ is not a lower bound for the suprema of the subsequences of $(a_{n_k})$, which is a contradiction. Therefore, it has to be the case that $\text{lim sup}_{n \rightarrow \infty} a_n \leq \text{lim sup}_{k \rightarrow \infty} a_{n_k}$.
+
+    As stated in the beginning, by the convergence of $(a_{n_k})$ this also implies that $\lim_{k \rightarrow \infty} a_{n_k} \leq \text{lim sup}_{n \rightarrow \infty} a_n$.
+
+    The proof for the inequality involving the infimum makes use of exercise 23 and a completely symmetric argument.
+\end{solution}
+
+\begin{exercise}{31}
+    If $(a_n)$ is convergent and $(b_n)$ is bounded, show that $\text{limsup}_{n \rightarrow \infty}(a_n + b_n) \leq \lim_{n \rightarrow \infty} a_n + \text{limsup}_{n \rightarrow \infty} b_n$.
+\end{exercise}
+
+\begin{solution}
+
+    First of all, because $a_n$ is convergent, it is also bounded. Since $b_n$ is bounded as well, their sum is bounded. This means that $a_n + b_n$ has a limit supremum that is indeed a real number. Then, by exercise 27, we know that the sequence $a_{n} + b_{n}$ has a subsequence $a_{n_k} + b_{n_k}$ that converges to $\text{limsup}_{n \rightarrow \infty} (a_n + b_n)$. Because $a_n$ converges, the subsequence $a_{n_k}$ that corresponds to the subsequence of the sum also converges to the limit of $a_n$. Consequently, the subsequence $b_{n_k}$ that corresponds to the subsequence of the sum also converges as a difference of convergent sequences. Observe that this means that:
+    $$\text{limsup}_{n \rightarrow \infty}(a_n + b_n) = \lim_{k \rightarrow \infty}(a_{n_k} + b_{n_k}) = \lim_{k \rightarrow \infty} a_{n_k} + \lim_{k \rightarrow \infty} b_{n_k} = \lim_{n \rightarrow \infty} a_n + \lim_{k \rightarrow \infty} b_{n_k}$$
+
+    Now, from exercise 29, because $b_{n_k}$ is a convergent subsequnce of $b_n$ we conclude that $\lim_{k \rightarrow \infty} b_{n_k} \leq \text{limsup}_{n \rightarrow \infty} b_n$. Combining these two observations we obtain that:
+    $$\text{limsup}_{n \rightarrow \infty}(a_n + b_n) \leq \lim_{n\rightarrow \infty} a_n + \text{limsup}_{n \rightarrow \infty} b_n$$
+\end{solution}
+
+\begin{exercise}{33}
+    Show that $(x_n)$ converges to $x \in \mathbb{R}$ if and only if every subsequence $(x_{n_k})$ of $(x_n)$ has a \textit{further} subsequence $(x_{n_{k_l}})$ that converges to $x$.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: First suppose that $(x_n)$ converges to $x \in \mathbb{R}$. Pick any subsequence $(x_{n_k})$, and pick any $\epsilon > 0$. There exists $N > 0$ such that for all $n > N$ it holds that $\lvert x_n - x \rvert < \epsilon$. Because $(x_{n_k})$ has infinite terms, there exist infinitely many $n_k > N$, and for all of these, by the definition of subsequences, the above inequality holds. Therefore, any subsequence of $(x_n)$ converges to $x$. Any sequence is a trivial subsequence of itself, and thus we have completed the proof in this direction.
+
+    $\impliedby$: Conversely, suppose that every subsequence $(x_{n_k})$ of a sequence $(x_n)$ has a subsequence $(x_{n_{k_l}})$ that converges to $x \in \mathbb{R}$. Suppose by way of contradiction that $(x_n)$ does not converge to $x \in \mathbb{R}$. Then there exists $\epsilon > 0$ such that for all $N > 0$ there exists $n > N$ for which $\lvert x_n - x \rvert \geq \epsilon$. Construct the following subsequence $(x_{n_k})$ of $(x_n)$: the $i$-th term is the first element of $(x_n)$ with $n > i$ such that $\lvert x_n - x \rvert \geq \epsilon$. By the observation above, this is always well defined.
+
+    By construction, all elements of this $(x_{n_k})$ are at least $\epsilon$-away from $x$. Therefore, no subsequence $(x_{n_{k_l}})$ of $(x_{n_k})$ can ever converge to $x$. which directly contradicts our hypothesis, leading us to conclude that $(x_n)$ converges to $x \in \mathbb{R}$.
+\end{solution}
+
+\begin{exercise}{34}
+    Suppose that $a_n \geq 0$ and that $\sum_{n=1}^{\infty} a_n < \infty$.
+
+    (i) Show that $\lim \inf_{n \rightarrow \infty} na_n = 0$.
+
+    (ii) Give an example showing that $\lim \sup_{n \rightarrow \infty} n a_n > 0$ is possible.
+\end{exercise}
+
+\begin{solution}
+
+    (i) In order to show that $\lim \inf_{n \rightarrow \infty} n a_n = 0$, we need to show two things. One, that for every $\epsilon > 0, n a_n > 0 - \epsilon$ holds for all but finitely many $n$ and two, that for every $\epsilon > 0, n a_n < 0 + \epsilon$ holds for infinite $n$. The first inequality is obvious, since $a_n \geq 0$. Suppose then that the second inequality does not hold. This means that there exists $\epsilon > 0$ for which $n a_n \geq \epsilon$ for only a finite number of $n$. Call these $n_1, n_2, \ldots n_k$. Then, observe that for all $n > n_k$, it must be the case that $n a_n \geq \epsilon \implies a_n \geq \frac{\epsilon}{n}$. Then:
+    $$\sum_{n > n_k} a_n \geq \sum_{n > n_k} \frac{\epsilon}{n} = \epsilon \sum_{n > n_k} \frac{1}{n}$$
+
+    We know, however, that this infinite sum diverges (since the infinite sum of all $\frac{1}{n}$ diverges), whereas our LHS here was assumed to converge. We have thus arrived at a contradiction, which means that the second inequality must indeed hold, and thus $\lim \inf_{n \rightarrow \infty} a_n = 0$.
+
+    (ii) Consider the sequence $a_n = \frac{1}{n}$ for $n = 2^k, k = 1, 2, \ldots$ and $a_n = 0$ for every other $n$. Observe then that the corresponding series is a geometric series, and thus converges. At the same time, observe that $n a_n = 1$ for $n = 2^k, k =1, 2, \ldots$ and $n a_n = 0$ for every other $n$. Clearly then it is the case that $\lim \sup n a_n = 1 > 0$.
+\end{solution}
+
+\begin{exercise}{35}
+    (The ratio test): Let $a_n \geq 0$.
+
+    (i) If $\lim \sup_{n \rightarrow \infty} \frac{a_{n+1}}{a_n} < 1$, show that $\sum_{n=1}^{\infty} a_n < \infty$.
+
+    (ii) If $\lim \inf_{n \rightarrow \infty} \frac{a_{n+1}}{a_n} > 1$, show that $\sum_{n=1}^{\infty} a_n$ diverges.
+
+    (iii) Find examples of both a convergent and a divergent series having $\lim_{n \rightarrow \infty} \frac{a_{n+1}}{a_n} = 1$.
+\end{exercise}
+
+\begin{solution}
+
+    (i) Observe, first of all, that $a_n \geq 0$. This means that the corresponding sequence of partial sums is non-decreasing. If we can show that it is also bounded, then we will have proved that it converges, which by definition means that $\sum_{n=1}^{\infty} a_n < \infty$.
+
+    By our hypothesis, we have that $\lim \sup_{n \rightarrow \infty} \frac{a_{n+1}}{a_n} < 1$. Call this quantity $M$. Then we can always find some $\epsilon > 0$ such that $ M + \epsilon < 1$. For this $\epsilon$, we apply the characterization of lim sup on the sequence $\frac{a_{n+1}}{a_n}$. This means that for all but finitely many $n$, it holds that $\frac{a_{n+1}}{a_n} < M + \epsilon$. Call $N$ the largest $n$ for which this does not hold, and then observe that we have that $a_{N+2} < a_{N+1}(M + \epsilon)$. This implies then that $a_{N+3} < a_{N+2}(M + \epsilon) < a_{N+1}(M+\epsilon)^2$. More generally, if $N' = N+1$ for $k \geq 1$ we have that $a_{N'+k} < a_{N'}(M+\epsilon)^k$. 
+
+    Then for the sequence of partial sums we have that:
+    $$\sum_{i=1}^{n} a_i = \sum_{i=1}^{N} a_i + \sum_{i=N'}^{n} a_i < \sum_{i=1}^{N}a_i + \sum_{k=1}^{n - N'} a_{N'}(M+ \epsilon)^k$$
+
+    The first term here is clearly bounded as a finite sum. The second term can also be bounded by the $\textit{infinite}$ sum for $k$, precisely because it corresponds to a geometric series with ratio $M + \epsilon < 1$. But then this means that the sequence of partial sums is indeed bounded, and thus it must converge.
+
+    (ii) Call the lim inf $m$. Then $M > 1$ and we can always find $\epsilon > 0$ such that $m - \epsilon > 1$. Then, by the characterization of lim inf, for all but finitely many $n$ it holds that $\frac{a_{n+1}}{a_n} > m - \epsilon$. Call $N$ the first $n$ after which (and including it) this holds. Then observe that, similarly to (i), for $k \geq 1$ we have that $a_{N+k} > (m - \epsilon)^k a_N$. But because $m - \epsilon > 1$ this implies that the terms of the sequence are not bounded, and hence the infinite series must necessarily diverge.
+
+    (iii) Consider the series corresponding to the sequence $a_n = 1$. Clearly, the ratio of two subsequent terms is 1, but the series obviously diverges.
+
+    Consider also the series corresponding to the sequence $a_n = \frac{1}{n^2}$, which we take as known that it converges to $\frac{\pi^2}{6}$. Observe that:
+    $$\frac{a_{n+1}}{a_n} = \frac{\frac{1}{(n+1)^2}}{\frac{1}{n^2}} = \frac{n^2}{n^2 + 2n+1}$$
+
+    , which can easily be shown to converge to 1 as $n \rightarrow \infty$.
+    
+\end{solution}
+
+\begin{exercise}{37}
+    If $(E_n)$ is a sequence of subsets of a fixed set $S$, we define
+    $$\lim \sup_{n \rightarrow \infty} E_n = \bigcap_{n=1}^{\infty}(\bigcup_{k=n}^{\infty} E_k) \text{ and } \lim \inf_{n \rightarrow \infty} E_n = \bigcup_{n=1}^{\infty}(\bigcap_{k=n}^{\infty} E_k)$$
+
+    Show that
+    $$\lim \inf_{n \rightarrow \infty} E_n \subset \lim \sup_{n \rightarrow \infty} E_n \text{ and that } \lim \inf_{n \rightarrow \infty} (E_n^{c}) = (\lim \sup_{n \rightarrow \infty} E_n)^c$$
+    
+\end{exercise}
+
+\begin{solution}
+
+    For the first part, we have the following. Suppose $x \in \lim \inf_{n \rightarrow \infty} E_n$. We need to show that $x \in \lim \sup_{n \rightarrow \infty} E_n$. By this definition of lim inf, it must be the case that $x \in \bigcap_{k=n}^{\infty} E_k$ for at least one $n \geq 1$. This in turn means that there exists $n \geq 1$ such that $x \in E_n, E_{n+1}, \ldots\ $. Now observe that the following hold:
+    \begin{itemize}
+        \item For $l \leq n$, it is the case that $E_n \subset \bigcup_{k=l}^{\infty} E_k$. Therefore, $x \in \bigcup_{k=l}^{\infty} E_k, l \leq n$.
+        \item For $i \geq 1$, it is the case that $E_{n+i} \subset \bigcup_{k=n+i}^{\infty} E_k$. Therefore, $x \in \bigcup_{k=n+i}^{\infty} E_k$. This can equivalently be written as $x \in \bigcup_{k=l}^{\infty} E_k, l > n$.
+    \end{itemize}
+    But then we have shown that $x \in \bigcup_{k=n}^{\infty} E_n$ for any $n \geq 1$, which means that, by the definition of lim sup used here, $x \in \lim \sup_{n \rightarrow \infty} E_n$ (since this is the intersection of all of these sets). Since $x$ was selected as an arbitrary element of $\lim \inf_{n \rightarrow \infty} E_n$, we've shown that $\lim \inf_{n \rightarrow \infty} E_n \subset \lim \sup_{n \rightarrow \infty} E_n$.
+
+    For the second part, we will use De Morgan's laws, which we know hold for infinite unions and intersections as well (this is easy to prove using the same arguments as for finite unions and intersections). Namely, we have that:
+
+    $$\lim \inf_{n \rightarrow \infty} (E_n^{c}) = \bigcup_{n=1}^{\infty}( \bigcap_{k=n}^{\infty} E_k^c) =\bigcup_{n=1}^{\infty} ( \bigcup_{k=n}^{\infty} E_k)^c = (\bigcap_{n=1}^{\infty} (\bigcup_{k=n}^{\infty} E_k))^c = (\lim \sup_{n \rightarrow \infty} E_n)^c$$
+\end{solution}
+
+\section{Limits and Continuity}
+
+\begin{exercise}{40}
+    Prove the following theorem (1.17):
+
+    Let $f$ be a real-valued function defined in some punctured neighborhood of $a \in \mathbb{R}$. Then, the following are equivalent:
+
+    (i) There exists a number $L$ such that $\lim_{x \rightarrow a} f(x) = L$ (by the $\epsilon - \delta$ definition).
+
+    (ii) There exists a number $L$ such that $f(x_n) \rightarrow L$ whenever $x_n 
+    \rightarrow a$, where $x_n \neq a$ for all $n$.
+
+    (iii) $(f(x_n))$ converges (to something) whenever $x_n \rightarrow a$, where $x_n \neq a$ for all $n$.
+\end{exercise}
+
+\begin{solution}
+
+    (i) $\implies$ (ii): Pick any sequence $x_n \rightarrow a$, with $x_n \neq a$ for all of its terms. For any $\epsilon > 0$, there exists $\delta > 0$ such that whenever $0 < \lvert x_n - a \rvert < \delta$ we have that $\lvert f(x_n) - L \rvert < \epsilon$. Since $x_n \rightarrow a$, for this $\delta > 0$ there exists $N > 0$ such that for $n > N$ we have that $0 < \lvert x_n - a \rvert < \delta$. But then it also holds that for $n > N$, $\lvert f(x_n) - L \rvert < \epsilon$, which means that for any $\epsilon > 0$ we are able to find $N > 0$ such that the definition of the limit for $(f(x_n))$ holds, with the limit value being $L$. 
+
+    Therefore, whenever $x_n \rightarrow a, x_n \neq a$, it is also the case that $f(x_n) \rightarrow L$.
+
+    (ii) $\implies$ (iii): Pick any sequence $(f(x_n))$ such that the corresponding $(x_n)$ converges to $a$ and such that $x_n \neq a$. Then, applying (ii) one can obtain that $f(x_n) \rightarrow L$, which means indeed that $(f(x_n))$ converges to \textit{something}.
+
+    (iii) $\implies$ (ii): Pick any two sequences $x_n \rightarrow a, y_n \rightarrow a$, such that $x_n \neq a, y_n \neq a$ for all $n$. We then have that $f(x_n) \rightarrow L_1, f(y_n) \rightarrow L_2$. As pointed out in the book, construct the sequence $x_1, y_1, x_2, y_2, \ldots$ by ``interlacing'' $(x_n), (y_n)$. It's easy to see that this sequence converges to $a$ as well. Therefore, $f(z_n) \rightarrow L_3$. But now observe that both $f(x_n)$ and $f(y_n)$ are subsequences of $f(z_n)$, which means more specifically that all three of them must converge to the same limit, i.e.\ $L_1 = L_2 = L_3$.
+
+    We have thus shown that for any two sequences $x_n \rightarrow a, y_n \rightarrow a$, the corresponding $(f(x_n)), (f(y_n))$ always converge to the same limit, which is an equivalent way of stating (ii).
+
+    To complete the full equivalence of the theorem, we will now show that (ii) $\implies$ (i). To do this, suppose that (i) does not hold. Then there exists $\epsilon > 0$ such that for all $\delta > 0$ it holds that for some $x$ it is the case that both $0 < \lvert x - a \rvert < \delta$ and $\lvert f(x) - L \rvert \geq \epsilon$. Construct a sequence of $\delta_i = \frac{1}{i}$, and from that construct a corresponding sequence of $i \rightarrow x_i$, where each $x_i$ fulfills the above mentioned conditions. Then clearly the sequence $(x_i)$ converges to $a$, but the corresponding $(f(x_i))$ does not converge to $L$. This directly contradicts (ii), and we have thus shown that (ii) does indeed imply (i).
+\end{solution}
+
+\begin{exercise}{45}
+    Let $f: [a, b] \rightarrow \mathbb{R}$ be continuous and suppose that $f(x) = 0$ whenever $x$ is rational. Show that $f(x) = 0$ for every $x \in [a,b]$.
+\end{exercise}
+
+\begin{solution}
+    
+    Pick any $x \in [a, b]$. If $x \in \mathbb{Q}$, we immediately know that $f(x) 
+    = 0$.
+    If $x \notin \mathbb{Q}$, then we know from a previous result that we can always approach the real number $x$ with a sequence of rational numbers $(x_n)$. 
+    In other words, $x_n \rightarrow x, x_n \in \mathbb{Q}$ for all $x_n$.
+    Because $f$ is continuous, it must then hold that $f(x_n) \rightarrow f(x)$. Observe that the sequence of $f(x_n)$ is a sequence of zeros, since all $x_n \in \mathbb{Q}$.
+    Clearly then the limit has to be zero as well, which directly means that $f(x) = 0$, thus showing that $f(x)$ is indeed the zero function on $[a, b]$.
+\end{solution}
+
+\begin{exercise}{46}
+    Let $f: \mathbb{R} \rightarrow \mathbb{R}$ be continuous.
+
+    (a) If $f(0) > 0$, show that $f(x) > 0$ for all $x$ in some open interval $(-a, a)$.
+
+    (b) If $f(x) \geq 0$ for every rational $x$, show that $f(x) \geq 0$ for all real $x$. 
+    Will this result hold with ``$\geq 0$'' replaced by ``$> 0$''?
+    Explain.
+\end{exercise}
+
+\begin{solution}
+
+    (a) Suppose for the sake of contradiction that this does not hold. 
+    This is equivalent to saying that for any $a \in \mathbb{R}$, there exist some $x_a \in (-a, a)$ such that $f(x_a) \leq 0$. Consider constructing the following sequence of $a_i$: $a_i = \frac{1}{n}$. 
+    Then, in every one of these intervals there has to exist $x_i$ such that $f(x_i) \leq 0$. 
+    Observe that $a_i \rightarrow 0$, which means also that $x_i \rightarrow 0$. Since $f$ is continuous, this means that it has to be the case that $f(x_i) \rightarrow f(0) > 0$. However, this is by construction a sequence of non-positive numbers, and because limits preserve non-strict inequalities, it cannot be the case that the limit of $(f(x_i))$ is positive. 
+    We arrive at a contradiction, and therefore it must be the case that for some $a$, $f(x) > 0$ for all $x \in (-a, a)$.
+
+    (b) Again, for an $x \in \mathbb{R} \setminus \mathbb{Q}$, we can approach it with a sequence of rationals $(x_n)$. 
+    Then it is the case that $f(x_n) \geq 0$ for all $n$, and because $f$ is continuous it also holds that $f(x_n) \rightarrow f(x)$. 
+    Again, limits preserve non-strict inequalities, and thus $f(x) \geq 0$ holds for all real $x$.
+
+    Now we consider whether this is true if we alter ``$\geq$'' to ``$>$''. Consider the function $f(x) = \lvert x - \sqrt{2} \rvert$. 
+    Clearly, this function is continuous, and also positive whenever $x \neq \sqrt{2}$ and zero for $x = \sqrt{2}$. 
+    More specifically, it's a function that is strictly positive for rational $x$. However, for the real $x = \sqrt{2}$, $f(\sqrt{2}) = 0$, thus providing a counterexample to the claim ``if $f(x) > 0$ for every rational $x$, show that $f(x) > 0$ for all real $x$''.
+\end{solution}
+
+\begin{exercise}{50}
+    Let $D$ denote the set of rationals in $[0, 1]$ and suppose that $f: D \rightarrow \mathbb{R}$ is increasing. 
+    Show that there is an increasing function $g: [0, 1] \rightarrow \mathbb{R}$ such that $g(x) = f(x)$ whenever $x$ is rational. 
+    [Hint: For $x \in [0, 1]$, define $g(x) = \sup\{f(t) : 0 \leq t \leq x, t \in \mathbb{Q}$].
+\end{exercise}
+
+\begin{solution}
+
+Define $g$ as in the provided hint.
+We first show that if $x \in \mathbb{Q}, f(x) = g(x)$.
+We have that $g(x) = \sup\{ f(t) : 0 \leq t \leq x, t \in \mathbb{Q}\}$.
+Recall that $f$ is increasing, therefore, for all $0 \leq t \leq x, t \in \mathbb{Q}$ it has to hold that $f(t) \leq f(x)$. 
+Therefore $f(x)$ is an upper bound for the set over which we are computing the supremum.
+For any $s < f(x)$, it is clear that $s$ cannot be an upper bound for this set, because $f(x)$ belongs in it.
+We conclude that $f(x)$ is indeed the supremum, and thus that $g(x) = f(x)$.
+
+Now to show that $g$ is increasing, pick $x_1 < x_2, x_1, x_2 \in [0, 1]$ and call the sets over which $g(x_1), g(x_2)$ are computed $S_1, S_2$ respectively.
+If $y \in S_1$, we have that $y = f(t)$ for some $0 \leq t \leq x_1, t \in \mathbb{Q}$.
+Since $x_1 < x_2$, this means that $y \in S_2$ as well. Therefore $S_1 \subset S_2$, which means that $g(x_1) \leq g(x_2)$ by the properties of the supremum. Therefore $g$ is indeed an increasing function.
+
+    
+\end{solution}
+
+\begin{exercise}{51}
+    Let $f: [a, b] \rightarrow \mathbb{R}$ be increasing and define $g: [a, b] \rightarrow \mathbb{R}$ by $g(x) = f(x+)$ for $a \leq x < b$. and $g(b) = f(b)$. 
+    Prove that $g$ is increasing and right-continuous.
+\end{exercise}
+
+\begin{solution}
+
+    Before we begin we note that by preposition 1.19, $f(x+)$ is well-defined for all $x \in [a, b)$. 
+    First we will show that $g$ is increasing. 
+    Pick $x_1, x_2 \in [a, b], x_1 < x_2$. 
+    We need to show that $g(x_1) \leq g(x_2)$, or, equivalently, that $f(x_1+) \leq f(x_2+)$.
+    We will do this in two steps. 
+    
+    First, we will show that for every $x \in [a, b), f(x+) \geq f(x)$.
+    Suppose this was not the case for some $x$, which would mean that $f(x+) < f(x) \implies 0 < f(x) - f(x+) = \epsilon$. 
+    Let $L = f(x+)$ to ease notation. 
+    Because $L$ is well-defined, for this $\epsilon$ there exists $\delta > 0$ such that for all $y, x < y < x + \delta$ it holds that $\lvert f(y) - L \rvert < \epsilon$.
+    More specifically, this implies that $f(y) < L + \epsilon = L + f(x) - L \implies f(y) < f(x)$.
+    This contradicts the fact that $f$ is increasing.
+
+    Secondly, we will show that for all $x \in [a, b), y \in [a, b], x < y$ it holds that $f(x+) \leq f(y)$. 
+    Suppose again that for some such $x, y$ this does not hold, which means that $f(x+) > f(y)$, and again for ease of notation let $L = f(x+)$.
+    Firstly, let $\delta_1 = y - x > 0$. 
+    Secondly, let $\epsilon = L - f(y) > 0$.
+    Because $L$ is well-defined, for this $\epsilon$ there exists $\delta_2 > 0$ such that for all $z, x < z < x + \delta_2$ it holds that:
+    $$\lvert f(z) - L \rvert < \epsilon \implies f(z) > L - \epsilon = L - L + f(y) \implies f(z) > f(y)$$
+    Set $\delta = \min\{\delta_1, \delta_2\}$, which means that $z < x + \delta \leq x + \delta_1 = y$ and also that, as shown above, $f(z) > f(y)$.
+    Again, this directly contradicts the fact that $f$ is increasing.
+
+    We can now complete the proof by observing that $g(x_1) = f(x_1+) \leq f(x_2)$ by using the second of the two proven lemmas, and then that $f(x_2) \leq f(x_2+) = g(x_2)$ by using the first of the two proven lemmas. 
+    Note that the last step is omitted if $x_2 = b$, in which case $f(x_2) = f(b) = g(b)$.
+
+    Now, because $g$ is increasing in $[a, b]$, we know by proposition 1.19 that $g(x+)$ always exists for $x \in [a, b)$.
+    We thus only need to show that $g(x+) = g(x)$. 
+    Because $f(x+)$ is well defined, for any given $\epsilon > 0$, there exists $\delta > 0$ such that for $x < y < x + \delta$ it holds that $\lvert f(y) - f(x+) \rvert < \epsilon$. 
+    Set $\delta' = \frac{\delta}{2} < \delta$. Then for all $y, x < y < x + \delta'$ it is the case that there exists $z \in (x, x + \delta)$ such that $y < z$.
+    By the second of the two lemmas above, $g(y) = f(y+) \leq f(z) < f(x+) + \epsilon$.
+    By the first of the two lemmas above, it is furthermore true that $g(y) = f(y+) \geq f(y) > f(x+) - \epsilon$.
+
+    Putting these together we obtain that $f(x+) - \epsilon < g(y) < f(x+) + \epsilon$, and since $f(x+) = g(x)$ this means that by picking $\delta' = \frac{\delta}{2}$ the definition of right continuity for $g$ at $x$ is satisfied.
+\end{solution}

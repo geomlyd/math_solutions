@@ -1,0 +1,319 @@
+\chapter{Preliminaries}
+
+\setcounter{section}{4} 
+\section{Real Numbers}
+
+\begin{exercise}{1}
+    Show that if $p$ is a polynomial of odd degree with real coefficients, then there is a real number $c$ such that $p(c) = 0$.
+\end{exercise}
+
+\begin{solution}
+
+    Let $p(x) = a_0 + a_1x+ \ldots + a_{2k+1}x^{2k+1}$, $k \geq 0, a_{2k+1} \neq 0$. For any $x \neq 0$, we can write:
+    $$p(x) = x^{2k+1}(\frac{a_0}{x^{2k+1}} + \frac{a_1}{x^{2k}} + \ldots + a_{2k+1})$$
+    Consider any term of the form $\frac{a_i}{x^{m}}, m > 0$. Consider the corresponding sequence $n \rightarrow \frac{a_i}{n^m}$. If $a_i > 0$, the infimum of this sequence is zero. To see why this is the case, observe that the fraction is always nonnegative for positive $n$. If we assume that the infimum is instead some positive number $c$, then for every $n > 0$ it must hold that:
+    $$\frac{a_1}{n^m} \geq  c \implies \frac{a_1}{c} \geq n^m \implies (\frac{a_1}{c})^\frac{1}{m} \geq n$$
+
+    , which implies that integers are bounded above, a clear contradiction. Therefore, the infimum is indeed 0. Furthermore, the sequence is non-increasing since $n^m$ grows larger as $n >1$ grows larger. Since the sequence is bounded below and non-increasing, it converges to its infimum, that is, zero.
+
+    If instead $a_i < 0$, arguments completely symmetrical to the above can show that the corresponding sequence again converges to zero. Clearly this is also the case for $a_i = 0$.
+
+    Now, if we consider the sequence $n \rightarrow \frac{a_0}{n^{2k+1}} + \frac{a_1}{n^{2k}} + \ldots + a_{2k+1}$, and because each term converges (either to zero or $a_{2k+1}$), the entire sequence converges to $a_{2k+1}$. As $n$ increases, $n^{2k+1}$ always remains positive, therefore for sufficiently large values of $n$ the sign of $p(n)$ has to equal the sign of $a_{2k+1}$.
+
+    A completely symmetrical argument shows that for $n$ being the negative integers instead, for sufficiently small (by absolute value, large) values of $n$ the sign of $p(n)$ has to equal the negative sign of $a_{2k+1}$. 
+    
+    Therefore, $p$ takes at least one positive and one negative value, and since as a polynomial it is continuous, by the intermediate value theorem it also takes the value 0 at some real number $c$.
+
+\end{solution}
+
+\begin{exercise}{2}
+    a. Show that the function
+    (x) = \[f(x) =  \begin{cases} 
+      \text{sin}(\frac{1}{x}) &, x \neq 0 \\
+      0 &, x =0
+   \end{cases}
+\]
+is not continuous.
+
+b. Show that $f$ satisfies the conclusion of the intermediate value theorem: if $f(x_1) = a_1, f(x_2) = a_2$, then for any number $a$ between $a_1$ and $a_2$, there exists a number $x$ between $x_1$ and $x_2$ such that $f(x) = a$.
+\end{exercise}
+
+\begin{solution}
+
+    a. Suppose that $f$ is continuous, more specifically that it is continuous at 0. This means that for any $\epsilon > 0$ there exists $\delta > 0$ such that whenever $\lvert x - 0\rvert < \delta$ it holds that $\lvert f(x) - f(0) \rvert < \epsilon$. Pick $\epsilon = \frac{1}{2}$. Then there must exist $\delta > 0$ such that for all $x$ with $\lvert x \rvert < \delta$, it holds that $\lvert \text{sin}(\frac{1}{x}) \rvert < \epsilon = \frac{1}{2}$.
+
+    Recall that for $y = 2k\pi + \frac{\pi}{2}$, $k$ integer, it is the case that $\text{sin}(y) = 1$. Let us then examine when is it the case that $\frac{1}{x} = 2k\pi + \frac{\pi}{2}$:
+    $$\frac{1}{x} = 2k\pi + \frac{\pi}{2} \implies \frac{1}{2k\pi + \frac{\pi}{2}} = x \implies x = \frac{2}{4k\pi + \pi}$$
+
+    Clearly, for positive $k$ this is always positive. Let us examine if any such numbers are in the range $[0, \delta]$. If there are, then the value of the sine function on them will be $1 > \frac{1}{2} = \epsilon$, which is a contradiction. We have that:
+    $$\frac{2}{4k\pi + \pi} < \delta \implies \frac{2}{\delta} < 4k\pi + \pi \implies \frac{1}{4\pi}(\frac{2}{\delta} - \pi) < k$$
+
+    Because $\delta$ must be fixed for this $\epsilon$, and because the integers are not bounded above, we can always find a $k$ that satisfies this inequality, leading to the contradiction described above.
+
+    Therefore, $f$ cannot be continuous.
+
+    b. For all $x > 0$, it can be shown that $f$ is continuous (it is the composition of two continuous functions). Therefore, for $a_1, a_2 > 0$, the conclusion of the intermediate value theorem follows from the continuity of $f$. The same holds for $a_1, a_2 < 0$. If $a_1 \leq 0, a_2 \geq 0$, then for any $a < 0, a \in [a_1, a_2]$, the continuity of $f$ in $(-\infty, 0)$ and the intermediate value theorem guarantee that there exists $x \in [a_1, 0) \subset [a_1, a_2]$ such that $f(x) = a$. The same is true for $a > 0, a \in [a_1, a_2]$. For $a = 0$, we know that $f(0) = 0$, therefore we have but to pick $x = 0$. We conclude that $f$ satisfies the conclusion of the intermediate value theorem.
+    
+\end{solution}
+
+\begin{exercise}{3}
+    Suppose $a \leq b$. Show that if $f : [a, b] \rightarrow [a, b]$ is continuous, there exists $c \in [a, b]$ with $f(c) = c$.
+\end{exercise}
+
+\begin{solution}
+
+    For every $x \in [a, b]$, it is the case that $f(x) \in [a,b]$, that is, $a \leq f(x) \leq b$. Let $g:[a, b] \rightarrow [a,b]$ with $g(x) = f(x) -x $. Because $f$ is continuous, and the function $h(x)=x$ is ---rather trivially--- continuous, $g$ is also continuous. 
+    Observe also that $g(a) = f(a) - a \geq 0, g(b) = f(b) -b \leq 0$. Therefore, $0 \in [g(b), g(a)]$, and by the intermediate value theorem (slightly modified, since here $g(b) \leq g(a)$) we have that there exists a $c \in [a, b]$ such that:
+    $$g(c) = 0 \implies f(c) - c = 0 \implies f(c) = c$$
+\end{solution}
+
+\section{Infinite Sets}
+
+\begin{exercise}{1}
+    a. Show that the set of rational numbers is countable (i.e., that you can list all rational numbers).
+
+    b. Show that the set $\mathbb{D}$ of finite decimals is countable.
+\end{exercise}
+
+\begin{solution}
+
+    \textbf{a.} Consider a rational number $q \in \mathbb{Q}$. By definition, $q$ can be written as a fraction of two positive integers, multiplied by 1 or -1, that is, $q = \text{sign}(q)\frac{k}{l}, k, l \in \mathbb{Z}$. We know that $k, l$ can be factorized into prime factors uniquely, that is, $k = p_1^{a_1} \ldots p_n^{a_n}, l = p_1^{b_1} \ldots p_n^{b_n}$, where we list the first $n$ primes that are necessary so that both numbers are factorized, and if one of them needs fewer, we ``pad'' the rest with zero exponents, and the signs are either. Additionally, $q$ has a sign of either 1 or -1. By combining these observations, we have that $q$ can be written as:
+    $$q = \text{sign}(q)p_1^{a_1-b_1}\ldots p_n^{a_n-b_n}$$
+
+    Note that, by convention, we consider the prime factorization of 1 to be simply $1^0$ and of 0 to be $0^0$. Define, now, the function $f:\mathbb{Z} \rightarrow \mathbb{N}$ such that $f(z) = 2z$ if $z \geq 0$ and $f(z) -2z - 1$ if $z < 0$. If $f(z_1) = f(z_2)$ for $z_1, z_2 \in \mathbb{Z}$ we observe that either $f(z_1), f(z_2)$ must both be even or they must both be odd. In both cases, their equality implies $z_1 = z_2$. Therefore, $f$ is injective. Consider now any $n \in \mathbb{Z}$. If $n$ is even, observe that $f(\frac{n}{2}) = 2\frac{n}{2} = n$ since $\frac{n}{2} \in \mathbb{Z}, \frac{n}{2} \geq 0$. If $n$ is odd, $n+1$ is even and $-\frac{n+1}{2} \in \mathbb{Z}, -\frac{n+1}{2} < 0$. Therefore, $f(-\frac{n+1}{2}) = -2(-\frac{n+1}{2}) - 1 = n$. In both cases we can find a $z \in \mathbb{Z}$ such that $f(z) = n$, therefore, $f$ is also surjective, and thus bijective.
+
+    Define also the function $g: \mathbb{Q} \rightarrow \mathbb{Z}$ such that $g(\text{sign}(q)p_1^{a_1-b_1}\ldots p_n^{a_n-b_n}) = sign(q)p_1^{f(a_1-b_1)}\ldots p_n^{f(a_n-b_n)}$, where we have written $q \in \mathbb{Q}$ in the manner we describe above. Observe that this is indeed meaningful because each $a_i - b_i \in \mathbb{Z}$. 
+    
+    If $g(q_1) = g(q_2)$, then we observe that $\text{sign}(q_1) = \text{sign}(q_2)$, since the product of primes raised to integers is always non-negative. Observe, also, that the prime factorization of any number is unique. This means that $g(q_1), g(q_2)$ feature the exact same primes with non-zero exponents, and each corresponding pair of non-zero exponents must be equal. In other words, $f(a_{1i}-b_{1i}) = f(a_{2i}-b_{2i})$, where $a_{1i}-b_{1i}, a_{2i}-b_{2i}$ are the exponents of the $i$-th prime in the factorization of $q_1, q_2$. The injectivity of $f$ now implies $a_{1i}-b_{1i} = a_{2i}-b_{2i}$, and because this holds for every $i$ and $\text{sign}(q_1) = \text{sign}(q_2)$, we have that $q_1=q_2$.
+
+    For any $z \in \mathbb{Z}$, $z$ can be written uniquely as $z = \text{sign}(z)p_1^{e_1}\ldots p_n^{e_n}$, where $p_i$ are primes. Because $e_i \in \mathbb{N}$ and $f$ is surjective, we have that there exist $x_i \in \mathbb{Z}$ such that $f(x_i) = e_i$. Let then $q = \text{sign}(z)p_1^{x_1}\ldots p_n^{x_n}$. Clearly $q \in \mathbb{Q}$ and $g(q) = z$. Therefore, $q$ is surjective and thus bijective.
+
+    Finally, if we define $h:\mathbb{Q} \rightarrow \mathbb{N}, h(q) = f(g(q))$ we see that $h$ is a mapping from $\mathbb{Q}$ to $\mathbb{N}$ that is a composition of two bijective mappings, and thus is itself bijective. This therefore proves that $\mathbb{Q}$ is countable, since it has the same cardinality as the natural numbers.
+
+    \textbf{b.} Consider a number $d \in \mathbb{D}$. Since $d$ has a finite number of decimals, it can be written as $d = \text{sign}(d)10^{-x}z, x \in \mathbb{N}, z \in \mathbb{Z}$. Let $z = 2^{a_1} 3^{a_2} 5^{a_3} \ldots p_n^{a_n}$ be the prime factorization of $z$, where we explicitly include the first three primes, and if any of them is not present in the factorization the corresponding exponent is 0. Then:
+    $$d = \text{sign}(d)2^{-x}5^{-x}2^{a_1}3^{a_2}5^{a_3}\ldots p_n^{a_n} = \text{sign}(d)2^{a_1-x}3^{a_2}5^{a_3-x}\ldots p_n^{a_n}$$
+    Consider the function $p:\mathbb{D} \rightarrow \mathbb{Z}, p(d) = \text{sign}(d)2^{f(a_1-x)}3^{a_2}5^{f(a_3-x)}\ldots p_n^{f(a_n)}$. By the same reasoning as in part (a), this function is a bijection from $\mathbb{D}$ to $\mathbb{Z}$. 
+
+    Let, then, $r:\mathbb{D} \rightarrow \mathbb{N}, r(d) = f(p(d))$. Again, by the same reasoning as in part (a) this is a composition of bijections, thus is itself a bijection from $\mathbb{D}$ to $\mathbb{N}$, therefore $\mathbb{D}$ is countable.
+
+\end{solution}
+
+\begin{exercise}{2}
+    a. Show that if $E$ is finite and has $n$ elements, then the power set $\mathcal{P}(E)$ has $2^n$ elements.
+
+    b. Choose a map $f: \{a, b, c\} \rightarrow \mathcal{P}(\{a, b, c\})$, and compute for that map the set $\{x\rvert x \notin f(x)\}$. Verify that this set is not in the image of $f$.
+\end{exercise}
+
+\begin{solution}
+
+    \textbf{a}. We can do this by induction on $n$. For $n = 0$, $E$ is the empty set, and its only subset is the empty set. Thus $\mathcal{P} = \{\emptyset\}$, therefore it does indeed have $2^0 = 1$ element. Suppose now that this holds for sets with $n = k \geq 0$ elements. Let $E$ be a set of $k+1$ elements. We can write $E$ as $E = E' \cup \{e_n\}$, where $E'$ is a set of $n-1$ elements, and $e_n$ is any of the elements of $E$. We know then that $\mathcal{P}(E')$ has $2^{n-1}$ elements, and these are all of the possible subsets of $E'$. 
+    
+    Now, any subset of $E$ is either a subset of $E'$ or the union of a subset of $E'$ with $\{e_n\}$ (note that because $E$ is a set we can have no duplicate elements). A short proof by contradiction shows why this is true: if a subset $S$ of $E$ could not be formed in this way, it contains at least one element not in any of the subsets of $E'$ and not in $\{e_n\}$. But then this element is not in $E'$ nor in $\{e_n\}$, which means that it is not in $E$, contradiction.
+
+    Therefore, each element of $\mathcal{P}(E')$ yields two subsets of $E$, one that includes $e_n$ and one that does not. Therefore, the total number of subsets of $E$ is $2*2^{n-1} = 2^n$.
+
+    \textbf{b.} Consider the function $f(x) = \{x\}$. Then the set $\{x\lvert x \notin f(x)\}$ is the empty set, because by definition this function maps every element of $\{a, b, c\}$ to a set containing just that element. But then, by computing $f(a), f(b), f(c)$ we can see that the image of $f$ is $\{\{a\}, \{b\}, \{c\}\}$, which clearly does not contain the empty set.
+\end{solution}
+
+\begin{exercise}{5}
+    Let $f:A \rightarrow B$ and $g: B \rightarrow A$ be one to one. We will sketch how to construct a mapping $h: A \rightarrow B$ that is one to one and onto.
+
+    Let an $(f, g)-$chain be a sequence consisting alternately of elements of $A$ and $B$, with the element following an element $a \in A$ being $f(a) \in B$ and the element following an element $b \in B$ being $g(b) \in A$.
+
+    a. Show that every $(f, g)-$chain can be uniquely continued forever to the right, and to the left can
+    \begin{enumerate}
+        \item either be uniquely continued forever, or
+        \item can be continued to an element of $A$ that is not in the image of $g$, or
+        \item can be continued to an element of $B$ that is not in the image of $f$.
+    \end{enumerate}
+
+    b. Show that every element of $A$ and every element of $B$ is an element of a unique such maximal $(f,g)-$chain.
+
+    c. Construct $h: A \rightarrow B$ by setting
+    $$h(a) =  \begin{cases} 
+      f(a) &, \text{if $a$ belongs to a maximal chain of type 1 or 2 above} \\
+      g^{-1}(a) &, \text{if $a$ belongs to a maximal chain of type 3}
+   \end{cases}$$
+
+   Show that $h: A \rightarrow B$ is well defined, one to one, and onto.
+
+   d. Take $A = [-1, 1]$ and $B = (-1, 1)$. It is surprisingly difficult to write a mapping $h: A \rightarrow B$. Take $f: A \rightarrow B$ defined by $f(x) = x/2$ and $g: B \rightarrow A$ defined by $g(x) = x$.
+
+   What elements of $[-1, 1]$ belong to chains of type 1, 2, 3?
+
+   What map $h: [-1, 1] \rightarrow (-1, 1)$ does the construction in part (c) give?
+\end{exercise}
+
+\begin{solution}
+
+    \textbf{a.} Let us consider an $(f, g)-$chain that we are interested in extending to the right. This sequence must be of the form $a, f(a), g(f(a)), \ldots$ for some $a \in A$ or of the form $b, g(b), f(g(b)), \ldots$ for some $b \in B$. Firstly, it is clear that successive applications of $f, g$ can indeed continue the sequence forever, every application of one of these functions yields a result that is within the domain of the other. If there were multiple ways to continue such a sequence, this would mean that after some index $i$ there are at least two possible continuations. However, these would arise from the application of either $f$ or $g$ to the element at index $i$, and two or more possible results would imply that either $f$ or $g$ is not a function, contradiction.
+
+    Suppose now that we want to continue the sequence to the left. Suppose that the sequence is of the form $a, f(a), g(f(a)), \ldots$. We can do this iteratively in the following manner:
+    \begin{itemize}
+        \item If the first element $a$ is not in $g(B)$, we cannot continue the sequence. The reason is that if we could, there would be an element $b$ that could be prepended before $a$, and then due to the rules of our sequence creation it would have to be that $g(b) = a \implies a \in g(B)$, contradiction.
+        \item Otherwise, there exists \textit{unique }$b \in g(B)$ such that $g(b) = a$. Note that uniqueness is guaranteed by the fact that $g$ is one-to-one. Prepend $b$ to the sequence. Repeat the previous step, but this time examine whether $b \in f(A)$. The rest of the argument described in these two steps remains the same (since $f$ is also one-to-one). 
+    \end{itemize}
+
+    Clearly if the sequence was initially of the form $b, g(b), f(g(b))\ldots$ we could apply the exact same procedure (it is, in essence, the same case ``shifted'' by one ``prepending step''). It is also clear that the ``prepending'' described above will terminate in two cases: either we reach an element of $A$ not in the image of $g$, or an element of $B$ not in the image of $f$. Otherwise, the procedure will continue forever, and the resulting sequence will be unique due to the fact that at each step there is a unique element that can be prepended (due to $f, g$ being one-to-one).
+
+    \textbf{b.} Pick any element $a$ of $A$ or any element $b$ of $B$ and consider it a sequence of length 1 where the element is at index 0. We proved in (a) that the sequence $a$ or $b$ can be uniquely extended infinitely to the right. Therefore, we only need to examine whether the continuation to the left is also unique. Note that every time we took a step in the way described in (a) there was a unique way to do this, due to $f, g$ being one to one. Therefore, two different finite continuations of the same length are impossible. Furthermore, an infinite continuation is unique, as we observed in (a). Two finite continuations of different lengths or one finite continuation and one infinite one are the only remaining case.
+
+    But this would imply, due to step uniqueness, that these are equal for all elements of the shorter of the two. However, this would also imply that the shorter one ends in either $x \in A$ or $y \in B$, and that the longer one has a preceding element $z$ such that $g(z) = x, z \in B$ or $f(z) = y, z \in A$, respectively. But this would imply that the left-most element of the shorter sequence was either in the image of $g$ or $f$ respectively, and then the procedure described in (a) would not have terminated, contradiction.
+
+    To complete the proof that a maximal $(f, g)-$chain containing $a$ or $b$ is unique, note that if some other sequence contained it in \textit{some} index $i$, then the fact that $f, g$ are one-to-one implies that index $i+k, k \in \mathbb{Z}$ of that sequence would equal index $k$ of the maximal chain which we started with $a$ or $b$ at index 0. In other words the sequence equals the original one up to a translation of the indices by a fixed integer.
+
+    \textbf{c.} First we check whether $h$ is well defined as a function. 
+    
+    Consider any $a \in A$. Then in part (b) we proved that there is a unique maximal chain containing $a$. Since this chain is unique, its type is also unique. If it is of type 1 or 2, $h(a) = f(a)$ which is unique due to $f$ being a function. If it is of type 3, then the chain containing $a$ has to have as leftmost element some element $b \in B$, therefore $a$ cannot be the leftmost element, therefore there is at least one element $x$ before $a$. Then the rules of how the maximal chain is formed impose that $g(x) = a$. In other words, $g^{-1}(a) = x$ (where $g^{-1}(a)$ denotes the element of $B$ such that $g(g^{-1}(a)) = a$ and is well defined whenever $a \in g(B)$). Therefore, $h(a) = g^{-1}(a)$ is again uniquely defined.
+
+    Suppose now that $h(a_1) = h(a_2)$ for $a_1, a_2 \in A$. If $a_1, a_2$'s maximal chains are of type 1 or 2 (not necessarily the same) then $h(a_1) = f(a_1) = h(a_2) = f(a_2)$. Then, the injectivity of $f$ implies that $a_1 = a_2$. If $a_1$'s maximal chain is of type 1 or 2 and $a_2$'s is of type 3, we have the following:
+    \begin{itemize}
+        \item The maximal chain of $a_1$ is of the form $\ldots, a_1, f(a_1), \ldots$ or of the form $a_x, \ldots, a_1, f(a_1), \ldots$, with $a_x \in A$ (where possibly $a_1 = a_x$).
+        \item The maximal chain of $a_2$ is of the form $b_x, \ldots, b_1, a_2, \ldots$, with $b_1, b_x \in B$ (where possibly $b_1 = b_x$).
+        \item  It holds that $h(a_1) = f(a_1) = h(a_2) = g^{-1}(a_2) = b_1$.
+        \item Because the maximal chain of $a_2$ is unique, this implies that the maximal chain of $a_1$ appears in the left of $a_2$, so that $f(a_1) = b_1$. If the maximal chain of $a_1$ extends infinitely to the left (type 1) then the maximal chain of $a_2$ cannot be of finite length, contradiction. If it is of type 2, then either the maximal chain of $a_2$ has to end in $a_x$ or the maximal chain of $a_1$ has to end in $b_x$, both of which are contradictions.
+    \end{itemize}
+
+    Therefore, in this case we get a contradiction.
+
+    Finally, if $h(a_1) = h(a_2)$ and $a_1, a_2$ belong to maximal chains of type 3, then $g^{-1}(a_1) = g^{-1}(a_2)$. This means that there exist $b_1 = g^{-1}(a_1), b_2 =g^{-1}(a_2) \in A$ such that $g(b_1) = a_1, g(b_2) = a_2$. But $b_1 = b_2$, thus $a_1 = a_2$. Therefore, in all cases $h(a_1) = h(a_2)$ implies $a_1 = a_2$, which means $h$ is injective.
+
+    Now let $b \in B$. There exists a unique maximal chain containing $b$. 
+    
+    If this is of type 1 or 2, there is at least one element $a$ immediately to the left of $b$, such that $f(a) = b$. Then it is also the case that this is the maximal chain of that $a$, otherwise we could obtain two maximal chains for $b$. Then, by definition, $h(a) = f(a) = b$.
+
+    If this is of type 3, then the element $a = g(b)$ immediately to the right of $b$ also has a maximal chain of type 3, and additionally $g^{-1}(a) = b$. Therefore, $h(a) = g^{-1}(a) = b$. 
+    
+    In both cases, we can find an $a \in A$ such that $h(a) = b$, which means that $h$ is onto.
+
+    \textbf{d.} Consider any $a \in A=[-1,1]$. If its maximal chain is of type 1, then it extends infinitely to the left. Observe that, due to the nature of $f, g$, this chain is of the form $\ldots, 4a, 4a, 2a, 2a, a, a, \ldots$. This is because $g(x) = x$ and $f$ divides its argument by 2. Therefore, we observe that $2^n a$ must be an element of $A$ for every $n \in \mathbb{N}$. In other words:
+    $$-1 \leq 2^n a \leq 1 \implies \frac{-1}{2^n} \leq a \leq \frac{1}{2^n}$$
+    The only way this can be true for any $n \in \mathbb{N}$ is if $a = 0$. Therefore, only 0 has a maximal chain of type 1. For this element, $h(0) = f(0) = 0$.
+
+    If the maximal chain of $a$ is of type 2, then it ends to the left at some $a' \notin g(B)$. The image of $g$ is clearly $(-1, 1)$, whereas $A = [-1, 1]$. Therefore the leftmost element $a'$ can either be 1 or -1. Succesive applications of $f$ and $g$ lead to the conclusion that $a$ has to be of the form $a = \frac{-1}{2^n}$ or $a = \frac{1}{2^n}, n \in \mathbb{N}$. For those elements, $h(a) = f(a) = \frac{a}{2}$.
+
+    Recall now that every element of $A$ must be an element of a unique maximal chain. Therefore, all elements that have not been accounted for so far must have a maximal chain of type 3. These elements are precisely $x \in [-1, 1], x \neq 0, x \neq \frac{-1}{2^n}, x \neq \frac{1}{2^n}$, for every $n \in \mathbb{N}$. For those elements, $h(x) = g^{-1}(x)$, which must be the immediately preceding element in the chain, for which $g(g{-1}(x)) = a$, and because $g(x) = x$ we have in the end that $h(x) = x$.
+
+    Therefore, we can write the resulting map from $[-1, 1]$ to $(-1, 1)$ as:
+    $$h(a) =  \begin{cases} 
+      0 &, \text{if $a$ = 0} \\
+      \frac{a}{2} &, \text{if $a$ is of the form $-\frac{1}{2^n}$ or $\frac{1}{2^n}$ for some $n \in \mathbb{N}$} \\
+      a &, \text{otherwise}
+   \end{cases}$$
+\end{solution}
+
+\begin{exercise}{6}
+    Show that the points of the circle $\{(x, y) \in \mathbb{R}^2 \lvert x^2 + y^2 = 1\}$ have the same infinity of elements as $\mathbb{R}$. \textit{Hint:} This is easy if you use Bernstein's theorem (Exercise 0.6.5).
+\end{exercise}
+
+\begin{solution}
+
+    Let $C$ denote the set of points on the given circle. By exercise 5, it suffices to show that there exist two injective functions $f:C \rightarrow \mathbb{R}$ and $g: \mathbb{R} \rightarrow C$. First, let us consider $f$. In particular, consider the following function:
+    $$f((x,y)) =  \begin{cases} 
+      x &, \text{if $y \geq 0$} \\
+      x + 2 &, \text{if $y < 0$}
+   \end{cases}$$
+   Essentially, this function ``squashes'' the upper semicircle (intersection points with $x'x$ included) to [-1, 1] and the lower semicircle to (1, 3). The first observation is obvious, and the second comes from the fact that for $y<0$, it must be the case that $x \in (-1, 1)$, therefore $1 < x+2 < 3$. The mapping is injective, because if $f((x_1, y_1)) = f((x_2, y_2))$ we have the following cases.
+   \begin{itemize}
+       \item $y_1 \geq 0, y_2 \geq 0$, in which case $x_1 = x_2$, but then the circle equation and the positivity of $y_1, y_2$ implies $y_1 = y_2$, therefore $(x_1, y_1) = (x_2, y_2)$.
+       \item $y_1 < 0, y_2 < 0$, then $x_1 + 2 = x_2 +2$, and the circle equation plus the negativity of $y_1, y_2$ imply that $y_1 = y_2$, therefore again $(x_1, y_1) = (x_2, y_2)$.
+       \item  $y_1 \geq 0, y_2 < 0$, in which case it must be true that $x_1 = x_2+2$. But $x_2 \in [-1, 1]$ thus $x_2 + 2 \in [1, 3]$ and $x_1 \in [-1, 1]$ which yields that $x_1 = 1$. Then, however, $x_2 = 1$, which would mean that $y_2 = 0 = y_1$, which is a contradiction to $y_2 < 0$.
+   \end{itemize}
+   Therefore $f$ is injective.
+   Now observe that $(-1, 1)$ can be mapped one-to-one to the upper semicircle by mapping each $x \in (-1, 1)$ to $(x, \sqrt{1-x^2})$. Let this mapping be called $h_1$. Now consider the function $h_2: \mathbb{R} \rightarrow (-1, 1), h_2(x) = \frac{e^{x}-e^{-x}}{e^x+e^{-x}}$. For this function we have that:
+   $$h_2(x_1) = h_2(x_2) \implies \frac{e^{x_1}-e^{-x_1}}{e^{x_1}+e^{-x_1}} = \frac{e^{x_2} - e^{-x_2}}{e^{x_2}+e^{-x_2}} \implies $$
+   $$e^{x_1+x_2}+e^{x_1-x_2}-e^{-x_1+x_2}-e^{-x_1-x_2} = e^{x_2+x_1}+e^{x_2-x_1} - e^{-x_2+x_1} - e^{-x_2-x_1}$$
+   $$\implies 2e^{x_1-x_2} = 2e^{x_2-x_1} \implies x_1 = x_2$$
+
+   , which means that is injective. Therefore the mapping $g: \mathbb{R} \rightarrow C$ such that $g(x) = h_1(h_2(x))$ is also injective.
+
+   By exercise 5 (Schröder - Bernstein theorem) we have that this guarantees the existence of a bijection between $C$ and $\mathbb{R}$.
+\end{solution}
+
+\begin{exercise}{7}
+    a. Show that $[0, 1) \times [0, 1)$ has the same cardinality as $[0, 1)$.
+    
+    b. Show that $\mathbb{R}^2$ has the same infinity of elements as $\mathbb{R}$.
+
+    c. Show that $\mathbb{R}^n$ has the same infinity of elements as $\mathbb{R}$.
+\end{exercise}
+
+\begin{solution}
+
+    \textbf{a.} Consider first the mapping $f:[0, 1) \rightarrow [0,1) \times [0, 1), f(x) = (x, 0)$. Clearly, this is an injective mapping. Consider also the mapping $g: [0, 1) \times [0, 1) \rightarrow [0, 1), g((0.a_1 a_2 a_3 \ldots, 0.b_1 b_2 b_2 \ldots)) = 0.a_1 b_1 a_2 b_2 a_3 b_3 \ldots$, where we have written the arguments in decimal form. Note that we make the following choice: if a number ends in infinite 9's, i.e.\ can be written as $0.a_1 a_2 \ldots a_n 9 9 9 \ldots$, we choose to write it instead as $0.a_1 a_2 \ldots a_n + 0.00\ldots 1$, where the second term in this addition has 1 in the $n$-th decimal. In essence, we choose to write the number ``rounded up'', and we know that in the case of infinite 9's the two numbers are equal.
+
+    With that in mind, let $(x, y) = (0.a_1 a_2 \ldots, 0.b_1 b_2 \ldots), (z, w) = (0.c_1 c_2 \ldots, 0.d_1 d_2 \ldots$ such that $g((x, y)) = g((z, w))$. This would mean that the numbers $0.a_1 b_1 a_2 b_2 \ldots, 0.c_1 d_1 c_2 d_2 \ldots$ are equal. This could be the case in one of two ways. One, if all of their ---potentially infinite--- decimals are equal. If this is true, then we directly have that $x = z, y = w$, thus that $(x, y) = (z, w)$. Two, if one of them ends in infinite 9's after decimal $n$, the other in infinite 0's, and the decimals of the second equal the result of adding $0.0\ldots 0 1$ (1 in the $n$-th decimal) to the number formed by the first $n$ digits of the first. 
+    
+    However. if this was the case it would mean that after some $n$ either all of $a_i, b_i$ or all of $c_i, d_i$ are 9's, which does not follow the convention we mentioned previously. In other words, if this was the case we would already have written those numbers $x, y$ or $z, w$ such that they end in 0's and not 9's.
+
+    Therefore, whenever $g((x, y)) = g((z, w))$ we have that $(x, y) = (z, w)$, therefore $g$ is injective. The existence of $f, g$ and the Schröder-Bernstein theorem imply that there exists a bijective mapping between $[0, 1) \times [0, 1)$ and $[0, 1)$, which means that these have the same cardinality.
+
+    \textbf{b.} We have seen, as part of exercise 6, that the real numbers have the same infinity of elements as $[0, 1)$. Using the corresponding bijective mapping $h_1(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$, we can also bijectively map $\mathbb{R}^2$ to $[0, 1) \times [0,1)$ by defining $h_2((x, y)) = (h_1(x), h_1(y))$. The existence of these bijective mappings as well as the existence of the bijective mapping $h: [0, 1) \times [0, 1) \rightarrow [0, 1)$ that we proved in part (a) imply that $h \circ h_2 : \mathbb{R}^2 \rightarrow \mathbb{R}$ is a bijective mapping from $\mathbb{R}^2$ to $\mathbb{R}$, showing that these have the same infinity of elements.
+
+    \textbf{c.} If we now define $h_n : \mathbb{R}^n \rightarrow [0, 1) \times \ldots \times [0, 1), h_n((x_1, x_2, \ldots, x_n)) = (h_1(x_1), h_1(x_2), \ldots, h_1(x_n))$, we can see that this is a bijection from $\mathbb{R}^n$ to $\mathbb [0, 1) \times \ldots [0, 1)$ (where the Cartesian product both here and above has $n$ terms). If we follow the same convention as in part (a) and define a mapping from $\mathbb{R}^n$ to $[0, 1) \times \ldots \times [0, 1)$ to $[0, 1)$ as $g((a_{11}a_{12}a_{13}\ldots, a_{21}a_{22}a_{23}\ldots, \ldots, a_{n1}a_{n2}a_{n3}\ldots)) = 0.a_{11}a_{21}\ldots a_{n1}a_{12}a_{22}\ldots a_{n2}\ldots$, as well as $f:[0, 1) \rightarrow [0, 1) \times \ldots [0, 1), f(x) = (x, 0, \ldots, 0)$, the Schröder-Bernstein theorem tells us that $[0, 1)$ has the same cardinality as $[0, 1) \times \ldots, [0, 1)$, and since we can bijectively map $[0, 1)$ to $\mathbb{R}$ and $\mathbb{R}^n$ to $[0, 1) \times \ldots \times [0, 1)$, we can also bijectively map $\mathbb{R}^n$ to $\mathbb{R}$, thus proving that these have the same infinity of elements.
+\end{solution}
+
+\begin{exercise}{8}
+    Show that the power set $\mathcal{P}(\mathbb{N})$ has the same cardinality as $\mathbb{R}$.
+\end{exercise}
+
+\begin{solution}
+
+    Consider the following mapping $f:\mathcal{P}(\mathbb{N}) \rightarrow \mathbb{R}$: Given a set of natural numbers $\{n_1, n_2, n_3, \ldots\}$, 
+    
+    $f(\{n_1, n_2, n_3, \ldots \}) = 0.a_0 0 a_1 0 a_2 0 \ldots$, where $a_i$ is 1 if $i \in \{n_1, n_2, n_3, \ldots\}$ and 0 otherwise. Observe that if two sets $s_1, s_2 \in \mathcal{P}(\mathbb{N})$ are such that $f(s_1) = f(s_2)$, then it must be the case that all corresponding decimals must be equal. Importantly for this argument, $f$ by its construction can never yield numbers that end in infinite 1s, and as such $f(s_1) = f(s_2)$ cannot happen for e.g.\ $0.1 = 0.01111\ldots$. Also by construction, all digits can only be 0 or 1. For any natural number $n$, $n \in s_1$ iff the $i$-th decimal of $f(s_1)$ is 1, and the same holds for $s_2$. These two facts imply that $n \in s_1$ iff $n \in s_2$, therefore the sets contain the exact same elements, therefore they are equal, therefore $f$ is injective.
+
+    We also know from previous exercises that $\mathbb{R}$ can be mapped bijectively to [0, 1]. Therefore, if we can find an injective mapping from [0, 1] to $\mathcal{P}(\mathbb{N})$, we will also have found an injective mapping from $\mathbb{R}$ to $\mathcal{P}(\mathbb{N})$. Consider then the function $g:[0, 1] \rightarrow \mathcal{P}(\mathbb{N}), g(0.a_1 a_2 a_3 ...) = \{p_1^{a_1}, p_2^{a_2}, \ldots\}$, where, again, $p_i$ is the $i$-th prime number. Note that if one or more $a_i$ are zero, the number $p_i^0 = 1$ is included only once in the set, since sets cannot contain duplicate elements. Furthermore, if a number ends in infinite 9's, we first write it as ending in zeros by ``rounding up'' as described in 0.5. Suppose now that $g(0.a_1 a_2 a_3 \ldots) = g(0.b_1 b_2 b_3 \ldots)$. Then the sets $\{p_1^{a_1}, p_2^{a_2}, p_3^{a_3}, \ldots\}, \{p_1^{b_1}, p_2^{b_2}, p_3^{b_3}, \ldots \}$ are equal. Because a power of the $i$-th prime number can appear in the set only originating from the $i$-th decimal ---since it cannot be factorized as a power of any other prime number---, we have that for every $p_i$ the corresponding exponents must be equal, that is, $a_i = b_i$. One possible exception is the number 1. However, if the number 1 is included in the set, it can only have originated from one or more $a_i$ or $b_i$ being 0. In particular, every $a_i$ or $b_i$ such that a power of $p_i$ does \textit{not} appear in the set must be zero, because otherwise the sets would contain $p_i^{a_i}$ or $p_i^{b_i}$ respectively. Therefore, because the two sets contain the exact same elements, $a_i = 0$ iff $b_i = 0$. Thus, $a_i = b_i$ for all $i$, which means that $g$ is injective, which means that there exists also an injective mapping $g'$ from $\mathbb{R}$ to $\mathcal{P}(\mathbb{N})$
+
+    By the Bernstein-Schröder theorem, $f$ and $g'$ guarantee the existence of a bijective mapping between $\mathbb{R}$ and $\mathcal{P}(\mathbb{N})$, which means that these have the same cardinality.
+\end{solution}
+
+\section{Complex Numbers}
+
+\begin{exercise}{11}
+    a. Describe the loci in $\mathbb{C}$ given by the following equations:
+
+    \quad i. $\text{Re}(z) = 1$ ii. $\lvert z \rvert = 3$
+
+    b. What is the image of each locus under the mapping $z \rightarrow z^2$?
+
+    c. What is the inverse image of each locus under the mapping $z \rightarrow z^2$?
+\end{exercise}
+
+\begin{solution}
+
+    \textbf{a.} We first consider case (i). Any number $z = a + bi$ in the locus of $\text{Re}(z) = 1$ must have a real part of 1, and all numbers $z = 1 + bi$ belong in this locus. Therefore, the locus is all complex numbers of the form $z = 1 + bi, b \in \mathbb{R}$, which geometrically is the vertical line $x = 1$.
+
+    For case (ii), we seek all complex numbers $z = a + bi$ such that their modulus is 3. It is easy to see that these are precisely the complex numbers on the circle with center (0, 0) and radius $3$, i.e. complex numbers of the form $z = 3(\text{cos}(\theta) + i \text{sin}(\theta)), \theta \in \mathbb{R}$.
+
+    \textbf{b.} For (i), consider $z^2$ whenever $z = 1 + bi$. We have that $z^2 = (1+bi)^2 = 1-b^2 + 2bi, b \in \mathbb{R}$. To visualize this on the plane, set $x = 1 - b^2, y = 2b$, which implies $x = 1 - \frac{y^2}{4}$. This corresponds to parabola that intersects the $y$ axis at $(0, 2), (0, -2)$ and the $x$ axis at $(1, 0)$.
+
+    For (ii), we have that $z^2 = 3^2(\text{cos}(2\theta) + i\text{sin}(2\theta)), \theta \in \mathbb{R}$. Clearly, this corresponds to a circle with radius 9 and center $(0, 0)$.
+
+    \textbf{c.} For (i), we need to solve $z^2 = 1 + bi$. If $z = x +yi$, we have that:
+    $$(x+yi)(x+yi) = 1 + bi \implies x^2 - y^2 + 2xyi = 1 + bi \implies x^2 - y^2 = 1, 2xy = b$$
+
+    Because $b \in \mathbb{R}$, $x, y$ can be chosen freely and $2xy = b$ will always be satisfied for some $b$. Therefore, it suffices to hold that $x^2-y^2 = 1$, which corresponds to a hyperbola intersecting the $x$ axis at $(-1, 0), (1, 0)$ 9 (we could also work out the foci of this hyperbola). Geometrically, squaring any complex number lying on this hyperbola yields a complex number with real part 1, which thus lies on the original locus.
+
+    For (ii), we have to solve $z^2 = 3(\text{cos}(\theta) + i \text{sin}(\theta)), \theta \in \mathbb{R}$. Clearly, any number satisfying this equation has modulus $\sqrt{3}$, and conversely, if a number has modulus $\sqrt{3}$, its square has modulus 3, and therefore belongs in the locus described in (a). This means that the inverse image of $z \rightarrow z^2$ is, in this case, the circle with center (0, 0) and radius $\sqrt{3}$.
+\end{solution}
+
+\begin{exercise}{13}
+    a. Find all the cubic roots of 1.
+
+    b. Find all the 4th roots of 1.
+
+    c. Find all the 6th roots of 1.
+\end{exercise}
+
+\begin{solution}
+
+    The $n$-th roots of 1 have the form: $z_k = \text{cos}(\frac{0 + 2k\pi}{n}) + i\text{sin}(\frac{0 + 2k\pi}{n}), k = 0, 1, \ldots, n-1$. Therefore, we have but to replace $n$ with the appropriate number to solve the subtasks.
+
+    \textbf{a.} For $n=3$, $z_1 = 1, z_2 = \text{cos}(\frac{2\pi}{3}) + i\text{sin}(\frac{2\pi}{3}) = -\frac{1}{2} + \frac{\sqrt{3}}{2}i, z_3 = \text{cos}(\frac{4\pi}{3}) + i\text{sin}(\frac{4\pi}{3}) = -\frac{1}{2} - \frac{\sqrt{3}}{2}i$.
+
+    Tasks (b) and (c) are solved similarly, so we omit the calculations. More interesting is the fact that these constitute the vertices of a regular $n$-gon inscribed in the unit circle of the complex plane, such that one vertex is always on (1, 0).
+\end{solution}
+
+
+\setcounter{section}{-1} 

@@ -1,0 +1,426 @@
+\chapter{Continuity}
+
+\begin{exercise}{6}
+    Let $A, B$ be any two subsets of $\mathbb{R}^n$.
+
+    (i) Prove $\mathring{A} \subset \mathring{B}$ if $A \subset B$.
+
+    (ii) Show $\mathring{(A\cap B)} = \mathring{A} \cap \mathring{B}$.
+
+    (iii) From (ii) deduce $\overline{A \cup B} = \overline{A} \cup \overline{B}$.
+\end{exercise}
+
+\begin{solution}
+
+    (i) Suppose $A \subset B$. Let then $x \in \mathring{A}$. It is then the case that there exists $r > 0$ such that $B_r(x) \subset A$. Then it also holds that $B_r(x) \subset B$. But then from the definition of the interior of a set, this means precisely that $x \in \mathring{B}$. Thus $\mathring{A} \subset \mathring{B}$.
+
+    (ii) Let first $x \in \mathring{(A\cap B)}$. Then there exists $r > 0$ such that $B_r(x) \subset A \cap B$. This means both that $B_r(x) \subset A$ and that $B_r(x) \subset B$. But then again from the definition of the interior of a set, this directly implies that $x \in \mathring{A}, x \in \mathring{B}$, and thus clearly $x \in \mathring{A} \cap \mathring{B}$. Therefore we have shown that $\mathring{(A \cap B)} \subset \mathring{A} \cap \mathring{B}$.
+
+    In the other direction, let $x \in \mathring{A} \cap \mathring{B}$. Then $x \in \mathring{A}, x \in \mathring{B}$. This means that there exist $r_1, r_2 > 0$ such that $B_{r_1}(x) \subset A, B_{r_2}(x) \subset B$. Let $r = \min\{r_1, r_2\}$, in which case clearly $B_r(x) \subset B_{r_1}(x), B_r(x) \subset B_{r_2}(x)$, which implies that $B_r(x) \subset A, B_r(x) \subset B$. Then this also implies that $B_r(x) \subset A \cap B$. By the definition of the interior, $x \in \mathring{(A \cap B)}$.
+
+    (iii) For this we will need lemma 1.2.10 which states that for any $A \subset \mathbb{R}^n, (\overline{A})^c = \mathring{(A^c)}, (\mathring{A})^c = \overline{A^c}$, i.e.\ that the complement of the closure of a set equals the interior of the complement, and that the complement of the interior of the set equals the closure of the set's complement. We will also need De Morgan's laws for sets. With that in mind we have that:
+    
+    $$(\overline{A\cup B})^c = \mathring{(A \cup B)^c} = \mathring{(A^c \cap B^c)} = \mathring{(A^c)} \cap \mathring{(B^c)} = (\overline{A})^c \cap (\overline{B})^c = (\overline{A} \cup \overline{B})^c$$
+
+    , and then taking complements on both sides yields $\overline{A \cup B} = \overline{A} \cup \overline{B}$. Notice that on our third step we used the result from (ii).
+\end{solution}
+
+\begin{exercise}{7}
+    Let $n \in \mathbb{N} \backslash \{1\}$. Let $F$ be a closed subset of $\mathbb{R}^n$ with $\mathring{F} \neq \emptyset$. Prove that the boundary $\partial F$ of $F$ contains infinitely many points, unless $F = \mathbb{R}^n$ (in which case we have $\partial F = \emptyset$).
+\end{exercise}
+
+\begin{solution}
+
+    We begin with the case where $F = \mathbb{R}^n$. Then clearly $F^c = \emptyset$, which implies that no boundary points exist (because then an open ball around them would have a non-empty intersection with the empty set). Thus $\partial F = \emptyset$.
+
+    Now let's examine the more interesting case where $F \neq \mathbb{R}^n$. Since the interior of $F$ is non-empty, it contains at least one point, $x$. For this $x$ it holds that there exists $r > 0$ such that $B_r(x) \subset F$. Furthermore, because $F \neq \mathbb{R}^n$, there exists at least one $y \notin F$. Let $S = \text{span}\{y - x\}$. Clearly, $\text{dim} S = 1$. We know from Linear Algebra that:
+    $$\text{dim} S + \text{dim} S^\bot = \text{dim} \mathbb{R}^n \implies \text{dim} S^\bot = n - \text{dim} S \geq n - 1 \geq 1$$
+
+    , since $n > 1$. Consequently, there exists at least one $z \in S^\bot, z \neq 0$ for which, by definition, $\langle z, y - x \rangle = 0$. Since $z$ is orthogonal to $y - x$, we have that $z, y - x$ are linearly independent. Now we have that for any $\lambda \in [0, 1]$ the vector $w_\lambda = x + \frac{\lambda rz}{2\lvert \lvert z \rvert \rvert}$ is contained in $B_r(x)$.
+    
+    Now consider, for any $\lambda \in [0, 1]$, the vector $y - w_\lambda$. We argue that there exists at least one boundary point of $F$ that is of the form $b_\lambda = w_\lambda c(y-w_\lambda), c \in (0, 1)$. Indeed, consider the set $C = \{c \in (0, 1] \lvert w_\lambda + c(y - w_\lambda) \in F\}$, which is bounded above. It is also non-empty, since $w_\lambda \in B_r(x)$, which implies that for a sufficiently small $c$,  $w_\lambda + c(y - w_\lambda)$ remains in $B_r(x)$, and in fact we can find another sufficiently small radius $r'$ such that $B_{r'}(w_\lambda + c(y - w_\lambda)) \subset B_r(x) \subset F$, thus at least one point of this form is in the interior of $F$. 
+    
+    Thus the set has a least upper bound, $c_m$. Firstly, $c_m$ cannot be 1. If it was, then \textit{all} points $w_\lambda + c(y - w_\lambda)$ would be in $F$, and then we could very easily construct a sequence of them that converges to $y$. But $F$ is closed, so this is a contradiction. We now claim $b_\lambda = w_\lambda + c_m(y-w_\lambda)$ is a boundary point for $F$. If it was not, by negating the definition we obtain that $b_\lambda \in \mathring{F}$ or $b_\lambda \in \mathring{F^c}$. In the first case, there exists $r'$ such that $B_{r'}(b_\lambda) \subset \mathring{F}$. But then for $c_{m'} = c_m + \frac{r'}{2}$, $w_\lambda + c_{m'}(y - w_\lambda)$ would be in $F$, and $c_{m'} > c_m$, contradicting the definition of $c_m$. In the second case, there exists $r'$ such that $B_{r'}(b_\lambda) \subset \mathring{F^c}$. But then for $c_{m'} = c_m - \frac{r'}{2}$ we have that $w_\lambda + c_{m'}(y - w_\lambda) \notin F$, which means $c_{m'} < c_m$ is an upper bound for $C$, which contradicts the definition of $c_{m'}$ as the least upper bound of $C$.
+
+    Our conclusion is that for any $\lambda \in [0, 1]$, we can find a corresponding boundary point of $F$ that has the form $w_\lambda + c(y - w_\lambda), c \in (0, 1)$. Now we claim that no two $b_{\lambda_1}, b_{\lambda_2}, \lambda_1 \neq \lambda_2$ can be equal. Indeed, suppose that this was the case. Then:
+    $$b_{\lambda_1} = b_{\lambda_2} \implies w_{\lambda_1} + c_1(y - w_{\lambda_1}) = w_{\lambda_2} + c_2(y - w_{\lambda_2}) \implies $$
+    $$x + \frac{\lambda_1 r z}{\lvert \lvert z \rvert \rvert} + c_1(y - x - \frac{\lambda_1 r z}{\lvert \lvert z \rvert \rvert}) = x + \frac{\lambda_2 r z}{\lvert \lvert z \rvert \rvert} + c_2(y - x - \frac{\lambda_2 r z}{\lvert \lvert z \rvert \rvert}) \implies $$
+    $$\frac{r z }{\lvert \lvert z \rvert \rvert}(\lambda_1 - \lambda_2 - c_1\lambda_1 + c_2\lambda_2) + (c_1 - c_2)(y -x ) = 0$$
+
+    But now recall that $z, y - x$ are linearly independent. As such, this equation is only satisfied for $c_1 = c_2, \lambda_1 - \lambda_2 - c_1\lambda_1 + c_1\lambda_2 = 0 \implies \lambda_1(1 - c_1) + \lambda_2 (c_1 - 1) = 0$, and since $c_1, c_2 \neq 1$ this yields $\lambda_1 = \lambda_2$ which is a contradiction.
+
+    By the above we have proved that this mapping of $[0, 1]$ to boundary points of $F$ is injective. As such, the cardinality of the set of boundary points of $F$ is at least that of $[0, 1]$, which is equal to that of the real numbers, and thus there exist infinite boundary points.
+    
+\end{solution}
+
+\begin{exercise}{10}
+    We define $f: \mathbb{R}^2 \rightarrow \mathbb{R}$ by
+    $$f(x) = \left\{\begin{array}{ll}
+         \frac{x_1 x_2^2}{x_1^2+x_2^6}, & x \neq 0 \\
+         0, & x = 0
+    \end{array}\right.$$
+Show that $\text{im}(f) = \mathbb{R}$ and prove that $f$ is not continuous.
+\end{exercise}
+
+\begin{solution}
+
+    Select any $y \in \mathbb{R}$. If $y = 0, f(0) = 0$, thus $0 \in \text{im}(f)$. If $y \neq 0$, we consider the equation:
+    $$\frac{x_1 x_2^2}{x_1^2 + x_2^6} = y \implies x_1 x_2^2 = y(x_1^2 + x_2^6)$$
+
+    Now, if we examine what happens when $x_1 = x_2^3$, we see that:
+    $$x_2^5 = y(x_2^6 + x_2^6) \implies x_2^5 = 2x_2^6y \implies x_2^5(1 - 2x_2y) = 0$$
+    Since $x_1=x_2^3$, we examine the case where $x_2 \neq 0$ (otherwise we would not be able to consider this equation to begin with). For the above equation to hold, it must then be the case that:
+    $$1 -2x_2y = 0 \implies x_2 = \frac{1}{2y}$$
+
+    , which we can do since $y \neq 0$. In that case we then get that $x_1 = \frac{1}{8y^3}$. From this we conclude that for $y \neq 0, f(\frac{1}{8y^3}, \frac{1}{2y}) = y$, which means that any non-zero $y$ belongs in the image of $f$ as well. We've therefore shown that $\text{im}(f) = \mathbb{R}$.
+
+    For $f$ to be continuous, it has to be continuous at $0$. Consider then approaching 0 with a sequence such that $x_1 = x_2^3$ and $x_2 > 0$. Evaluated on this sequence, $f$ equals:
+    $$f(x) = \frac{x_2^5}{x_2^6 + x_2^6} = \frac{1}{2x_2}$$
+    It is evident that as $x_2 \rightarrow 0$, this function tends to (positive) infinity, and thus the limit at $(0, 0)$ cannot exist, which means that $f$ is not continuous at 0, and consequently not continuous.
+\end{solution}
+
+\begin{exercise}{11}
+    A function $f: \mathbb{R}^n \backslash \{0\} \rightarrow \mathbb{R}$ is said to be positively homogeneous of degree $d \in \mathbb{R}$, if $f(tx) = t^df(x)$ for all $x \neq 0$ and $t > 0$. Assume $f$ to be continuous. Prove that $f$ has an extension as a continuous function to $\mathbb{R}^n$ precisely in the following cases: (i) if $d < 0$, then $f = 0$; (ii) if $d = 0$, then $f$ is a constant function; (iii) if $d > 0$, then there is no further condition on $f$. In each case, indicate which value $f$ has to assume at 0.
+\end{exercise}
+
+\begin{solution}
+    We examine the three cases one by one:
+    \begin{itemize}
+        \item If $d <0$, we have the following. Suppose first that $f$ is not the zero function, which means that for some $y \neq 0$, it holds that $f(y) \neq 0$. Consider then the sequence $i \rightarrow p_i = \frac{y}{i}$, which approaches $0$ as $i \rightarrow \infty$. Then if a continuous extension of $f$ exists, $f$ would have to have a limit at 0. More specifically, the limit of $i \rightarrow f(p_i)$ would have to exist. We then have that:
+        $$\text{lim}_{i \rightarrow \infty} f(p_i) = \text{lim}_{i \rightarrow \infty} f(\frac{y}{i}) = \text{lim}_{i \rightarrow \infty} (\frac{1}{i})^df(y) = \text{lim}_{i \rightarrow \infty} i^{-d}f(y)$$
+        Clearly, this tends to infinity as $i \rightarrow \infty$, which means that the limit of $f$ at 0 cannot exist, and thus $f$ cannot be continuous.
+
+        Now let's assume that $f$ is the zero function. In that case, clearly its limit at 0 will be 0, thus extending it by setting $f(0) = 0$ makes it continuous in $\mathbb{R}^n$.
+        \item If $d = 0$, then $f(tx) = f(x)$ for $x \neq 0, t > 0$. First, let's assume that $f$ is not constant, which means that for two $x_1 \neq x_2$, it holds that $f(x_1) \neq f(x_2)$. Then consider the two sequences $i \rightarrow p_i = \frac{x_1}{i}, i \rightarrow q_i = \frac{x_2}{i}$, both of which tend to 0 as $i \rightarrow \infty$. However:
+        $$\text{lim}_{i \rightarrow \infty}f(p_i) = \text{lim}_{i \rightarrow \infty} f(\frac{x_1}{i}) = \text{lim}_{i \rightarrow \infty} f(x_1) = f(x_1)$$
+
+        , and by exactly the same procedure we can see that $\text{lim}_{i \rightarrow \infty}f(q_i) = f(x_2)$, which means that the limit of $f$ at 0 does not exist, and thus $f$ cannot be continuous.
+
+        If we now assume that $f$ is indeed constant, i.e., $f(x) = c, x \neq 0$, then it suffices to set $f(0)=c$ to make $f$ continuous in $\mathbb{R}^n$.
+
+        \item If $d > 0$, then $f(tx) = t^df(x)$. Let $S$ be the unit sphere in $\mathbb{R}^n$. We now have the following.
+
+        First, if $f$ is 0 on $S$, then we observe that any non-zero $v \in \mathbb{R}^n$ can be written as $v = \frac{v'}{\lvert \lvert v \rvert \rvert}$, where $v' \in S$. Thus by the positive homogeneity (of degree $d$) of $f$ we can obtain that $f(v) = 0$ for all non-zero $v$. Obviously, this means that the extension of $f$ must then be valued 0 at 0 in order to be continuous.
+
+        Now suppose that $f$ is not zero on at least one point $x \in S$. Form the sequence of points $i \rightarrow \frac{x}{i}$, which clearly converges to 0. Then because $f(\frac{x}{i}) = \frac{f(x)}{i^d}$, and $f(x) \neq 0$, in order for the extension of $f$ to be continuous at 0 it has to be the case that $f(0) = \lim_{i \rightarrow} f(\frac{x}{i}) = 0$. Now we need to prove that this is not only necessary but also sufficient for the extension to be 0 at 0. 
+        
+        Firstly, observe that $S$ is a compact set. Therefore, $f$ must obtain some maximum and minimum values on it. Call these $f(x_M), f(x_m)$, achieved on $x_M, x_m \in S$. Set $M = \max\{\lvert f(x_M) \rvert, \lvert f(x_m)\rvert\}$. Observe that since $f(x_m) \leq f(x) \leq f(x_M)$ for all $x \in S$, it holds that $\lvert f(x) \rvert < M$ for all $x \in S$. Now pick any $\epsilon > 0$ and set $\delta = (\frac{\epsilon}{M})^{\frac{1}{d}}$. Consider any $x \neq 0$ such that $\lvert \lvert x - 0 \rvert \rvert < \delta$. We have that:
+        $$f(x) = f(\lvert \lvert x \rvert \rvert x') = \lvert \lvert x \rvert \rvert^d f(x')$$
+
+        , where $x' \in S$. Then $\lvert f(x) \rvert < ((\frac{\epsilon}{M})^{\frac{1}{d}})^d\cdot \lvert f(x') \rvert \leq \frac{\epsilon M}{M} = \epsilon$. But this precisely means that the limit of $f$ as $x$ tends to 0 is 0, and thus setting $f(0) = 0$ suffices to make the extension continuous.
+    \end{itemize}
+\end{solution}
+
+\begin{exercise}{20}
+    Suppose $(x_k)_{k \in \mathbb{N}}$ is a convergent sequence in $\mathbb{R}^n$ with limit $a \in \mathbb{R}^n$. Show that $\{a\}\cup\{ x_k \lvert k \in \mathbb{N} \}$ is a compact subset of $\mathbb{R}^n$.
+\end{exercise}
+
+\begin{solution}
+
+    Let the described set be called $S$. We need to show that $S$ is both closed and bounded. First, set $M = \lvert \lvert a \rvert \rvert + 1$. Clearly, $\lvert a \rvert \rvert < M$. By by the definition of the limit, there exists some $N$ such that for $i > N$ it holds that $\lvert \lvert x_i - a \rvert \rvert < 1$, which by using the triangle inequality easily yields $\lvert \lvert x_i \rvert \rvert < 1 + \lvert \lvert a \rvert \rvert = M$. The set of $x_i, i \leq N$ contains a finite number of elements, and thus so does the set of the corresponding $\lvert \lvert x_i \rvert \rvert$. Set then $M' = \max\{\lvert \lvert x_i \rvert \rvert, i \leq N \} + 1$, and $L = \max\{M', M\}$. Then we have that for any $x \in S, \lvert \lvert x \rvert \rvert < L$, thus $S$ is bounded.
+
+    Now we need to show that $S$ is closed. Suppose that $i \rightarrow y_i$ is a convergent sequence in $S$. By the definition of $S$, it has to be the case that each $y_i$ either equals some $x_k$ or it equals $a$. Suppose $y_i$ converges to a point $b \notin S$. Then for any $\epsilon > 0$ we can find $N > 0$ such that for $i > N, \lvert \lvert y_i - b \rvert \rvert < \epsilon$. If for some $N > 0$ it holds that $y_i = a$ for all $i > N$, then we can see that the sequence converges to $b \notin S$ but at the same time clearly converges to $a \in S$ (the distance of the terms from $a$ becomes in fact zero). By the uniqueness of the limit, this is a contradiction. Thus for all $N > 0$ there have to exist an infinite number of $i > N$ for which $y_i \neq a$. These must then all be of the form $x_k$. Now assume that for some $N > 0$ all of these $y_i$ equal $x_k$ with $k \leq N$ (they don't have to equal the same $x_k$ necessarily). But then these are countably many: they are at most $N$. Thus there exists a minimum distance of them from $b$. But this contradicts the hypothesis that $y_i$ can get infinitely close to $b$.
+
+    What we have shown so far is that for all $N > 0$ there exists at least one $y_i$ that equals some $x_k$ with $k > N$. We can thus form a subsequence $z_j$ of $y_i$ by setting $z_j$ be the first $y_i$ which equals an $x_k$ with $k > j$. This is now clearly a subsequence of $x_k$, and thus converges to $a$. But at the same time, it is a subsequence of $y_i$ and thus converges to $b$, a contradiction. Therefore, $y_i$ cannot converge to a $b \notin S$, which equivalently shows that $S$ is closed.
+\end{solution}
+
+\begin{exercise}{22}
+    Show that $K \subset \mathbb{R}^n$ is compact if and only if every continuous function $K \rightarrow \mathbb{R}$ is bounded.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: Suppose $K$ is compact. We then know that any continuous function defined on it has a maximum and a minimum value, which means that it is bounded.
+
+    $\impliedby$: Now suppose every continuous function from $K$ to $\mathbb{R}$ is bounded. Suppose $K$ was not compact. In exercise 1.6.2 of Hubbard \& Hubbard we proved that there exists then a continuous unbounded function from $K$ to $\mathbb{R}$. Obviously, this contradicts our hypothesis of all continuous functions from $K$ to $\mathbb{R}$ being bounded, and thus $K$ must be compact.
+\end{solution}
+
+\newpage
+
+\begin{exercise}{23}
+    Let $A \subset \mathbb{R}^n$ be arbitrary, let $K \subset \mathbb{R}^p$ be compact, and let $p: A \times K \rightarrow A$ be the projection with $p(x, y) = x$. Show that $p$ is proper and deduce that it is a closed mapping.
+\end{exercise}
+
+\begin{solution}
+
+    Firstly, a mapping $f: \mathbb{R}^n \rightarrow \mathbb{R}^p$ is said to be proper if the inverse image under $f$ of every compact set in $\mathbb{R}^p$ is compact in $\mathbb{R}^n$. Secondly, a mapping $f: \mathbb{R}^n \rightarrow \mathbb{R}^p$ is called closed if, for all $C \subset \mathbb{R}^n$ it holds that $f(C)$ is also closed.
+
+    In our case, $p$ can be thought of as a mapping from a subset of $\mathbb{R}^{n+p}$ to a subset of $\mathbb{R}^n$. As such, let $S$ be a compact subset of $A$. We are interested in $p^{-1}(S)$. From $p$'s definition, we can see that it maps any element of the form $(x, y), x \in S, y \in K$ to an element of $S$ (namely, to $x$). Furthermore, if $p$ maps an element $(x, y)$ to an element $z \in S$, then from $p$'s definition it must hold that $x = z$ and that $y \in K$. From these observations we can conclude that $p^{-1}(S) = S \times K$. Both $S, K$ are compact, which means that they are bounded, say by $M_S, M_K$ respectively. For any element $x \in S \times K, \lvert \lvert x \rvert \rvert^2 = \lvert \lvert s \rvert \rvert^2 + \lvert \lvert k \rvert \rvert^2, s \in S, k \in K$. Therefore, $\lvert \lvert x \rvert \rvert = \sqrt{\lvert \lvert s \rvert \rvert^2 + \lvert \lvert k \rvert \rvert^2} < \sqrt{M_S^2 + M_K^2}$. We have thus found a bound for the norm of any element of $p^{-1}(S)$, which means that the set is bounded.
+
+    Now, to show that it is also closed, suppose $i \rightarrow s_i$ is any convergent sequence in $p^{-1}(S) = S \times K$ that converges to $(a_1, a_2, \ldots, a_n, a_{n+1}, \ldots, a_{n+p})$. We know that this implies that each of the coordinates of $s_i$ converges to the respective coordinate of this limit. This in turn implies that the sequence $i \rightarrow (s_{i,1}, \ldots s_{i,n})$ of the first $n$ coordinates converges to $(a_1, \ldots, a_n)$ and that the sequence $i \rightarrow (s_{i, n+1}, \ldots, s_{i, n+p})$ converges to $(a_{n+1}, \ldots, a_{n+p})$. All points of this first sequence belong in $S$, which is closed as a compact set, and thus $(a_1, \ldots, a_n) \in S$. Similarly, all points of the second sequence belong in $K$, again a closed set due to being compact, and thus $(a_{n+1}, \ldots, a_{n+p}) \in K$. But then $(a_1, a_2, \ldots, a_n, a_{n+1}, \ldots, a_{n+p}) \in S \times K = p^{-1}(S)$. meaning that $p^{-1}(S)$ is indeed closed, and thus compact.
+
+    Now, one can easily see that $p$ is also continuous: whenever a sequence of points $i \rightarrow (x_i, y_i)$ converges to a point $(x, y)$, the sequence $p(x_i, y_i)$ converges trivially to $x$, which is also the value of $p$ at $(x, y)$. But then from theorem 1.8.6 we have that $f$ is a closed mapping due to being proper and continuous.
+\end{solution}
+
+\begin{exercise}{25}
+    A nonconstant polynomial function $f: \mathbb{C} \rightarrow \mathbb{C}$ is proper. Deduce that $f(\mathbb{C})$ is closed in $\mathbb{C}$.
+\end{exercise}
+
+\begin{solution}
+
+    We have that $f(z) = \sum_{i=1}^m a_iz^i$, with $m \geq 1$ being the degree of the polynomial, and thus $a_m \neq 0$. Let $S \subset \mathbb{C}$ be a compact set. Let also $T = f^{-1}(S)$ be the inverse image of $S$ under $f$. We need to show that $T$ is also compact. Suppose, first, that $T$ is not bounded. Therefore it contains a sequence $i \rightarrow z_i$ such that the norm of $z_i$ goes to infinity as $i \rightarrow \infty$. Observe that for non-zero $z$ we can write:
+    $$f(z) = a_m z^m (1 + \sum_{i=1}^{m-1} \frac{a_i}{a_m z^{m-i}})$$
+
+    , where, crucially, $a_m \neq 0$. From this one can fairly easily draw the conclusion that if $i \rightarrow z_i$ is such that the norm of $z_i$ is unbounded, the first term has a norm tending to infinity when $i \rightarrow \infty$ whereas the second tends to 1. Thus the sequence of $f(z_i)$ would also be unbounded, a contradiction because $S$ is compact.
+    Now suppose $T$ is not closed. Then there exists a sequence $i \rightarrow z_i \in T$ that converges to $a \notin T$. Because $f$ is continuous as a polynomial, we have that:
+    $$\text{lim}_{i \rightarrow \infty} z_i = a \implies \text{lim}_{i \rightarrow \infty} f(z_i) = f(a)$$
+    
+    Because $a \notin T$, by definition it has to hold that $f(a) \notin S$. However, all of $f(z_i)$ by definition are in $S$, which means that because $S$ is compact, their sequence contains a convergent subsequence that converges to a point in $S$. By the above however, this subsequence would have to converge to $f(a) \notin S$, a contradiction. Therefore $T$ is closed.
+
+    Having shown that $f$ is proper and because it is also continuous and $\mathbb{C}$ is closed, we can draw the conclusion that $f$ is a closed mapping and $f(\mathbb{C})$ is also closed.
+\end{solution}
+
+\begin{exercise}{28}
+    For every polynomial function $p: \mathbb{C} \rightarrow \mathbb{C}$ there exists $w \in \mathbb{C}$ with $\lvert p(w) \rvert = \inf\{\lvert p(z) \rvert \ \ \rvert z \in \mathbb{C}\}$. Prove this using exercise 1.25. This is known as \textit{Cauchy's Minimum Theorem}.
+\end{exercise}
+
+\begin{solution}
+
+    First consider the case of $p$ being a constant polynomial. Then clearly every $w \in \mathbb{C}$ fulfills the required condition, since $p$ only achieves one value. Now, if $p$ is not constant, exercise 25 applies. We thus know that $p(\mathbb{C})$ is a closed set in $\mathbb{C}$. We now form the set $S = \{ \lvert z \rvert \ \rvert z \in p(\mathbb{C})\}$, that is, the set of all possible magnitudes of $p(z)$. Notice that by the definition of the norm of complex numbers, this set has a lower bound, 0. Thus, by the Least Upper Bound axiom and its consequence for lower bounds, $S$ has a \textit{greatest} lower bound, $\inf S$. Now, by the characterization of supremum and infimum in Carothers, exercise 3, we have that for every $\epsilon > 0$, there exists $x \in S$ such that $x < \inf S + \epsilon \implies x- \inf S < \epsilon$. Form a sequence of $x_i$ for $\epsilon_i = \frac{1}{i}$. By the definition of $S$, we can always find $z_i$ such that $\lvert p(z_i) \rvert = x_i$. 
+    
+    Now clearly all of these magnitudes have to be less than $\inf S + 1$. Therefore, we can form a \textit{compact} set of all $z$ with $\lvert p(z) \rvert \leq \inf S + 1$. The sequence $z_i$ belongs in this compact set, and thus has a convergent subsequence (Bolzano-Weierstrass theorem), $z_{i_k}$, that converges to $p(w)$ for some $w \in \mathbb{C}$. But because the norm is a continuous function, by applying it on the convergent sequence $z_{i_k}$ we obtain that it must hold that:
+    $$\lim_{i_k \rightarrow \infty} \lvert p(z_{i_k}) \rvert = \lvert p(w) \rvert = \inf S$$
+
+    This concludes the proof.
+\end{solution}
+
+\begin{exercise}{29}
+    A function $f: F \subset \mathbb{R}^n \rightarrow \mathbb{R}^n$ is said to be a contraction in $F$ when $f$ is Lipschitz continuous with a Lipschitz constant $\epsilon < 1$, in other words, when:
+    $$\lvert \lvert f(x) - f(x') \rvert \rvert \leq \epsilon \lvert \lvert x - x' \rvert \rvert < \lvert \lvert x - x' \rvert \rvert, (x, x' \in F)$$
+    The Contraction Lemma states the following:
+
+    Assume $F \subset \mathbb{R}^n$ is closed and $x_0 \in F$.
+    Let $f: F \rightarrow F$ be a contraction with contraction factor $\leq \epsilon$.
+    Then there exists a unique point $x \in F$ with 
+    $$f(x) = x; \text{ furthermore } \lvert \lvert x - x_0 \rvert \rvert \leq \frac{1}{1 - \epsilon}\lvert \lvert f(x_0) - x_0 \rvert \rvert$$
+    The notation below is as in the Contraction Lemma.
+    Define $g: F \rightarrow \mathbb{R}$ by $g(x) = \lvert \lvert x - f(x) \rvert \rvert$.
+
+    (i) Verify $\lvert g(x) - g(x') \rvert \leq (1 + \epsilon)\lvert \lvert x - x' \rvert \rvert$ for all $x, x' \in F$, and deduce that $g$ is continuous on $F$.
+
+    If $F$ is bounded the continuous function $g$ assumes its minimum at a point $p$ belonging to the compact set $F$.
+
+    (ii) Show $g(p) \leq g(f(p)) \leq \epsilon g(p)$, and conclude that $g(p) = 0$.
+    That is, $p \in F$ is a fixed point of $f$.
+
+    If $F$ is not bounded, set $F_0 = \{ x \in F \lvert g(x) \leq g(x_0) \}$.
+    Then $F_0 \subset F$ is nonempty and closed.
+
+    (iii) Prove, for $x \in F_0$,
+    $$\lvert \lvert x - x_0 \rvert \rvert \leq \lvert \lvert x - f(x) \rvert \rvert + \lvert \lvert f(x) - f(x_0) \rvert \rvert + \lvert \lvert f(x_0) - x_0 \rvert \rvert \leq 2g(x_0) + \epsilon \lvert \lvert x - x_0 \rvert \rvert$$ 
+    Hence $\lvert \lvert x - x_0 \rvert \rvert \leq \frac{2g(x_0)}{1 - \epsilon}$ for $x \in F_0$, and therefore $F_0$ is bounded.
+
+    (iv) Show that $f$ is a mapping of $F_0$ in $F_0$ by noting $g(f(x)) \leq \epsilon g(x) \leq g(x_0)$ for $x \in F_0$ and proceed as above to find a fixed point $p \in F_0$.
+\end{exercise}
+
+\begin{solution}
+
+    (i) For any two $x, x' \in F$, we have that:
+    $$\lvert g(x) - g(x') \rvert = \Bigl\lvert \lvert \lvert x - f(x) \rvert \rvert - \lvert \lvert x' - f(x') \rvert \rvert \Bigr \rvert \leq \lvert \lvert (x - f(x)) - (x' - f(x')) \rvert \rvert$$
+    $$\leq \lvert \lvert (x - x') + (f(x') - f(x)) \rvert \rvert \leq \lvert \lvert x - x' \rvert \rvert + \lvert \lvert f(x') - f(x) \rvert \rvert \leq (1 + \epsilon)\lvert \lvert x - x' \rvert \rvert$$,
+    where we used the triangle inequality and the Lipschitz continuity of $f$.
+    This shows that $g$ is Lipschitz continuous in $F$, and thus more specifically continuous.
+
+    (ii) $f$ maps $F$ to $F$, therefore $f(p) \in F$.
+    Because g achieves its minimum value on $p$, it holds that $g(p) \leq g(x)$ for all $x \in F$.
+    More particularly then, $g(p) \leq g(f(p))$.
+    We also have that $g(f(p)) = \lvert \lvert f(p) - f(f(p)) \rvert \rvert \leq \epsilon \lvert \lvert p - f(p) \rvert \rvert = \epsilon g(p)$, by using the Lipschitz continuity of $f$.
+    But then the only way that $g(p) \leq g(f(p)) \leq \epsilon g(p)$ can be true with $\epsilon < 1$ is if $g(p) = 0$, which implies $p = f(p)$ by the definition of $g$, therefore that $p$ is a fixed point of $f$.
+
+    (iii) Here we have the following:
+    $$\lvert \lvert x - x_0 \rvert \rvert = \lvert \lvert x - f(x) + f(x) - x_0 + f(x_0) - f(x_0) \rvert \rvert$$
+    $$\leq \lvert \lvert x - f(x) \rvert \rvert + \lvert \lvert f(x) - f(x_0) \rvert \rvert + \lvert \lvert f(x_0) - x_0 \rvert \rvert = g(x) + g(x_0) + \lvert \lvert f(x) - f(x_0) \rvert \rvert$$
+    $$\leq 2g(x_0) + \epsilon \lvert \lvert x - x_0 \rvert \rvert$$,
+    where we used the triangle inequality, the defining property of $F_0$ and the Lipschitz continuity of $f$.
+    From this we can deduce that $\lvert \lvert x - x_0 \rvert \rvert \leq \frac{2g(x_0)}{1 - \epsilon}$.
+    But then by the triangle inequality, and since $x_0$ is fixed, $\lvert \lvert x \rvert \rvert$ is bounded, meaning that $F_0$ is bounded.
+
+    (iv) In order to show that $f$ is a mapping of $F_0$ to $F_0$, we need to show that for any $x \in F_0, f(x)$ is also in $F_0$.
+    This means that we need to show that $g(f(x)) \leq g(x_0)$.
+    We have that:
+    $$g(f(x)) = \lvert \lvert f(x) - f(f(x)) \rvert \rvert \leq \epsilon \lvert \lvert x - f(x) \rvert \rvert = \epsilon g(x) \leq \epsilon g(x_0) \leq g(x_0)$$,
+    where the last inequality holds because $\epsilon < 1$.
+    We've thus shown that $f(x) \in F_0$, that is, that $f$ is a mapping from $F$ to $F$.
+    Therefore $F_0$ is a compact set on which $g$ is continuous, meaning that it achieves a minimum value on it.
+    This means that we can directly apply part (ii) to show that there exists a fixed point $p$ of $f$ that belongs in $F_0$.
+
+    We note that the uniqueness of the fixed point $f$ is shown in the same way as in the contraction lemma: assume two fixed points $x, x', x \neq x'$, and then $0 < \lvert \lvert x - x' \rvert \rvert = \lvert \lvert f(x) - f(x') \rvert \rvert < \lvert \lvert x - x' \rvert \rvert$, which is a clear contradiction, and the inequality asserted by the lemma can be shown by:
+    $$\lvert \lvert x - x_0 \rvert \rvert = \lvert \lvert f(x_0) + x - f(x_0) - x_0 \rvert \rvert \leq \lvert \lvert f(x_0) - x_0 \rvert \rvert + \lvert \lvert x - f(x_0) \rvert \rvert = \lvert \lvert f(x) - f(x_0) \rvert \rvert + \lvert \lvert f(x_0) - x_0 \rvert \rvert$$
+    $$\leq \epsilon \lvert \lvert x - x_0 \rvert \rvert + \lvert \lvert f(x_0) - x_0 \rvert \rvert \implies \lvert \lvert x - x_0 \rvert \rvert (1 - \epsilon) \leq \lvert \lvert f(x_0) - x_0 \rvert \rvert$$
+\end{solution}
+
+\begin{exercise}{30}
+    Let $A \subset \mathbb{R}^n$ be bounded and $f: A \rightarrow \mathbb{R}^p$ uniformly continuous. Show that $f$ is bounded on $A$.
+\end{exercise}
+
+\begin{solution}
+
+     Suppose that $f$ is not bounded. Then there must exist a sequence of points $y_1, y_2, \ldots \in \mathbb{R}^p$  such that $y_i = f(x_i), x_i \in A$ and $\lvert \lvert y_i \rvert \rvert > i$. Recall that $A$ is bounded, which means that its closure, $\overline{A}$ is bounded as well. Indeed, if this was not the case, there would exist boundary points with a norm greater than any $M > 0$, and by definition there would exist points inside $A$ arbitrarily close to them, which means that they as well would have unbounded norms, a contradiction.
+
+    Since $\overline{A}$ is bounded and is by definition closed, it is compact. Furthermore, all $x_i \in A \subset \overline{A}$, which means that by the Bolzano-Weierstrass theorem the sequence $(x_n)$ has a convergent subsequence $(x_{n_k})$. This sequence converges to a point $x \in \overline{A}$, and, by an easy extension of theorem 1.16 of Carothers, is equivalently Cauchy. In exercise 33 we prove that a uniformly continuous $f$ maps Cauchy sequences to Cauchy sequences. This would mean that $(f(x_{n_k}))$ is equivalently convergent, and thus bounded. However, by the definition of $y_i = f(x_i)$, it cannot be the case that $(f(x_{n_k}))$ are bounded, since $\lvert \lvert f(x_{n_k}) \rvert \rvert > n_k$. We arrive at a contradiction. Thus, $f$ must be bounded on $A$.
+\end{solution}
+
+\newpage
+
+\begin{exercise}{31}
+    Let $f, g : \mathbb{R}^n \rightarrow \mathbb{R}$ be uniformly continuous.
+
+    (i) Show that $f + g$ is uniformly continuous.
+
+    (ii) Show that $fg$ is uniformly continuous if $f, g$ are bounded. Give a counterexample to show that the condition of boundedness cannot be dropped in general.
+
+    (iii) Assume $n = 1$. Is $g \circ f$ uniformly continuous?
+\end{exercise}
+
+\begin{solution}
+
+    (i) $f, g$ are both uniformly continuous, which means that for any $\epsilon > 0$, there exist $\delta_1, \delta_2 > 0$ such that for all $x, y \in \mathbb{R}^n$ with $\lvert \lvert x - y \rvert \rvert < \delta_1$ it holds that $ \lvert f(x) - f(y) \rvert < \epsilon$ and for  all $x, y$ with $\lvert \lvert x - y \rvert \rvert < \delta_2$ it holds that $ \lvert g(x) - g(y) \rvert < \epsilon$. 
+
+    Pick then any $\epsilon > 0$. Then there exist $\delta_1, \delta_2 > 0$ such that $\lvert \lvert x - y \rvert \rvert < \delta_1 \implies \lvert f(x) - f(y) \rvert < \frac{\epsilon}{2}$ and $\lvert \lvert x - y \rvert \rvert < \delta_2 \implies \lvert f(x) - f(y) \rvert < \frac{\epsilon}{2}$. Now set $\delta = \min\{\delta_1, \delta_2\}$. For all $x, y$ with $\lvert \lvert x - y \rvert \rvert < \delta$ it holds that:
+    $$\lvert (f+g)(x) - (f+g)(y) \rvert = \lvert f(x) - f(y) + g(x) - g(y) \rvert \leq \lvert f(x) - f(y) \rvert + \lvert  g(x) - g(y) \rvert < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$$
+
+    By finding this choice of $\delta$ for any $\epsilon$ we have shown that $f+g$ is indeed uniformly continuous.
+
+    (ii) Pick any $\epsilon > 0$. We begin as follows, for any two $x, y \in \mathbb{R}^n$:
+    
+    $$\lvert (fg)(x) - (fg)(y) \rvert = \lvert f(x)g(x) - f(x)g(y) + f(x)g(y) -f(y)g(y) \rvert$$
+    $$= \lvert f(x)(g(x) - g(y)) + g(y)(f(x) - f(y)) \rvert \leq \lvert f(x) \rvert \cdot \lvert g(x) - g(y) \rvert + \lvert g(y) \rvert \cdot \lvert f(x) - f(y) \rvert$$
+
+    $f$ and $g$ are both bounded, so there exist $M_1, M_2$ such that $\lvert f(x) \rvert <M_1, \lvert g(y) \rvert < M_2$ for all $x, y$. Set $M = \max\{M_1, M_2\}$. If $M = 0$, both functions are the zero function and $fg$ is zero too, thus trivially uniformly continuous. If $M > 0$, pick any $\epsilon > 0$. Then, there exist $\delta_1, \delta_2 > 0$ such that:
+    $$\lvert  x - y \rvert  < \delta_1 \implies  \lvert f(x) - f(y)  \rvert< \frac{\epsilon}{2M}$$
+    
+    $$ \lvert x - y \rvert  < \delta_2 \implies  \lvert g(x) - g(y) \rvert < \frac{\epsilon}{2M}$$
+
+    Set $\delta = \min\{\delta_1, \delta_2\}$. Then for all $x, y$ with $\lvert \lvert x - y \rvert \rvert < \delta$ we can see that:
+    $$\lvert (fg)(x) - (fg)(y) \rvert \leq \lvert f(x) \rvert \cdot \lvert g(x) - g(y) \rvert + \lvert g(y) \rvert \cdot \lvert f(x) - f(y) \rvert < M\cdot \frac{\epsilon}{2M} + M\cdot \frac{\epsilon}{2M} = \epsilon$$
+
+    , which proves that $fg$ is uniformly continuous. Now for a counterexample, consider:
+    
+    $$f(x_1, x_2) = x_1, g(x_1, x_2) = x_2$$
+    
+    , both of which are clearly uniformly continuous as linear functions, but neither of which is bounded. Then $(fg)(x_1, x_2) = x_1x_2$. Suppose now that $fg$ is uniformly continuous. Pick $\epsilon = 1$. Then there must exist $\delta > 0$ such that for all $x, y \in \mathbb{R}^2, \lvert \lvert x - y \rvert \rvert < \delta \implies \lvert (fg)(x) - (fg)(y) \rvert < 1$.
+
+    For this $\delta$, consider $x = (x_1, x_1), y = (x_1 + \frac{\delta}{2}, x_2 + \frac{\delta}{2})$. It is clear that $\lvert \lvert x - y \rvert \rvert < \delta$. Then it must hold that:
+    $$ \lvert (fg)(x) - (fg)(y) \rvert < \epsilon \implies \lvert x_1^2 - (x_1+\frac{\delta}{2})^2 \rvert < \epsilon \implies \lvert \delta x_1 + \frac{\delta^2}{4} \rvert < \epsilon$$
+
+    If we pick, for example, $x_1 = \frac{\epsilon}{\delta}$, we can clearly see that this does not hold, and thus $fg$ cannot be uniformly continuous.
+
+    (iii) Pick any $\epsilon > 0$. Then there exists $\delta > 0$ such that for all $x, y, \lvert x - y \rvert < \delta$ it holds that $\lvert g(x) - g(y) \rvert < \delta$. Now for this $\delta > 0$, because $f$ is uniformly continuous, there exists $\delta' > 0 $ such that for all $x', y'$ with $\lvert x' - y' \rvert < \delta'$ it holds that $\lvert f(x') - f(y') \rvert < \delta$. But then this means that $\lvert g(f(x')) - g(f(y')) \rvert < \epsilon$, which means that if we choose $\delta'$ for the $\epsilon$, we satisfy the definition of uniform continuity for $g \circ f$.
+\end{solution}
+
+\begin{exercise}{32}
+    Let $g: \mathbb{R} \rightarrow \mathbb{R}$ be continuous and define $f: \mathbb{R}^2 \rightarrow \mathbb{R}$ by $f(x) = g(x_1x_2)$. Show that $f$ is uniformly continuous only if $g$ is a constant function.
+\end{exercise}
+
+\begin{solution}
+
+    In order to show this, we must show that $f$ being uniformly continuous implies that $g$ is continuous. We will do this by contradiction. However, we will first prove a useful lemma regarding uniformly continuous functions:
+
+    A function $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ is uniformly continuous if and only if for all sequences $x_i, y_i$ such that:
+    $$\text{lim}_{i \rightarrow \infty} \lvert \lvert x_i - y_i \rvert \rvert = 0$$
+    , it holds that:
+    $$\text{lim}_{i \rightarrow \infty} \lvert \lvert f(x_i) - f(y_i) \rvert \rvert = 0$$.
+
+    For this lemma we have the following:
+    
+    $\implies$: Suppose $f$ is uniformly continuous and the sequences $x_i, y_i$ satisfy the condition stated above. Pick any $\epsilon > 0$. Then by the definition of uniform continuity, there exists $\delta  >0 $ such that whenever $\lvert \lvert x - y \rvert \rvert < \delta$, it holds that $\lvert \lvert f(x) - f(y) \rvert \rvert < \epsilon$. For this $\delta > 0$, by the definition of the limit of a sequence, there exists $N > 0$ such that whenever $i > N$ it holds that $\lvert \lvert x_i - y_i\rvert \rvert < \delta$. Putting these together, for all $i > N$ it also holds that $\lvert \lvert f(x_i) - f(y_i) \rvert \rvert < \epsilon$. But this means precisely that the limit of the sequence $\lvert \lvert f(x_i) - f(y_i) \rvert \rvert$ is zero.
+    
+    $\impliedby$: Suppose $f$ is not uniformly continuous. Then there exists $\epsilon > 0$ for which for each $\delta > 0$ there exist at least two $x, y$ such that $\lvert \lvert x - y \rvert \rvert < \delta$ and $\lvert \lvert f(x) - f(y) \rvert \rvert \geq \epsilon$. Construct then two sequences $i \rightarrow x_i, i \rightarrow y_i$ for which $x_i, y_i$ are $x, y$ such that the previous statement holds for $\delta = \frac{1}{i}$. We can easily see that $\text{lim}_{i \rightarrow \infty} \lvert \lvert x_i - y_i \rvert \rvert = 0$. However, for this particular $\epsilon$, it is \textit{always} the case that $\lvert \lvert f(x_i) - f(y_i) \rvert \rvert \geq \epsilon$, which means that the limit of $\lvert \lvert f(x_i) - f(y_i) \rvert \rvert$ \textit{cannot} be zero, which is a contradiction. Therefore $f$ must be uniformly continuous.
+
+    Let us now proceed to the problem itself. As mentioned, suppose that $g$ is not a constant function. This means that there exist $x_1, x_2$ such that $g(x_1) \neq g(x_2)$. This can be rewritten as $g(x_1) \neq g(x_1+\eta)$ for some $\eta \neq 0$. Consider then the sequence $i \rightarrow (\frac{x_1}{i}, i)$ and call it $a_i$. Consider also the sequence $i \rightarrow (\frac{x_1+\eta}{i}, i)$ and call it $b_i$. Notice that $b_i - a_i = (\frac{\eta}{i}, 0)$, and consequently that $\text{lim}_{i \rightarrow \infty} \lvert \lvert b_i - a_i \rvert \rvert = 0$. By our previous lemma, this means that it must also hold that $\text{lim}_{i \rightarrow \infty}\lvert f(b_i) - f(a_i) \rvert = 0$. We have that:
+    $$\lvert f(b_i) - f(a_i) \rvert = \Bigl\lvert g(\frac{x_1+\eta}{i}i) - g(\frac{x_1}{i}i) \Bigr\rvert = \lvert g(x_1 + \eta) - g(x_1) \rvert$$
+
+    Clearly, the limit of this quantity as $i$ tends to infinity is the quantity itself, which by our hypothesis is not zero. But then this directly contradicts the fact that $f$ is uniformly continuous, and we thus arrive at a contradiction. Therefore, $g$ must be constant.
+\end{solution}
+
+\begin{exercise}{33}
+    Let $A \subset \mathbb{R}^n$ and $f: A \rightarrow \mathbb{R}^p$ be uniformly continuous.
+
+    (i) Show that $(f(x_k)_{k \in \mathbb{N}})$ is a Cauchy sequence in $\mathbb{R}^p$ whenever $(x_k)_{k \in \mathbb{N}}$ is a Cauchy sequence in $A$.
+
+    (ii) Using (i) prove that $f$ can be extended in a unique fashion as a continuous function to $\overline{A}$.
+
+    (iii) Give an example of a set $A \subset \mathbb{R}$ and a continuous function $A \rightarrow \mathbb{R}$ that does not take Cauchy sequences in $A$ to Cauchy sequences in $\mathbb{R}$.
+\end{exercise}
+
+\begin{solution}
+
+    (i) Suppose $(x_k)_{k \in \mathbb{N}}$ is a Cauchy sequence in $A$. This means that for any $\epsilon > 0$, there exists $N > 0$ such that for all $n_1, n_2 > N$ it holds that $\lvert \lvert x_{n_1} - x_{n_2} \rvert \rvert < \epsilon$. Pick now any $\epsilon > 0$. By the uniform continuity of $f$ it must hold that there exists $\delta > 0$ such that for all $x, y \in A$ such that $\lvert \lvert x -y \rvert \rvert < \delta$, it holds that $\lvert \lvert f(x) - f(y) \rvert \rvert < \epsilon$. Because $(x_k)$ is Cauchy, for this $\delta$ we can find $N > 0$ such that for $n_1, n_2 > N$ it holds that $\lvert \lvert x_{n_1} - x_{n_2} \rvert \rvert < \delta$. Thus we can obtain the corollary of the definition of uniform continuity, which is that for all $n_1, n_2 > N$ it also holds that $\lvert \lvert f(x_{n_1}) - f(x_{n_2}) \rvert \rvert < \epsilon$. But this means precisely that the sequence $(f(x_k))$ is also Cauchy.
+
+    (ii) First of all, if $A$ is closed then it equals its closure, and thus the question is trivial: the extension of $f$ to $\overline{A}$ is itself, and since it's uniformly continuous there can be no other functions that satisfy this, otherwise the limit at at least one point would not match the value of $f$ at that point. 
+    
+    Therefore, from now on assume that $A \neq \overline{A}$ and recall that $\overline{A} = A \cup \partial A$, which means that there exists at least one boundary point which does not belong in $A$. Let $b$ be any such point. By the definition of a boundary point, there must exist a sequence of points of $A$ that converges to $b$. Indeed, if one takes a sequence of open balls of radii $i \rightarrow \frac{1}{i}$ around $b$, these will always intersect $A$. Thus we can always select a point inside each such open ball to form the $i$-th point, $x_i$, of our constructed sequence. Notice that these points form a Cauchy sequence: after the $N$-th point, they can be at a distance of at most $\frac{1}{N}$, which means that for a given $\epsilon$ we can always find $N_\epsilon$ after which the points of the sequence are at least $\epsilon$-close to each other.
+
+    Now by part (i) we have that $f$ maps $(x_i)$ to a sequence that is also Cauchy, and by an easy extension of theorem 1.16 of Carothers we know that Cauchy sequences in $\mathbb{R}^n$ always converge. Therefore, $(f(x_i))$ converges. This means that there is precisely one \textit{possible} value for the extension of $f$ at $b$: the limit of $(f(x_i))$. This by itself, however, does not guarantee continuity, as we have not shown that \textit{every} sequence in $\overline{A}$ converging to $b$ is mapped by an appropriate extension of $f$ to a sequence which converges to this limit. For now let us commit a small abuse of notation by writing $f(b)$ to mean this unique potential value of the extension of $f$ at $b$ such that it \textit{could} be continuous.
+
+    Let now $a, b, a \neq b$ be any two points in $\overline{A}$. By a similar argument as above, we can always find two sequences $a_n \rightarrow a, b_n \rightarrow b$ such that for all $n, a_n, b_n \in A$. Furthermore, assuming that if any of $a, b$ are on the boundary and not in $A$, $f(a), f(b)$ refer to the limit described above, and otherwise to the value of $f$ at the corresponding point, we observe that:
+    $$\lvert \lvert f(a) - f(b) \rvert \rvert = \lvert \lvert f(a) - f(a_n) + f(b_n) - f(b) + f(a_n) - f(b_n) \rvert \rvert$$
+    $$\leq \lvert \lvert f(a) - f(a_n) \rvert \rvert + \lvert \lvert f(b_n) - f(b) \rvert \rvert + \lvert \lvert f(a_n) - f(b_n) \rvert \rvert$$
+
+    We've shown above that the first and third terms of the RHS correspond to quantities that can be made arbitrarily small by picking $n > N$ appropriately. Suppose now that we pick any $\epsilon > 0$. Then the uniform continuity of $f$ guarantees that we can find $\delta > 0$ such that $\lvert \lvert x - y \rvert \rvert < \delta \implies \lvert \lvert f(x) - f(y) \rvert \rvert < \frac{\epsilon}{3}, x, y \in A$. Pick now any two $a, b \in \overline{A}$ such that $\lvert \lvert a - b \rvert \rvert < \frac{\delta}{2}$, and select sequences $a_n \rightarrow a, b_n \rightarrow b$ as described above. The continuity of the norm implies that:
+    $$\lim_{n \rightarrow \infty} \lvert \lvert a_n - b_n \rvert \rvert = \lvert \lvert a - b \rvert \rvert$$
+
+    , thus there exists $N > 0$ such that for $n > N$, $\bigl\lvert \lvert \lvert a_n - b_n \rvert \rvert - \lvert \lvert a - b \rvert \rvert \bigr\rvert < \frac{\delta}{2} \implies \lvert \lvert a_n - b_n \rvert \rvert < \delta$. But then by the uniform continuity of $f, \lvert \lvert f(a_n) - f(b_n) \rvert \rvert < \frac{\epsilon}{3}$. Thus, by picking $N$ being the maximum of $N_1, N_2, N_3$ for which $n > N_1, n> N_2, n > N_3$ imply that each of the three terms of the RHS respectively are smaller than $\frac{\epsilon}{3}$, we obtain that $\lvert \lvert f(a) - f(b) \rvert \rvert < \epsilon$. But then we have shown precisely that the extension is uniformly continuous on all of $\overline{A}$.
+    
+    Now, by exercise 13, because $A$ is dense in $\overline{A}$, any two $f_1, f_2: \overline{A} \rightarrow \mathbb{R}^p$ that are continuous have to be equal in $A$ in order to be extensions of $f$, and by the corollary of said exercise, $f_1 = f_2$, which means that the extension is unique.
+
+    (iii) Consider the set $A = [0, 1)$ and the function $f(x) = \frac{1}{1 - x}$, which is continuous in $A$ as a rational function. Consider the sequence $x_i = 1 - \frac{1}{i}$, which converges to 1 and, by the theorem mentioned above (from Carothers), is thus Cauchy. Observe now that $f(x_i) = \frac{1}{1 - (1 - \frac{1}{i})} = i$. Obviously the sequence $f(x_i)$ does not converge (it is unbounded), and by the same theorem cannot be Cauchy.
+
+    
+\end{solution}
+
+\begin{exercise}{35}
+    Assume that $K \subset \mathbb{R}^n$ and $L \subset \mathbb{R}^p$ are compact sets, and that $f: K \times L \rightarrow \mathbb{R}$ is continuous.
+
+    (i) Show that for every $\epsilon > 0$ there exists $\delta > 0$ such that
+    $$a, b \in K \text{ with } \lvert \lvert a - b \rvert \rvert < \delta, y \in L \implies \lvert f(a, y) - f(b, y) \rvert < \epsilon$$
+
+    Next, define $m: K \rightarrow \mathbb{R}$ by $m(x) = \max\{f(x, y) \ \rvert \ y \in L\}$.
+
+    (ii) Prove that for every $\epsilon > 0$ there exists $\delta > 0$ such that $m(a) > m(b) - \epsilon$ for all $a, b \in K$ with $\lvert \lvert a - b \rvert \rvert < \delta$.
+
+    (iii) Deduce from (ii) that $m: K \rightarrow \mathbb{R}$ is uniformly continuous.
+
+    (iv) Show that $\max\{m(x) \ \rvert \ x \in K\} = \max\{f(x, y) \ \rvert \ x \in K, y \in L\}$.
+
+    Consider a continuous function $f$ on $\mathbb{R}^n$ that is defined on a product of $n$ intervals in $\mathbb{R}$. It is a consequence of (iv) that the problem of finding maxima for $f$ can be reduced to the problem of successively finding maxima for functions associated with $f$ that depend on one variable only. Under suitable conditions the latter problem might be solved by using the differential calculus in one variable. 
+
+    (v) Apply this method for proving that the function 
+    $$f: [-\frac{1}{2}, 1] \times [0, 2] \rightarrow \mathbb{R} \text{ with } f(x) = \lvert \lvert x \rvert \rvert^2e^{-x_1 - x_2^2}$$
+
+     attains its maximum value $e^{-\frac{1}{4}}$ at $\frac{1}{2}(-1, \sqrt{3})$.
+\end{exercise}
+
+\begin{solution}
+
+    (i) Pick any $\epsilon > 0$. Because $f$ is continuous, we have that there exists $\delta > 0$ such that:
+    $$\lvert \lvert (a, x) - (b, y) \rvert \rvert < \delta, a, b \in K, x, y \in L \implies \lvert f(a, x) - f(b, y) \rvert < \epsilon$$
+
+    Suppose now we apply the above implication for $x = y \in L$ and for $a, b \in K$ with $\lvert \lvert a - b \rvert \rvert < \delta$. It's important to note that because the domain of $f$ is the entire Cartesian product of $K, L$ the points $(a, y), (b, y)$ always belong in it. Now observe that $\lvert \lvert (a, x) - (b, y) \rvert \rvert = \lvert \lvert (a, x) - (b, x) \rvert \rvert = \lvert \lvert (a - b, 0) \rvert \rvert = \lvert \lvert a - b \rvert \rvert$
+
+    , by the definition of the norm in $K \times L$ given that we use the Euclidean norm in both $K$ and $L$. Thus the above premise stands for any such two $a, b \in K$ and any $y \in L$, and we obtain the corollary:
+    $$\lvert f(a, x) - f(b, y) \rvert < \epsilon \implies \lvert f(a, y) - f(b, y) \rvert < \epsilon$$
+
+    , thus completing the proof.
+
+    (ii) First of all, we observe that because both $K$ and $L$ are compact sets, $m$ is well defined (continuous functions achieve a maximum value on compact sets). By part (i), for a given $\epsilon > 0$ we can find $\delta > 0$ such that for all $y \in L$ and for all $a, b \in K$ with $\lvert \lvert a - b \rvert \rvert < \delta$ we have that $\lvert f(a, y) - f(b, y) \rvert < \epsilon$. Consequently:
+
+    $$- \epsilon < f(a, y) - f(b, y) < \epsilon \implies f(b, y) - \epsilon < f(a, y)$$
+
+    Now, by the definition of $m$, we have that $m(a) \geq f(a, y)$ for all $y \in L$. Thus $f(b, y) - \epsilon < m(a), y \in L$. Furthermore, again by the definition of $m$, we have that $m(b) = f(b, y_b)$ for some $y_b \in L$ (possibly not unique). In any case though, because the previously stated inequality holds for all $y \in L$, we obtain that $f(b, y_b) - \epsilon < m(a) \implies m(b) - \epsilon < m(a)$.
+
+    (iii) Pick any $\epsilon > 0$, and select the $\delta > 0$ such that for all $a, b \in K, \lvert \lvert a - b \rvert \rvert < \delta$ the implication of (ii) holds. This yields $m(a) > m(b) - \epsilon \implies m(a) - m(b) > -\epsilon$, and by exchanging the roles of $a, b$ also that $m(b) > m(a) - \epsilon \implies \epsilon > m(a) - m(b)$. We have thus that $-\epsilon < m(a) - m(b) < \epsilon$, or, equivalently, $\lvert m(a) - m(b) \rvert < \epsilon$. But this is precisely the definition of uniform continuity for $m$, thus completing the proof.
+
+    (iv) Because both $K, L$ are compact, $K \times L$ is compact. Indeed, both $K, L$ are bounded, and by the definition of the norm in the Cartesian product of $K, L$, $K \times L$ will be bounded as well. Furthermore, any convergent sequence in $K \times L$ will result in the ``coordinate-wise'' corresponding sequences converging as well. Because $K, L$ are closed, each of these will converge to a point in $K, L$ respectively, and thus the ordered pair of these two will belong in $K \times L$, thus showing that the convergent sequence in $K \times L$ converges to a point inside it, i.e., $K \times L$ is closed, and thus indeed compact.
+    
+    Therefore, there exist $x_{M} \in K, y_{M} \in L$ such that $f(x_M, y_M)$ is the maximum value of $f$. By the definition of $m$, $m(x_M) = f(x_M, y_M)$. Furthermore, we have that for any $x \in K, m(x) = f(x, y_x)$ for some $y_x \in L$, and as such $m(x) \leq f(x_M, y_M)$. We have shown that all $m(x)$ are at most equal to the maximum value of $f$, and also that for some $x, m(x)$ equals this maximum value. Therefore:
+    $$\max\{m(x) \ \rvert \ x \in K\} = f(x_M, y_M) = \max\{f(x, y) \ \rvert \ x \in K, y \in L\}$$
+
+    (v) Here $K = [-\frac{1}{2}, 1], L = [0, 2]$, and these are both compact sets as closed intervals. We have that $m(x_1) = \max\{f(x_1, x_2) \ \rvert \ x_2 \in L\}$ can be written as the maximum value of the function $g(x_2) = (x_1^2 + x_2^2)e^{-x_1-x_2^2}$. Compute the derivative to see that:
+    $$g'(x_2) = 2x_2e^{-x_1-x_2^2} + (-2x_2)(x_1^2+x_2^2)e^{-x_1-x_2^2} = 2x_2e^{-x_1^2-x_2^2}(1 - x_1-x_2^2)$$
+
+    Because $x_ \in [0, 2]$, the sign of this expression depends entirely on $(1-x_1^2-x_2^2)$. The zeros of the derivative in $(0, 2)$ are then $x_2 = \sqrt{1-x_1^2}$ (since $1-x_1^2$ this is always non-negative for $x_1 \in [-\frac{1}{2}, 1]$). Furthermore, one can easily see that the derivative is positive for $x_2 < \sqrt{1 - x_1^2}$ and negative for $x_2 > \sqrt{1 - x_1^2}$. Therefore $\sqrt{1 - x_1^2}$ is $g$'s maximum, since the derivative does not change sign again in $[0, 2]$. We have thus found that:
+    $$m(x_1) = f(x_1, \sqrt{1 - x_1^2}) = e^{-1-x_1+x_1^2}$$
+
+    Now to maximize this we again compute the derivative $m'(x_1) = (-1+2x_1)e^{-1-x_1+x_1^2}$, observe that its zeros are $\frac{1}{2}$ only, but at that point its sign changes from negative to positive, meaning that it corresponds to a minimum, and thus conclude that the maximum is attained at one of the endpoints $\frac{-1}{2}, 1$. A simple calculation leads to the conclusion that this happens at $x_1 = -\frac{1}{2}$, and thus from part (iv) that the maximum of $f$ must be at $x_1 = -\frac{1}{2}, x_2 = \sqrt{1-x_1^2} = \frac{\sqrt{3}}{2}$, where the value is $f(\frac{1}{2}(-1, \sqrt{3})) = e^{-\frac{1}{4}}$.
+\end{solution}

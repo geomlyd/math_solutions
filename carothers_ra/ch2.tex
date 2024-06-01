@@ -1,0 +1,230 @@
+\chapter{Countable and Uncountable Sets}
+
+\begin{section}{Equivalence and Cardinality}
+
+\begin{exercise}{3}
+    Given finitely many countable sets $A_1, \ldots, A_n$, show that $A_1 \cup \ldots \cup A_n$ and $A_1 \times \ldots \times A_n$ are countable sets.
+\end{exercise}
+
+\begin{solution}
+
+    We will use induction on $n$:
+    \begin{itemize}
+        \item Base case, for $n = 2$: Consider two countable sets, $A_1, A_2$. If both of them are finite, then their union and Cartesian product are also finite, and thus trivially countable.
+        
+        If exactly one is finite, say $A_2 = \{a_1', a_2', \ldots, a_n'\}$, then observe that $A_1 \cup A_2$ contains at most all elements of $A_1$ and all elements of $A_2$, and possibly fewer if their intersection is not empty.
+        In any case, suppose $\lvert A_1 \cap A_2 \rvert = m$, and name $f$ the bijection from $A_1$ to $\mathbb{N}$.
+        Then let $S = A_2 \setminus A_1 = \{a_{k_1}', \ldots a_{k_{n-m}}'\}$, and $f'(a_{k_1}') = 1, \ldots f'(a_{k_{n-m}}') = n - m$, in which case $A_1 \cup A_2 = A_1 \cup S$, and $A_1, S$ have an empty intersection.
+        Let $g: A_1 \cup S \rightarrow \mathbb{N}$ be such that:
+        $$g(a) = \begin{cases} 
+            f(a) + (n - m) &, a \in A_1 \\
+            f'(a) &, a \in S
+            \end{cases}$$
+        Because $f$ is a bijection, one can clearly see that $g$ is surjective.
+        Furthermore, $g$ is one-to-one because $f, f'$ are one-to-one and because the two ``branches'' of $g$ have no overlapping values ($\min\{f(a) + (n-m)\} = n - m + 1> n - m =\max\{f'(a)\}$).
+        Therefore $g$ is a bijection from $A_1 \cup A_2$ to $\mathbb{N}$, which means precisely that the union is countable.
+
+        Now for the case where both $A_1, A_2$ are infinite, there exist bijections $f_1 : A_1 \rightarrow \mathbb{N}, f_2 : A_2 \rightarrow \mathbb{N}$. 
+        These impose orders $f_1(a_1) = 1, f_1(a_2) = 2, \ldots$ for $a_i' \in A_1$ and $f_2(a_1') = 1, f_2(a_2') = 2$ for $a_i \in A_2$.
+        One can again set $S = A_2 \setminus A_1$, and $f_2$ can again be used to extract an order for the elements $s_1, s_2, \ldots$ of $S$. 
+        If $S$ is finite, the problem reduces to the case above.
+        If $S$ is also infinite, we know that $S$ is also countable, with $f_2': S \rightarrow \mathbb{N}$ the corresponding bijection.
+        Additionally, $A_1 \cup A_2 = A_1 \cup S = \{a_1, s_1, a_2, s_2, \ldots\}$ ands $A_1 \cap S = \emptyset$. 
+        Use the orders imposed by $f_1, f_2'$ to sort the elements of $A_1$ in the order $a_1, a_2, \ldots$ and the elements of $S$ in the order $s_1, s_2, \ldots$. 
+        Then define $g:A_1 \cup A_2 \rightarrow \mathbb{N}$ as:
+        $$g(a) = \begin{cases} 2i, & a = a_i \in A_1 \\
+            2i + 1, & a = s_i \in S
+            \end{cases}$$
+        For $n \in \mathbb{N}$, if $n$ is even the equation $n = g(a)$ has a unique solution for $a = a_n$, due to the bijectivity of $f_1$.
+        If $n$ is odd, the equation $n = g(a)$ has a unique solution for $a = s_n$, due to the bijectivity of $f_2'$. In any case, $A_1 \cup A_2$ has been shown to be equivalent to $\mathbb{N}$.
+
+        For the Cartesian product, the case where both $A_1, A_2$ are finite is again trivial. 
+        If $A_1$ is infinite and $A_2$ finite, then:
+        $$A_1 = \{a_1, a_2, \ldots\}, A_2 = \{a_1', a_2', \ldots, a_n'\}$$
+        Let then $g: A_1 \times A_2 \rightarrow \mathbb{N}$:
+        $$g(a_i, a_j') = n(i-1) + (j - 1), \ j = 1, 2, \ldots, n$$
+        Observe that the fact that $A_1 \sim \mathbb{N}$  and $j$ only takes a finite number of values makes $g$ a surjection. Indeed, for $x = k\cdot n + l, l = 0, 1, \ldots, n - 1$ (here we use the division algorithm for integers), one has but to set $i = 1 + k$ (possible due to $A_1 \sim \mathbb{N}$ and $j = l + 1$  (always possible due to the range of values $l$ can achieve) to obtain $g(a_i, a_j') = x$.\
+
+        To show that $g$ is injective, suppose $g(a_i, a_j') = g(a_k, a_l')$, and we then have that:
+        $$n(i - 1) + (j - 1) = n(k - 1) + (l - 1) \implies n(i - k) = l - j$$
+        This implies that the RHS is a multiple of $n$, which, because $1 \leq l, j \leq n$ is only possible if $l = j$. But then we also have that $i = k$, thus that $(a_i, a_j') = (a_k, a_l')$, i.e.\ that $g$ is injective.
+
+        $g$ is therefore a bijection, and thus $A_1 \times A_2 \sim \mathbb{N}$.
+
+        If both $A_1, A_2$ are infinite, then consider the function $g: A_1 \times A_2 \rightarrow \mathbb{N}$:
+        $$g(a_i, a_j') = 2^i(2j - 1)$$
+        , which, because of the fact that $A_1 \sim \mathbb{N}, A_2 \sim \mathbb{N}$ (thus $i, j$ take all natural numbers as values), and by a proof completely analogous to $\mathbb{N} \times \mathbb{N} \rightarrow \mathbb{N}$ can be shown to be a bijection, thus proving that $A_1 \times A_2 \sim \mathbb{N}$.
+        \item Inductive step: If this holds for $n = k \geq 2$, then observe that $A_1 \cup \ldots \cup A_{k+1} = (A_1 \cup \ldots \cup A_k) \cup A_{k+1}$, and we can therefore apply the inductive hypothesis to the sets $A_1, \ldots A_k$, and the base case to the union of those with $A_k$ to obtain the statement for $n = k+1$ as well.
+        The same argument applies to the Cartesian product as well, thus concluding the proof.
+    \end{itemize}
+
+\end{solution}
+
+\begin{exercise}{5}
+    Prove that a set is infinite if and only if it is equivalent to a proper subset of itself.
+
+    [Hint: If $A$ is infinite and $x \in A$, show that $A$ is equivalent to $A \setminus \{x\}.$]
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: Suppose $A$ is infinite.
+    Then $A$ contains an element $x$, and the set $S = A \setminus \{x\}$ must also be infinite.
+    By exercise 4, the set $S$ contains a countably infinite subset $S'$.
+    We then have that:
+    $$S = S' \cup (S \setminus S'), A = S' \cup (S \setminus S') \cup \{x\}$$
+    , where all of the sets used in the unions are disjoint.
+    By exercise 3, it holds that $S' \cup \{x\} \sim S'$, and this yields a corresponding bijection $g: S' \cup \{x\} \rightarrow S'$.
+    Consider then the following function $f: A \rightarrow S$:
+    $$f(z) = \begin{cases}
+        z,& z \in S \setminus S' \\
+        g(z),& z \in S' \cup \{x\}
+    \end{cases}$$
+    , which, by the above observations regarding the bijectivity of $g$ and the disjointness of the sets $S', S \setminus S', \{x\}$, means that $f$ is a bijection as well, proving that $A \sim S$.
+    
+    $\impliedby$: Now suppose that a set $A$ is equivalent to $S$, $S$ being a proper subset of $A$. 
+    By contradiction, suppose $A$ is not infinite and that it contains $n$ elements.
+    Then $S$ must contain at most $n - 1$ elements.
+    By the pigeonhole principle, there cannot exist a bijection from $A$ to $S$, which means that $A \sim S$ cannot be true, a contradiction.
+    Therefore $A$ must be infinite.
+\end{solution}
+
+
+\begin{exercise}{8}
+    Show that $(0, 1)$ is equivalent to $[0, 1]$ and to $\mathbb{R}$.
+\end{exercise}
+
+\begin{solution}
+
+    First, observe that $[0, 1] = \{0\} \cup \{1\} \cup (0, 1)$, and that $[0, 1], [0, 1), (0, 1)$ are all infinite sets.
+    By exercise 5, we have that $[0, 1) \sim (0, 1)$ (by explicitly picking $x = 0$ and $S = (0, 1)$.
+    Similarly, we also have that $[0, 1] \sim [0, 1)$ (by explicitly picking $x = 1$ and $S = [0, 1)$).
+    The transitivity property of the equivalence relation ``is equivalent to'' (exercise 1) yields then that $[0, 1] \sim (0, 1)$.
+
+    For $(0, 1) \sim \mathbb{R}$, consider the function $f: \mathbb{R} \rightarrow (0, 1), f(x) = \frac{1}{1 + e^{-x}}$, which is known to be both injective and surjective, thus sufficing to show that $(0, 1) \sim \mathbb{R}$.
+\end{solution}
+
+\begin{exercise}{9}
+    Show that $(0, 1)$ is equivalent to the unit square $(0, 1) \times (0, 1)$.
+
+    [Hint: ``Interlace'' decimals, but carefully!]
+\end{exercise}
+
+\begin{solution}
+
+    Pick any $x \in (0, 1) \times (0, 1)$. 
+    Then $x = (a, b), a, b \in (0, 1)$. 
+    If $a$ or $b$ can be written as a decimal ending in infinite 9's (e.g. $0.3999\ldots$), write them in the equivalent form that features finite decimals (in this example, 0.4).
+    Now consider the function $f: (0, 1) \times (0, 1) \rightarrow (0, 1)$:
+    $$f(0.a_1a_2a_3\ldots, 0.b_1b_2b_3\ldots) = 0.a_1b_1a_2b_2a_3b_3\ldots$$
+     
+    Observe first that for any $x \in (0, 1)$, $x$ can be written as $x = 0.x_1x_2x_3\ldots$, and again if this can be written as ending in infinite 9's, ``round it up''. 
+    Then $f(0.x_1x_3x_5\ldots, 0.x_2x_4x_6\ldots) = x$. 
+    Furthermore, suppose that $f(0.y_1y_2y_3\ldots, 0.z_1z_2z_3\ldots) = x = 0.x_1x_2x_3\ldots$. 
+    By definition, it is also the case that 
+    $$f(0.y_1y_2y_3\ldots, 0.z_1z_2z_3\ldots) = 0.y_1z_1y_2z_2y_3z_3\ldots$$
+    Because we always choose to write decimals ending in infinite 9's as ``rounded up'', there can be no ambiguities here, in the sense that the equality of these two numbers directly implies that $y_1 = x_1, z_1 = x_2, y_2 = x_3, z_2 = x_4 \ldots$ (i.e.\, any two decimals that do not end in infinite 9's can only be equal if all corresponding digits are equal).
+    These two observations yields that $f$ is bijective, thus proving the desired equivalence.
+\end{solution}
+
+\begin{exercise}{10}
+    Prove that $(0, 1)$ can be put into one-to-one correspondence with the set of all \textit{functions} $f: \mathbb{N} \rightarrow \{0, 1\}$.
+\end{exercise}
+
+\begin{solution}
+
+    To begin, we observe that a function from $\mathbb{N}$ to $\{0, 1\}$ can be thought of a set of the form:
+    $$\{(0, v_0), (1, v_1), (2, v_2), \ldots \}$$,
+    where each $v_i$ is the value of the function on $i$, and as such can be either 0 or 1.
+    We now observe that the set of all such functions can be written as $S \cup \overline{S}$, where $S = \{f \in \{0, 1\}^{\mathbb{N}} \lvert \exists k \in \mathbb{N} \cup \{-1\}, f(i) = 1, i > k\}$ (in other words, a function either becomes 1 ``forever'' after some point, or it does not).
+    Note that from now on we will use the binary system in this exercise.
+
+    Observe that all functions that belong in $S$ are uniquely characterized by a ``finite-length prefix'' of values.
+    This means that we can list all of them: start with a prefix of length 0, list all possible $f$ such that in the above definition $k = -1$, then list all $f$ with a prefix of length 1, etc.
+    Since each length $N$ yields only a finite number of functions (each corresponds to a binary number with $N$ digits such that the last digit is not 1), we conclude that $S$ is in fact countable, and that there exists a bijection $g: S \rightarrow \mathbb{N}$.
+    Define now the following mapping $F: \{0, 1\}^{\mathbb{N}} \rightarrow (0, 1) \cup \mathbb{N}$:
+    $$F(f) = \begin{cases}
+        0.v_0v_1v_2\ldots, & f \in \overline{S} \\
+        g(f), & f \in S
+    \end{cases}$$
+    By the bijectivity of $g$, $F$ achieves all natural numbers.
+    Furthermore, for any $x \in (0, 1)$, we can always write $x = 0.b_0b_1\ldots$ such that it does not end in infinite ones, and then we can define an $f: \mathbb{N} \rightarrow \{0, 1\}$ such that $f(i) = b_i$, which means that $F(f) = x$.
+    We have thus shown that $F$ is surjective.
+    Additionally, we observe that due to our construction, if $f_1 \in \overline{S}, f_2 \in S, F(f_1), F(f_2)$ can never be equal: one is always in $(0, 1)$ and the other is a non-zero natural number.
+    For $f_1, f_2 \in \overline{S}, F(f_1) = F(f_2)$ either implies that all corresponding digits are equal, in which case clearly $f_1 = f_2$, or that one of them ends in infinite ones, which is impossible since $f_1, f_2 \in \overline{S}$.
+    Finally, for $f_1, f_2 \in S$, the bijectivity of $g$ implies that $f_1 = f_2$.
+
+    This shows that $F$ is also injective, which means it is a bijection from $\{0, 1\}^{\mathbb{N}}$ to $(0, 1) \cup \mathbb{N}$.
+    Now , $\mathbb{N}$ is clearly countable, and from exercise 6 we then have that $(0, 1) \cup \mathbb{N} \sim (0, 1)$, which by exercise 1 also gives us our desired result, $\{0, 1\}^{\mathbb{N}} \sim (0, 1)$.
+
+\end{solution}
+
+\begin{exercise}{13}
+    Show that $\mathbb{N}$ contains infinitely many pairwise disjoint infinite subsets.
+\end{exercise}
+
+\begin{solution}
+
+    We know that there exist infinitely many primes, $p_1, p_2, \ldots$. 
+    Consider then forming the sets $S_i = \{p_i^k \lvert k \in \mathbb{N} \setminus \{0\}\}$.
+    These are clearly infinitely many, and each of them is infinite.
+    Suppose that two of them, $S_i, S_j$ had a non-empty intersection.
+    Then there exists $x \in \mathbb{N}$ such that $x = p_i^k = p_j^l, k, l \geq 1$.
+    But then this number has two different prime factorizations, which is a contradiction.
+    Therefore all of these sets are pairwise disjoint.
+\end{solution}
+
+\begin{exercise}{15}
+    Show that any collection of pairwise disjoint, nonempty open intervals in $\mathbb{R}$ is at most countable. [Hint: Each one contains a rational!]
+\end{exercise}
+
+\begin{solution}
+
+    Suppose that there exists an uncountable collection of pairwise disjoint and nonempty intervals of the form $(a, b), a, b \in \mathbb{R}$.
+    As indicated in the hint, each such interval must contain a rational, regardless of whether $a, b$ are rationals or not.
+    Furthermore, because the intervals are all disjoint, no two such rationals can be equal.
+    This means that there exist at least as many rationals as intervals, therefore an uncountable number of them, which we know is a contradiction.
+\end{solution}
+
+\end{section}
+
+\begin{section}{The Cantor Set}
+    
+\begin{exercise}{21}
+    Show that any ternary decimal of the form $0.a_1 a_2 \ldots a_n 11$ (base 3), i.e., any finite-length decimal ending in two (or more) 1s is \textit{not} an element of $\Delta$.
+\end{exercise}
+
+\begin{solution}
+
+    For this problem we will be using the following formalization of the Cantor set $\mathcal{C}$:
+    $$\mathcal{C} = [0, 1] \setminus \bigcup_{n=0}^{\infty} \bigcup_{k=0}^{3^n - 1} \Bigl ( \frac{3k + 1}{3^{n+1}}, \frac{3k + 2}{3^{n+1}} \Bigr )$$
+
+    We now consider a ternary decimal $x$ of the form $x = 0.a_1 \ldots a_n 1 1$, where $n$ may be zero, in which case the ``prefix'' has zero length. 
+    Consider then what $x$ equals:
+    $$x = \frac{a_1}{3} + \frac{a_2}{3^2} + \ldots +\frac{a_n}{3^n} + \frac{1}{3^{n+1}} + \frac{1}{3^{n+2}} = \frac{a_1 3^{n+1} + a_2 3^n + \ldots + a_n3^2 + 3 + 1}{3^{n+2}}$$
+    $$= \frac{1}{3^{n+1}}(a_1 3^n + a_2 3^{n-1} + \ldots + a_n 3 + \frac{4}{3}) = \frac{1}{3^{n+1}}(3(a_1 3^{n-1} + a_2 3^{n-2} + \ldots + a_n) + \frac{4}{3})$$
+    Notice now that if $y = a_1 3^{n-1} + a_2 3^{n-2} + \ldots + a_n$, $y$ is an integer that is at least 0 and at most $6\frac{3^n - 1}{2} = 3(3^n - 1)$ (by using the geometric progression sum).
+    But then this range in which $y$ can move means that $x$ is precisely equal to \textit{one} of the left endpoints in the $n$-th union in the definition of $\mathcal{{C}}$ plus $\frac{4}{3}$, which, because $1 < \frac{4}{3} < 2$, means that $x$ will always lie \textit{inside} one of the intervals that comprise this union, which means of course that it lies outside of the Cantor set.
+\end{solution}
+
+\begin{exercise}{22}
+    Show that $\Delta$ contains no (nonempty) open intervals.
+    In particular, show that if $x, y \in \Delta$, then there is some $z \in [0, 1] \setminus \Delta$ with $x < z < y$. 
+    (It follows from this that $\Delta$ is \textit{nowhere dense}, which is another way of saying that $\Delta$ is ``small''.)
+\end{exercise}
+
+\begin{solution}
+
+    Let $x, y \in \Delta$.
+    Following the notation of the book, we name $I_k$ the union of closed intervals that comprises the $k$-th ``level'' of the ``tree'' that creates the Cantor set.
+    Then recall that $\Delta = \bigcap_{k=0}^{\infty} I_k$.
+    Since $x, y \in \Delta$, it holds that $x, y \in I_k$ for all $k$.
+    We now claim that there exists $k$ such that $x, y$ belong in two disjoint intervals that comprise the union $I_k$.
+    This will of course imply that there exists a ``removed middle third'' interval between $x, y$ at the $k$-th level, any of whose elements fulfill the condition $z \notin \Delta$.
+    We do this by contradiction. 
+    Namely, suppose that $x, y$ belong in the same closed interval at every level of the ``tree'', and call those intervals $I_1, I_2, \ldots$.
+    By construction, these are nested intervals, and we know that $I_n$'s length goes to zero as $n \rightarrow \infty$.
+    But then the nested interval theorem dictates that the infinite intersection of $I_1, I_2, \ldots$ contains precisely one element, which means $x = y$, a contradiction.
+\end{solution}
+
+\end{section}
