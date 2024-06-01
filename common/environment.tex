@@ -1,0 +1,90 @@
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+
+%\usepackage{tgadventor} % The font for the entire document can be changed here
+%\usepackage{courier}
+%\usepackage{charter}
+\usepackage{tgcursor}
+
+\usepackage{mathrsfs} % This allows for the use of \mathscr{P} which is the same font used for the powerset notation in Velleman's book.
+
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{tikz}
+    \usetikzlibrary{shapes,arrows}
+    \usetikzlibrary{arrows,calc,positioning}
+
+    \tikzset{
+        block/.style = {draw, rectangle,
+            minimum height=1cm,
+            minimum width=1.5cm},
+        input/.style = {coordinate,node distance=1cm},
+        output/.style = {coordinate,node distance=4cm},
+        arrow/.style={draw, -latex,node distance=2cm},
+        pinstyle/.style = {pin edge={latex-, black,node distance=2cm}},
+        sum/.style = {draw, circle, node distance=1cm},
+    }
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+    
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\newenvironment{exercise}[2][Exercise]
+    { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
+    {  \end{mdframed}}
+
+% Define solution environment
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Original packages, custom environments, and custom commands below
+  \usepackage{amsmath,amsfonts,amsthm, amssymb}
+  \usepackage{fullpage}
+  \usepackage{array}
+  \usepackage[all,textures]{xy}
+  \usepackage{graphicx}
+  \usepackage{alltt}
+  \usepackage{listings}
+  \usepackage{float}
+  \usepackage{tabu}
+  \usepackage{longtable}
+  \usepackage{lipsum}
+  
+  \theoremstyle{plain}
+  \newtheorem{innercustomgeneric}{\customgenericname}
+\providecommand{\customgenericname}{}
+\newcommand{\newcustomtheorem}[2]{%
+  \newenvironment{#1}[1]
+  {%
+   \renewcommand\customgenericname{#2}%
+   \renewcommand\theinnercustomgeneric{##1}%
+   \innercustomgeneric
+  }
+  {\endinnercustomgeneric}
+}
+
+\newcustomtheorem{theorem}{Theorem}
+\newcustomtheorem{definition}{Definition}
+\newcustomtheorem{lemma}{Lemma}
+
+
+  \setlength{\parindent}{0pt}
+ 
+ \newcommand{\pow}{\mathscr{P}}
+ \newcommand{\ffam}{\mathcal{F}}
+ \newcommand{\family}{\mathcal{F}}
+ \newcommand{\gfam}{\mathcal{G}}
+ \newcommand{\Ran}{\text{Ran}}
+ \newcommand{\Dom}{\text{Dom}}
+\newcommand{\solution}{\textit{Solution.}}
+ \newcommand{\real}{\mathbb{R}}
+ \newcommand{\integer}{\mathbb{Z}}
+ \newcommand{\rational}{\mathbb{Q}}
+ \newcommand{\nat}{\mathbb{N}}
