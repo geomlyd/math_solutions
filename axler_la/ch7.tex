@@ -1,0 +1,686 @@
+\chapter{Operators on Inner Product Spaces}
+
+\section{Self-Adjoint and Normal Operators}
+
+\begin{exercise}{1}
+    Suppose $n$ is a positive integer. Define $T \in L(\mathbf{F}^n)$ by 
+    $$ T(z_1, \ldots, z_n) = (0, z_1, \ldots, z_{n-1})$$
+    Find a formula for $T^*(z_1, \ldots z_n)$.
+\end{exercise}
+
+\begin{solution}
+
+The simplest way to find a formula for $T^*$ is to work with the matrices that correspond to these transforms. We know that the standard basis of $\mathbf{F}^n$ is orthonormal, so if we can express $M(T)$ with respect to it, we can obtain $M(T^*)$ by taking the conjugate transpose. 
+
+Observe that $T$ maps each vector of the form $(0, \ldots, 1, \ldots, 0)$, with 1 in the $i$-th position and 0 everywhere else, $1 \leq i \leq n - 1$ to the vector $(0, \ldots, 0, 1 \ldots, 0)$, with 1 in the $(i+1)$-th position and 0 everywhere. Furthermore, it maps $(0, \ldots, 1)$ to $(0, \ldots, 0)$. We know that the entries of the $k$-th column of the matrix of a transform wrt. two bases $v_i$ and $w_j$ are the coefficients that express $T(v_k)$ as a linear combination of $w_j$. In essence, $T$ maps each vector of the standard basis to the next one (if they are ordered in the ``natural'' way), except for the last one, which it maps to the zero vector. Here, both of these bases are the standard basis of $\mathbf{F}^n$, so it becomes clear that the matrix $M(T)$ is equal to:
+
+$$M(T) = \begin{bmatrix} 
+    0      & 0      & 0      & \ldots & 0      & 0 \\ 
+    1      & 0      & 0      & \ldots & \vdots & \vdots \\ 
+    0      & 1      & 0      & \ldots & \vdots & \vdots \\ 
+    0      & 0      & 1      & \ldots & \vdots & \vdots \\
+    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0      &  0     & 0      & \ldots & 1      & 0 \end{bmatrix}$$
+
+Therefore, the matrix of $T^*$ will be the conjugate transpose of this matrix. All the entries are real, thus it suffices to take the transpose and obtain that:
+
+$$ M(T^*) = \begin{bmatrix} 
+    0      & 1      & 0      & \ldots & 0      & 0 \\ 
+    0      & 0      & 1      & \ldots & \vdots & \vdots \\ 
+    0      & 0      & 0      & \ddots & \vdots & \vdots \\ 
+    0      & 0      & 0      & \ldots & \ddots & \vdots \\
+    \vdots & \vdots & \vdots & \vdots & \vdots & 1 \\
+    0      &  0     & 0      & \ldots & 0      & 0 \end{bmatrix}$$
+
+Then, since $T^*(v) = M(T^*)M(v)$ (again with respect to the standard basis), we obtain the following formula for $T^*$:
+
+$$T^*(z_1, \ldots, z_n) = (z_2, \ldots, z_{n}, 0)$$
+\end{solution}
+
+\begin{exercise}{2}
+    Suppose $T \in L(V)$ and $\lambda \in \mathbf{F}$. Prove that $\lambda$ is an eigenvalue of $T$ if and only if $\overline{\lambda}$ is an eigenvalue of $T^*$.
+\end{exercise}
+
+\begin{solution}
+
+$\implies$: If $\lambda$ is an eigenvalue of $T$, then there exists $v \neq 0$ such that $Tv = \lambda v$. Suppose that $\overline{\lambda}$ is not an eigenvalue of $T^*$. Then, $T^* - \overline{\lambda}I$ is invertible, which means that $\text{null}(T^* - \overline{\lambda}I) = \{0\}$. Observe that $T^* - \overline{\lambda}I = (T - \lambda I)^*$. We also know that $\text{null} S^* = (\text{range} S)^\bot$, for any linear map $S$. 
+
+More specifically, in this case $\{0\} = \text{null}(T^* - \overline{\lambda}I) = \text{null}((T - \lambda I)^*) = (\text{range}(T - \lambda I))^\bot$.
+
+We also know that $\text{dim(range}S)^\bot = \text{dim} V - \text{dim(range} S)$ for any linear map $S$. Then, $\text{dim(range(} T - \lambda I)) = \text{dim} V - \text{dim((range(} T - \lambda I)^\bot) = \text{dim} V - 0 = \text{dim} V$. This means that $T - \lambda I$ is surjective, and thus $\lambda$ is not an eigenvalue of $T$, which is a contradiction. Therefore, $\overline{\lambda}$ is an eigenvalue of $T^*$.
+
+$\impliedby$: By exchanging the roles of $T$ and $T^*$, as well as $\lambda$ and $\overline{\lambda}$ in the above proof, and using the fact that $\overline{\overline{\lambda}} = \lambda$ and $(T^*)^* = T$, we obtain the other direction of the equivalency, thus completing the proof.
+    
+\end{solution}
+
+\begin{exercise}{5}
+    Prove that
+    $$\text{dim null } T^* = \text{dim null} T + \text{dim} W - \text{dim} V$$
+    and
+    $$ \text{dim range} T^* = \text{dim range} T$$
+    for every $T \in L(V, W)$.
+\end{exercise}
+
+\begin{solution}
+
+    For the first equality, we have that:
+    $$ \text{dim null} T^* = \text{dim (range} T)^\bot = \text{dim W} - \text{dim range} T = $$
+    $$\text{dim} W - (\text{dim} V - \text{dim null} T) = \text{dim} W + \text{dim null} T - \text{dim} V$$
+
+    , where we used the fact that $\text{null} T^* = (\text{range} T)^\bot$, $\text{dim} U^\bot = \text{dim} V - \text{dim} U$ for any $U$ subspace of any f.d. inner product space $V$ and the Fundamental Theorem of Linear Maps in that order.
+
+    For the second equality, by the Fundamental Theorem of Linear Maps appied on $T^* \in L(W, V), T \in L(V, W)$ and the equality we just proved, we have that:
+
+    $$\text{dim range} T^* = \text{dim W} - \text{dim null} T^* = $$
+    $$\text{dim W} - (\text{dim null} T + \text{dim} W - \text{dim} V) = \text{dim} V - \text{dim null} T = \text{dim range} T$$
+\end{solution}
+
+\begin{exercise}{7}
+    Suppose $S, T \in L(V)$ are self-adjoint. Prove that $ST$ is self-adjoint if and only if $ST = TS$.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: If $ST$ is self-adjoint, it holds that $(ST)^* = ST$. But, we know that $(ST)^* = T^*S^* = TS$, since $S, T$ are self-adjoint. Therefore, $ST = (ST)^* = TS$.
+
+    $\impliedby$: If $ST = TS$, then let's compute the adjoint of $ST$. We have that $(ST)^* = T^*S^* = TS$, since $S, T$ are self-adjoint. This means that $(ST)^* = TS = ST$, which means that $ST$ is self-adjoint.
+\end{solution}
+
+\begin{exercise}{8}
+    Suppose $V$ is a real inner product space. Show that the set of self-adjoint operators on $V$ is a subspace of $L(V)$.
+\end{exercise}
+
+\begin{solution}
+    Let $S$ be the set of adjoint operators on $V$. We have that:
+    \begin{itemize}
+        \item The operator $T = 0$ is clearly self-adjoint, since: $\langle Tv, w \rangle = 0$ for any $v, w \in V$, which means that $0 = \langle v, T^*w \rangle$ for any $v, w \in V$, which more specifically means that every $T^* w$ must be orthogonal to itself, thus that $T^* w = 0$ for all $w$, thus that $T^* = 0 = T$.
+        \item If $T_1, T_2 \in S$, then $T_1^* = T_1, T_2^* = T_2$ (self-adjoint operators). Then, $(T_1 + T_2)^* = T_1^* + T_2^* = T_1 + T_2$, therefore $T_1 + T_2$ is also a self-adjoint operator, therefore $T_1 + T_2 \in S$
+        \item If $T \in S$ and $\lambda \in \mathbf{F} = \mathbf{R}$, then $(\lambda T)^* = \overline{\lambda} T^* = \lambda T$, where we used the fact that $\lambda$ is real and $T$ is self-adjoint. Thus, $\lambda T$ is also self-adjoint, i.e.\ $\lambda T \in S$.
+    \end{itemize}
+    Combining the above three facts, we conclude that $S$ is a subspace of $L(V)$.
+\end{solution}
+
+\begin{exercise}{9}
+    Suppose $V$ is a complex inner product space with $V \neq \{0\}$. Show that the set of self-adjoint operators on $V$ is not a subspace of $L(V)$.
+\end{exercise}
+
+\begin{solution}
+
+    Since $V \neq \{0\}$ and since $V$ is (in this chapter) finite-dimensional, $V$ has a basis that is non-empty. This means that we can define at least one non-zero operator on $V$, namely the identity operator. For this operator, we know that $I^* = I$, i.e.\ $I$ is self-adjoint. If we call $S$ the set of self-adjoint operators like we did in the exercise above, we have then that $I \in S$, thus $S \neq \{0\}$.
+
+    Now, consider the operator $T = (1 + i)I$. If $S$ is a subspace, then it must hold that $T \in S$, i.e.\ $T$ is self-adjoint. But, $T^* = ((1 + i)I)^* = \overline{1 + i}I^* = (1 - i) I$. Obviously, this operator does not equal $T$, because this would imply equality of their values on the vectors of the basis (which is non-empty), which would be of the form $(1 + i)v_i, (1 - i)v_i$, which (since $v_i \neq 0$) would imply that $1 + i = 1 - i$ which is of course a contradiction.
+
+    Thus, $S$ is not a subspace of $L(V)$.
+\end{solution}
+
+\begin{exercise}{11}
+    Suppose $P \in L(V)$ is such that $P^2 = P$. Prove that there is a subspace $U$ of $V$ such that $P = P_U$ if and only if $P$ is self-adjoint.
+\end{exercise}
+
+\begin{solution}
+    $\implies$: If there exists such a subspace, then for any $v$ in $V$ we can write $v = P_U(v) + x = P(v) + x$, where $x \in U^\bot$. Let us then consider the quantity $\langle P(v), w \rangle - \langle v, P(w)\rangle$ for any two $v, w \in V$. If we can show that this always zero, then this implies that $P = P^*$ due to the definition of the adjoint. We have that $v = P(v) + x_1, w = P(w) + x_2$, where $P(v), P(w) \in U, x_1, x_2 \in U^\bot$. Then:
+
+    $$\langle P(v), w \rangle - \langle v, P(w) \rangle = \langle P(v), P(w) + x_2 \rangle - \langle P(v) + x_1, P(w) \rangle $$
+    $$= \langle P(v), P(w) \rangle - \langle P(v), x_2 \rangle - \langle P(v), P(w) \rangle - \langle x_1, P(w) \rangle = - \langle P(v), x_2\rangle - \langle x_1, P(w)\rangle$$
+
+    Because $x_1, x_2 \in U^\bot, P(w), P(v) \in U$, it is true that $\langle P(v), x_2 \rangle = 0, \langle x_1, P(w) \rangle = 0$, thus the entire expression above is zero, thus $\langle P(v), w\rangle = \langle v, P(w) \rangle$ for any two $v, w \in V$, thus $P$ is self-adjoint.
+    
+    $\impliedby$: If $P = P^*$, i.e. $P$ is self-adjoint, we have the following. First, observe that $P^2 = P \implies P(P(v)) = P(v) \implies P(P(v) - v) = 0$ for any $v \in V$. Also, we can write $v = (v - P(v)) + P(v)$. If it was the case that $\langle v - P(v), P(v) \rangle = 0$, by choosing $U = \text{range} P$ we can see from this equation that this $U$ would satisfy the condition that $P = P_U$. Observe now that:
+
+    $$\langle P(v), v - P(v) \rangle = \langle v, P^*(v - P(v) \rangle = \langle v, P(v - P(v)) \rangle = \langle v, 0 \rangle = 0$$
+
+    , where we used the fact that $P = P^*$, the definition of the adjoint and the fact that $P(v - P(v)) = -P(P(v) - v) = 0$. By the observations made above, this completes the proof if we choose $U = \text{range} P$.
+\end{solution}
+
+\begin{exercise}{15}
+    Fix $u, x \in V$. Define $T \in L(V)$ by:
+    $$T(v) = \langle v, u \rangle x$$
+    for every $v \in V$.
+
+    (a) Suppose $\mathbf{F} = \mathbf{R}$. Prove that $T$ is self-adjoint if and only if $u, x$ is linearly dependent.
+
+    (b) Prove that $T$ is normal if and only if $x, u$ is linearly dependent.
+\end{exercise}
+
+\begin{solution}
+
+    (a) $\implies$: Suppose that $T$ is self-adjoint. Then, for any two $v, w \in V$ we have that:
+    
+    $$\langle T(v), w \rangle = \langle v, T(w) \rangle \implies \langle \langle v, u \rangle x, w \rangle = \langle v, \langle w, u \rangle x \rangle \implies \langle v, u \rangle \langle x, w \rangle = \langle w, u \rangle \langle v, x \rangle$$
+
+    , where in the last step we used the fact that $\mathbf{F} = \mathbf{R}$ to omit the conjugate sign over $\langle w, u \rangle$.
+
+    Now, by taking $v = u, w = x$ we obtain that:
+
+    $$ \langle u, u \rangle \langle x, x \rangle = \langle x, u \rangle \langle u, x \rangle \implies \lvert \langle x, u \rangle \rvert^2 = \langle x, x \rangle \langle u, u \rangle = \lvert \lvert x \rvert \rvert^2 \lvert \lvert u \rvert \rvert ^2$$
+
+    , where we used the fact that in real vector spaces $\langle x, u \rangle = \langle u, x \rangle$. Observe that this implies that $\lvert \langle x, u \rangle \rvert = \lvert \lvert x \rvert \rvert \cdot \lvert \lvert u \rvert \rvert$, i.e.\ that the Cauchy-Schwarz inequality is in this case an equality. We know that this is true if and only if one of $x, u$ is a scalar multiple of the other, which for a list of two vectors is equivalent to them being linearly dependent.
+
+    $\impliedby$: Suppose now that $x, u$ is linearly dependent. Then, $u = \lambda x$ for some $\lambda \in \mathbf{R}$, except possibly if $x = 0$, but in that case $T(v) = 0$ which is clearly self-adjoint (we also showed this in a previous exercise). Therefore we can move forward assuming that $u = \lambda x, \lambda \in \mathbf{R}$. We then have that, for any two $v, w \in V$:
+
+    $$\langle Tv, w \rangle = \langle \langle v, u \rangle x, w \rangle = \langle v, u \rangle \langle x, w \rangle = \langle v, \lambda x \rangle \langle x, w \rangle = \lambda \langle v, x \rangle \langle x, w \rangle$$
+
+    $$\langle v, Tw \rangle = \langle v, \langle w, u \rangle x \rangle = \langle w, u \rangle \langle v, x \rangle = \langle w, \lambda x \rangle \langle v, x \rangle = \lambda \langle w, x \rangle \langle v, x \rangle = \lambda \langle v, x \rangle \langle x, w \rangle$$
+
+    , where we've again made use of the first and second-slot homogeneity of real inner products, as well as their symmetry. The two equations above show that for any $v, w \in V, \langle Tv, w \rangle = \langle v, Tw \rangle$, thus that $T$ is self-adjoint.
+
+    (b) $\implies$: Suppose that $T$ is normal. We know that this means that for any $v \in V, T^*T(v) = TT^*(v)$. From this we obtain that:
+
+    $$\langle v, TT^*(v) \rangle = \langle v, T^*T(v) \rangle \implies \langle v, \langle T^*(v), u \rangle x \rangle = \langle T(v), T(v) \rangle \implies \langle v, \langle T^*(v), u \rangle x \rangle = \langle \langle v, u \rangle x, \langle v, u \rangle x \rangle $$
+    $$\implies \overline{\langle T^*(v), u \rangle}\langle v, x \rangle = \langle v, u \rangle \overline{\langle v, u \rangle}\langle x, x \rangle \implies \langle u, T^*(v) \rangle \langle v, x \rangle = \langle v, u \rangle \langle u, v \rangle \langle x, x \rangle$$
+    $$\implies \langle T(u), v \rangle \langle v, x \rangle = \langle v, u \rangle \langle u, v \rangle \langle x, x \rangle \implies \langle \langle u, u \rangle x, v \rangle \langle v, x \rangle = \langle v, u \rangle \langle u, v \rangle \langle x, x \rangle$$
+    $$\implies \langle u, u \rangle \langle x , v \rangle \langle v, x \rangle = \langle v, u \rangle \langle u, v \rangle \langle x, x \rangle$$
+
+    If we now set $v = u$ in this final equality, we obtain that:
+
+    $$\lvert \lvert u \rvert \rvert^2 \langle x, u \rangle \langle u, x \rangle = \lvert \lvert u \rvert \rvert^2 \lvert \lvert u \rvert \rvert^2 \lvert \lvert x \rvert \rvert^2 \implies \lvert \lvert u \rvert \rvert^2 \lvert \langle x, u \rangle \rvert^2 = \lvert \lvert u \rvert \rvert^4 \lvert \lvert x \rvert \rvert^2$$
+
+    We know that $\lvert \lvert u \rvert \rvert^2 = 0$ iff $u = 0$, in which case $u, x$ is always linearly dependent. If $u \neq 0$, dividing the above equation by $\lvert \lvert u \rvert \rvert^2$ gives us again equality for the Cauchy-Schwarz inequality applied to $x, u$, which is equivalent to one being a scalar multiple of the other, i.e.\ $x, u$ being linearly dependent.
+
+    $\impliedby$: If $x, u$ is linearly dependent, then either $u = \lambda x$ for some $\lambda \in \mathbf{F}$ or $x = 0$ (or both). In the second case, $T = 0$, thus $T$ is self-adjoint and thus normal. In the first case, we assume that $x \neq 0$ and we obtain that:
+
+    $$\langle T^*(v), T^*(v) \rangle = \langle v, TT^*(v) \rangle = \langle v, \langle T^*(v), u \rangle x \rangle = \langle u, T^*(v) \rangle \langle v, x \rangle = \langle T(u), v \rangle \langle v, x \rangle = \langle \langle u, u \rangle x, v \rangle \langle v, x \rangle$$
+    $$ = \langle u, u \rangle \langle x, v \rangle \langle v, x \rangle = \langle \lambda x, \lambda x, \rangle \langle x, v \rangle \langle v, x \rangle = \lvert \lambda \rvert^2 \lvert \lvert x \rvert \rvert^2 \langle x, v \rangle \langle v, x \rangle$$
+
+    $$\langle T(v), T(v) \rangle = \langle \langle v, u \rangle x, \langle v, u \rangle x \rangle = \langle v, u \rangle \langle u, v \rangle \langle x, x \rangle = \langle v, \lambda x \rangle \langle \lambda x, v \rangle \lvert \lvert x \rvert \rvert^2 = \lvert \lambda \rvert^2 \langle v, x \rangle \langle v, x \rangle \lvert \lvert x \rvert \rvert^2$$
+
+    We observe thus that $\lvert \lvert T(v) \rvert \rvert = \lvert \lvert T^*(v) \rvert \rvert$ for all $v \in V$, which is equivalent to $T$ being normal.
+\end{solution}
+
+\begin{exercise}{16}
+    Suppose $T \in L(V)$ is normal. Prove that 
+    $$\text{range} T = \text{range} T^*$$
+\end{exercise}
+
+\begin{solution}
+
+    First, recall that $\text{range} T^* = (\text{null}T)^\bot$ and that $\text{range} T = (\text{null}T^*)^\bot$. If could show that $\text{null} T = \text{null} T^*$, then this would imply equality of their orthogonal complements as well, which in turn would imply what is being asked for by the exercise. Suppose therefore that $v \in \text{null} T$. Then $T(v) = 0$, and because $T$ is normal, we know that:
+
+    $$\lvert \lvert T(v) \rvert \rvert = \lvert \lvert T^*(v) \rvert \rvert \implies 0 = \lvert \lvert T^*(v) \rvert \rvert$$
+
+    , which from the properties of inner products we know is equivalent to $T^*(v) = 0$, i.e.\ $v \in \text{null}T^*$. Therefore $\text{null} \subset \text{null} T^*$. A completely symmetric argument yields that $\text{null} T^* \subset \text{null} T$, thus $\text{null} T = \text{null} T^*$, and as previously explained, this directly implies that $\text{range} T = \text{range} T^*$.
+\end{solution}
+
+\begin{exercise}{18}
+    Prove or give a counterexample: If $T \in L(V)$ and there exists an orthonormal basis $e_1, \ldots, e_n$ of $V$ such that $\lvert \lvert T(e_j) \rvert \rvert = \lvert \lvert T^*(e_j) \rvert \rvert$ for each $j$, then T is normal.
+\end{exercise}
+
+\begin{solution}
+
+    This is not, in general, true. Let's consider the following case: $\mathbf{F} = \mathbf{R}, V = \mathbf{R}^3, e_i$ the standard basis of $\mathbf{R}^3$ and $T \in L(V)$ such that $M(T) = \begin{pmatrix} 1 & 2 & 0 \\ \sqrt{2} & 1 & 2 \\ \sqrt{2} & \sqrt{2} & 0\end{pmatrix}$ with respect to the standard basis. In this case, observe the following:
+
+    $$M(T^*) = \begin{pmatrix} 1 & \sqrt{2} & \sqrt{2} \\ 2 & 1 & \sqrt{2} \\ 0 & 2 & 0 \end{pmatrix}$$
+    $$Tv_1 =  \begin{pmatrix} 1 & 2 & 0 \\ \sqrt{2} & 1 & 2 \\ \sqrt{2} & \sqrt{2} & 0\end{pmatrix} \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} 1 \\ \sqrt{2} \\ \sqrt{2} \end{pmatrix}, Tv_2 =  \begin{pmatrix} 1 & 2 & 0 \\ \sqrt{2} & 1 & 2 \\ \sqrt{2} & \sqrt{2} & 0\end{pmatrix} \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 2 \\ 1 \\ \sqrt{2} \end{pmatrix}, $$
+    $$Tv_3 =  \begin{pmatrix} 1 & 2 & 0 \\ \sqrt{2} & 1 & 2 \\ \sqrt{2} & \sqrt{2} & 0\end{pmatrix} \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 2 \\ 0 \end{pmatrix}$$
+
+    $$T^*v_1 =\begin{pmatrix} 1 & \sqrt{2} & \sqrt{2} \\ 2 & 1 & \sqrt{2} \\ 0 & 2 & 0 \end{pmatrix} \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \\ 0 \end{pmatrix}, 
+    T^*v_2 = \begin{pmatrix} 1 & \sqrt{2} & \sqrt{2} \\ 2 & 1 & \sqrt{2} \\ 0 & 2 & 0 \end{pmatrix} \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} = \begin{pmatrix} \sqrt{2} \\ 1 \\ 2 \end{pmatrix},$$
+    $$T^*v_3 =\begin{pmatrix} 1 & \sqrt{2} & \sqrt{2} \\ 2 & 1 & \sqrt{2} \\ 0 & 2 & 0 \end{pmatrix} \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} = \begin{pmatrix} \sqrt{2} \\ \sqrt{2} \\ 0 \end{pmatrix}$$
+
+    One can easily observe that for each $i$, $\lvert \lvert Tv_i \rvert \rvert = \lvert \lvert T^*v_i \rvert \rvert$. However, if we perform the matrix multiplications that yield $TT^*, T^*T$, we see that:
+
+    $$M(TT^*) = \begin{pmatrix} 5 & 2 + \sqrt{2} & 3\sqrt{2} \\ 2 + \sqrt{2} & 7 & 2 + \sqrt{2} \\ 3\sqrt{2} & 2 + \sqrt{2} & 4 \end{pmatrix},
+    M(T^*T) = \begin{pmatrix} 5 & 4 + \sqrt{2} & 2\sqrt{2} \\ 4 + \sqrt{2} & 7 & 2 \\ 2\sqrt{2} & 2 & 4 \end{pmatrix}$$
+
+     Since the matrices of $TT^*, T^*T$ with respect to the same basis differ, the two linear maps cannot be equal, and thus $T$ cannot be normal despite satisfying the conditions given in the exercise. 
+
+     \textbf{Note:} The reasoning for finding the example was observing that $\lvert \lvert Tv \rvert \rvert$ cannot be ``decomposed'' to a linear combination of $\lvert \lvert Te_i \rvert \rvert$ if the vectors to which $T$ maps $e_i$ are not orthonormal.
+\end{solution}
+
+\section{The Spectral Theorem}
+
+\begin{exercise}{4}
+    Suppose $\mathbf{F} = \mathbf{C}$ and $T \in L(V)$. Prove that $T$ is normal if and only if all pairs of eigenvectors corresponding to distinct eigenvalues of $T$ are orthogonal and 
+    $$V = E(\lambda_1, T) \oplus \cdots \oplus E(\lambda_m, T)$$,
+    where $\lambda_1, \ldots, \lambda_m$ denote the distinct eigenvalues of $T$.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: If $T$ is normal, from the (complex) Spectral Theorem we know that $T$ has a diagonal matrix with respect to an orthonormal basis of $V$ that consists of eigenvectors $e_i$ of $T$. By the conditions equivalent to diagonalizability studied in $5.4$, we know that this implies that $V = E(\lambda_1, T) \oplus \cdots \oplus E(\lambda_m, T)$,
+    where $\lambda_1, \ldots, \lambda_m$ denote the distinct eigenvalues of $T$. 
+    
+    Now, if $v, w$ are eigenvectors that correspond to distinct eigenvalues, this means that $v \in E(\lambda_i, T), w \in E(\lambda_j, T)$ for some $i, j, i \neq j$. If $e_{i,1}, \ldots, e_{i, k}$ and $e_{j, 1}, \ldots, e_{j, l}$ are the basis vectors of the orthonormal basis that are in  $E(\lambda_i, T), w \in E(\lambda_j, T)$ respectively, then $v, w$ can be written as linear combinations  of those two lists respectively (since they form bases of the two subspaces). Because the basis $e_i$ is orthonormal, each pair $e_{i, x}, e_{i, y}$ is orthogonal, and thus the vectors $v, w$ are also orthogonal.
+
+    $\impliedby$: Again, by the conditions equivalent to diagonalizability we know that if $V = E(\lambda_1, T) \oplus \cdots \oplus E(\lambda_m, T)$, where $\lambda_1, \ldots, \lambda_m$ are the distinct eigenvalues of $T$, then $T$ has a diagonal matrix with respect to a basis of $V$ consisting of eigenvectors of $T$. 
+    
+    Call the vectors of this basis $v_1, \ldots v_n$, and group them into sub-lists based on which $E(\lambda_i, T)$ they belong in (they cannot belong in more than one because we know that eigenvectors corresponding to distinct eigenvalues are linearly independent).
+
+    For each of those sub-lists, say $v_{i, 1}, \ldots v_{i, k} \in E(\lambda_i, T)$, apply the Gram-Schmidt procedure to obtain an orthonormal basis $e_{i, 1}, \ldots, e_{i, k}$ of $E(\lambda_i, T)$. Then, concatenate these bases into a new list $e_1, \ldots, e_n$. Because of the Gram-Schmidt procedure, each $e_i$ has norm equal to one. Furthermore, two distinct $e_i, e_j$ are always orthogonal, because either they correspond to the same eigenvalue, in which case the Gram-Schmidt procedure guarantees that they are orthogonal, or they correspond to distinct eigenvalues, in which case the exercise's hypothesis guarantees that they are orthogonal. Therefore this new list is an orthonormal basis of $V$ consisting ---by construction--- of eigenvectors of $T$. Thus, by the conditions equivalent to diagonalizability, $T$ has a diagonal matrix with respect to it and by the Complex Spectral Theorem this implies that $T$ is normal.
+    
+\end{solution}
+
+\begin{exercise}{5}
+     Suppose $\mathbf{F} = \mathbf{R}$ and $T \in L(V)$. Prove that $T$ is self-adjoint if and only if all pairs of eigenvectors corresponding to distinct eigenvalues of $T$ are orthogonal and 
+    $$V = E(\lambda_1, T) \oplus \cdots \oplus E(\lambda_m, T)$$,
+    where $\lambda_1, \ldots, \lambda_m$ denote the distinct eigenvalues of $T$.  
+\end{exercise}
+\begin{solution}
+
+    $\implies$: If $T$ is self-adjoint, from the (real) Spectral Theorem we know that $T$ has a diagonal matrix with respect to an orthonormal basis of $V$ that consists of eigenvectors $e_i$ of $T$. Therefore, each $v \in V$ can be written uniquely as $v = \sum_{j=1}^{\text{dim}V}\alpha_je_j$. Observe also that the $e_i$ can be grouped into sub-lists depending on which $E(\lambda_i, T)$ they belong in (they belong in precisely one because eigenvectors corresponding to distinct eigenvalues must be linearly independent). 
+    
+    Suppose that we call $e_{i, 1}, \ldots e_{i, k_i} \in E(\lambda_i, T)$ the list of all of the basis vectors that are in $E(\lambda_i, T)$. We will prove that each of those sub-lists is a basis of the corresponding eigenspace. Clearly, it is linearly independent as a sub-list of a linearly independent list. Suppose now that it it is not a spanning list for some $i$. Then $\text{dim} E(\lambda_i, T) > k_i$. Furthermore, for any other $j, \text{dim} E(\lambda_j, T)\geq k_j$ due to linear independence. Thus $\text{dim} E(\lambda_i, T) + \sum_{j \neq i} \text{dim} E(\lambda_j, T) > k_i + \sum_{j \neq i} k_j$. We know, however, that due to the direct sum, $\text{dim} V$ equals the left side of the inequality, whereas the right side equals precisely the length of the basis $e_i$, which is again $\text{dim} V$, which is a contradiction. Therefore each of the sub-lists is also a spanning list of the corresponding eigenspace, and hence a basis of it.
+    
+    Therefore, each $v \in V$ can be written as $v = \sum_{i=1}^{\text{dim}V}v_i$ where $v_i \in E(\lambda_i, T)$ is obtained by summing the terms $a_je_j$ of the previous sum for which $e_j \in E(\lambda_i, T)$. Additionaly, the only way to write $0$ as a sum of such $v_i$ is by taking each $v_i = 0$. This is because $e_i$ is a basis, thus $0 = \sum_{j=1}^{\text{dim}V}\alpha_je_j \iff a_j = 0$ for all $j$, which implies also that each $v_i = 0$, by their definition. From this we conclude that indeed $V = E(\lambda_1, T) \oplus \cdots \oplus E(\lambda_m, T)$.
+
+    For any two eigenvectors $v, w$ corresponding to distinct eigenvalues, we can prove that they are orthogonal in exactly the same way we did in exercise 4: they belong in different eigenspaces, thus they are written as linear combinations of two disjoint sub-lists of $e_i$, and since these are all orthogonal, $v, w$ are orthogonal too.
+
+    $\impliedby$: If $V = E(\lambda_1, T) \oplus \cdots \oplus E(\lambda_m, T)$,
+    where $\lambda_1, \ldots, \lambda_m$ denote the distinct eigenvalues of $T$, and eigenvectors corresponding to distinct eigenvalues are orthogonal, then we have the following. For each $E(\lambda_i, T)$, we can find an orthonormal basis $e_{i, 1}, \ldots, e_{i, k_i}$ (we know how to find a basis, and then we can apply the Gram-Schmidt procedure to it). Now, due to the direct sum given, any vector $v \in V$ can be written uniquely as $v = \sum_{i=1}{\text{dim} V}v_i, v_i \in E(\lambda_i, T)$, and each $v_i$ can be written uniquely as a linear combination of $e_{i, 1}, \ldots, e_{i, k_i}$. From this we conclude that the concatenation of these bases of each $E(\lambda_i, T)$ is a basis of $V$. 
+    
+    Furthermore, any (distinct) two of its vectors are orthogonal because they either belong in the same eigenspace, in which case the Gram-Schmidt procedure guarantees they are orthogonal, or they belong in different eigenspaces, in which case the given hypothesis guarantees orthogonality. Again due to the Gram-Schmidt procedure(s), each of the basis' vectors is normal. Thus there exists an orthonormal basis of $V$ consisting of eigenvectors of $T$, and by the real Spectral Theorem this is equivalent to $T$ being self-adjoint.
+    
+\end{solution}
+
+\begin{exercise}{6}
+    Prove that a normal operator on a complex inner product space is self-adjoint if and only if all its eigenvalues are real.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: If an operator $T$ on a complex i.p.\ space $V$ is normal and self-adjoint, we have the following. By the complex Spectral Theorem, there exists an orthonormal basis of $V$ with respect to which $M(T)$ is diagonal. We know that since this basis is orthonormal, $M(T^*)$ (with respect to the same basis) equals the conjugate transpose of $M(T)$. We have, furthermore, that:
+
+    $$M(T) = \begin{pmatrix} a_{11} & 0 & \ldots & 0 \\ 0 & a_{22} & \ldots & 0 \\ \vdots & \ldots & \ddots  & \vdots \\ 0 & \ldots & \ldots & a_{nn} \end{pmatrix}, M(T^*) = \begin{pmatrix} \overline{a_{11}} & 0 & \ldots & 0 \\ 0 & \overline{a_{22}} & \ldots & 0 \\ \vdots & \ldots & \ddots  & \vdots \\ 0 & \ldots & \ldots & \overline{a_{nn}} \end{pmatrix}$$
+
+    Because $M(T) = M(T^*)$, we conclude that $a_{ii} = \overline{a_{ii}}$ for all $i$, i.e.\ that $a_{ii}$ is real. We know, however, that for a diagonal $M(T)$, the values on its diagonal equal precisely the eigenvalues of $T$. From this we conclude that every eigenvalue of $T$ is real.
+
+    $\impliedby$: If $T$ is a normal operator on a complex i.p.\ space such that all of its eigenvalues are real, we have the following. Again by the complex Spectral Theorem, there exists an orthonormal basis of $V$ with respect to which $M(T)$ is diagonal. And again, we know that the values on the diagonal of $M(T)$ are precisely the eigenvalues of $T$. Thus, $M(T)$ is of the same form as we described in the ``$\implies$'' direction, with each $a_{ii} \in \mathbf{R}$. Clearly, this implies that $M(T^*)$, which again ---with respect to this basis--- equals the conjugate transpose of $M(T)$, must be equal to $M(T)$. From this we conclude that $T$ is indeed self-adjoint.
+\end{solution}
+
+\begin{exercise}{9}
+    Suppose $V$ is a complex inner product space. Prove that every normal operator on $V$ has a square root. (An operator $S \in L(V)$ is called a \textbf{square root} of $T \in L(V)$ if $S^2 = T$.)
+\end{exercise}
+
+\begin{solution}
+
+    Suppose that $T$ is a normal operator on $V$. By the complex Spectral Theorem, we know that there exists an orthonormal basis of $V$ such that with respect to it, $M(T)$ is diagonal. Therefore, $M(T)$ is of the form:
+    
+    $$M(T) = \begin{pmatrix} a_{11} & 0 & \ldots & 0 \\ 0 & a_{22} & \ldots & 0 \\ \vdots & \ldots & \ddots  & \vdots \\ 0 & \ldots & \ldots & a_{nn} \end{pmatrix}$$
+
+    Since $V$ is a complex inner product space, $\sqrt{a_{ii}}$ is well-defined for every $i$. Consider then, the operator $S$ whose matrix $M(S)$ with respect to this basis equals:
+
+    $$M(S) = \begin{pmatrix} \sqrt{a_{11}} & 0 & \ldots & 0 \\ 0 & \sqrt{a_{22}} & \ldots & 0 \\ \vdots & \ldots & \ddots  & \vdots \\ 0 & \ldots & \ldots & \sqrt{a_{nn}} \end{pmatrix}$$
+
+    Note that such an operator $S$ is uniquely defined due to $\mathbf{C}^{\text{dim} V, \text{dim} V}$ being isomorphic to $L(V)$. Observe then, that $M(S)M(S) = M(T)$, and again due to the above isomorphic spaces, and the fact that the matrix of $SS = S^2$ is equal to $M(S)M(S)$, this means that $S^2 = T$. Thus, $S$ is indeed a square root of $T$.
+\end{solution}
+
+\begin{exercise}{11}
+    Prove or give a counterexample: every self-adjoint operator on $V$ has a cube root. (An operator $S \in L(V)$ is called a \textbf{cube root} of $T \in L(V)$ if $S^3=T$.)
+\end{exercise}
+
+\begin{solution}
+
+    If the vector space is real, from the real spectral theorem we know that the self-adjoint $T$ has a diagonal matrix with respect to some orthonormal basis of $V$. If the vector space if complex, we proved in exercise (6) that a self-adjoint operator has a diagonal matrix whose elements of the diagonal (eigenvalues) are all real, again with respect to some orthonormal basis. In any case, we can therefore write that:
+
+     $$M(T) = \begin{pmatrix} a_{11} & 0 & \ldots & 0 \\ 0 & a_{22} & \ldots & 0 \\ \vdots & \ldots & \ddots  & \vdots \\ 0 & \ldots & \ldots & a_{nn} \end{pmatrix}$$
+
+     , with respect to some orthonormal basis of $V$ and with each $a_{ii} \in \mathbf{R}$. Due to this, we can define $b_{ii} = (a_{ii})^{\frac{1}{3}}$ for each $i$ (since 3 is odd and $a_{ii} \in \mathbf{R}$, the equation $x^3 = a_{ii}$ always has a solution in $\mathbf{R}$). Observe, then, that if we define:
+     
+     $$M(S) = \begin{pmatrix} b_{11} & 0 & \ldots & 0 \\ 0 & b_{22} & \ldots & 0 \\ \vdots & \ldots & \ddots  & \vdots \\ 0 & \ldots & \ldots & b_{nn} \end{pmatrix}$$
+
+     , then $M(S)M(S)M(S) = M(T)$, and since $M$ is an isomorphism between $L(V)$ and $\mathbf{F}^{\text{dim} V, \text{dim} V}$, there exists a corresponding $S \in L(V)$ such that $S^3 = SSS = T$.
+\end{solution}
+
+\section{Positive Operators and Isometries}
+
+\begin{exercise}{1}
+    Prove or give a counterexample: If $T \in L(V)$ is self-adjoint and there exists an orthonormal basis $e_1, \ldots, e_n$ of $V$ such that $\langle Te_j, e_j \rangle \geq 0$ for each $j$, then T is a positive operator.
+\end{exercise}
+
+\begin{solution}
+
+    This is not, in general, true. Let us present a counterexample. Let $T$ be the operator in $L(\mathbf{C}^2)$ such that $Te_1 = e_2, Te_2 = e_1$ for the standard basis $e_1, e_2$ of $\mathbf{C}^2$. With respect to this basis, we have that:
+
+    $$M(T) = \begin{pmatrix}
+        0 & 1 \\ 1 & 0
+    \end{pmatrix}$$
+
+    Observe that by taking the complex conjugate of $M(T)$ we obtain $M(T^*) = M(T)$ (we can do this because the basis is orthonormal), from which we conclude that $T$ is self-adjoint. Furthermore, by the definition  of $T$ we have that $\langle Te_i, e_i \rangle = 0 \geq 0$ for all $e_i$. Observe, however, that for example it is true that $T\begin{pmatrix} \begin{array} {r} 1 \\ -1 \end{array} \end{pmatrix} = \begin{pmatrix}
+        \begin{array} {r} -1 \\ 1 \end{array} \end{pmatrix} \implies \langle T\begin{pmatrix} \begin{array} {r} 1 \\ -1 \end{array} \end{pmatrix}, \begin{pmatrix}
+        \begin{array} {r} 1 \\ -1 \end{array} \end{pmatrix} \rangle = -2 < 0$, therefore $T$ is not a positive operator.
+\end{solution}
+
+\begin{exercise}{4}
+    Suppose $T \in L(V, W)$. Prove that $T^*T$ is a positive operator on $V$ and $TT^*$ is a positive operator on $W$.
+\end{exercise}
+
+\begin{solution}
+
+    Since $T \in L(V, W), T^* \in L(W, V)$, we have that $T^*T \in L(V), TT^* \in L(W)$. Furthermore, for any $v \in V$ it holds that:
+
+    $$\langle T^*Tv, v \rangle = \langle Tv, (T^*)^*v \rangle = \langle Tv, Tv \rangle = \lvert \lvert Tv \rvert \rvert^2 \geq 0$$
+
+    , where we used the definition of the adjoint and the fact that $(T^*)^* = T$. Therefore, we've shown that $T^*T$ is a positive operator on $V$. In the same manner, for any $w \in W$:
+
+    $$\langle TT^*w, w \rangle = \langle T^*w, T^*w \rangle = \lvert \lvert T^* w\rvert \rvert^2 \geq 0$$
+
+    , and therefore we also proved that $TT^*$ is an operator on $W$.
+\end{solution}
+
+\begin{exercise}{5}
+    Prove that the sum of two positive operators on $V$ is positive.
+\end{exercise}
+
+\begin{solution}
+
+    Let $T_1, T_2$ be two positive operators on $V$. Since they are positive, they are also self-adjoint, i.e.\ $T_1^* = T_1, T_2^* = T_2$. Let then $T = T_1 + T_2$. We know that $T^* = (T_1 + T_2)^* = T_1^* + T_2^* = T_1 + T_2$, i.e.\ $T$ is also self-adjoint. Furthermore, for any $v \in V$ we have the following:
+
+    $$\langle Tv, v \rangle = \langle (T_1 + T_2)(v), v \rangle = \langle T_1v + T_2v, v \rangle = \langle T_1v, v \rangle + \langle T_2v, v \rangle $$
+
+    Because $T_1, T_2$ are positive, we have that $\langle T_1v, v \rangle \geq 0, \langle T_2v, v \rangle \geq 0$. Therefore, we conclude that $\langle Tv, v \rangle \geq 0$ (sum of nonnegatives), which, coupled with the fact that $T$ is self-adjoint, yields that $T$ is also positive. Therefore, the sum of two positive operators is positive.
+\end{solution}
+
+\begin{exercise}{6}
+    Suppose $T$ is positive. Prove that $T^k$ is positive for every positive integer $k$.
+\end{exercise}
+
+\begin{solution}
+
+    $T$ is positive, therefore $T$ is also self-adjoint. Let's first prove that if this is true, then $T^k$ is also self-adjoint for any positive integer $k$. We can do this by induction on $k$. For $k = 1$, it clearly holds. Suppose now that it holds for $k \geq 1$, i.e.\ $(T^k)^* = T^k$. Then we have that, for any $v \in V$:
+    
+    $$ \langle T^{k+1}v, v \rangle = \langle T(T^k(v)), v \rangle = \langle T^k(v), T^*v \rangle = \langle v, (T^k)^*(Tv) \rangle = \langle v, T^k(T(v)) \rangle = \langle v, T^{k+1}(v) \rangle$$
+
+    , where we used the self-adjointness of $T, T^k$, and we thus proved that $T^{k+1}$ is also self-adjoint.
+
+    By the (real or complex, depending on the associated field) Spectral Theorem, we have that there exists a basis of $V$ consisting of orthonormal $v_1, \ldots, v_n$ eigenvectors of $T$, and furthermore, becuase $T$ is positive, all of the associated eigenvalues $\lambda_1, \ldots, \lambda_n$ are positive. Furthermore, for any $v_i$ it holds that: $T^k(v_i) = T(T(\ldots(T(v)\ldots) = (\lambda_i)^kv_i$, therefore $v_i$ is an eigenvector of $T^k$ and the corresponding eigenvalue is $\lambda_i^k \geq 0$. $T^k$ can have at most $n$ distinct eigenvalues (since $\text{dim} V = n$ from the assumption that $T$ is self-adjoint and since eigenvectors corresponding to distinct eigenvalues are linearly independent), therefore every eigenvalue of $T^k$ is positive and therefore $T^k$ is positive.
+\end{solution}
+
+\begin{exercise}{7}
+    Suppose $T$ is a positive operator on $V$. Prove that $T$ is invertible if and only if
+    $$\langle Tv, v \rangle > 0$$
+    for every $v \in V$ with $v \neq 0$.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: If $T$ is invertible, then $Tv = 0$ iff $v = 0$. Because $T$ is positive, $T$ is self-adjoint and there exists an orthonormal basis of $V$ consisting of eigenvectors $e_1, \ldots e_n$ of $T$ (Spectral Theorem), with the corresponding eigenvalues being $\lambda_1, \ldots, \lambda_n$ and each eigenvalue $\lambda_i \geq 0$. Observe also that the fact that $Tv = 0 \iff v = 0$ implies that $0$ is not an eigenvalue, thus each $\lambda_i$ is strictly positive. Consider now a non-zero $v \in V$. $v$ can be written as $v = \sum_{i=1}^{n}a_ie_i$, with at least one $a_i \neq 0$. Then, we have that:
+
+    $$\langle Tv, v \rangle = \langle T( \sum_{i=1}^{n}a_ie_i),  \sum_{j=1}{n}a_je_j \rangle = \langle \sum_{i=1}^{n}a_i \lambda_i e_i, \sum_{j=1}^{n}a_je_j \rangle = \sum_{i=1}^{n}a_i \lambda_i \langle e_i, \sum_{j=1}^{n}a_je_j \rangle =  \sum_{i=1}^{n}a_i \lambda_i \sum_{j=1}^{n}\overline{a_j} \langle e_i, e_j \rangle$$
+    $$ = \sum_{i=1}^{n}a_i \lambda_i \overline{a_i} = \sum_{i=1}^{n} \lvert a_i \rvert^2 \lambda_i$$
+
+    Because every $\lambda_i$ is strictly positive and at least one $a_i$ is non-zero, we conclude that the above expression is also strictly positive, i.e.\ $\langle Tv, v \rangle > 0$ for every $v \in V, v \neq 0$.
+
+    $\impliedby$: If $\langle Tv, v \rangle > 0$ for every $v \in V, v \neq 0$, let's assume that $T$ is not invertible. Then, there exists a non-zero $x \in V$ such that $Tx = 0$. But then it would be the case that $\langle Tx, x \rangle = 0$ with $x \neq 0$, which contradicts our hypothesis. Therefore, $T$ is invertible.
+\end{solution}
+
+\begin{exercise}{8}
+    Suppose $T \in L(V)$. For $u, v \in V$, define $\langle u, v \rangle_{T}$ by 
+    $$\langle u, v \rangle_{T} = \langle Tu, v \rangle$$
+    Prove that $\langle \cdot, \cdot \rangle_{T}$ is an inner product on $V$ if and only if $T$ is an invertible positive operator (with respect to the original inner product $\langle \cdot, \cdot \rangle)$
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: If $\langle \cdot, \cdot \rangle_{T}$ is an inner product on $V$, it must hold that $\langle u, u \rangle_{T} \geq 0$ for every $u \in V$ and also that $\langle u, u \rangle_{T} = 0$ iff $u = 0$. We have, then, that:
+    $$\langle u, u \rangle_{T} = \langle Tu, u \rangle_{T} \geq 0$$
+    for every $u \in U$. This is one of the conditions for positivity of $T$, the other being that $T$ is self-adjoint. Observe also that because $\langle \cdot, \cdot \rangle_{T}$ is an inner product, it must hold that:
+    $$\langle v, u \rangle_{T} = \overline{\langle u, v \rangle_{T}} \implies \langle Tv, u \rangle = \overline{\langle Tu, v \rangle} \implies \langle Tv, u \rangle = \langle v, Tu \rangle$$
+    , where we used the conjugate symmetry property of both our inner products, and consequently proved that $T$ is self-adjoint, thus completing the proof that $T$ is positive.
+
+    Additionally, the fact that $\langle u, u \rangle_{T} = \langle Tu, u \rangle = 0$ iff $u = 0$ and that $\langle u, u \rangle_{T} = \langle Tu, u \rangle \geq 0$ implies that whenever $u \neq 0$, $\langle Tu, u \rangle > 0$, which by the previous exercise (and because $T$ is positive) implies that $T$ is invertible.
+
+    $\impliedby$: If $T$ is an invertible positive operator, we need to show that $\langle \cdot, \cdot \rangle_{T}$ is an inner product on $V$ by showing that it has each of the properties that define an inner product. We have that:
+    \begin{itemize}
+        \item \textbf{Additivity in the first slot}: For $u_1, u_2, v \in V$, we have that $\langle u_1 + u_2, v \rangle_{T} = \langle T(u_1 + u_2), v \rangle = \langle Tu_1 + Tu_2, v \rangle = \langle Tu_1, v \rangle + \langle Tu_2, v \rangle = \langle u_1, v \rangle_{T} + \langle u_2, v \rangle_{T}$, where we used the linearity of $T$ and the first-slot additivity of $\langle \cdot, \cdot, \rangle$.
+        \item \textbf{Homogeneity in the first slot}: For $u, v \in V$, $\lambda \in \mathbf{F}$, we have that $\langle \lambda u, v \rangle_{T} = \langle T(\lambda u), v \rangle = \langle \lambda Tu, v \rangle = \lambda \langle Tu, v \rangle = \lambda \langle u, v\rangle_{T}$, where we used the linearity of $T$ and the first-slot homogeneity of $\langle \cdot, \cdot \rangle$.
+        \item \textbf{Positivity}: For $u \in U$, we have that $\langle u, u \rangle_{T} = \langle Tu, u \rangle \geq 0$, since $T$ is a positive operator.
+        \item \textbf{Definiteness}: For $u \in U$, we have that $\langle u, u \rangle_{T} = 0 \iff \langle Tu, u \rangle = 0$, which, given that $T$ is positive and invertible implies that $u = 0$. This comes from the previous exercise: if we assume $u$ to be non-zero, this exercise guarantees that $\langle Tu, u \rangle > 0$, which would imply that $\langle u, u\rangle_{T} > 0$. Since it is obviously true that for $u = 0$, $\langle Tu, u \rangle = 0 = \langle u, u \rangle_{T}$, we conclude that $\langle u, u \rangle_{T} = 0  \iff u = 0$, i.e.\ the condition for definiteness.
+        \item \textbf{Conjugate symmetry}: For $u, v \in V$. we have that $\langle v, u \rangle_{T} = \langle Tv, u \rangle = \langle v, Tu \rangle = \overline{\langle Tu, v \rangle} = \overline{\langle u, v \rangle_{T}}$, where we used the fact that $T$ is self-adjoint (since it is positive) and the conjugate symmetry of $\langle \cdot, \cdot, \rangle$.
+    \end{itemize}
+    Therefore, $\langle \cdot, \cdot \rangle_{T}$ is indeed an inner product on $V$.
+\end{solution}
+
+\section{Polar Decomposition and Singular Value Decomposition}
+
+\begin{exercise}{1}
+    Fix $u, x \in V$ with $u \neq 0$. Define $T \in L(V)$ by
+    $$Tv = \langle v, u \rangle x$$
+    for every $v \in V$. Prove that
+    $$\sqrt{T^*T}v = \frac{\lvert \lvert x \rvert \rvert}{\lvert \lvert u \rvert \rvert}\langle v, u \rangle u$$
+    for every $v \in V$.
+\end{exercise}
+
+\begin{solution}
+
+    We have that, for every $v, w \in V, \langle Tv, w \rangle = \langle v, T^*w \rangle \implies \langle \langle v, u \rangle x, w \rangle = \langle v, T^*w \rangle \implies \langle v, u \rangle \langle x, w \rangle = \langle v, T^*w \rangle \implies \langle v, \langle w, x \rangle u \rangle - \langle v, T^*w \rangle = 0 \implies \langle v, \langle w, x \rangle u - T^*w \rangle = 0$    
+
+    Now, for a fixed $v$ this must be true for every $w \in V$ (by the definition of the adjoint). From this we conclude that $T^*w = \langle w, x \rangle u$ (the only vector that is in $V^\bot$ is the zero vector). This now means that:
+    $$T^*T(v) = T^*(\langle v, u \rangle x) = \langle \langle v, u \rangle x, x \rangle u = \langle v, u \rangle \langle x, x \rangle u = \lvert \lvert x \rvert \rvert^2 \langle v, u \rangle u$$
+
+    Observe, now, that if we let $Sv = \frac{\lvert \lvert x \rvert \rvert}{\lvert \lvert u \rvert \rvert}\langle v, u \rangle u$, then $S(S(v)) = S( \frac{\lvert \lvert x \rvert \rvert}{\lvert \lvert u \rvert \rvert}\langle v, u \rangle u) = \frac{\lvert \lvert x \rvert \rvert}{\lvert \lvert u \rvert \rvert} \langle \frac{\lvert \lvert x \rvert \rvert}{\lvert \lvert u \rvert \rvert} \langle v, u \rangle u, u \rangle u = \frac{\lvert \lvert x \rvert \rvert^2}{\lvert \lvert u \rvert \rvert^2}\langle v, u \rangle \lvert \lvert u \rvert \rvert^2 u = \lvert \lvert x \rvert \rvert^2 \langle v, u \rangle u$, which means that $S$ is a square root of $T^*T$. Furthermore, for any $v \in V$:
+
+    $$\langle Sv, v \rangle = \langle \frac{\lvert \lvert x \rvert \rvert}{\lvert \lvert u \rvert \rvert}\langle v, u \rangle u, v \rangle = \frac{\lvert \lvert x \rvert \rvert}{\lvert \lvert u \rvert \rvert} \lvert \langle v, u \rangle \rvert^2 \geq 0$$
+
+    If we can show that $S$ is self-adjoint, then $S$ is positive, and by the uniqueness of positive square roots of positive operators, we'll have proved that $\sqrt{T^*T} = S$. We have that, for any $v, w \in V$:
+
+    $$\langle Sv, w \rangle = \langle \frac{\lvert \lvert x \rvert \rvert}{\lvert \lvert u \rvert \rvert}\langle v, u \rangle u, w \rangle = \frac{\lvert \lvert x \rvert \rvert}{\lvert \lvert u \rvert \rvert} \langle \langle v, u \rangle u, w \rangle = \frac{\lvert \lvert x \rvert \rvert}{\lvert \lvert u \rvert \rvert}\langle v, u \rangle \langle u, w \rangle$$
+
+    $$\langle v, Sw \rangle = \langle v, \frac{\lvert \lvert x \rvert \rvert}{\lvert \lvert u \rvert \rvert}\langle w, u \rangle u \rangle = \frac{\lvert \lvert x \rvert \rvert}{\lvert \lvert u \rvert \rvert} \langle v, \langle w, u \rangle u \rangle =  \frac{\lvert \lvert x \rvert \rvert}{\lvert \lvert u \rvert \rvert} \langle u, w \rangle \langle v, u \rangle$$
+
+    , which shows that $\langle Sv, w \rangle = \langle v, Sw \rangle$, therefore $S$ is indeed self-adjoint, thus the proof is complete.
+\end{solution}
+
+\begin{exercise}{3}
+    Suppose $T \in L(V)$. Prove that there exists an isometry $S \in L(V)$ such that 
+    $$T = \sqrt{TT^*}S$$
+\end{exercise}
+
+\begin{solution}
+
+    We know that for $T \in L(V)$, $T^* \in L(V)$, and therefore we can apply the Polar Decomposition Theorem to $T^*$, which means that there exists an isometry $S_a \in L(V)$ such that $T^* = S_a \sqrt{(T^*)^*T^*} = S_a \sqrt{TT^*}$. Then, observe that:
+
+    $$T = (T^*)^* = (S_a \sqrt{TT^*})^* = (\sqrt{TT^*})^*S_a^* = \sqrt{TT^*} S_a^{-1}$$
+
+    , where we used the fact that $\sqrt{TT^*}$ is self-adjoint (as a positive operator) and that $S_a^* = S_a^{-1}$ since $S_a$ is an isometry. Therefore, if we set $S = S_a^{-1}$, we know that $S$ is also an isometry, and does indeed satisfy the equation $T = \sqrt{TT^*}S$
+\end{solution}
+
+\begin{exercise}{8}
+    Suppose $T \in L(V), S \in L(V)$, $S$ is an isometry and $R \in L(V)$ is a positive operator such that $T = SR$. Prove that $R = \sqrt{T^*T}$
+    
+    [\textit{The exercise above shows that if we write} $T$ \textit{as the product of an isometry and a positive operator (as in the Polar Decomposition), then the positive operator equals} $\sqrt{T^*T}$.]
+\end{exercise}
+
+\begin{solution}
+
+    By the Polar Decomposition, there exists an isometry $S_1$ such that $T = S_1\sqrt{T^*T}$. Furthermore, $T = SR$. Therefore, for any $v \in V$:
+    $$SR(v) = S_1\sqrt{T^*T}(v) \implies \lvert \lvert SR(v) \rvert \rvert = \lvert \lvert S_1\sqrt{T^*T}(v) \rvert \rvert \implies \lvert \lvert R(v) \rvert \rvert = \lvert \lvert \sqrt{T^*T}(v) \rvert \rvert$$
+
+    , where we used the fact that $S, S_1$ are isometries. Continuing:
+
+    $$\lvert \lvert R(v) \rvert \rvert = \lvert \lvert \sqrt{T^*T}(v) \rvert \rvert \implies \langle R(v), R(v) \rangle = \langle \sqrt{T^*T}(v), \sqrt{T^*T}(v) \rangle \implies $$
+    $$\langle v, RR(v) \rangle = \langle v, \sqrt{T^*T} \sqrt{T^*T}v \rangle \implies \langle v, R^2(v) \rangle = \langle v, T^*T(v) \rangle \implies \langle v, R^2(v) - T^*T(v) \rangle = 0$$
+
+    , where we used the definition of the square root of an operator and the properties of self-adjoint operators ($R, \sqrt{T^*T}$ are both self-adjoint as positive operators). Now, since this is true for any $v$, and since $R^2 - T^*T$ is self-adjoint (this can be shown very easily by taking the adjoint and recalling that $R$ is self-adjoint) this means $R^2 - T^*T$ is the zero operator, therefore that $R^2(v) = T^*T(v)$. This means that $R$ is a square root of $T^*T$, and since it is also positive, by the uniqueness of positive square roots we have that $R = \sqrt{T^*T}$.
+\end{solution}
+
+\newpage
+\begin{exercise}{9}
+    Suppose $T \in L(V)$. Prove that $T$ is invertible if and only if there exists a unique isometry $S \in L(V)$ such that $T = S\sqrt{T^*T}$.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: Assume that $T$ is invertible. This is equivalent to $\text{dim null}T = 0$, which is equivalent to $\text{dim null} T^* = \text{ dim range} T^\bot = \text{dim} V - \text{dim range} T = \text{dim null} T = 0$, i.e.\, in finite-dimensional vector spaces $T$ being invertible is equivalent to $T^*$ being invertible. By the Polar Decomposition, we know that we can write $T = S\sqrt{T^*T}$ for some isometry $S$. In particular, let's suppose that we can write $T = S_1\sqrt{T^*T}$ and $T = S_2\sqrt{T^*T}$ for two isometries $S_1, S_2$. In order to prove that the polar decomposition is unique, we need to prove that $S_1 = S_2$. 
+    
+    Note that we then have $T^* = \sqrt{T^*T}S_1^*, T^* = \sqrt{T^*T}S_2^*$, which implies that for every $v \in V$, $\sqrt{T^*T}((S_1^* - S_2^*)(v)) = 0$, which means that $(S_1^* - S_2^*)(v) \in \text{null} \sqrt{T^*T}$. Observe now that if $v \in \text{null} \sqrt{T^*T}$, then $\sqrt{T^*T}(v) = 0 \implies T^*T(v) = 0 \implies T(v) \in \text{null} T^*$, which in our case means $T(v) = 0$ (since $T, T^*$ are invertible), which means $v \in \text{null} T$, so $v = 0$. 
+    
+    Therefore, we obtain that $(S_1^* - S_2^*)(v) = 0$ for every $v \in V$, which means that $S_1^* = S_2^*$. Clearly then, $S_1 = (S_1^*)^* = (S_2^*)^* = S_2$, which proves that the isometry is unique.
+
+    $\impliedby$: Suppose now that for some $T \in L(V)$, we can write $T = S\sqrt{T^*T}$ for a unique isometry $S$. Suppose that $T$ is not invertible. Then, $\text{dim null} T > 0$, and by the observations that we made above this also means that $\text{dim null} T^* > 0$. In the proof of the Polar Decomposition, we observed that $\lvert \lvert Tv \rvert \rvert = \lvert \lvert \sqrt{T^*T}v \rvert \rvert$ and, additionally, that $\text{dim range} \sqrt{T^*T} = \text{dim range} T, \text{dim range} \sqrt{T^*T}^\bot = \text{dim range} T^\bot = \text{dim null} T^* > 0$.
+
+    The important point is that the isometry $S$ is fully defined by its values on the orthonormal bases of $\text{range} \sqrt{T^*T}$ and $\text{range} \sqrt{T^*T}^\bot$ (since $V$ is a direct sum of those). Define then an isometry $S_{11}$ such that $S_{11}(\sqrt{T^*T}v) = Tv$ for all $v \in \text{range} \sqrt{T^*T}$ and an isometry $S_12$ such that it maps an orthonormal basis $e_i$ of $\text{range} \sqrt{T^*T}^\bot$ to an orthonormal basis $f_i$ of $\text{range} T^\bot$ (these have the same length). If we continue the construction as in the Polar Decomposition proof by defining $S_1(v) = S_{11}(u) + S_{12}(w)$, when $v = u + w$ with $u \in \text{range} \sqrt{T^*T}, w \in \text{range} \sqrt{T^*T}^\bot$, we end up with an isometry that satisfies $T = S\sqrt{T^*T}$ (see the proof for more details).
+
+    Observe that, if we repeat the procedure above and define $S_{21} = S_{11}$ and $S_{22}$ such that it maps $e_i$ to $-f_i$, we will again end up with an isometry $S_2$ that satisfies $T = S\sqrt{T^*T}$ . However, $S_1 \neq S_2$ due to the fact that they are not equal in $\text{range} \sqrt{T^*T}^\bot$. Thus $S$ would not be unique, which is a contradiction, and therefore $T$ is invertible.
+\end{solution}
+
+\begin{exercise}{10}
+    Suppose $T \in L(V)$ is self-adjoint. Prove that the singular values of $T$ equal the absolute values of the eigenvalues of $T$, repeated appropriately.
+\end{exercise}
+
+\begin{solution}
+    
+    $T$ is self-adjoint, which means that $T^* = T$. This means that $T^*T = TT = T^2$. We know that the operator $T^*T = T^2$ is positive. Furthermore, by the characterization of self-adjoint operators based on the Spectral Theorem, we have that $T$ has a diagonal matrix with respect to some orthonormal basis of $V$, consisting of eigenvectors of $T$, and additionally that all of the eigenvalues of $T$ are real (diagonal elements). Furthermore, $M(T^2) = M(T)M(T)$ (with respect to the same basis), which gives us that the eigenvalues of $T^2$ are all real numbers of the form $\lambda_i^2, \lambda_i \in \mathbf{R}$.
+
+    We know, however, that the singular values of $T$ equal the nonnegative square roots of the eigenvalues of $T^*T = T^2$, repeated appropriately, i.e. , $\sqrt{\lambda_i^2} = \lvert \lambda_i \rvert $, each repeated $\text{dim} E(\lambda_i^2, T^*T)$ times.
+\end{solution}
+
+\begin{exercise}{11}
+    Suppose $T \in L(V)$. Prove that $T$ and $T^*$ have the same singular values.
+\end{exercise}
+
+\begin{solution}
+
+    By exercise 17, we know that if the singular value decomposition of $T$ is
+    $$Tv = s_1 \langle v, e_1 \rangle f_1 + \ldots + s_n \langle v, e_n \rangle f_n$$
+    then the singular value decomposition of $T^*$ is
+    $$T^*v = s_1 \langle v, f_1 \rangle e_1 + \ldots + s_n \langle v, f_n \rangle e_n$$
+    It therefore holds that:
+    $$T^*Tv = T^*(s_1 \langle v, e_1 \rangle f_1 + \ldots + s_n \langle v, e_n \rangle f_n) = s_1 \langle v, e_1 \rangle T^*(f_1) + \ldots + s_n \langle v, e_n \rangle T^*(f_n)$$
+    $$\implies T^*Tv = s_1 \langle v, e_1 \rangle s_1 e_1 + \ldots + s_n \langle v, e_n \rangle s_n e_n = s_1^2 \langle v, e_1 \rangle e_1 + \ldots + s_n^2 \langle v, e_n \rangle e_n$$
+
+    , where we used the orthonormality of $f_i$. Observe that if we compute $T^*T(e_i)$ we obtain that each of those vectors is an eigenvector of $T^*T$, with corresponding eigenvalue $s_i^2$.
+
+    If we repeat the exact same procedure for $TT^*$, we obtain:
+
+    $$TT^*v = s_1^2 \langle v, f_1 \rangle f_1 + \ldots + s_n^2 \langle v, f_n \rangle f_n$$
+
+    , which again by the same reasoning means that $TT^*$ has $s_i^2$ as its eigenvalues.
+
+    Since $T^*T, TT^*$ have the same eigenvalues, their positive square roots have the same eigenvalues too (by taking square roots). Hence, $T$ and $T^*$ have the same singular values (by definition of the singular values of an operator).
+\end{solution}
+
+\begin{exercise}{13}
+    Suppose $T \in L(V)$. Prove that $T$ is invertible if and only if 0 is not a singular value of $T$.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: Suppose that $T$ is invertible. Suppose, then, also, that $T$ has 0 as a singular value, which means that 0 is an eigenvalue of $\sqrt{T^*T}$. Then, there exists $v \in V, v \neq 0$ such that $\sqrt{T^*T} = 0v = 0$. Then, by the Polar Decomposition:
+
+    $$T(v) = S\sqrt{T^*T}(v) = S(0) = 0$$
+
+    , which means that $T$ is not invertible, which is a contradiction. Therefore, 0 is not a singular value of $T$.
+
+    $\impliedby$: Suppose that 0 is not a singular value of $T$, which also means that 0 is not an eigenvalue of $\sqrt{T^*T}$. Suppose, then, that $T$ is not invertible, which means that there exists $v \in V, v \neq 0$ such that $T(v) = 0$. Then, by the Polar Decomposition:
+
+    $$T(v) = S\sqrt{T^*T}(v) \implies 0 = S\sqrt{T^*T}(v) \implies \sqrt{T^*T}(v) \in \text{null} S$$
+
+    Since $S$ is an isometry, $\text{null} S = \{0\}$ (otherwise it would map a vector with non-zero norm to the zero vector, contradiction). Therefore, $\sqrt{T^*T}(v) = 0$, and $v \neq 0$, which would mean that 0 is an eigenvalue of $\sqrt{T^*T}$, which is a contradiction. Therefore, $T$ is invertible.
+\end{solution}
+
+\begin{exercise}{14}
+    Suppose $T \in L(V)$. Prove that $\text{dim range} T$ equals the number of nonzero singular values of $T$.
+\end{exercise}
+
+\begin{solution}
+
+    By the Singular Value Decomposition, we know that there exist orthonormal bases of $V$, $e_1, \ldots, e_n$ and $f_1, \ldots, f_n$ such that for any $v \in V$ it holds that:
+
+    $$Tv = s_1 \langle v, e_1 \rangle f_1 + \ldots + s_n \langle v, e_n \rangle f_n$$
+
+    , with $s_i$ being the singular values of $T$. We observe that this means that $\text{range} T$ is spanned by the vectors $s_1 f_1, \ldots, s_n f_n$: for any $w \in \text{range} V$, we can write it as a linear combination of these vectors as indicated above. Suppose now that we discard all $f_j$ for which $s_j = 0$, which means that we discard all vectors of the basis $f_i$ which correspond to zero singular values of $T$, which means that we discard precisely as many vectors as the number of zero singular values of $T$. Therefore, we are left with as many vectors as the number of non-zero singular values of $T$.
+
+    By doing this, the span of the remaining $s_i f_i$ does not change, i.e.\ , it still equals $\text{range} T$. Furthermore, these remaining vectors are non-zero multiples of vectors that are linearly independent (since the entire set of $f_i$ is a basis of $V$, every one of its subsets is also linearly independent). One can easily see that this means that they are also linearly independent: if they were not, we could find $a_i$ not all zero such that $0 = \sum_i a_i(s_if_i) = \sum_i (a_i s_i) f_i$, and since all $s_i$ are non-zero, we would have that $f_i$ are not linearly independent, contradiction.
+
+    Therefore, the remaining vectors $s_i f_i$ span $\text{range} T$ and are also linearly independent, which means that they are a basis of $\text{range} T$, which means that its dimension indeed equals the number of non-zero singular values of $T$.
+\end{solution}
+
+\begin{exercise}{15}
+    Suppose $S \in L(V)$. Prove that $S$ is an isometry if and only if all the singular values of $S$ equal 1.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: Suppose $S$ is an isometry. Then, we know that $S^*S = I$. Furthermore, the unique positive square root of $I$ is $I$. This means that $\sqrt{S^*S} = I$. Clearly, then, all of the eigenvalues of $\sqrt{S^*S}$ equal 1, which means, by definition, that all of the singular values of $S$ equal 1 as well.
+
+    $\impliedby$: Suppose that all of the singular values of $S$ equal 1. This means that all of the eigenvalues of $\sqrt{S^*S}$ equal 1. Because this is a positive and hence self-adjoint operator, by the Spectral Theorem there exists an orthonormal basis of eigenvectors of $V$ with respect to which$\sqrt{S^*S}$ has a diagonal matrix. Furthermore, because all of its eigenvalues equal 1, we conclude that this matrix equals the identity matrix (technically, with respect to this basis), which means that $\sqrt{S^*S} = I$ (due to $\mathbf{F}^{n, n}$ being isomorphic to $L(V)$). This in turn means that $S^*S = I$, which we know is equivalent to $S$ being an isometry.
+\end{solution}
+
+\begin{exercise}{17}
+    Suppose $T \in L(V)$ has singular value decomposition given by
+    $$Tv = s_1 \langle v, e_1 \rangle f_1 + \ldots + s_n\langle v, e_n \rangle f_n$$
+    for every $v \ in V$, where $s_1, \ldots, s_n$ are the singular values of $T$ and $e_1, \ldots, e_n$ and $f_1, \ldots, f_n$ are orthonormal bases of $V$.
+
+    (a) Prove that if $v \in V$, then
+    $$T^*v = s_1\langle v, f_1 \rangle e_1 + \ldots + s_n \langle v, f_n \rangle e_n$$
+
+    (b) Prove that if $v \ in V$ then
+    $$T^*Tv = s_1^2\langle v, e_1 \rangle e_1 + \ldots + s_n^2 \langle v, e_n \rangle e_n$$
+
+    (c) Prove that if $v \in V$, then
+    $$\sqrt{T^*T}v = s_1 \langle v, e_1 \rangle e_1 + \ldots + s_n \langle v, e_n \rangle e_n$$
+
+    (d) Suppose $T$ is invertible. Prove that if $v \in V$, then
+    $$T^{-1}v = \frac{\langle v, f_1 \rangle e_1}{s_1} + \ldots + \frac{\langle v, f_n \rangle e_n}{s_n}$$
+\end{exercise}
+ 
+ \begin{solution}
+
+     (a) According to the Singular Value Decomposition, the bases $e_1, \ldots, e_n$ and $f_1, \ldots, f_n$ are defined such that $\sqrt{T^*T}e_j = s_j e_j$ for every $j$, and such that $S(e_j) = f_j$ for every $j$, with $T = S \sqrt{T^*T}$
+
+     Furthermore, by taking the adjoint of $T^*$ we have that $T^* = \sqrt{T^*T}^*S^* = \sqrt{T^*T}S^{-1}$. Observe that the definition $Se_i = f_i$ implies that $S^{-1}f_i = e_i$. Furthermore, for any $v \in V$ we have that:
+     $$v = \langle v, f_1 \rangle f_1 + \ldots + \langle v, f_n \rangle f_n$$
+     By applying $S^{-1}$ and then $\sqrt{T^*T}$ to both sides of the equation, based on their definitions above, we obtain $$S^{-1}v = \langle v, f_1 \rangle e_1 + \ldots + \langle v, f_n \rangle e_n \implies \sqrt{T^*T} S^{-1} v = s_1 \langle v, f_1 \rangle e_1 + \ldots + s_n\langle v, f_n \rangle e_n$$
+
+     , and since $T^* = \sqrt{T^*T}S^{-1}$, the proof is complete.
+
+     (b) Observe that, since $\sqrt{T^*T} e_i = s_i e_i$ for every $i$, we have that $T^*T e_i = \sqrt{T^*T} \sqrt{T^*T} e_i = s_i^2 e_i$ for every $i$. Thus, for every $v \in V$:
+
+     $$v = \langle v, e_1 \rangle e_1 + \ldots + \langle v, e_n \rangle e_n \implies T^*T v = s_1^2 \langle v, e_1 \rangle e_1 + \ldots + s_n^2 \langle v, e_n \rangle e_n$$
+
+     (c) This is obvious by the definitions of $s_i, e_i$ (eigenvalues of $\sqrt{T^*T}$, and $e_i$ being an orthonormal basis of the corresponding eigenvectors).
+
+     (d) Firstly, from exercise 13 we have that if $T$ is invertible, all of its singular values are non-zero. Thus $\frac{1}{s_i}$ is always well-defined. Furthermore, this implies that $\sqrt{T^*T}$ is invertible, while $S$ is invertible due to being an isometry. From this we have that:
+
+     $$T^{-1} = (S\sqrt{T^*T})^{-1} = \sqrt{T^*T}^{-1}S^{-1}$$
+
+     It is also true that since $s_i$ are all non-zero and $e_i$ are a basis of $V$, $s_i e_i$ are also a basis of $V$. Furthermore, due to the invertibility of $\sqrt{T^*T}$ it must hold that $\sqrt{T^*T}^{-1}(s_i e_i) = e_i \implies \sqrt{T^*T} e_i = \frac{e_i}{s_i}$ for every $i$. Therefore, for any $v \in V$ we have that:
+
+     $$v = \langle v, f_1 \rangle f_1 + \ldots + \langle v, f_n \rangle f_n \implies S^{-1} v = \langle v, f_1 \rangle e_1 + \ldots + \langle v, f_n \rangle e_n $$
+     $$\implies \sqrt{T^*T}^{-1}S^{-1} = \frac{\langle v, f_1 \rangle e_1}{s_1} + \ldots + \frac{\langle v, f_n \rangle e_n}{s_n}$$
+
+     , which, combined with the fact that $T^{-1} = \sqrt{T^*T}^{-1}S^{-1}$ completes the proof.
+ \end{solution}
+
+ \begin{exercise}{18}
+     Suppose $T \in L(V)$. Let $\hat{s}$ denote the smallest singular value of $T$ and let $s$ denote the largest singular value of $T$.
+
+     (a) Prove that $\hat{s}\lvert \lvert v \rvert \rvert \leq \lvert \lvert Tv \rvert \rvert \leq s \lvert \lvert v \rvert \rvert$ for every $v \in V$.
+
+     (b) Suppose $\lambda$ is an eigenvalue of $T$. Prove that $\hat{s} \leq \lvert \lambda \rvert \leq s$.
+ \end{exercise}
+
+ \begin{solution}
+
+     By the Polar Decomposition, there exists an isometry $S$ such that $T = S\sqrt{T^*T}$. This means that for every $v \in V, \lvert \lvert Tv \rvert \rvert = \lvert \lvert \sqrt{T^*T} v\rvert \rvert$. Furthermore, by the definition of singular values, it holds that there exists an orthonormal basis $e_1, \ldots, e_n$ of $V$ such that $\sqrt{T^*T}e_i = s_i e_i$, with $s_i$ being the singular values of $T$. This means that, for every $v \in V$:
+
+     $$\lvert \lvert Tv \rvert \rvert^2 = \lvert \lvert \sqrt{T^*T} \rvert \rvert^2 = \lvert \lvert s_1 \langle v, e_1 \rangle e_1 + \ldots + s_n \langle v, e_n \rangle e_n \rvert \rvert^2 = \lvert s_1 \rvert^2 \lvert \langle v, e_1 \rangle \rvert^2 + \ldots + \lvert s_n \rvert^2 \lvert \langle v, e_n \rangle \rvert^2$$
+     $$\implies \lvert \lvert Tv \rvert \rvert^2 \leq s^2 \lvert \langle v, e_1 \rangle \rvert^2 + \ldots + s^2\lvert \langle v, e_n \rangle \rvert^2 = s^2(\sum_i \lvert \langle v, e_i \rangle \rvert^2) = s^2 \lvert \lvert v \rvert \rvert^2$$
+
+     , where we used the fact that, by definition, $s_i \leq s$ for each $s_i$ and the orthonormality of $e_i$. By taking square roots we obtain $\lvert \lvert Tv \rvert \rvert \leq s \lvert \lvert v \rvert \rvert$.
+
+     Furthermore, given that $s_i \geq \hat{s}$, we can also obtain that:
+
+     $$\lvert \lvert Tv \rvert \rvert^2 =  \lvert s_1 \rvert^2 \lvert \langle v, e_1 \rangle \rvert^2 + \ldots + \lvert s_n \rvert^2 \lvert \langle v, e_n \rangle \rvert^2 \geq \hat{s}^2 \lvert \langle v, e_1 \rangle \rvert^2 + \ldots + \hat{s}^2 \lvert \langle v, e_n \rangle \rvert^2 \geq \hat{s}^2(\sum_i \lvert \langle v, e_i \rangle \rvert^2) = \hat{s}^2 \lvert \lvert v \rvert \rvert^2$$
+
+    Again, by taking square roots we obtain that $\lvert \lvert Tv \rvert \rvert \geq \hat{s} \lvert \lvert v \rvert \rvert$.
+    
+     (b) If $\lambda$ is an eigenvalue of $T$, then there exists a non-zero $v$ such that $Tv = \lambda v$. Now, using part (a) and the fact that $v$ has a non-zero norm, we obtain that for this $v$:
+
+     $$\hat{s} \lvert \lvert v \rvert \rvert \leq \lvert \lvert Tv \rvert \rvert \leq s \lvert \lvert v \rvert \rvert \implies \hat{s} \lvert \lvert v \rvert \rvert \leq \lvert \lvert \lambda v \rvert \rvert \leq s \lvert \lvert v \rvert \rvert \implies \hat{s} \leq \rvert \lambda \rvert \leq s$$
+ \end{solution}
+
+ \begin{exercise}{20}
+     Suppose $S, T \in L(V)$. Let $s$ denote the largest singular value of $S$, let $t$ denote the largest singular value of $T$ and let $r$ denote the largest singular value of $S + T$. Prove that $r \leq s + t$.
+ \end{exercise}
+
+ \begin{solution}
+
+     By the Polar Decomposition, there exist isometries $S_1, S_2, S_3$ such that $T = S_1 \sqrt{T^*T}, S = S_2 \sqrt{S^*S}, R = S_3 \sqrt{R^*R}$, while it also holds that $R = S + T$. It is therefore true that, for any $v \in V$:
+
+     $$\lvert \lvert Rv \rvert \rvert = \lvert \lvert \sqrt{R^*R}v \rvert \rvert \implies \lvert \lvert Tv + Sv \rvert \rvert = \lvert \lvert \sqrt{R^*R}v \rvert \rvert \implies \lvert \lvert \sqrt{R^*R} v\rvert \rvert \leq \lvert \lvert Tv \rvert \rvert + \lvert \lvert Sv \rvert \rvert$$
+
+     , where we used the triangle inequality. Recall from exercise 18 that $\lvert \lvert T v \rvert \rvert \leq t \lvert \lvert v \rvert \rvert, \lvert \lvert S v \rvert \rvert \leq s \lvert \lvert v \rvert \rvert$, due to $t, s$ being the largest singular values of $T, S$ respectively. Furthermore, let now $v_r$ be an eigenvector of $\sqrt{R^*R}$ corresponding to $r$. Of course, $v_r$ is non-zero and it holds that $\lvert \lvert \sqrt{R^*R} v_r \rvert \rvert = r \lvert \lvert v_r \rvert \rvert$ ($r$ is positive). Using these facts in combination with the inequality above, we obtain that:
+
+     $$r \lvert \lvert v_r \rvert \rvert \leq t \lvert \lvert v_r \rvert \rvert + s \lvert \lvert v_r \rvert \rvert \implies r \leq s + t$$
+ \end{solution}

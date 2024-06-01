@@ -1,0 +1,323 @@
+\chapter{Operators on Real Vector Spaces}
+
+\section{Complexification}
+
+\begin{exercise}{1}
+    Prove 9.3, i.e., that if $V$ is a real vector space, under the definitions given in 9.2, $V_\mathbf{C}$ is a complex vector space.
+\end{exercise}
+
+\begin{solution}
+    Let us examine one by one the properties that vector addition and scalar multiplication must have in order for a set to be a vector space.
+    \begin{itemize}
+        \item \textbf{Commutativity of addition}: let $u, v \in V_\mathbf{C}$. This means that $u = u_1 + u_2i, v = v_1 + v_2i, u_1, u_2, v_1, v_2 \in V$. Then, by the definition of addition in $V_\mathbf{C}$, we have that: $u + v = (u_1+v_1) + (v_1+v_2)i, v+u = (v_1 + u_1) + (v_2 + u_2)i$. Since $V$ is a vector space, by the commutativity of its respective addition operation we have that $u_1 + v_1 = v_1 + u_1, u_2 + v_2 = v_2 + u_2$. Therefore, viewed as ordered pairs, $u+v, v+u$'s respective coordinates are equal, thus they themselves are equal, i.e. addition on $V_\mathbf{C}$ is indeed commutative.
+        \item \textbf{Associativity of addition}: let $u, v, w \in V_\mathbf{C}$, i.e. $u = u_1 +u_2i, v = v_1 + v_2i, w = w_1 + w_2i$. Then:
+        $$(u+v)+w = ( (u_1+v_1) + (u_2+v_2)i) + w_1 + w_2i = (u_1+v_1+w_1) + (u_2+v_2+w_2)i$$
+        $$u + (v+w) = u_1 + u_2i + ((v_1+w_1)+(v_2+w_2)i) = (u_1+v_1+w_1) + (u_2+v_2+w_2)i$$
+        , where $u_1+v_1+w_1, u_2+v_2+w_2$ are well-defined due to the associativity of addition on $V$. The above two equalities imply that $(u+v)+w = u+(v+w)$, therefore addition on $V_\mathbf{C}$ is indeed associative.
+        \item \textbf{Additive identity}: Consider the element $0_\mathbf{C} = 0+0i$, 0 being the additive identity of $V$. Then, for any $v \in V_\mathbf{C}$, we have that $v+0_\mathbf{C} = v_1 + v_2i + 0 + 0i = (v_1+0) + (v_2+0)i = v_1 +v_2i = v$, where we used the fact that 0 is the additive identity on $V$. Thus, $0_\mathbf{C}$ is indeed the/an additive identity on $V_\mathbf{C}$.
+        \item \textbf{Additive inverse}: Let $v = v_1+v_2i$ be an element of $V_\mathbf{C}$. Then, let $w = (-v_1)+(-v_2)i$, where $-v_1, -v_2$ are the additive inverses of $v_1, v_2 \in V$. We have, then, that:
+        $$v + w = (v_1+(-v_1))+(v_2+(-v_2))i = 0 +0i = 0_\mathbf{C}$$
+        , by the definition of additive inverses in $V$. Since we've shown that $0_\mathbf{C}$ is the additive identity of $V_\mathbf{C}$, we have proved that for any given $v \in V_\mathbf{C}$ there exists (in $V_\mathbf{C}$) an additive inverse of $v$.
+        \item \textbf{Multiplicative identity}: For any $v \in V_\mathbf{C}$, and for $1 \in \mathbf{C}$ we have that $1v = 1(v_1+v_2i) = (1v_1) + (1v_2)i = v_1+v_2i$, since it is also true that $1 \in \mathbf{R}$, and 1 is the multiplicative identity on $V$.
+        \item \textbf{Associativity of scalar multiplication}: For $a, b \in \mathbf{C}$, and $v \in V_\mathbf{C}$ we have that $a = a_1+a_2i, b=b_1+b_2i, v=v_1+v_2i$. Then:
+        $$(ab)v = ((a_1+a_2i)(b_1+b_2i))v = (a_1b_1 - a_2b_2 + (a_1b_2 +a_2b_1)i)v = $$
+        $$((a_1b_1 - a_2b_2)v_1 - (a_1b_2 + a_2b_1)v_2)+( (a_1b_1-a_2b_2)v_2 +(a_1b_2+a_2b_1)v_1)i$$
+        And:
+        $$a(bv) = a((b_1+b_2i)(v_1+v_2i))=a( (b_1v_1 -b_2v_2)+(b_1v_2+b_2v_1)i) = $$
+        $$(a_1+a_2i)( (b_1v_1 - b_2v_2) + (b_1v_2 + b_2v_1)i) =$$ 
+        $$(a_1b_1v_1 - a_1b_2v_2 - a_2b_1v_2 -a_2b_2v_1) + (a_2b_1v_1-a_2b_2v_2+a_1b_1v_2+a_1b_2v_1)i =$$
+        $$((a_1b_1-a_2b_2)v_1 - (a_1b_2+a_2b_1)v_2)+((a_2b_1+a_1b_2)v_1+(a_1b_2-a_2b_2)v_2)i$$
+
+        , where we use the properties of complex number multiplication, the distributive properties on $V$ and the definition of scalar multiplication on $V_\mathbf{C}$. We observe that the two resulting quantities above are equal, thus indeed $(ab)v = a(bv)$.
+        \item {Distributive properties}: the proofs here are done as in the case for associativity of scalar multiplication, and are omitted for the sake of brevity.
+    \end{itemize}
+
+    Therefore, $V_\mathbf{C}$ is indeed a -complex- vector space.
+\end{solution}
+
+\begin{exercise}{2}
+    Verify that if $V$ is a real vector space and $T \in L(V)$, then $T_\mathbf{C} \in L(V_\mathbf{C})$.
+\end{exercise}
+
+\begin{solution}
+
+    We need to prove three things. One, that for any $v \in V_\mathbf{C}$, $T_\mathbf{C}(v) \in V_\mathbf{C}$. Two, that $T_\mathbf{C}$ has the additivity property and three that it has the homogeneity property.
+
+    Then, let $v \in V_\mathbf{C}$, therefore $v = v_1+v_2i$ for $v_1, v_2 \in V$. By definition, $T_\mathbf{C}(v) = T(v_1) + T(v_2)i$. Because $T$ is an operator, $T(v_1), T(v_2) \in V$. Thus, by definition of the complexification of $V$, $T(v_1)+T(v_2)i \in V_\mathbf{C}$. Therefore $T_\mathbf{C}$ is an operator on $V_\mathbf{C}$.
+
+    Let then also $w \in V_\mathbf{C}, w = w_1+w_2i, w_1, w_2 \in V$. Then 
+    $$T_\mathbf{C}(v+w) = T_\mathbf{C}((v_1+w_1)+(v_2+w_2)i) = $$
+    $$T(v_1+w_1) + T(v_2+w_2)i = T(v_1)+T(w_1) + (T(v_2)+T(w_2))i = $$
+    $$(T(v_1)+T(v_2)i)+(T(w_1)+T(w_2)i) = T_\mathbf{C}(v)+T_\mathbf{C}(w)$$
+
+    , by the additivity of $T$ and the definition of addition on $V_\mathbf{C}$. Therefore, $T_\mathbf{C}$ has the additivity property.
+
+    Let also $\lambda = a+b_i \in \mathbf{C}$. Then:
+    $$T_\mathbf{C}(\lambda v) = T_\mathbf{C}((a+bi)(v_1+v_2)i) = T_\mathbf{C}(av_1 - bv_2 + (bv_1 + av_2)i) $$
+    $$= T(av_1-bv_2)+ T(bv_1+av_2)i = aT(v_1) - bT(v_2) + (bT(v_1) + aT(v_2))i$$
+    Also:
+    $$\lambda T_\mathbf{C}(v) = (a+bi)(T(v_1)+T(v_2)i) = aT(v_1) - bT(v_2) + (T(v_1)b + T(v_2)a)i$$
+
+    , where in both cases we used the homogeneity of $T$ and the definition of scalar multiplication on $V_\mathbf{C}$. Since the two quantities are equal, we have $T_\mathbf{C}(\lambda v) = \lambda T_\mathbf{C}(v)$, therefore $T_\mathbf{C}$ has the homogeneity property, thus completing the proof that $T_\mathbf{C} \in L(V_\mathbf{C})$.
+    
+\end{solution}
+
+\newpage
+\begin{exercise}{3}
+    Suppose $V$ is a real vector space and $v_1, \ldots, v_m \in V$. Prove that $v_1, \ldots, v_m$ is linearly independent in $V_\mathbf{C}$ if and only if $v_1, \ldots, v_m$ is linearly independent in $V$.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: Suppose $v_1, \ldots, v_m$ is linearly independent in $V_\mathbf{C}$. Since $v_i \in V$, we think of them as elements of $V_\mathbf{C}$ by identifying each of them with $v_i + 0i \in V_\mathbf{C}$ (this mapping is an isomorphism). Suppose now that for some $a_j \in \mathbf{R}$, it holds that $\sum_j a_j v_j = 0$. Then, we have that:
+    
+    $$\sum_j a_j v_j = 0 \implies \sum_j a_j(v_j + 0i) = 0_\mathbf{C}$$
+    
+    , since the zero vector of $V_\mathbf{C}$ has zero as both its real and imaginary ``part''. Since $v_1, \ldots, v_m$ are linearly independent in $V_\mathbf{C}$, the last equality implies that $a_i = 0$ for all $i$, thus $v_1, \ldots, v_m$ are also linearly independent in $V$.
+
+    $\impliedby$: Suppose now that $v_1, \ldots, v_m$ are linearly independent in $V$. We want to examine whether they are linearly independent in $V_\mathbf{C}$, i.e. whether $v_1 + 0i, v_2 + 0i, \ldots, v_m + 0i$ are linearly independent in $V_\mathbf{C}$. Suppose that for some $a_j \in \mathbf{C}$, $\sum_j a_j(v_j + 0i) = 0_\mathbf{C}$. This implies that:
+    
+    $$\sum_j a_j(v_j+0i) = 0_\mathbf{C} \implies \sum_j (Re\{a_j\} + Im\{a_j\}i)(v_j+0_j) = 0_\mathbf{C} \implies \sum_j Re\{a_j\}v_j + \sum_j Im\{j\}v_j i = 0_\mathbf{C}$$
+
+    Due to the definition of the zero vector of $V_\mathbf{C}$, both the real and imaginary ``parts'' of the left-hand side must be zero. This fact, combined with the linear independence of $v_1, \ldots, v_m$ in $V$ and the fact that all $Re\{a_j\}, Im\{a_j\}$ are real numbers implies that all of them are zero, hence that each $a_j$ is also zero and therefore that $v_1, \ldots, v_m$ are linearly independent in $V_\mathbf{C}$ as well.
+\end{solution}
+
+\begin{exercise}{4}
+    Suppose $V$ is a real vector space and $v_1, \ldots, v_m \in V$. Prove that $v_1, \ldots, v_m$ spans $V_\mathbf{C}$ if and only if $v_1, \ldots, v_m$ spans $V$.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: Suppose that $v_1, \ldots, v_m$ spans $V_\mathbf{C}$. Suppose also that $v \in V$. We can identify $v$ with the element $v+0i$ of $V_\mathbf{C}$. Since $v_j$ spans $V_\mathbf{C}$, there exist $a_j \in \mathbf{C}$ such that:
+    
+    $$\sum_j a_j (v_j + 0i) = v + 0i \implies \sum_j (Re\{a_j\} + Im\{a_j\}i)(v_j + 0i) = v + 0i $$
+    $$\implies \sum_j Re\{a_j\}v_j + \sum Im\{a_j\}v_j i = v + 0i$$
+
+    Equality of elements of $V_\mathbf{C}$ implies equality of both their real and imaginary ``parts''. Thus we have that:
+
+    $$\sum_j Re\{a_j\}v_j = v$$
+
+    , therefore $v$ can be written as a linear combination of $v_j$, and since it was arbitrarily selected in $V$ we conclude that $v_1, \ldots, v_m$ spans $V$.
+
+    $\impliedby$: Suppose that $v_1, \ldots, v_m$ spans $V$. Suppose also that $w \in V_\mathbf{C}$. Then there exist $u, v \in V$ such that $w = u + vi$. Additionally, since $v_1, \ldots, v_m$ spans $V$ there exist $a_1, \ldots, a_m, b_1, \ldots, b_m \in \mathbf{R}$ such that:
+    
+    $$\sum_j a_j v_j = u, \sum_j b_j v_j = v$$
+
+    This implies that:
+
+    $$w = u + vi = \sum_j a_j v_j + \sum_j b_j v_j i = \sum_j (a_j + b_j i) (v_j + 0i)$$
+
+    Since $a_j + b_j i \in \mathbf{C}$, we have written $w$ as a linear combination of $v_j$, and since $w$ was arbitrarily selected in $V_\mathbf{C}$, $v_1, \ldots, v_m$ spans $V_\mathbf{C}$.
+\end{solution}
+
+\begin{exercise}{5}
+    Suppose that $V$ is a real vector space and $S, T \in L(V)$. Show that $(S+T)_\mathbf{C} = S_\mathbf{C} + T_\mathbf{C}$ and that $(\lambda T)_\mathbf{C} = \lambda T_\mathbf{C}$ for every $\lambda \in \mathbf{R}$.
+\end{exercise}
+
+\begin{solution}
+
+    Let $w \in V_\mathbf{C}$. We have then that there exist $u, v \in V$ such that $w = u + vi$, and that:
+    
+    $$(S+T)_\mathbf{C}(w) = (S+T)_\mathbf{C}(u + vi) = (S+T)(u) + (S+T)(v)i = S(u) + T(u) + (S(v) + T(v))i = $$
+    $$(S(u) + S(v)i) + (T(u) + T(v)i) = S_\mathbf{C}(w) + T_\mathbf{C}(w)$$
+
+    , by the definition of the complexification of an operator, the definition of addition in $L(V)$ and by the definition of addition in the complexification of $V$. Thus $(S+T)_\mathbf{C} = S_\mathbf{C} + T_\mathbf{C}$.
+
+    Similarly, for $\lambda \in \mathbf{R}$, the operator $\lambda T$: is well-defined and belongs in $L(V)$, thus its complexification is also well-defined and we have that:
+    
+    $$(\lambda T)_\mathbf{C}(w) = (\lambda T)_\mathbf{C}(u+vi) = (\lambda T)(u) + (\lambda T)(v)i = \lambda T(u) + \lambda T(v)i = \lambda(T(u) + T(v)i) = \lambda T_\mathbf{C}(w)$$
+
+    , where we used the definition of the complexification of an operator and the definition of scalar multiplication in $L(V)$ and $V_\mathbf{C}$. Therefore, it is indeed true that $(\lambda T)_\mathbf{C} = \lambda T_\mathbf{C}$ for $\lambda \in \mathbf{R}$.
+\end{solution}
+
+\begin{exercise}{6}
+    Suppose $V$ is a real vector space and $T \in L(V)$. Prove that $T_\mathbf{C}$ is invertible if and only if $T$ is invertible.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: Suppose $T_\mathbf{C}$ is invertible. Because $T, T_\mathbf{C}$ are operators, to show that $T$ is invertible it suffices to show that it is injective or surjective. Suppose that for some $v \in V$, $T(V) = 0$. Then, we have that:
+
+    $$T_\mathbf{C}(v + 0i) = T(v) + T(0)i = 0 + 0i = 0_\mathbf{C}$$
+
+    Because $T_\mathbf{C}$ is invertible, it is injective. Thus, the above equation can only hold if $v + 0i = 0_\mathbf{C}$, which implies that $v = 0$, which implies that $T$ is indeed injective, and thus invertible.
+
+    $\impliedby$: Suppose now that $T$ is invertible. Suppose that for some $w \in V_\mathbf{C}, w = u + vi, u, v \in V$ it holds that $T_\mathbf{C}(w) = 0_\mathbf{C}$. Then, we have that:
+
+    $$T_\mathbf{C}(w) = 0_\mathbf{C} \implies T(u) + T(v)i = 0 + 0i$$
+
+    This equality implies that $T(u) = 0, T(v) = 0$. Since $T$ is injective, this can only happen for $u = v = 0$, which yields $w = 0+0 i = 0_\mathbf{C}$, which implies $T_\mathbf{C}$ is injective, and thus invertible.
+\end{solution}
+
+\begin{exercise}{7}
+    Suppose $V$ is a real vector space and $N \in L(V)$. Prove that $N_\mathbf{C}$ is nilpotent if and only if $N$ is nilpotent.
+\end{exercise}
+
+\begin{solution}
+
+    Previously in the book we have seen that $T_\mathbf{C}^k(u+vi) = T^k(u) +T^k(v)i$. Based on this observation, we have that:
+
+    $\implies$: Suppose $N_\mathbf{C}$ is nilpotent. Let $v \in V$. Then we have that:
+
+    $$N_\mathbf{C}^{\text{dim} V_\mathbf{C}}(v+0i) = 0_\mathbf{C} \implies N^{\text{dim} V_\mathbf{C}}(v) + N^{\text{dim} V_\mathbf{C}}(0)i = 0_\mathbf{C} \implies N^{\text{dim} V}(v) +0i = 0_\mathbf{C}$$
+
+    , where we used the equality of the dimensions of $V, V_\mathbf{C}.$ This implies that for any $v$, $N^{\text{dim} V}(v) = 0$, therefore $N$ is indeed nilpotent.
+
+    $\impliedby$: Suppose $N$ is nilpotent. Let $w = u + vi, w \in V_\mathbf{C}, u, v \in V$. Because $N$ is nilpotent, it holds that:
+
+    $$N^{\text{dim} V}(u) = 0, N^{\text{dim} V}(v) = 0 \implies N^{\text{dim} V_\mathbf{C}}(u) = 0, N^{\text{dim} V_\mathbf{C}}(v) = 0$$
+
+    Then we have that:
+
+    $$N_\mathbf{C}^{\text{dim} V_\mathbf{C}}(w) = N^{\text{dim} V_\mathbf{C}}(u) + N^{\text{dim} V_\mathbf{C}}(v)i = 0 + 0i = 0_\mathbf{C}$$
+
+    Therefore, for any $w \in V_\mathbf{C}, N_\mathbf{C}^{\text{dim} V_\mathbf{C}}(w) = 0$, which means that $N_\mathbf{C}$ is nilpotent.
+\end{solution}
+\\
+\begin{exercise}{16}
+    Suppose $V$ is a real vector space. Prove that there exists $T \in L(V)$ such that $T^2 = -I$ if and only if $V$ has even dimension.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: Suppose that there exists a $T \in L(V)$ such that $T^2 = -I$. Suppose then that $V$ has odd dimension. We know then that $T$ has at least one eigenvalue $\lambda \in \mathbf{R}$, and by definition at least one non-zero eigenvector $v$ corresponds to this eigenvalue. It would then hold that:
+    $$T^2(v) = -I(v) \implies T(T(v)) = -v \implies T(\lambda v) = -v \implies \lambda^2v + v = 0 \implies (\lambda^2+1)v = 0$$
+
+    Since $V$ is non-zero, this implies that $\lambda^2 = -1$ which is a contradiction because $\lambda \in \mathbf{R}$. Therefore, the dimension of $V$ has to be even.
+
+    $\impliedby$: Suppose now that the dimension of a real vector space $V$ is even. This mean that any basis of it is of the form $v_1, v_2, \ldots, v_{2k}$. Pick one such basis and consider the following $T$, defined by its values on this basis:
+    $$T(v_i) = -v_{i+1}, \text{for $i$ odd}, T(v_i) = v_{i-1} \text{, for $i$ even}$$
+
+    Observe that because the dimension is even, for any $v_i$ with $i$ odd and at most equal to $2k-1$, $v_{i+1}$ is well-defined as a vector of the basis. Symmetrically, for any $v_i$ with $i$ even and at at most equal to $2k$, $v_{i-1}$ is well-defined as a vector of the basis. As a consequence of this, we observe that:
+    $$T^2(v_i) = T(T(v_i)) = T(-v_{i+1}) = -T(v_{i+1}) = -v_i, \text{for $i $ odd} $$
+    $$T^2(v_i) = T(T(v_i)) = T(v_{i-1}) = -v_i, \text{for $i$ even}$$
+
+    It is therefore true that for this $T, T^2=-I$, thus completing the proof in the other direction.
+\end{solution}
+
+\begin{exercise}{18}
+    Suppose $V$ is a real vector space and $T \in L(V)$. Prove that the following are equivalent.
+
+    (a) All the eigenvalues of $T_\mathbf{C}$ are real.
+
+    (b) There exists a basis of $V$ with respect to which $T$ has an upper-triangular matrix.
+
+    (c) There exists a basis of $V$ consisting of generalized eigenvectors of $T$.
+\end{exercise}
+
+\begin{solution}
+
+    (c)$\implies$(b): If there exists a basis of $V$ consisting of generalized eigenvectors of $T$, we know from previous results that the matrix of $T$ with respect to this basis is upper triangular.
+
+    (b)$\implies$(a): Suppose that there exists a basis of $V$ with respect to which $T$ has an upper-triangular matrix. Again from previous results, we know that the eigenvalues of $T$ are precisely the elements of the diagonal of this matrix, and that the multiplicity of each one equals the number of times it appears on this diagonal. We also know that each eigenvalue of $T$ is an eigenvalue of $T_\mathbf{C}$, and also that $\text{dim} V = \text{dim} V_\mathbf{C}$.
+
+    From these facts we conclude first that the sum of the multiplicities of the eigenvalues of $T$ equals $\text{dim} V$, since the number of diagonal elements of $M(T)$ is of course $\text{dim} V$. Therefore, it also equals $\text{dim} V_\mathbf{C}$. This means, however, that these must be \textit{all} of the eigenvalues of $T_\mathbf{C}$, since in a complex vector space the sum of the multiplicities of the eigenvalues of an operator always equals the dimension of the space. Therefore, $T_\mathbf{C}$ cannot have any eigenvalues that are non-real, therefore all of its eigenvalues are real.
+
+    (a)$\implies$(c): Suppose that all of the eigenvalues of $T_\mathbf{C}$ are real. Pick any generalized eigenvector $w \in V_mathbf{C}, w = u + vi, u, v \in V$ corresponding to an eigenvalue $\lambda \in \mathbf{R}$. We then have that:
+
+    $$(T_\mathbf{C} - \lambda I_\mathbf{C})^{\text{dim} V_\mathbf{C}}(w) = 0_\mathbf{C} \implies (T-\lambda I)^{\text{dim} V}(u) + (T-\lambda I)^{\text{dim} V}(v)i = 0 + 0i$$
+    $$\implies (T - \lambda I)^{\text{dim} V}(u) = 0, (T-\lambda I)^{\text{dim} V}(v) = 0$$
+
+    , where we used a previously observed fact about powers of the complexification of an operator, the fact that $\lambda \in \mathbf{R}$ and the definition of the zero vector of $V_\mathbf{C}$. We therefore conclude that $u, v$ are generalized eigenvectors of $T$ corresponding to $\lambda$. We can always find a basis of $V_\mathbf{C}$ consisting of generalized eigenvectors $w_j = u_j + v_j i$ of $T_\mathbf{C}$. Therefore, for any element $v \in V$, we can write $v+0i$ as a linear combination of those vectors. This also implies that $v$ can be written as a linear combination (with real coefficients) of all of the $u_j, v_j$. Since we showed that all of those are generalized eigenvectors of $T$, they form a spanning list of $V$ consisting of generalized eigenvectors of $T$.
+
+     Clearly, we can extract a basis of $V$ from this list, which will also consist of generalized eigenvectors of $T$, thus completing the proof.
+\end{solution}
+
+\section{Operators on Real Inner Product Spaces}
+
+\begin{exercise}{2}
+    Prove that every isometry on an odd-dimensional real inner product space has 1 or -1 as an eigenvalue.
+\end{exercise}
+
+\begin{solution}
+    
+    Every operator $S$ on a real vector space of odd dimension has an eigenvalue. Suppose now that $S$ is an isometry, $\lambda$ is said eigenvalue and $v \neq 0$ a corresponding eigenvector. Then we have that:
+    $$\lvert \lvert Sv \rvert \rvert = \lvert \lvert v \rvert \rvert \implies \lvert \lvert \lambda v \rvert \rvert = \lvert \lvert v \rvert \rvert =\implies \lvert \lambda \rvert = 1$$
+
+    , since $v$ has a non-zero norm. Therefore, since $\lambda \in \mathbf{R}$, it must hold that $\lambda = 1$ or $\lambda = -1$.
+\end{solution}
+
+\begin{exercise}{3}
+    Suppose $V$ is a real inner product space. Show that
+    $$\langle u + iv, x + iy \rangle = \langle u, x \rangle + \langle v, y \rangle + (\langle v, x \rangle - \langle u, v \rangle)i$$
+    for $u, v, x, y \in V$ defines a complex inner product on $V_\mathbf{C}$.
+\end{exercise}
+
+\begin{solution}
+
+    Let us examine one by one the necessary and sufficient properties for a complex inner product:
+    \begin{itemize}
+        \item \textbf{Positivity}: We need to examine whether $\langle u + iv, u + iv \rangle \geq 0$ for every $u, v \in V$. We have that:
+        $$\langle u + iv, u + iv \rangle = \langle u, u \rangle + \langle v, v \rangle + (\langle v, u \rangle - \langle u, v \rangle)i = \langle u, u \rangle + \langle v, v \rangle + (\langle v, u \rangle - \langle v, u \rangle)i = \langle u, u \rangle + \langle v, v \rangle \geq 0$$
+
+        , due to the symmetry and positivity of the real inner product on $V$.
+
+        \item \textbf{Definiteness}: From the equality derived above, we have that $\langle u + iv, u + iv \rangle - \langle u, u \rangle + \langle v, v \rangle$. This is a sum of nonnegative terms that thus only becomes zero when both terms are zero. Due to the definiteness of the real inner product on $V$, this happens precisely when $u = v =0$, which yields $u + iv = 0_\mathbf{C}$. Therefore, $\langle u + iv, u + iv \rangle$ is zero iff $u + iv = 0_\mathbf{C}$, i.e. the defined (complex) function has the definiteness property.
+
+        \item \textbf{Additivity in the first slot}: Let now $w_1 = u_1 + v_1i, w_2 = u_2 + v_2i, w_3 = u_3 + v_3i, w_1, w_2, w_3 \in V_\mathbf{C}, u_1, u_2, u_3, v_1, v_2, v_3 \in V$. Then:
+
+        $$\langle w_1 + w_2, w_3 \rangle = \langle (u_1 + u_2) + (v_1 + v_2)i, u_3 + v_3i \rangle = \langle u_1 + u_2, u_3 \rangle + \langle v_1 + v_2, v_3 \rangle + (\langle v_1 + v_2, u_3 \rangle - \langle u_1 + u_2, v_3 \rangle)i$$
+        $$= \langle u_1, u_3 \rangle + \langle u_2, u_3 \rangle + \langle v_1, v_3 \rangle + \langle v_2, v_3 \rangle +(\langle v_1, u_3 \rangle + \langle v_2, u_3 \rangle - \langle u_1, v_3 \rangle - \langle u_2, v_3 \rangle)i$$
+        $$= (\langle u_1, u_3 \rangle + \langle v_1, v_3 \rangle + (\langle v_1, u_3 \rangle - \langle u_1, u_3 \rangle)i) + (\langle u_2, u_3 \rangle + \langle v_2, v_3 \rangle + (\langle v_2, u_3 \rangle - \langle u_2, v_3 \rangle)i)$$
+        $$=\langle w_1, w_3 \rangle + \langle w_2, w_3 \rangle$$
+
+        , where we used the first-slot linearity of the real inner product on $V$ as well as the properties of complex numbers. Therefore, the complex function is linear in the first slot as well.
+
+        \item \textbf{Homogeneity in the first slot}: Let $\lambda = a + bi \in \mathbf{C}$ and $w_1 = u_1 + v_1i, w_2 = u_2 + v_2i \in V_\mathbf{C}, u_1, u_2, v_1, v_2 \in V$. Then:
+
+        $$\langle \lambda w_1, w_2 \rangle = \langle (a + bi)(u_1 + v_1i), u_2 + v_2i \rangle = \langle (au_1 - bv_1) + (av_1 + bu_1)i, u_2 + v_2i \rangle$$
+        $$= \langle au_1 - bv_1, u_2 \rangle + \langle av_1 + bu_1, v_2 \rangle + (\langle av_1 + bu_1, u_2 \rangle - \langle au_1 - bv_1, v_2 \rangle)i $$
+        Additionally:
+
+        $$\lambda \langle w_1, w_2 \rangle = (a + bi)(\langle u_1, u_2 \rangle + \langle v_1, v_2 \rangle +(\langle v_1, u_2 \rangle - \langle u_1, v_2 \rangle)i$$
+        $$= a(\langle u_1, u_2 \rangle + \langle v_1, v_2 \rangle) - b(\langle v_1, u_2 \rangle - \langle u_1, v_2 \rangle) + (a(\langle v_1, u_2 \rangle - \langle u_1, v_2 \rangle) + b(\langle u_1, u_2 \rangle + \langle v_1, v_2 \rangle))i$$
+        $$= \langle a u_1 - bv_1, u_2 \rangle + \langle av_1 + bu_1, v_2 \rangle + (\langle a v_1 + bu_1, u_2 \rangle -\langle au_1 - bv_1, v_2 \rangle)i$$
+
+        , where we used the first-slot homogeneity of the real inner product and the definition of complex multiplication. Notice that we've arrived at the same expression both times, thus $\langle \lambda w_1, w_2 \rangle = \lambda \langle w_1, w_2 \rangle$, which means we've proved first-slot homogeneity for the complex function.
+
+        \item \textbf{Conjugate symmetry}: Let $w_1 = u_1 + v_1i, w_2 = u_2 + v_2i, w_1, w_2 \in V_\mathbf{C}, u_1, u_2, v_1, v_2 \in V$. We have that:
+
+        $$\langle w_2, w_1 \rangle = \langle u_2 + v_2i, u_1 + v_1i \rangle = \langle u_2, u_1 \rangle + \langle v_2, v_1 \rangle +(\langle v_2, u_1 \rangle - \langle u_2, v_1 \rangle)i $$
+        $$= \langle u_1, u_2 \rangle + \langle v_1, v_2 \rangle - (\langle v_1, u_2 \rangle - \langle u_1, v_2 \rangle)i = \overline{\langle u_1, u_2 \rangle + \langle v_1, v_2 \rangle + (\langle v_1, u_2 \rangle - \langle u_1, v_2 \rangle)i}$$
+        $$=\overline{\langle w_1, w_2 \rangle}$$
+
+        , where we used the symmetry of the real inner product on $V$ and the definition of complex conjugates.
+    \end{itemize}
+
+    Therefore, we've proved all of the properties necessary for a function to be a complex inner product on $V_\mathbf{C}$.
+\end{solution}
+
+\begin{exercise}{4}
+    Suppose $V$ is a real inner product space and $T \in L(V)$ is self-adjoint. Show that $T_\mathbf{C}$ is a self-adjoint operator on the inner product space $V_\mathbf{C}$ defined by the previous exercise.
+\end{exercise}
+
+\begin{solution}
+
+    To prove that $T_\mathbf{C}$ is self-adjoint, we need to prove that for any two $w_1, w_2 \in V_\mathbf{C}$, $\langle T_\mathbf{C}w_1, w_2 \rangle = \langle w_1, T_\mathbf{C}w_2 \rangle$, where the inner product denotes the one defined in the previous exercise. We have that:
+
+    $$\langle T_\mathbf{C}w_1, w_2 \rangle = \langle T_\mathbf{C}(u_1 + v_1i), u_2 + v_2i \rangle = \langle T(u_1) + T(v_1)i, u_2 + v_2 i \rangle $$
+    $$= \langle T(u_1), v_2 \rangle + \langle T(v_1), v_2 \rangle + (\langle T(v_1), u_2 \rangle - \langle T(u_1), v_2 \rangle)i$$
+
+    And:
+    $$\langle w_1, T_\mathbf{C}w_2 \rangle = \langle u_1 + v_1i, T(u_2) + T(v_2)i \rangle $$
+    $$= \langle u_1, T(u_2) \rangle + \langle v_1, T(u_2) \rangle + (\langle v_1, T(u_2) \rangle - \langle u_1, T(v_2) \rangle)i$$
+    $$=\langle T(u_1), u_2 \rangle + \langle T(v_1), u_2 \rangle + (\langle T(v_1), u_2\rangle - \langle T(u_1), v_2 \rangle)i$$
+
+    , where we used the fact that $T$ is self-adjoint in $V$. Observe that the two expressions end up being equal, so it is indeed the case that $\langle T_\mathbf{C}w_1, w_2 \rangle = \langle w_1, T_\mathbf{C} w_2 \rangle$, thus $T_\mathbf{C}$ is self-adjoint.
+\end{solution}
+
+\begin{exercise}{5}
+    Use the previous exercise to give a proof of the Real Spectral Theorem (7.29) via complexification and the Complex Spectral Theorem (7.24).
+\end{exercise}
+
+\begin{solution}
+
+    Suppose first that an operator $T$ in a real vector space $V$ has a diagonal matrix with respect to some orthonormal basis of $V$. We know then that the matrix of $T^*$ with respect to this basis equals the conjugate transpose of the matrix of $T$, which due to being diagonal and real equals itself. Therefore $T$ is self-adjoint.
+
+    In the other direction, suppose that $T$ is self-adjoint. By exercise 4, $T_\mathbf{C}$ is also self-adjoint. Therefore it is normal, and by the Complex Spectral Theorem, there exists a basis $e_1 + f_1 i, e_2 +f_2 i, \ldots, e_n + f_n i$ of $V_\mathbf{C}$ with respect to which $M(T)$ is diagonal. More specifically, because $T_\mathbf{C}$ is self-adjoint, $M(T)$ must equal its conjugate transpose, and thus all entries on the diagonal are real. Let us call them $a_1, a_2, \ldots, a_n$, and note that they equal precisely the eigenvalues of $T_\mathbf{C}$. It is therefore true that:
+    $$T_\mathbf{C}(e_j + f_j i) = T(e_j) + T(f_j)i = a_j(e_j + f_j i)$$
+
+    Therefore, $T(e_j) = a_j e_j, T(f_j) = a_j f_j$, i.e. $e_j, f_j$ are eigenvectors of $T$. By taking all of $e_j, f_j$ we form a spanning list for $V$ since $e_j + i f_j$ are a basis of $V_\mathbf{C}$. From this we can extract a basis of $V$ consisting of eigenvectors of $T$.
+
+    Because $T$ is self-adjoint, it is normal, and because it is normal, eigenvectors corresponding to distinct eigenvalues are orthogonal. Because $V$ has a basis consisting of eigenvectors of $T$, it can be written as a direct sum of all $E(\lambda_i, T)$, $\lambda_i$ being the discrete eigenvalues of $T$. Form an orthonormal basis of each $E(\lambda_i, T)$ by applying the Gram-Schmidt procedure to the eigenvectors corresponding to $\lambda_i$. By the previous observation that eigenvectors corresponding to distinct eigenvalues of $T$ are orthogonal, if we concatenate all of these bases we obtain an orthonormal basis of $V$ consisting of eigenvectors of $T$. With respect to this basis it is of course true that $T$ has a diagonal matrix, therefore proving the other direction of the Real Spectral Theorem.
+\end{solution}

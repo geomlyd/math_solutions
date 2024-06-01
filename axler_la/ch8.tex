@@ -1,0 +1,467 @@
+\chapter{Operators on Complex Vector Spaces}
+
+ \section{Generalized Eigenvectors and Nilpotent Operators}
+
+ \begin{exercise}{1}
+     Define $T \in L(\mathbf{C}^2)$ by
+     $$T(w, z) = (z, 0)$$
+     Find all generalized eigenvectors of $T$.
+ \end{exercise}
+
+ \begin{solution}
+
+     With respect to the standard basis of $\mathbf{C}^2$, the matrix of $T$ is:
+     $$M(T) = \begin{pmatrix}
+         0 & 1 \\ 0 & 0
+     \end{pmatrix}$$
+     We are interested in the generalized eigenvectors of $T$. We know that it suffices to examine the non-zero solutions of $(T - \lambda I)^{\text{dim} \mathbf{C}^2} = 0 \implies (T - \lambda I)^2 = 0$ for all $\lambda \in \mathbf{C}$. We have, then, that:
+     $$M((T - \lambda I)^2) = \left( \begin{pmatrix}
+         0 & 1 \\ 0 & 0 \end{pmatrix} - \begin{pmatrix}
+             \lambda & 0 \\ 0 & \lambda \end{pmatrix} \right) \left( \begin{pmatrix}
+         0 & 1 \\ 0 & 0 \end{pmatrix} - \begin{pmatrix}
+             \lambda & 0 \\ 0 & \lambda \end{pmatrix} \right) =  \begin{pmatrix}
+                 \lambda^2 & -2\lambda \\ 0 & \lambda^2
+             \end{pmatrix}$$
+    Therefore:
+    $$M(T)M(v) = 0 \implies \begin{pmatrix} \lambda^2 & -2\lambda \\ 0 & \lambda^2 \end{pmatrix} \begin{pmatrix}
+        v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix}
+            0 \\ 0 \end{pmatrix} \implies \begin{pmatrix}
+                \lambda^2v_1 - 2\lambda v_2 \\ \lambda^2 v_2
+            \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$$
+    We observe that if $\lambda = 0$, any $v$ satisfies the equation. This means that all $v \in \mathbf{C}^2$ are generalized eigenvectors for $\lambda = 0$, and since generalized eigenvectors that correspond to different eigenvalues must be linearly independent, there can be no other combinations of eigenvalues and generalized eigenvectors.
+ \end{solution}
+
+ \begin{exercise}{2}
+     Define $T \in L(\mathbf{C}^2$ by
+     $$T(w, z) = (-z, w)$$
+     Find the generalized eigenspaces corresponding to the distinct eigenvalues of $T$.
+ \end{exercise}
+
+ \begin{solution}
+ 
+     Let us first find the eigenvalues of $T$. With respect to the standard basis, we have that:
+     $$M(T) = \begin{pmatrix}
+         0 & -1 \\ 1 & 0
+     \end{pmatrix} \implies M(T - \lambda I) = \begin{pmatrix} \begin{array} {rr}
+         -\lambda & -1 \\ 1 & -\lambda \end{array} \end{pmatrix}$$
+    Therefore:
+    $$M(T - \lambda I)M(v) = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \implies \begin{pmatrix}
+        -\lambda v_1 - v_2 \\ v_1 - \lambda v_2
+    \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} $$
+
+    , which implies that $v_1 = \lambda v_2$ and $v_2 = -\lambda v_1$. Substituting the first of those in the second we obtan that $v_2 = -\lambda^2 v_2 = 0 \implies v_2(1 + \lambda^2) = 0$. This gives either $\lambda = i$, or $\lambda = -i$ or $v_2 = 0$. If $v_2 = 0$ then $v_1 = 0$, which is not an eigenvector by definition. Therefore the eigenvalues are precisely $\lambda = i$ and $\lambda = -i$.
+
+    $\lambda = i$ means that $v_1 = i v_2$ and $v_2 \in \mathbf{C}$, whereas $\lambda = -i$ means that $v_1 = -i v_2$ and $v_2 \in \mathbf{C}$. This means that $E(i, T) = \text{span}\left( \begin{pmatrix}
+        i \\ 1
+    \end{pmatrix} \right), E(-i, T) = \text{span}\left( \begin{pmatrix}
+        -i \\ 1
+    \end{pmatrix} \right)$. Observe now that the number of distinct eigenvalues equals the dimension of the vector space, and that generalized eigenvectors corresponding to distinct eigenvalues are always linearly independent. Therefore, the generalized eigenspaces must equal the corresponding eigenspaces, since they cannot be any ``larger'' and still contain vectors that linearly independent from vectors of the other generalized eigenspace.
+ \end{solution}
+
+ \begin{exercise}{3}
+     Suppose $T \in L(V)$ is invertible. Prove that $G(\lambda, T) = G(\frac{1}{\lambda}, T^{-1})$ for every $\lambda \in \mathbf{F}$ with $\lambda \neq 0$.
+ \end{exercise}
+
+ \begin{solution}
+ 
+     We begin by observing that, for an invertible $T$ and a non-zero $\lambda$:
+     $$(T^{-1} - \frac{1}{\lambda}I)^n = (T^{-1} - \frac{1}{\lambda} T^{-1}T)^n = (T^{-1}(I - \frac{1}{\lambda} T))^n = (-\frac{1}{\lambda}T^{-1}(T - \lambda I))^n = $$
+     $$(-\lambda^{-1}T^{-1}(T - \lambda I))^n = (\lambda T)^{-1}(T - \lambda I)(\lambda T)^{-1}(T - \lambda I) \dots (\lambda T)^{-1}(T - \lambda I) = (\lambda T)^{-n}(T - \lambda I)^n$$
+
+     , where we used the following facts. One, that $(\lambda T)(\frac{1}{\lambda} T^{-1}) = I$, which means that $(\lambda T)^{-1} = \frac{1}{\lambda} T^{-1}$. Two, the definition of negative powers of operators, that is, $T^{-n} = (T^{-1})^n$. Three, the fact that, while the composition of linear maps is not, in general, a commutative operation, here we can in fact exchange the order of the terms, because ---due to associativity--- we are effectively only composing pairs of operators from the set $\{T, T^{-1}, I\}$, and for those operators composition is indeed commutative.
+
+     With this result we can now see that if $v$ is a generalized eigenvector of $T$ for the eigenvalue $\lambda$, it holds that $(T - \lambda I)^n(v) = 0$, and therefore also that $(T^{-1} - \frac{1}{\lambda}I)^n(v) = 0$, i.e., $v$ is a generalized eigenvector of $T^{-1}$ for the eigenvalue $\frac{1}{\lambda}$.
+
+     If we were to exchange the roles of $T$ and $T^{-1}$ in the result above, we would obtain a symmetric formula for $(T - \lambda I)^n$ as a function of $(T^{-1} - \frac{1}{\lambda}I)^n$, and thus the same argument would yield that any generalized eigenvector of $T^{-1}$ corresponding to $\frac{1}{\lambda}$ is a generalized eigenvector of $T$ corresponding to $\lambda$.
+
+     We have thus proved that $G(\lambda, T) = G(\frac{1}{\lambda}, T^{-1})$.
+     
+ \end{solution}
+
+ \begin{exercise}{5}
+     Suppose $T \in L(V)$, $m$ is a positive integer, and $v \in V$ is such that $T^{m-1}v \neq 0$ but $T^mv = 0$. Prove that
+     $$v, Tv, T^2v, \ldots, T^{m-1}v$$
+     is linearly independent.
+ \end{exercise}
+
+ \begin{solution}
+ 
+     First, observe that since $T^m v =0$, we have that for any $k \geq 0, T^{m+k}v = 0$. Second, observe that if $m = 1$ this holds trivially, since $T^{m-1}v = Iv = v$, given by the exercise to be non-zero, and we are asked to prove that $v$ is linearly independent, which of course is then true. Therefore, from now on assume that $m \geq 2$. To prove that the given list is linearly independent, we must prove that $a_0v + a_1Tv + \ldots + a_{m-1}T^{m-1}v = 0$ iff all $a_i$ are zero. Assume that for some values of $a_i$ it holds that this sum is zero. Then, we have that:
+
+     $$a_0v + a_1Tv + \ldots + a_{m-1}T^{m-1}v = 0 \implies a_0T^{m-1}v + a_1T^{m}v + \ldots + a_{m-1}T^{m + m -2} = T^{m-1}0 = 0$$
+
+     , and now observe that every term except the first one is zero, since $m \geq 2$ and $T^{m+k}v = 0$ for all $k \geq 0$. Thus the above equation becomes $a_0T^{m-1}v = 0$, and since $T^{m-1}v \neq 0$, we obtain $a_0 = 0$.
+
+     If $m = 2$, this is reduced to $a_1Tv = 0$ which of course yields $a_1 = 0$. Otherwise, by omitting the first term (since $a_0 = 0$) and composing with $T^{m-2}$ we obtain by the exact same procedure (since again every exponent except for the first one is at least $m$) that $a_1 = 0$. By continuing this process, we eventually obtain that all $a_i = 0$, thus completing the proof that the given list is linearly independent.
+ \end{solution}
+
+ \begin{exercise}{6}
+     Suppose $T \in L(\mathbf{C}^3)$ is defined by $T(z_1, z_2, z_3) = (z_2, z_3, 0)$. Prove that $T$ has no square root. More precisely, prove that there does not exist $S \in L(\mathbf{C}^3)$ such that $S^2 = T$.
+ \end{exercise}
+
+ \begin{solution}
+     
+     Suppose that such an $S$ did exist, thus $S^2 = T$. Then, we know that $\text{null} S \subset \text{null} S^2 = \text{null} T$. We observe now that the nullspace of $T$ has dimension 1: it is precisely the vectors of the form $(x, 0, 0)$. Since $\text{null} S$ is a subspace of $\text{null} T$, and since the nullspace of $T$ has dimension 1, there are only two possibilities. Either $\text{null} S = \{0\}$ or $\text{null} S = \text{null} T$.
+
+     Suppose that $\text{null} S = \{0\}$. Then $S(v) \neq 0$ for all $v \neq 0$. But, we have that e.g. $T(1, 0, 0) = (0, 0, 0) = S(S(1, 0, 0))$. This would mean that $S(1, 0, 0) \in \text{null} S$, thus that $S(1, 0, 0) = 0, (1, 0, 0) \neq 0$. This is clearly a contradiction.
+
+     Suppose now that $\text{null} S = \text{null} T$. Because $T = S^2$, observe that this also means than $\text{null} S = \text{null} S^n$ for any $n \geq 1$. Furthermore, observe that:
+     $$T^3(z_1, z_2, z_3) = T^2(z_2, z_3, 0) = T(z_3, 0, 0) = (0, 0, 0)$$
+     , that is, $T^3$ is the zero operator, which means $\text{null} T^3 = \mathbf{C}^3$. But $T^3 = S^6$, hence also $\text{null} S = \text{null} S^6 = \mathbf{C}^3$, hence $S$ is the zero operator. This is clearly a contradiction because it would imply that $T = S^2 = 0$. 
+
+     In both cases, we arrive at a contradiction, thus such an $S$ cannot exist.
+ \end{solution}
+
+ \begin{exercise}{7}
+    Suppose $N \in L(V)$ is nilpotent. Prove that 0 is the only eigenvalue of $N$.
+ \end{exercise}
+
+ \begin{solution}
+
+     Because $N$ is nilpotent, we know that there exists a basis of $V$ with respect to which the matrix of $N$ is zero everywhere except possibly above the diagonal. Such a matrix is, of course, an upper triangular matrix. We know, also, that if an operator has an upper triangular matrix with respect to some basis, its eigenvalues are precisely the elements of the diagonal of that matrix. Therefore, 0 is the only eigenvalue of $N$, precisely because all of the diagonal elements of its matrix are zero.
+ \end{solution}
+
+ \begin{exercise}{8}
+     Prove or disprove: The set of nilpotent operators on $V$ is a subspace of $L(V)$.
+ \end{exercise}
+
+ \begin{solution}
+
+     Let us examine the case of $V = \mathbf{C}^2$. In particular, consider the operators $N_1, N_2$ such that $N_1(e_1) = e_2, N_1(e_2) = 0, N_2(e_1) = 0, N_2(e_2) = e_1$, with $e_1, e_2$ the standard basis of $\mathbf{C}^2$. Clearly, they are both nilpotent: $N_1^2(e_1) = N_1(e_2) = 0, N_1^2(e_2) = N_1(0) = 0, N_2^2(e_1) = N_2(0) = 0, N_2^2(e_2) = N_2(e_1) = 0$. If the set of nilpotent operators was a subspace of $L(V)$, it would be closed under addition. Thus, here $N_1 + N_2$ would also have to be nilpotent.
+
+     However, $(N_1 + N_2)(e_1) = e_2, (N_1 + N_2)(e_2) = e_1$. This means that $(N_1 + N_2)^2(e_1) = e_1, (N_1 + N_2)^2(e_2) = e_2$, therefore $(N_1 + N_2)^2 = I$, which means that every even power of $N_1 + N_2$ equals the identity operator and every odd power equals $N_1 + N_2$. Neither of those operators is the zero operator, therefore, $N_1+N_2$ is not nilpotent and the set of nilpotent operators cannot be a subspace.
+ \end{solution}
+
+ \begin{exercise}{9}
+     Suppose $S, T \in L(V)$ and $ST$ is nilpotent. Prove that $TS$ is nilpotent.
+ \end{exercise}
+
+ \begin{solution}
+
+     Let $n = \text{dim} V$. Because $ST$ is nilpotent, we know that $(ST)^n = 0$. It suffices to show that \textit{some} power of $TS$ is the zero operator. Observe that, for $k \geq 2$, $(TS)^k = T(ST)^{k-1}S$. We can prove this by induction on  $k$:
+     \begin{itemize}
+         \item For $k=2$, $(TS)^2 = TSTS = T(ST)S$ by the associativity of linear operators.
+         \item If $(TS)^k = T(ST)^{k-1}S$, we need to show that $(TS)^{k+1} = T(ST)^{k}S$. Indeed, $(TS)^{k+1} = (TS)^k(TS) = T(ST)^{k-1}S(TS)= T(ST)^{k-1}(ST)S = T(ST)^{k}S$, where we used the associativity of linear operators and the induction hypothesis.
+     \end{itemize}
+     Having proved this, we have that $(TS)^{n+1}(v) = T(ST)^{n}S(v) = T(0) = 0S$ for any $v \in V$, since $(ST)^{n} = 0$. Hence, $TS$ is indeed nilpotent.
+ \end{solution}
+
+ \begin{exercise}{12}
+     Suppose $N \in L(V)$ and there exists a basis of $V$ with respect to which $N$ has an upper-triangular matrix with only 0's on the diagonal. Prove that $N$ is nilpotent.
+ \end{exercise}
+
+\begin{solution}
+
+    Let $e_1, e_2, \ldots e_n$ be the basis of $V$ with respect to which $M(N)$ is upper-triangular with only zeros on the diagonal. We claim then that $N^k(e_l) = 0$ for all $l \leq k$. If this is true, observe that it would imply that $N^{n}(e_i) = 0$ for every $e_i$ ($n$ is the length of the basis, and thus the dimension of $V$), and thus $N$ would be nilpotent, since an operator is fully defined by its values on a basis. We will prove this by ``induction'' (but only for a finite number of values) on $k$:
+    \begin{itemize}
+        \item For $k=1$, observe that $N(e_1) = 0$, since the first column of $M(N)$ consists of zeros only.
+        \item If this is true for all $k \leq l$, we need to prove that it holds for $k = l+1$. We have that $N(e_{l+1}) = \sum_{i=1}^{l} M(N)_{i, l+1}e_{i}$, since from the diagonal element of column $l+1$ and below all entries of $M(N)$ are zero. But then $N^{l+1}(e_{l+1}) = \sum_{i=1}^{l}M(N)_{i, l+1}N^{l}(e_i)$. Every term of this sum is zero: for $i < l+1$, by the induction hypothesis $N^{l}(e_i) = 0$. Thus $N^{l+1}(e_{l+1}) = 0$, while it is also true that $N^{l+1}(e_k) = 0, k < l$, trivially by the induction hypothesis.
+    \end{itemize}
+    This completes the proof of our claim, and, as we observed above, this directly implies that $N$ is nilpotent.
+\end{solution}
+
+\begin{exercise}{13}
+    Suppose $V$ is an inner product space and $N \in L(V)$ is normal and nilpotent. Prove that $N=0$.
+\end{exercise}
+
+\begin{solution}
+
+    Suppose that $N \neq 0$. This means that there exists a $v \in V$ such that $N(v)\neq 0$. Furthermore, because $N$ is nilpotent, it must hold that \textit{some} power of $N$ is zero at $v$ (in fact, we know that $N^{\text{dim}V}=0$). Let $k$ be the smallest power for which $N^{k}(v)=0$. By our definition, $k \geq 2$, because if $k=1$, then $N(v)=0$.
+
+    We have that:
+
+    $$N^k(v) = 0 \implies N(N^{k-1}(v)) = 0 \implies \lvert \lvert N(N^{k-1}(v)) \rvert \rvert = 0$$
+
+    Because $N$ is normal, $\lvert \lvert N(u) \rvert \rvert = \lvert \lvert N^*(u) \rvert \rvert$ for any $u \in V$. More specifically:
+
+    $$\lvert \lvert N(N^{k-1}(v)) \rvert \rvert = \lvert \lvert N^*(N^{k-1}(v)) \rvert \rvert \implies \lvert \lvert N^*(N^{k-1}(v)) \rvert \rvert = 0 \implies N^*(N^{k-1}(v)) = 0$$
+
+    This means, therefore, that $N^{k-1}(v) \in \text{null} N^* = (\text{range} N)^\bot$. Observe, however, that $N^{k-1}(v) = N(N^{k-2}(v))$, where $N^{k-2}$ is well-defined since $k \geq 2$. This means that $N^{k-1}(v) \in \text{range} N$, and since $N^{k-1}(v) \in (\text{range} N)^\bot$, $N^{k-1}(v)$ must be orthogonal to itself. This implies that $N^{k-1}(v) = 0$, which, by our definition of $k$, is a contradiction. Thus, $N$ must be the zero operator.
+\end{solution}
+
+\begin{exercise}{16}
+    Suppose $T \in L(V)$. Show that
+    $$V = \text{range} T^0 \supset \text{range} T^1 \supset \ldots \supset \text{range} T^k \supset \text{range} T^{k+1} \supset \ldots$$
+\end{exercise}
+
+\begin{solution}
+
+    Because $T^0=I$, it is clear that $V = \text{range} I = \text{range} T^0$. Now, pick $k \geq 0$. We need to show that $\text{range} T^k \supset \text{range} T^{k+1}$. If $v \in \text{range} T^{k+1}$, there exists $w \in V$ such that $T^{k+1}(w) = v \implies T^k(T(w)) = v$. By definition, this means that $v \in \text{range} T^k$. Hence, $\text{range} T^k \supset \text{range} T^{k+1}$, which completes the proof.
+\end{solution}
+
+\begin{exercise}{17}
+    Suppose $T \in L(V)$ and $m$ is a nonnegative integer such that
+    $$\text{range} T^m = \text{range} T^{m+1}$$
+    Prove that $\text{range} T^k = \text{range} T^m$ for all $k > m$.
+\end{exercise}
+
+\begin{solution}
+
+    Observe that $\text{range} T^m = \text{range} T^{m+1}$ means that $\text{dim range} T^m = \text{dim range} T^{m+1}$. Furthermore, by the Fundamental Theorem of Linear Maps, this yields that $\text{dim null} T^m = \text{dim} V - \text{dim range} T^m = \text{dim} V - \text{dim range} T^{m+1} = \text{dim null} T^{m+1}$. We also know that $\text{null} T^m \subset \text{null} T^{m+1}$, thus the equality of dimensions implies that, in fact, $\text{null} T^m = \text{null} T^{m+1}$.
+
+    We know that this implies that for each $k > m$, $\text{null} T^m \subset \text{null} T^k$. Thus, $\text{dim null} T^m = \text{dim null} T^{k}$, and again from the Fundamental Theorem of Linear Maps, we have that $\text{dim range} T^m = \text{dim} V - \text{dim null} T^m = \text{dim} V - \text{dim null} T^{k} = \text{dim range} T^{k}$. Additionally, in the previous exercise we proved that $\text{range} T^m \supset \text{range} T^{k}$. Thus, the equality of dimensions implies that $\text{range} T^m = \text{range} T^k$ for all $k > m$.
+\end{solution}
+
+\begin{exercise}{18}
+    Suppose $T \in L(V)$. Let $n = \text{dim} V$. Prove that
+    $$\text{range} T^n = \text{range} T^{n+1} = \text{range} T^{n+2} = \ldots$$
+\end{exercise}
+
+\begin{solution}
+
+    We know that for $n = \text{dim} V$, $\text{null} T^n = \text{null} T^{n+1}$. This implies that $\text{dim null} T^n = \text{dim null} T^{n+1}$, and by the Fundamental Theorem of Linear Maps we then have that $\text{dim range} T^n = \text{dim} V - \text{dim null} T^n = \text{dim} V - \text{dim null} T^{n+1} = \text{dim range} T^{n+1}$.
+
+    Furthermore, by exercise 16, $\text{range} T^n \supset \text{range} T^{n+1}$. Therefore the equality of dimensions implies that $\text{range} T^n = \text{range} T^{n+1}$. By exercise 17, this yields that $\text{range} T^n = \text{range} T^{k}$ for all $k > n$.
+\end{solution}
+
+\section{Decomposition of an Operator}
+
+\begin{exercise}{1}
+    Suppose $V$ is a complex vector space, $N \in L(V)$ and 0 is the only eigenvalue of $N$. Prove that $N$ is nilpotent.
+\end{exercise}
+
+\begin{solution}
+
+    Since $V$ is a complex vector space, there exists some basis of it with respect to which $M(N)$ is upper triangular. We know then that the values on the diagonal of this matrix must equal the eigenvalues of $N$. Thus, they must all be zero. By exercise 12 of 8.A, we know that the fact that there exists a basis of $V$ with respect to which $N$ has an upper triangular matrix with only zeros on the diagonal implies that $N$ is nilpotent.
+\end{solution}
+
+\begin{exercise}{3}
+    Suppose $T \in L(V)$. Suppose $S \in L(V)$ is invertible. Prove that $T$ and $S^{-1}TS$ have the same eigenvalues with the same multiplicities.
+\end{exercise}
+
+\begin{solution}
+
+    We are interested in the solutions of $(T- \lambda I)^n(v) = 0$ and $(S^{-1}TS - \lambda I)^n(v) = 0$, where $n = \text{dim} V$. More precisely, we want to show that the dimensions of the two nullspaces are equal for any $\lambda$. We begin by observing that if $\lambda$ is an eigenvalue of $T$, then $Tv = \lambda v$ for a nonzero v. Because $S$ is invertible, it is surjective and injective, thus there exists a unique and nonzero $w \in V$ such that $S(w) = v$. Then, $S^{-1}TS(w) = S^{-1}T(v) = S^{-1}(\lambda v) = \lambda w$, which means that $\lambda$ is an eigenvalue of $S^{-1}TS$. Similarly, if $\lambda$ is an eigenvalue of $S^{-1}TS$, there exists nonzero $v$ such that $S^{-1}TS(v) = \lambda v$. This means that $TS(v) = S(\lambda v) = \lambda S(v)$, therefore $S(v)$ (which must be nonzero because $S$ is injective) is an eigenvector of $T$ corresponding to $\lambda$. Therefore the two transforms do indeed have the same eigenvalues.
+
+    We continue by observing the following:
+    $$(S^{-1}TS - \lambda I)(v) = S^{-1}(TS - \lambda S I)(v) = (S^{-1}(T - \lambda S I S^{-1})S)(v) = (S^{-1}(T - \lambda I)S)(v)$$
+
+    We now claim that $(S^{-1}(T - \lambda I)S)^n = S^{-1}(T- \lambda I)^nS$ for any positive integer $n$. We prove this by induction on $n$:
+    \begin{itemize}
+        \item For $n=1$, this is clearly true.
+        \item If it holds for $n=k$, we have that $(S^{-1}(T-\lambda I)S)^{k+1} = (S^{-1}(T - \lambda I)S)^k (S^{-1}(T - \lambda I)S) = S^{-1} (T - \lambda I)^k S S^{-1} (T - \lambda I) S = S^{-1} (T - \lambda I)^{k+1} S$
+        
+        , where we used the induction hypothesis and the associativity of linear map products.
+    \end{itemize}
+    By the above facts, we have that:
+    $$(S^{-1}TS - \lambda I)^n(v) = (S^{-}1(T- \lambda I)^n S)(v)$$
+
+    Therefore, if $v$ is a generalized eigenvector of $T$ corresponding to $\lambda$, $v$ is non-zero and $(T-\lambda I)^n(v) = 0$, and because $S$ is invertible there exists a non-zero and unique $w$ such that $Sw = v$. Thus:
+
+    $$(S^{-1}TS - \lambda I)^n(w) = (S^{-1}(T - \lambda I)^n S)(w) = (S^{-1}(T - \lambda I)^n)(v) = S^{-1}(0) = 0$$
+
+    , thus $w$ is a generalized eigenvector of $S^{-1}TS$ corresponding to $\lambda$. Now, if $w$ is a generalized eigenvector of $S^{-1}TS$ corresponding to $\lambda$, we have that $w$ is non-zero and $(S^{-1}TS - \lambda I)^n(w) = (S^{-1}(T - \lambda I)^nS) (w) = 0$. From this we obtain that:
+    $$(T-\lambda I)^nS(w) = S(0) = 0$$
+
+    Because $S$ is invertible and injective, $S(w)$ is non-zero and of course unique. Thus, it is a generalized eigenvector of $T$ corresponding to $\lambda$.
+
+    The fact that in both cases we were able to \textit{uniquely} map elements of $G(\lambda, T)$ to elements of $G(\lambda, S^{-1}TS)$ and vice versa leads us to conclude that the two subspaces are isomorphic, and thus have the same dimension. By definition, this means that the eigenvalues of $T, S^{-1}TS$ are not only the same, but that the multiplicities of each of them are also equal.
+\end{solution}
+
+\begin{exercise}{5}
+    Suppose $V$ is a complex vector space and $T \in L(V)$. Prove that $V$ has a basis consisting of eigenvectors of $T$ if and only if every generalized eigenvector of $T$ is an eigenvector of $T$.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: If $V$ has a basis consisting of eigenvectors of $T$, it is also true that $V = E(\lambda_1, T) \oplus \ldots \oplus E(\lambda_m, T)$, where $\lambda_i$ are the eigenvalues of $T$. Furthermore, it is also true that $V = G(\lambda_1, T) \oplus \ldots \oplus G(\lambda_m, T)$. Suppose now that $v \in G(\lambda_i, T)$ is a generalized eigenvector of $T$ corresponding to $\lambda_i$. From the first direct sum, we obtain that there exist $u_1 \in E(\lambda_1, T), \ldots, u_m \in E(\lambda_m, T)$ such that:
+    $$v = u_1 + \ldots + u_m \implies 0 = u_1 + \ldots + u_i - v + \ldots + u_m$$
+    Because each eigenvector of $T$ is obviously a generalized eigenvector of $T$, $u_k \in G(\lambda_k, T)$. Furthermore, $u_i - v \in G(\lambda_i, T)$, precisely because both of these vectors belong in this subspace. Now, from the second direct sum, it must be true that if $0 = w_1 + \ldots + w_m, w_k \in G(\lambda_k, T)$, then each $w_k$ is zero. From this we obtain that $u_k = 0, k \neq i$ and that $u_i -v = 0 =\implies u_i = v$. This means that $v$ belongs in $E(\lambda_i, T)$, therefore it is indeed an eigenvector of $T$.
+
+    $\impliedby$: It is clear that $E(\lambda_i, T) \subset G(\lambda_i, T)$. Furthermore, if every generalized eigenvector of $T$ corresponding to $\lambda_i$ is an eigenvector of $T$, it must be an eigenvector corresponding to $\lambda_i$. If it corresponded to some other eigenvalue $\lambda_j$, then it would also be a generalized eigenvector for $\lambda_j$ , which is a contradiction due to generalized eigenvectors corresponding to different eigenvalues being linearly independent. This yields that $G(\lambda_i, T) \subset E(\lambda_i, T)$, therefore $E(\lambda_i, T) = G(\lambda_i, T)$. Because $V$ can always be written as a direct sum of all $G(\lambda_i, T)$, in this case it is also true that it can be written as a direct sum of all $E(\lambda_i, T)$, which we know is equivalent to $V$ having a basis consisting of eigenvectors of $T$.
+\end{solution}
+
+\begin{exercise}{7}
+    Suppose $V$ is a complex vector space. Prove that every invertible operator on $V$ has a cube root.
+\end{exercise}
+
+\begin{solution}
+
+    If we can prove that every operator of the form $I + N$, where $N$ is a nilpotent operator, has a cube root, then we could apply the same reasoning as 8.33 (invertible operators have square roots): 
+    
+    First we'd write $V$ as a direct sum of the generalized eigenspaces of $T$ and observe that none of the eigenvalues equal zero. Furthermore, that the restriction of $T$ in each of those subspaces is equal to a nilpotent operator plus a multiple of the identity. Each of those operators will have a cube root, and this would allow us to define an operator $R$ as the sum of the application of each of the cube roots. This means, of course, that $T = R^3$.
+
+    Now, to prove that every operator of the form $I + N$, $N$ a nilpotent operator, has a cube root, we can use the same ``trick'' as 8.31, inspired instead by the Taylor series of $\sqrt[3]{1+x}$. Because it is true that
+    $$\sqrt[3]{1+x} = 1 + a_1 x + a_2 x^2 + \ldots$$
+    , and because $N^m = 0$ for some $m$, we need only consider a finite number of terms in the sum. The rest of the proof is done in the same way as 8.31, the difference being that we cube the expression
+    $$I + a_1 N + a_2 N^2 + \ldots + a_{m-1}N^{m-1}$$
+    instead of squaring it, and then equate it to $I+N$.
+\end{solution}
+
+\begin{exercise}{10}
+    Suppose $\mathbf{F} = \mathbf{C}$ and $T \in L(V)$. Prove that there exist $D, N \in L(V)$ such that $T=D+N$, the operator $D$ is diagonalizable, $N$ is nilpotent and $DN = ND$.
+\end{exercise}
+
+\begin{solution}
+
+    Recall that in a complex vector space, given an operator $T$ with eigenvalues $\lambda_1, \ldots, \lambda_m$ with corresponding multiplicities $d_1, \ldots, d_m$, there always exists a basis of $V$ with respect to which $T$ has a block diagonal matrix of the form
+    $$\begin{pmatrix} A_1 & \ldots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \ldots & A_m
+    \end{pmatrix}$$
+    , where each $A_j$ is a $d_j \times d_j$ upper triangular matrix of the form
+    $$A_j = \begin{pmatrix} \lambda_j & \ldots & * \\ \vdots & \ddots & 0 \\ 0 & \ldots & \lambda_j
+    \end{pmatrix}$$
+    Let then $D, N$ be the operators whose matrices with respect to this basis equal:
+    $$M(D) = \text{diag}\{M(T)\}, M(N) = M(T) - M(D)$$
+    , where we use the notation $\text{diag}\{A\}$ to refer to the diagonal matrix that can be formed by selecting the diagonal of matrix $A$ and setting all other elements to zero. Observe, also, that by these definitions $M(N)$ is an upper triangular matrix with zeros on the diagonal. We know that this means that $N$ is a nilpotent operator. Furthermore, by definition it holds that $T = D + N$. Therefore, we only need to prove that $DN = ND$. To do this, we need only consider the values of $DN, ND$ on the vectors $v_1, \ldots, v_n$ comprising the basis we are using. 
+    
+    Due to the way we've selected this basis, we can divide the vectors in groups, depending on which eigenvalue they correspond to as generalized eigenvectors: $v_1, \ldots, v_{d_1}$ being the first group, $v_{d_1+1}, \ldots, v_{d_2}$ the second, and so on until $v_{d_1 + d_2 + \ldots + d_{m-1}+1}, \ldots, v_{n}$ being the last group. Consider then a vector $v_i$ that belongs in the $j$-th of these groups, and denote as $S_j$ the indices of the vectors of the group. 
+    
+    Then, due to the structure of $D$, it holds that $D(v_i) = \lambda_j v_i$. Furthermore, due to the structure of $N$, it holds that $N(v_i) = \sum_{k \in S_j, k \neq i}c_k v_k$. This is true because, for one, $N$ has the same block structure as $M(T)$, i.e., everything not belonging in one of the diagonal blocks is zero, and also because $N$ has zeros on the diagonal. Additionally, $D(v_k) = \lambda_j v_k$ for $k \in S_j$, because of the structure of the $A_j$ matrices, where all of their diagonal elements are equal to $\lambda_j$.
+
+    Thus, we finally have that:
+    $$ND(v_i) = N(\lambda_j v_i) = \lambda_j(\sum_{k \in S_j, k \neq i} c_k v_k)$$ 
+    $$DN(v_i) = D(\sum_{k \in S_j, k \neq i} c_k v_k) = \sum_{k \in S_j, k \neq i} c_k D(v_k) = \sum_{k \in S_j, k \neq i} c_k \lambda_j v_k $$
+    
+    , which means that $ND(v_i) = DN(v_i)$. Because $v_i$ is any vector of the basis, the two operators are indeed equal everywhere, thus completing the proof.
+\end{solution}
+
+\section{Characteristic and Minimal Polynomials}
+
+\begin{exercise}{8}
+    Suppose $T \in L(V)$. Prove that $T$ is invertible if and only if the constant term in the minimal polynomial of \(T\) is nonzero.
+\end{exercise}
+
+\begin{solution}
+
+    To begin, note that we know that \(T\) is invertible iff 0 is not an eigenvalue of \(T\). Therefore, we can replace ``\(T\) is invertible'' in the exercise statement with ``0 is not an eigenvalue of \(T\)'' and we'll be proving an equivalent statement.
+
+    $\implies$: If 0 is not an eigenvalue of $T$, it is also not a root of the minimal polynomial $p$ of $T$. Let $p(z) = a_0 + a_1z + \ldots + a_{m-1}z^{m-1} + z^m$ be the minimal polynomial of $T$. Then, $p(0) = a_0$. Since 0 is not a root of $p$, it follows that $a_0 \neq 0$, i.e. the constant term of $p$ is non-zero.
+
+    $\impliedby$: If the constant term of the minimal polynomial $p$ of $T$ is non-zero, we observe again that $p(0) = a_0 \neq 0$. Therefore, 0 is not a root of $p$, and thus cannot be an eigenvalue of $T$, completing the proof.
+\end{solution}
+
+\begin{exercise}{10}
+    Suppose $V$ is a complex vector space and $T \in L(V)$ is invertible. Let $p$ denote the characteristic polynomial of $T$ and let $q$ denote the characteristic polynomial of $T^{-1}$. Prove that
+    $$q(z) = \frac{1}{p(0)}z^{\text{dim} V}p(\frac{1}{z})$$
+    for all nonzero $z \in \mathbf{C}$.
+\end{exercise}
+
+\begin{solution}
+
+    Let $\lambda_1, \ldots, \lambda_m$ be the eigenvalues of $T$, with corresponding multiplicities $d_1, \ldots, d_m$. We know that because $T$ is invertible, every $\lambda_i$ is nonzero. Additionally, we know from a previous exercise that $T^{-1}$ has eigenvalues $\frac{1}{\lambda_1}, \ldots, \frac{1}{\lambda_m}$ with corresponding multiplicities $d_1, \ldots, d_m$. Therefore, the characteristic polynomial of $T^{-1}$ is:
+    $$q(z) = (z- \frac{1}{\lambda_1})^{d_1}(z- \frac{1}{\lambda_2})^{d_2}\ldots(z- \frac{1}{\lambda_m})^{d_m}$$
+
+    By a series of algebraic manipulations, and by assuming $z \neq 0$, we get that:
+    $$q(z) = (-\frac{1}{\lambda_1}(-\lambda_1 z + 1))^{d_1}(-\frac{1}{\lambda_2}(-\lambda_2 z + 1))^{d_2} \dots (-\frac{1}{\lambda_m}(-\lambda z + 1))^{d_m} \implies$$
+    
+    $$q(z) = (-\frac{1}{\lambda_1})^{d_1}(-\frac{1}{\lambda_2})^{d_2}\ldots(-\frac{1}{\lambda_m})^{d_m}(z(\frac{1}{z} - \lambda_1))^{d_1}(z(\frac{1}{z} - \lambda_2))^{d_2} \ldots(z(\frac{1}{z} - \lambda_m))^{d_m} \implies$$
+
+    $$q(z) = \frac{1}{(-\lambda_1)^{d_1}(-\lambda_2)^{d_2}\ldots(-\lambda_m)^{d_m}}z^{d_1 + d_2 + \ldots + d_m}(\frac{1}{z} - \lambda_1)^{d_1}(\frac{1}{z} - \lambda_2)^{d_2} \ldots (\frac{1}{z} - \lambda_m)^{d_m}$$
+
+    We know that $\sum_{i}d_i = \text{dim} V$. We also know that if $p$ is the characteristic polynomial of $T$, then $p(z) = (z - \lambda_1)^{d_1}(z - \lambda_2)^{d_2}\ldots(z-\lambda_m)^{d_m}$. We observe then that $p(0) = (-\lambda_1)^{d_1}(-\lambda_2)^{d_2}\ldots(-\lambda_m)^{d_m}$ and that for $z \neq 0, p(\frac{1}{z}) = (\frac{1}{z} - \lambda_1)^{d_1}(\frac{1}{z} - \lambda_2)^{d_2}\ldots(\frac{1}{z} - \lambda_m)^{d_m}$, leading us to conclude that:
+
+    $$q(z) = \frac{1}{p(0)}z^{\text{dim} V}p(\frac{1}{z})$$
+\end{solution}
+
+\begin{exercise}{11}
+    Suppose $T \in L(V)$ is invertible. Prove that there exists a polynomial $p \in P(\mathbf{F})$ such that $T^{-1} = p(T)$.
+\end{exercise}
+
+\begin{solution}
+
+    We know that the minimal polynomial $p$ of $T$ is always well-defined. Additionally, in exercise 8 we proved that the constant term of this polynomial is non-zero if and only if $T$ is invertible. Therefore, the minimal polynomial here has the form:
+    $$p(z) = a_0 + a_1z + \ldots + a_{m-1}z^{m-1} + z^m, a_0 \neq 0$$
+    Since $p(T) = 0$, for every $v \in V$ it holds that:
+    $$a_0I(v) + a_1T(v) + \ldots + a_{m-1}T^{m-1}(v) + T^m(v) = 0 \implies a_0TT^{-1}v + a_1T(v) + \ldots + a_{m-1}T^{m-1}(v) + T^m(v) = 0$$
+    $$\implies a_0TT^{-1}(v) = -a_1T(v) - \ldots -a_{m-1}T^{m-1}(v) - T^{m}(v) $$
+    $$\implies TT^{-1}(v) = -\frac{a_1}{a_0}T(v) - \ldots - \frac{a_{m-1}}{a_0}T^{m-1}(v) - \frac{1}{a_0}T^{m}(v) $$
+    $$\implies T^{-1}(v) = -\frac{a_1}{a_0}v - \ldots - \frac{a_{m-1}}{a_0}T^{m-2}(v) - \frac{1}{a_0}T^{m-1}(v)$$
+    , where we can divide by $a_0$ since it is not zero. The equation above shows that we've expressed $T^{-1}$ as a polynomial $q$ of $T$, therefore completing the proof.
+    
+\end{solution}
+
+\begin{exercise}{12}
+    Suppose $V$ is a complex vector space and $T \in L(V)$. Prove that $V$ has a basis consisting of eigenvectors of $T$ if and only if the minimal polynomial of $T$ has no repeated zeros.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: Suppose that $V$ has a basis consisting of eigenvectors $v_1, \ldots, v_n$ of $T$, each of them corresponding to \textit{some} eigenvalue of $T$, and let the eigenvalues of $T$ be $\lambda_1, \ldots, \lambda_m$. We know that the zeros of the minimal polynomial are precisely $\lambda_i$, therefore the minimal polynomial is of the form $p(z) = (z - \lambda_1)^{e_1}(z - \lambda_2)^{e_2}\ldots(z - \lambda_m)^{e_m}, e_i > 0$. 
+
+    Let $v$ be any vector in $V$. Then, $v \sum_i a_i v_i$. Observe that this means that $(T - \lambda_1 I)(T - \lambda_2 I) \ldots (T - \lambda_m I)(\sum_i a_i v_i) = \sum_i a_i (T - \lambda_1 I) \ldots (T - \lambda_m I)v_i$. All of the operators in each of the terms of the sum commute. Furthermore, each $v_i$ is an eigenvector of some eigenvalue, and therefore by rearranging these commutative operators so that in each term of the sum the operator $(T-\lambda_j)$, $\lambda_j$ being the eigenvalue that corresponds to $v_i$, is applied first, we can see that the sum equals zero. Therefore $(T - \lambda_1 I)(T - \lambda_2 I) \ldots (T - \lambda_m I)$ is the zero operator, which leads us to conclude that $p(z) = (z - \lambda_1)\ldots(z - \lambda_m)$ must be the minimal polynomial of $T$ (since each exponent should be at least 1).
+
+    Clearly, there are no repeated zeros in the minimal polynomial of $T$.
+
+    $\impliedby$: We'll prove this direction by proving the contrapositive, i.e. we will assume that there is at least one repeated zero in the minimal polynomial of $T$ and show that this implies that there exists no basis of $V$ consisting of eigenvectors of $T$. 
+    
+    Suppose therefore that $p$, the minimal polynomial of $T$, is of the form $p(z) = (z - \lambda_1)^{e_1} \ldots (z - \lambda_m)^{e_m}$, where at least one exponent is greater than 1, and without loss of generality, suppose that $e_1 > 1$. $p$ can therefore be written as $p(z) = (z - \lambda_1)^{e_1-1}(z - \lambda_1)q(z)$. Because $p$ is the minimal polynomial of $T$, $(T - \lambda_1 I)q(T)$ cannot be zero everywhere. Therefore, there exists a nonzero $v$ such that $(T - \lambda_1 I)q(T)(v)$ is non-zero. Additionally, it must hold that $p(T)(v) = 0$. If $q(T)(v) = w$, then $w$ is non-zero and $(T-\lambda_1 I) (w)$ is also non-zero. However, $p(T)(w) = (T - \lambda_1 I)^{e_1} (w) = 0$.
+
+    Therefore, $w$ is a generalized eigenvector of $T$ corresponding to $\lambda_1$ but \textit{is not} an eigenvector of $T$ corresponding to $\lambda_1$. From a previous exercise, we know that this implies that there exists no basis of $V$ consisting of eigenvectors of $T$. We've therefore proved the contrapositive of the statement we wanted to prove, thus also proving said statement (the ``$\impliedby$'' direction).
+\end{solution}
+
+\begin{exercise}{16}
+    Suppose $V$ is an inner product space and $T \in L(V)$. Suppose
+    $$a_0 + a_1z + \ldots + a_{m-1}z^{m-1} + z^m$$
+    is the minimal polynomial of $T$. Prove that
+    $$\overline{a_0} + \overline{a_1}z + \ldots + \overline{a_{m-1}}z^{m-1}+z^m$$
+    is the minimal polynomial of $T^*$.
+\end{exercise}
+
+\begin{solution}
+
+    Let $p(z)$ be the polynomial given in the exercise. Since $p$ is the minimal polynomial of $T$, we have that $p(T) = 0$. Therefore, the linear map $p(T) = a_0I + a_1T + \ldots + a_{m-1}T^{m-1}+T^m$ is the zero map. By using the properties of the adjoint, we obtain that the adjoint of this linear map is $p_a(T) = \overline{a_0}I + \overline{a_1}T^* + \ldots + \overline{a_{m-1}}(T^*)^{m-1} + (T^*)^m$, where $p_a(z) = \overline{a_0} + \overline{a_1}z + \ldots + \overline{a_{m-1}}z^{m-1} + z^m$. Clearly, $p_a(T^*)$ must also be the zero map. In combination with the fact that $p_a$ is monic, we have two of the conditions for $p_a$ being the minimal polynomial of $T^*$. We only need to prove that there is no monic polynomial $q$ of degree lower than $m$ such that $q(T^*) = 0$. Suppose that such a $q$ did exist, and that it had the form $q(z) = b_0 + b_1z + \ldots + b_{n-1}z^{n-1}+z^n, n < m$. By using the fact that $q(T^*) = 0$ and applying again the properties of the adjoint (recall that $(T^*)^* = T$), we conclude that $\overline{b_0}I + \overline{b_1}T + \ldots + \overline{b_{n-1}}T^{n-1} + T^n = 0, n < m$. Because $n < m$, this would mean that $p$ is not the minimal polynomial of $T$, which is a contradiction. Therefore $p_a$ is indeed the minimal polynomial of $T^*$.
+\end{solution}
+
+\begin{exercise}{17}
+    Suppose $\mathbf{F} = \mathbf{C}$ and $T \in L(V)$. Suppose the minimal polynomial of $T$ has degree $\text{dim} V$. Prove that the characteristic polynomial of $T$ equals the minimal polynomial of $T$.
+\end{exercise}
+
+\begin{solution}
+
+    We know that the roots of the minimal polynomial $p$ are precisely the eigenvalues of $T$. Therefore, $p(z) = (z - \lambda_1)^{e_1}(z - \lambda_2)^{e_2} \ldots (z - \lambda_m)^{e_m}$, with $\lambda_i$ being the eigenvalues of $T$ and $e_i$ some positive integer exponents. The degree of $p$ is $\text{dim} V$, therefore $\sum_i e_i = \text{dim} V$.
+
+    The characteristic polynomial of $T$ is $q(z) = (z - \lambda_1)^{d_1}(z - \lambda_2)^{d_2} \ldots (z - \lambda_m)^{d_m}$, with $d_i$ being the multiplicities of the corresponding eigenvalues $\lambda_i$. We also know that in complex vector spaces, $q$ must be a polynomial multiple of $p$, i.e., there exists a polynomial $a$ such that $q(z) = p(z)a(z)$. Observe that $q, p$ have exactly the same zeros. This means that $a$ must be of the form $a(z) = (z - \lambda_1)^{f_1}(z - \lambda_2)^{f_2}\ldots (z - \lambda_m)^{f_m}, f_i \geq 0$. 
+    
+    Furthermore, the degree of $q$ also equals $\text{dim} V$. Because $\text{deg} p = \text{deg} q$, we conclude that every $f_i$ must be zero: if this was not the case, the degree of $q$ would be strictly larger than the degree of $p$, which is a contradiction. Therefore, $a(z) = 1$, which means that $p(z) = q(z)$, i.e. the characteristic polynomial of $T$ equals the minimal polynomial of $T$.
+\end{solution}
+
+\newpage
+\section{Jordan Form}
+
+\begin{exercise}{1}
+    Find the characteristic polynomial and the minimal polynomial of the operator $N$ in Example 8.53.
+\end{exercise}
+
+\begin{solution}
+
+    With respect to the basis $z_1=N^3(z_4), z_2 = N^(2(z_4), z_3 = N(z_4), z_1 = (1, 0, 0, 0)$, the operator $N$ of this example has the following matrix:
+    $$\begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0
+    \end{pmatrix}$$
+
+    Observe that 0 is thus the only eigenvalue of $N$, and $N$ is nilpotent. Thus, the characteristic polynomial must necessarily be $p(z) = z^{\text{dim} V} = z^4$. As for the minimal polynomial, because the characteristic polynomial is a polynomial multiple of it, we need only examine whether $T^2$ or $T^3$ are zero. With respect to the above basis, $N$ operates as: $N(z_1) = 0, N(z_2) = z_1, N(z_3) = z_2, N(z_4) = z_3$, thus:
+    $$N^2(z_1) = 0, N^2(z_2) = N(z_1) = 0, N^2(z_3) = N(z_2) = z_1, N^2(z_4) = N(z_3) = z_2$$
+    $$N^3(z_1) = 0, N^3(z_2) = N(z_1) = 0, N^3(z_3) = N(N^2(z_2)) = 0, N^3(z_4) = N(z_2) = z_1$$
+
+    , therefore neither of these operators are zero, and thus the minimal polynomial must equal the characteristic polynomial.
+    
+\end{solution}
+
+\begin{exercise}{3}
+    Suppose $N \in L(V)$ is nilpotent. Prove that the minimal polynomial of $N$ is $z^{m+1}$, where $m$ is the length of the longest consecutive string of 1's that appears on the line directly above the diagonal in the matrix of $N$ with respect to any Jordan basis for $N$.
+\end{exercise}
+
+\begin{solution}
+
+    Since $N$ is nilpotent, it holds that $N^{\text{dim}V} = 0$, i.e.\ $G(0, N) = V$, therefore the characteristic polynomial of $N$ is $p(z)=z^\text{dim} V$. We know that the characteristic polynomial is a polynomial multiple of the minimal one. Therefore, the minimal polynomial of $N$ must be of the form $q(z) =z^n$ for some nonnegative integer $n$. All that remains, therefore, is to show that the minimum value of $n$ for which $N^n = 0$ is $m+1$, with $m$ described in the exercise. 
+    
+    Consider a Jordan basis for $N$, that is, a basis of the form 
+    $$N^{m_1}(v_1), \ldots, N(v_1), v_1, N^{m_2}(v_2), \ldots, N(v_2), v_2, \ldots, N^{m_k}(v_k), \ldots N(v_k), v_k$$ 
+    , such that $N^{m_1+1}(v_1) = N^{m_2+1}(v_2) = \ldots = N^{m_k+1}(v_k) = 0$. We claim that $m = \text{max}\{m_1, m_2, \ldots, m_k\}$. To see why this is the case, recall that $M(N)$ with respect to this basis is block diagonal, and each of the blocks is a $m_i+1 \times m_i+1$ zero matrix, with the exception of the line above the diagonal which is filled with ones. Clearly, inside block $i$ the number of consecutive ones on the line above the diagonal is $m_i$, therefore the maximum number of such consecutive ones is at least equal to the maximum of $m_1, \ldots, m_k$. If it was larger, this would mean that at least one element that lies on the line above the diagonal \textit{and} does not belong to any block is 1. This is the only way that the ones of at least two blocks, $i$ and $i+1$ are not separated by a zero. However, by the definition of $M(N)$ with respect to the Jordan basis this would imply that $N(N^{m_{i+1}}(v_{i+1})) = v_i \neq 0$, which is of course a contradiction.
+
+    If we now raise $N$ to the power $m+1$, we see that for each of the sublists of the basis $N^{m_i}(v_i), \ldots, N(v_i), v_i$, each vector is mapped to $N^x(v_i)$, where $x \geq m+1 \geq m_i+1$, thus $N^x(v_i) = 0$. Therefore, $N^{m+1}$ is indeed zero for all vectors of the basis. Now consider any power $N^n$ with $n < m+1$. Then $n \leq \text{max}\{m_1, \ldots, m_k\}$, therefore $n$ is smaller than at least one $m_i + 1$. If we consider the sublist $N^{m_i}(v_i), \ldots, N(v_i), v_i$, then $N^n(v_i)$ with $n < m_i+1$ appears somewhere in the sublist, and is therefore a vector of the Jordan basis and thus cannot be zero. Thus $N^n$ cannot be zero everywhere.
+
+    We've therefore shown that the minimum exponent for which $N^n$ equals zero is $m+1$, thus proving also that the minimal polynomial of $N$ is $q(z) = z^{m+1}$.
+\end{solution}
+
+\begin{exercise}{4}
+    Suppose $T \in L(V)$ and $v_1, \ldots, v_n$ is a basis of $V$ that is a Jordan basis for $T$. Describe the matrix of $T$ with respect to the basis $v_n, \ldots, v_1$ obtained by reversing the order of the $v$'s.
+\end{exercise}
+
+\begin{solution}
+
+    A Jordan basis for $T$ has the form 
+    $$N^{m_1}(v_1), \ldots, N(v_1), v_1, N^{m_2}(v_2), \ldots, N(v_2), v_2, \ldots, N^{m_k}(v_k), \ldots N(v_k), v_k$$
+    , such that $N^{m_1+1}(v_1) = \ldots = N^{m_k+1}(v_k) = 0$. Reversing the basis therefore gives us $$v_k, N(v_k), \ldots, N^{m_k}(v_k), \ldots, v_1, N(v_1), \ldots, N^{m_1}(v_1)$$.
+
+    It is easy to see that with respect to this reversed basis, the matrix of $T$ must equal the matrix that results from taking the block diagonal matrix with respect to the Jordan basis, reversing the order of the blocks on the diagonal and transposing each block. To see this, consider the first $m_k+1$ columns of the new matrix: they must correspond to the \textit{last} $m_k + 1$ columns of the original one, thus to the last block. Inside the block itself, the original matrix specified that each of the vectors should be mapped to $\lambda_k$ times the vector plus (for all vectors except the first vector of the sub-list) the immediately preceding vector of the basis. When reversing the order, nothing changes except for the fact that each vector should be mapped to $\lambda_k$ times the vector plus (for all vectors except the \textit{last} vector of the sub-list) the immediately \textit{following} vector of the sub-list, which leads to a block with $\lambda_k$ on the diagonal and 1's on the line directly below it, i.e.\ the transpose of the original block.
+\end{solution}

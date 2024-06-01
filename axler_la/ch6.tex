@@ -1,0 +1,642 @@
+\chapter{Inner product spaces}
+
+\section{Inner Products and Norms}
+
+\begin{exercise}{3}
+Suppose $\mathbf{F} = \mathbf{R}$ and $V \neq \{0\}$. Replace the positivity condition (which states that $\langle v, v \rangle \geq 0$ for all $v \in V$) in the definition of an inner product (6.3) with the condition that $\langle v, v \rangle > 0$ for some $v \in V$. Show that this change in the definition does not change the set of functions from $V \times V$ to $\mathbf{R}$ that are inner products on V.
+\end{exercise}
+
+\begin{solution}
+
+Let $S_1$ be the set of functions from $V \times V$ to $\mathbf{R}$ that are inner products on $V$ that are inner products according to 6.3. Let $S_2$ be the set of functions from $V \times V$ to $\mathbf{R}$ that are inner products on $V$ according to the definition of this exercise. Both of the definitions include the properties that $\langle v, v \rangle = 0$ iff $v = 0$, and that the inner product is linear wrt. the first slot. Furthermore, since $\mathbf{F} = \mathbf{R}$, it's true that $\langle v, u \rangle = \langle u, v \rangle$ for any $u, v \in V$. These are facts we'll use throughout the proof.
+
+We need to show that $S_1 = S_2$. 
+
+First, let $f$ be an inner product belonging in $S_1$. Then, by the definition of $S_1$ it's true that $\langle u, u \rangle \geq 0$ for all $u \in V$ (here $\langle, \rangle$ is the inner product according to $f$). Since our $V \neq \{0\}$, there exists at least one $v \in V$ that is not zero, and by the properties I listed previously, it must be true that $\langle v, v \rangle \neq 0$, which then means that $\langle v, v \rangle > 0$. We observe then that the condition for $f$ to belong in $S_2$ holds (along with the other two properties $S_1, S_2$ have in common), therefore $f \in S_2$, therefore $S_1 \subset S_2$.
+
+Now, let $f$ be an inner product belonging in $S_2$. Then, there exists $v \in V$ such that $v \neq 0, \langle v, v \rangle > 0$ ($\langle, \rangle$ now refers to the inner product according to $f$). We need to show that for any $u \in V, \langle u, u \rangle \geq 0$. 
+Let $u \in V, u \neq v$ be a vector of $V$ (it clearly holds for $u = v$).
+\begin{itemize}
+\item If $u = 0$, then clearly $\langle u, u\rangle = 0 \geq 0$.
+\item If $u \neq 0$ and $u, v$ are linearly dependent, there exist $a, b \in \mathbf{F}$ not both 0 such that $au + bv = 0$. Furthermore, $a$ cannot be 0 since that would imply $v = 0$. Then $u = -\frac{b}{a}v = cv$, which yields $\langle u, u \rangle = \langle cv, cv \rangle = c \langle v, cv \rangle = c\overline{c} \langle v, v \rangle = c^2 \langle v, v \rangle$ (since $\mathbf{F} = \mathbf{R}$), so $\langle u, u \rangle \geq 0$ as a product of non-negative numbers.
+\item If $u \neq 0$ and $u, v$ linearly independent, then $au + bv \neq 0$ whenever at least one of $a, b$ is not 0, which is equivalent to $\langle au + bv, au + bv \rangle \neq 0$. We have that:
+
+$$\langle au + bv, au + bv \rangle = a^2 \langle u, u \rangle + ab \langle u, v \rangle + ab \langle v, u \rangle + b^2\langle v, v \rangle = a^2 \langle u, u \rangle + 2ab \langle u, v \rangle + b^2 \langle v, v \rangle$$
+
+Suppose now that $\lambda = \langle u, u \rangle, \lambda < 0$ and set $b = 1$. Then the expression above equals:
+
+$$a^2 \lambda + 2a \langle u, v \rangle + \langle v, v \rangle$$
+
+If we consider this to be a second-degree polynomial with respect to $a$, the discriminant is:
+
+$\Delta = 4(\langle u, v \rangle)^2 -4\lambda \langle v, v \rangle$
+
+Since $\lambda < 0, \langle v, v \rangle > 0$ we have that $-4\lambda \langle v, v \rangle > 0$, and $4(\langle u, v \rangle)^2 \geq 0$, therefore the discriminant is positive, and thus there exists $a$ such that this quantity is 0, which means that $\langle au + v, au + v \rangle$ is 0, which is a contradiction. Therefore, $\langle u, u \rangle \geq 0$.
+
+We've shown then that $f$ satisfies the property of $\langle v, v \rangle \geq 0$ for all $v \in V$, and therefore $f \in S_1$, which means $S_2 \subset S_1$, and since $S_1 \subset S_2$, $S_1 = S_2$, which concludes the proof.
+\end{itemize}
+
+\end{solution}
+
+\begin{exercise}{4}
+Suppose $V$ is a real inner product space.
+(a) Show that $\langle u + v, u - v \rangle = \lvert \lvert u \rvert \rvert^2 - \lvert \lvert v \rvert \rvert^2$ for every $u, v \in V$.
+(b) Show that if $u, v \in V$ have the same norm, then $u + v$ is orthogonal to $u - v$.
+(c) Use part (b) to show that the diagonals of a rhombus are perpendicular to each other.
+\end{exercise}
+
+\begin{solution}
+
+(a) We have that: $\langle u + v, u - v \rangle = \langle u, u \rangle - \langle u, v \rangle + \langle v, u \rangle - \langle v, v \rangle =  \langle u, u \rangle -  \langle v, v \rangle = \lvert \lvert u \rvert \rvert^2 - \lvert \lvert v \rvert \rvert^2$.
+For the derivation we've used the linearity of inner products, the definition of norms and the fact that we're in a real vector space, therefore we can dispense with conjugates.
+
+(b) This is trivially derived from part (a), since $\lvert \lvert u \rvert \rvert^2 = \lvert \lvert v \rvert \rvert^2$ implies that  $\langle u + v, u - v \rangle = 0$, which means that $u + v, u - v$ are orthogonal.
+
+(c) A rhombus is defined as a quadrilateral whose sides are all of equal length. If we assume that two adjacent sides of a rhombus are described by the vectors $u, v$, then the diagonals of the rhombus are $u - v, u + v$. By part (b) and the definition of the rhombus, $\lvert \lvert u \rvert \rvert^2 = \lvert \lvert v \rvert \rvert^2$, therefore $u + v, u - v$ are orthogonal, that is, perpendicular to each other.
+
+\end{solution}
+
+
+\begin{exercise}{6}
+Suppose $u, v \in V$. Prove that $\langle u, v \rangle = 0$ iff 
+$$\lvert \lvert u \rvert \rvert \leq \lvert \lvert u + \alpha v \rvert \rvert$$
+for all $\alpha \in \mathbf{F}$.
+\end{exercise}
+
+\begin{solution}
+
+$\implies$: If $\langle u, v \rangle = 0$, then for any $\alpha$ $u, \alpha v$ are orthogonal and we can apply the Pythagorean theorem:
+$$ \lvert \vert u + \alpha v \rvert \rvert^2 = \lvert \lvert u \rvert \rvert^2 + \lvert \lvert \alpha v \rvert \rvert^2 \geq \lvert \lvert u \rvert \rvert ^2 \implies \lvert \lvert u + \alpha v \rvert \rvert \geq \lvert \lvert u \rvert \rvert$$
+
+$\impliedby$: If $\lvert \lvert u \rvert \rvert \leq \lvert \lvert u + \alpha v \rvert \rvert$ for all $\alpha \in \mathbf{F}$, then we have the following:
+
+$$ \lvert \lvert u \rvert \rvert^2 \leq \lvert \lvert u + \alpha v \rvert \rvert^2 \implies \langle u, u \rangle \leq \langle u + \alpha v, u + \alpha v \rangle \implies \langle u, u \rangle \leq \langle u, u \rangle + \langle u, \alpha v \rangle + \langle \alpha v, u \rangle, \langle \alpha v, \alpha v \rangle$$
+
+$$\implies 0 \leq \overline{\alpha} \langle u, v \rangle + \alpha \langle v, u \rangle + \alpha \overline{\alpha} \langle v, v \rangle$$
+
+If $v = 0$, then $\langle u, v \rangle = 0$ for any $v$. Otherwise, set $\alpha = - \frac{\langle u, v \rangle}{\lvert \lvert v \rvert \rvert^2}$ to obtain:
+
+$$ 0 \leq -\frac{ \overline{\langle u, v \rangle} \langle u, v \rangle}{\lvert \lvert v \rvert \rvert^2} - \frac{ \langle u, v \rangle \langle v, u \rangle}{\lvert \lvert v \rvert \rvert^2} + \frac{\langle u, v \rangle \overline{\langle u, v \rangle}}{\lvert \lvert v \rvert \rvert^2} \implies 0 \leq -\lvert \langle u, v \rangle \rvert^2 - \lvert \langle u, v \rangle \rvert^2 + \lvert \langle u, v \rangle \vert^2 \implies 0 \leq - \lvert \langle u, v \rangle \rvert^2$$
+
+This implies of course that $\langle u, v \rangle = 0$, qed.
+\end{solution}
+
+\newpage
+\begin{exercise}{12}
+Prove that $(x_1 + \ldots + x_n)^2 \leq n(x_1^2 + \ldots + x_n^2)$ for all positive integers $n$ and all real numbers $x_1, \ldots, x_n$.
+\end{exercise}
+
+\begin{solution}
+
+Let $u = \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} \in \mathbf{R}^n$ and $v = \begin{pmatrix} 1 \\ 1 \\ \vdots \\ 1 \end{pmatrix} \in \mathbf{R}^n$. Observe then, that:
+
+$$\langle u, v \rangle = x_1 + x_2 + \ldots + x_n, \lvert \lvert u \rvert \rvert = \sqrt{x_1^2 + \ldots + x_n^2}, \lvert \lvert v \rvert \rvert = \sqrt{1^2 + \ldots + 1^2} = \sqrt{n}$$
+
+By the Cauchy-Schwarz inequality, we have that:
+
+$$ \lvert \langle u, v \rangle \rvert \leq \lvert \lvert u \rvert \rvert \lvert \lvert v \rvert \rvert \implies \lvert x_1 + x_2 + \ldots + x_n \rvert \leq \sqrt{x_1^2 + \ldots + x_n^2}\sqrt{n} \implies (x_1 + \ldots + x_n)^2 \leq n(x_1^2 + \ldots + x_n^2)$$
+
+\end{solution}
+
+\begin{exercise}{13}
+Suppose $u, v$ are nonzero vectors in $\mathbf{R}^2$. Prove that 
+$$\langle u, v \rangle = \lvert \lvert u \rvert \rvert \lvert \lvert v \rvert \rvert cos(\theta)$$, 
+where $\theta$ is the angle between $u, v$ (thinking of $u, v$ as arrows with initial point at the origin.
+\textit{Hint:} Draw the triangle formed by $u, v, u - v$ and then use the law of cosines.
+\end{exercise}
+
+\begin{solution}
+
+By the law of cosines applied on the indicated triangle (which may be degenerate if $u, v$ lie on the same line, but is well defined since they are nonzero), and specifically on angle $\theta$ whose opposite side is $u - v$, we have that:
+
+$$\lvert \lvert u - v \rvert \rvert ^2 = \lvert \lvert u \rvert \rvert ^2 + \lvert \lvert v \rvert \rvert ^2 - 2\lvert \lvert u \rvert \rvert \lvert \lvert v \rvert \rvert cos(\theta) \implies \langle u - v, u -v \rangle = \langle u, u \rangle + \langle v, v \rangle - 2\lvert \lvert u \rvert \rvert \lvert \lvert v \rvert \rvert cos(\theta)$$
+$$\implies \langle u, u \rangle - \langle u, v \rangle - \langle v, u \rangle + \langle v, v \rangle = \langle u, u \rangle + \langle v, v \rangle - 2\lvert \lvert u \rvert \rvert \lvert \lvert v \rvert \rvert cos(\theta) \implies -2 \langle u, v \rangle = -2 \lvert \lvert u \rvert \rvert \lvert \lvert v \rvert \rvert cos(\theta)$$
+$$\implies \langle u, v \rangle = \lvert \lvert u \rvert \rvert \lvert \lvert v \rvert \rvert cos(\theta)$$
+
+\end{solution}
+
+
+\begin{exercise}{14}
+The angle between two vectors (thought of as arrows with initial point at the origin) in $\mathbf{R}^2$ or $\mathbf{R}^3$ can be defined geometrically. However, geometry is not as clear in $\mathbf{R}^n$ for $n > 3$. Thus the angle between two nonzero vectors $x, y \in \mathbf{R}^n$ is defined to be:
+$$arccos \frac{\langle x, y \rangle}{\lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert}$$
+, where the motivation for this definition comes from the previous exercise. Explain why the Cauchy-Schwarz Inequality is needed to show that this definition makes sense.
+\end{exercise}
+\begin{solution}
+
+As we now, the cosine of an angle is a number in the interval $[-1, 1]$. Therefore, the function $arccos$ has $[-1, 1]$ as its domain. This means that the quantity $\frac{\langle x, y \rangle}{\lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert}$ must always be between $[-1, 1]$ if we want its $arccos$ to be defined. By the Cauchy-Schwarz inequality we have that:
+
+$$\lvert \langle x, y \rangle \rvert \leq \lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert \implies -\lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert \leq \langle x, y \rangle \leq \lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert \implies -1 \leq \frac{\langle x, y \rangle}{\lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert} \leq 1$$
+
+, where we divide by the magnitude of $x, y$ since these are nonzero vectors. Therefore, the argument of $arccos$ is always in its domain and the definition makes sense. 
+
+It's also worth noting that from the "original" geometrical perspective, the cosine of the angle of two vectors is 1 when one of the vectors is a positive scalar multiple of the other and -1 when one of the vectors is a negative multiple of the other. Again by the Cauchy-Schwarz inequality, we know that the inequality becomes an equality precisely when one of the vectors is a scalar multiple of the other, which makes the corresponding argument to $arccoss$ -1 or 1. Furthermore, if said scalar is positive, $\frac{\langle x, y \rangle}{\lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert} = \frac{\langle x, \alpha x \rangle}{\lvert \lvert x \rvert \rvert \lvert \lvert \alpha x \rvert \rvert} = \frac{\alpha \lvert \lvert x \rvert \rvert ^2}{\alpha \lvert \lvert x \rvert \rvert \lvert \lvert x \rvert \rvert} = 1$, and if said scalar is negative $\lvert \lvert \alpha x \rvert \rvert = -\alpha \lvert \lvert x \rvert \rvert$, so the same derivation yields that this quantity is -1. Therefore the angle's cosine is -1 or 1 exactly when we would expect it to be, and it's also 0 exactly when $x, y$ are orthogonal.
+\end{solution}
+
+\begin{exercise}{17}
+Prove or disprove: there is an inner product on $\mathbf{R}^2$ such that the associated norm is given by 
+$$ \lvert \lvert (x, y) \rvert \rvert = max\{x, y\}$$
+for all $(x, y) \in \mathbf{R}^2$
+\end{exercise}
+
+\begin{solution}
+
+If such an inner product existed then consider the vector $v = (-1, 0)$. For this vector, $\lvert \lvert v \rvert \rvert = max\{-1, 0\} = 0$. Then, $\langle v, v \rangle = \lvert \lvert v \rvert \rvert ^2 = 0$, but the vector is nonzero. This contradicts the definition of an inner product, which states that $\langle v, v \rangle = 0$ iff $v = 0$. Therefore there is no such inner product on $\mathbf{R}^2$.
+\end{solution}
+
+\begin{exercise}{18}
+Suppose $p > 0$. Prove that there is an inner product on $\mathbf{R}^2$ such that the associated norm is given
+by $$ \lvert \lvert (x, y) \rvert \rvert = (x^p + y^p)^{1/p} $$ for all $(x, y) \in \mathbf{R}^2$ if and only if $p=2$
+\end{exercise}
+
+\begin{solution}
+
+$\impliedby$: Suppose $p=2$. Then $\lvert \lvert (x, y) \rvert \rvert = (x^p + y^p)^{1/p} = \sqrt{x^2 + y^2}$. As we know, this is the Euclidean norm on $\mathbf{R}^2$, which corresponds to the inner product $\langle (x_1, y_1), (y_1, y_2) \rangle = x_1 y_1 + x_2 y_2$. Therefore, an inner product associated with this norm does exist on $\mathbf{R}^2$.
+
+$\implies$: Suppose now that $p \neq 2, p > 0$. 
+
+If $p$ is odd, i.e. $p = 2k + 1$ for $k \geq 0$, then consider the vector $u = (-1, 1)$. Its norm would be $\lvert \lvert (-1, 1) \rvert \rvert = ((-1)^{2k + 1} + (1)^{2k+1})^{1/(2k+1)} = (-1 + 1)^{1/(2k+1)} = 0$. However, $(-1, -1) \neq (0,0)$, and therefore if there was an inner product associated with this norm it would be the case that $\langle u, u \rangle = \lvert \lvert u \rvert \rvert^{2} = 0$ with $u \neq 0$, which contradicts the definitiness property of inner products.
+
+If $p$ is even, i.e. $p = 2k$ for $k > 1$, we have the following. Firstly, problem 6 (for which I "owe" the proof) states that $\langle u, v \rangle = 0 \iff \lvert \lvert u \rvert \rvert \leq \lvert \lvert u + \alpha v \rvert \rvert $ for all $\alpha \in \mathbf{F}$. Let us consider what would happen if there was an inner product associated with this norm. Let $u = (0, 1), v = (1, 0)$. Then, for any $\alpha \in \mathbf{F}$ we have that:
+
+$$\lvert \lvert u \rvert \rvert \leq \lvert \lvert u + \alpha v \rvert \rvert \iff (0^{2k} + 1^{2k})^{1/2k} \leq (a^{2k} + 1^{2k})^{1/2k} \iff 1 \leq a^{2k} + 1 $$
+
+, where we can square both sides and have an equivalence since they're both positive ($2k$ is even, thus $a^{2k} \geq 0$). Furthermore, this last inequality holds for any $\alpha$ since $2k$ is even. Therefore, by problem 6, $\langle (0, 1), (1, 0) \rangle = 0$. Since we have a norm and an associated inner product, the Pythagorean theorem must hold:
+
+$$\lvert \lvert (0, 1) + (1, 0) \rvert \rvert^2 = \lvert \lvert (0, 1) \rvert \rvert^2 + \lvert \lvert (1, 0) \rvert \rvert^2 \implies \lvert \lvert (1, 1) \rvert \rvert^2 = \lvert \lvert (0, 1) \rvert \rvert^2 + \lvert \lvert (1, 0) \rvert \rvert^2 $$
+$$\implies (1^{2k} + 1^{2k})^{2/2k} = (0^{2k} + 1^{2k})^{2/2k} + (1^{2k} + 0^{2k})^{2/2k} \implies (2)^{1/k} = 1 + 1 = 2$$
+
+This implies, however, that $k = 1$, which would yield $p = 2$, which is a contradiction. This completes our proof of the "$\implies$" direction, and thus also of the equivalence we needed to prove.
+
+\end{solution}
+
+\begin{exercise}{19}
+Suppose $V$ is a real inner product space. Prove that:
+$$\langle u, v \rangle = \frac{\lvert \lvert u + v \rvert \rvert^2 - \lvert \lvert u - v \rvert \rvert^2}{4}$$
+for all $u, v \in V$.
+\end{exercise}
+
+\begin{solution}
+
+We have that (setting $N$ to be the numerator of the exercise's fraction):
+
+$$N = \lvert \lvert u + v \rvert \rvert^2 - \lvert \lvert u - v \rvert \rvert^2 = \lvert \lvert u + v \rvert \rvert^2 + \lvert \lvert u - v \rvert \rvert^2 - 2 \lvert \lvert u - v \rvert \rvert ^2$$
+
+By the parallelogram equality, we continue with:
+
+$$N = 2(\lvert \lvert u \rvert \rvert^2 + \lvert \lvert v \rvert \rvert^2) - 2 \langle u - v, u - v \rangle  = 2\langle u, u \rangle + 2 \langle v, v \rangle - 2 \langle u, u \rangle + 2 \langle u, v \rangle + 2 \langle v, u \rangle -2\langle v, v \rangle = 4 \langle u, v \rangle$$
+
+, where the last equality comes from the fact that in a real vector space $\langle u, v \rangle = \langle v, u \rangle$. Our numerator is thus $N = 4 \langle u, v \rangle$, and therefore $\frac{N}{4} = \langle u, v \rangle$, which is what we are asked to prove.
+\end{solution}
+
+\begin{exercise}{20}
+Suppose $V$ is a complex inner product space. Prove that
+$$\langle u, v \rangle = \frac{\lvert \lvert u + v \rvert \rvert^2 - \lvert \lvert u - v \rvert \rvert^2 + \lvert \lvert u + iv \rvert \rvert^2 i - \lvert \lvert u - iv \rvert \rvert^2 i}{4}$$
+for all $u, v \in V$.
+\end{exercise}
+
+\begin{solution}
+
+Let us set $A = \lvert \lvert u + v \rvert \rvert^2 - \lvert \lvert u - v \rvert \rvert^2$ and $B = \lvert \lvert u + iv \rvert \rvert^2 i - \lvert \lvert u - iv \rvert \rvert^2 i$, in which case we need to prove that $\langle u, v \rangle = \frac{A + B}{4}$. We have that:
+
+$$A = \langle u + v, u + v\rangle - \langle u - v, u - v\rangle = \langle u, u \rangle + \langle u, v \rangle + \langle v, u \rangle + \langle v, v \rangle - (\langle u, u \rangle - \langle u, v \rangle - \langle v, u \rangle + \langle v, v \rangle) $$
+$$= 2\langle u, v \rangle + 2\langle v, u \rangle$$
+
+$$B = i(\langle u + iv, u + iv \rangle - \langle u - iv, u -iv \rangle) = i(\langle u, u \rangle + \langle u, iv \rangle + \langle iv, u \rangle + \langle iv, iv \rangle - (\langle u, u \rangle - \langle u, iv \rangle - \langle iv, u \rangle + \langle iv, iv \rangle))$$
+$$= i(2\langle u, iv \rangle + 2 \langle iv, u \rangle) = i(2\overline{i}\langle u, v \rangle + 2i\langle v, u \rangle) = i(-2i\langle u, v \rangle + 2i\langle v, u \rangle) = 2 \langle u, v \rangle -2 \langle v, u \rangle$$
+
+Then $\frac{A + B}{4} = \frac{2\langle u, v \rangle + 2\langle v, u \rangle + 2\langle u, v \rangle - 2\langle v, u \rangle}{4} = \frac{4\langle u, v \rangle}{4} = \langle u, v\rangle$, qed.
+\end{solution}
+
+\newpage
+\begin{exercise}{21}
+A norm on a vector space $U$  is a function $\lvert \lvert\hspace{0.25cm}\rvert \rvert : U \rightarrow [0, \infty)$ such that $\lvert \lvert u \rvert \rvert = 0$ if and only if $u = 0, \lvert \lvert \alpha u \rvert \rvert = \lvert \alpha \rvert \lvert \lvert u \rvert \rvert$ for all $\alpha \in \mathbf{F}$ and all $u \in U$, and $\lvert \lvert u + v \rvert \rvert \leq \lvert \lvert u \rvert \rvert + \lvert \lvert v \rvert \rvert$ for all $u, v \in U$. Prove that a norm satisfying the parallelogram equality comes from an inner product (in other words, show that if $\lvert \lvert \hspace{0.25cm} \rvert \rvert$ is a norm on $U$ satisfying the parallelogram equality, then there is an inner product $\langle, \rangle$ on $U$ such that $\lvert \lvert u \rvert \rvert = \langle u, u \rangle^{1/2}$ for all $u \in U$).
+\end{exercise}
+
+\begin{solution}
+
+We will begin by assuming that $U$ is a real vector space. Define:
+$$\langle x, y \rangle = \frac{1}{4}(\lvert \lvert x + y \rvert \rvert^2 - \lvert \lvert x - y \rvert \rvert^2)$$
+
+We will now prove that this function of $x, y$ defines an inner product on $U$ for which it is true that $\lvert \lvert x \rvert \rvert^2 = \langle x, x \rangle$ for all $x \in U$. From now on, we'll refer to the three properties of the norm assumed in the exercise, and in the same order as presented, as property 1, 2, 3 respectively.
+Firstly:
+$$\langle x, x \rangle = \frac{1}{4}(\lvert \lvert x + x \rvert \rvert^2 - \lvert \lvert x - x \rvert \rvert^2) = \frac{1}{4}(\lvert \lvert 2x \rvert \rvert^2) = \frac{1}{4}(4\lvert \lvert x \rvert \rvert^2) = \lvert \lvert x \rvert \rvert^2$$
+, where we used property 1. We've therefore shown that $\langle x, x \rangle = \lvert \lvert x \rvert \rvert^2$ for all $x \in U$. Now begins the odyssey of proving that this is, indeed, an inner product.
+\begin{itemize}
+    \item \textbf{Positivity}: we've shown that $\langle x, x \rangle = \lvert \lvert x \rvert \rvert^2$ and from the co-domain of our norm we know that this is always non-negative. Therefore, the property of positivity has been proved.
+    \item \textbf{Definitiness:} again, from $\langle x, x \rangle = \lvert \lvert x \rvert \rvert^2$ and from property 1 of the norm, we have that $\langle x, x \rangle = 0$ iff $x = 0$. Therefore, definitiness has been proved.
+    \item \textbf{Symmetry:} since we're in a real vector space, the property of conjugate symmetry is simplified to $\langle x, y \rangle = \langle y, x \rangle$. To prove this, note that $\langle y, x \rangle = \frac{1}{4}(\lvert \lvert y + x \rvert \rvert^2 - \lvert \lvert y -x \rvert \rvert^2) = \frac{1}{4}(\lvert \lvert x + y \rvert \rvert^2 - \lvert \lvert -1(x - y) \rvert \rvert^2) = \frac{1}{4}(\lvert \lvert x + y \rvert \rvert^2 - \lvert -1 \rvert \lvert \lvert x - y \rvert \rvert^2) = \langle x, y \rangle$.
+    \item \textbf{Linearity in the first slot:} We shall begin by proving that $\langle x, 2y \rangle = 2\langle x, y \rangle$ for all $x, y \in U$. We have that:
+
+    $$\langle x, 2y \rangle - 2\langle x, y \rangle = \frac{1}{4}(\lvert \lvert x + 2y \rvert \rvert^2 - \lvert \lvert x - 2y \rvert \rvert^2) - 2\frac{1}{4}(\lvert \lvert x + y \rvert \rvert^2 - \lvert \lvert x - y \rvert \rvert^2) = $$
+    $$\frac{\lvert \lvert x + 2y \rvert \rvert^2 - \lvert \lvert x - 2y \rvert \rvert^2 - 2\lvert \lvert x + y\rvert \rvert^2 + 2\lvert \lvert x - y \rvert \rvert^2}{4}$$
+
+    Call the numerator of this fraction $A$. We now apply the parallelogram equality to the vectors $x + y, y$ (the reasoning being that we want to simplify the pairs of terms of $A$ with the same sign), obtaining:
+    $$\lvert \lvert x + y + y\rvert \rvert^2 + \lvert \lvert x + y - y \rvert \rvert^2 = 2(\lvert \lvert x + y \rvert \rvert^2 + \lvert \lvert y \rvert \rvert^2) \implies \lvert \lvert x + 2y \rvert \rvert^2 + \lvert \lvert x \rvert \rvert^2 = 2\lvert \lvert x + y \rvert \rvert^2 + 2\lvert \lvert y \rvert \rvert^2$$
+    $$\implies \lvert \lvert x + 2y \rvert \rvert^2 - 2\lvert \lvert x + y \rvert \rvert^2 = 2\lvert \lvert y \rvert \rvert^2 - \lvert \lvert x \rvert \rvert^2$$
+
+    We also apply the parallelogram equality to the vectors $x - y, -y$, obtaining:
+    $$\lvert \lvert x - y - y \rvert \rvert^2 + \lvert \lvert x - y -(-y) \rvert \rvert^2 = 2(\lvert \lvert x - y \rvert \rvert^2 + \lvert \lvert -y \rvert \rvert^2) \implies \lvert \lvert x - 2y \rvert \rvert^2 - 2 \lvert \lvert x -y \rvert \rvert^2 = 2\lvert \lvert y \rvert \rvert^2 - \lvert \lvert x \rvert \rvert^2$$
+
+    Then, observe that we can rewrite $A$ as:
+    $$A = \lvert \lvert x + 2y \rvert \rvert^2 - 2\lvert \lvert x + y \rvert \rvert^2 -(\lvert \lvert x - 2 y \rvert \rvert^2 - 2 \lvert \lvert x - y \rvert \rvert^2) = 2\lvert \lvert y \rvert \rvert^2 - \lvert \lvert x \rvert \rvert^2 - (2\lvert \lvert y \rvert \rvert^2 - \lvert \lvert x \rvert \rvert^2) = 0$$
+    , which in turn yields that $\langle x, 2y \rangle - 2 \langle x, y \rangle = 0 \implies \langle x, 2y \rangle = 2\langle x , y \rangle$.
+
+    Let us now prove that $\langle x + y, z \rangle = \langle x, z \rangle + \langle y, z \rangle$ (one of the two conditions for linearity in the first slot). Firstly, we have that:
+
+    $$\langle x + y, z \rangle - (\langle x, z \rangle + \langle y, z \rangle)= \frac{1}{4}(\lvert \lvert x + y + z \rvert \rvert^2 - \lvert \lvert x + y - z \rvert \rvert^2) - ((\frac{1}{4}(\lvert \lvert x + z \rvert \rvert^2 - \lvert \lvert x - z \rvert \rvert^2) + \frac{1}{4}(\lvert \lvert y + z \rvert \rvert^2 - \lvert \lvert y - z \rvert \rvert^2))$$
+    $$ = \frac{\lvert \lvert x + y + z \rvert \rvert^2 - \lvert \lvert x + y - z \rvert \rvert^2 - \lvert \lvert x + z \rvert \rvert^2 + \lvert \lvert x - z  \rvert \rvert^2 - \lvert \lvert y + z \rvert \rvert^2 + \lvert \lvert y - z \rvert \rvert^2}{4}$$
+
+    Again, call the numerator $A$. A line of thought similar to the one we used for the previous step of the proof leads us to try to simplify pairs of the same sign in $A$. Two such pairs are $\lvert \lvert x + y + z  \rvert \rvert^2, \lvert \lvert x - z \rvert \rvert^2$ and $-\lvert \lvert x + y - z \rvert \rvert^2, -\lvert \lvert x + z \rvert \rvert^2$. 
+    
+    The question then is, how can we select vectors $a, b$ such that the diagonals of the parallelogram formed by them correspond to $x + y + z, x - z$. And the answer lies in the solution of the system $a + b = x + y + z, a - b = x -z$. This will yield $a = \frac{2x + y}{2}, b = \frac{y + 2z}{2}$. By the parallelogram equality:
+
+    $$\lvert \lvert x + y + z \rvert \rvert^2 + \lvert \lvert x - z \rvert \rvert^2 = 2(\lvert \lvert \frac{2x + y}{2} \rvert \rvert^2 + \lvert \lvert \frac{y + 2z}{2} \rvert \rvert^2)$$
+
+    The same procedure yields that:
+
+    $$\lvert \lvert x + y - z \rvert \rvert^2 + \lvert \lvert x + z \rvert \rvert^2 = 2(\lvert \lvert \frac{2x + y}{2} \rvert \rvert^2 + \lvert \lvert \frac{y - 2z}{2} \rvert \rvert^2)$$
+
+    Observe that the choice of grouping these pairs is not random: it will cause some pairs of terms to cancel out, namely:
+
+    $$A = 2(\lvert \lvert \frac{2x + y}{2} \rvert \rvert^2 + \lvert \lvert \frac{y + 2z}{2} \rvert \rvert^2) - 2(\lvert \lvert \frac{2x + y}{2} \rvert \rvert^2 + \lvert \lvert \frac{y - 2z}{2} \rvert \rvert^2) - \lvert \lvert y + z \rvert \rvert^2 + \lvert \lvert y - z \rvert \rvert^2$$
+    $$ = 2\lvert \lvert \frac{y + 2z}{2} \rvert \rvert^2 - 2 \lvert \lvert \frac{y - 2z}{2} \rvert \rvert^2 - \lvert \lvert y + z \rvert \rvert^2 + \lvert \lvert y - z \rvert \rvert^2 = \frac{1}{2}\lvert \lvert y + 2z \rvert \rvert^2 - \frac{1}{2} \lvert \lvert y - 2z \rvert \rvert^2 - \lvert \lvert y + z \rvert \rvert^2 + \lvert \lvert y - z \rvert \rvert^2 $$
+    $$ = \frac{2}{4}(\lvert \lvert y + 2z \rvert \rvert^2 - \lvert \lvert y - 2z \rvert \rvert^2) - \frac{4}{4}(\lvert \lvert y + z \rvert \rvert^2 - \lvert \lvert y - z \rvert \rvert^2) = 2\langle y, 2z \rangle - 4 \langle y, z \rangle = 4 \langle y, z \rangle - 4 \langle y, z \rangle = 0$$
+
+    , where in the last equality we used the previously proved fact that $\langle x, 2y \rangle = 2 \langle x, y \rangle$. Since $A = 0$, we've now proved linearity in the first slot.
+
+    Let us now prove that $\langle nx, y \rangle = n\langle x, y \rangle$ for every positive integer $n$ and every $x, y \in U$. We will do this inductively:
+    \begin{itemize}
+        \item $n = 1$: Trivially true.
+        \item $n = 2$: We've already proved this.
+        \item Assume it holds for $n = k$. Then: $\langle (k+1)x, y \rangle = \langle kx + x, y \rangle = \langle kx, y \rangle + \langle x, y \rangle = k\langle x , y \rangle + \langle x, y \rangle = (k+1)\langle x, y \rangle$, where we used the induction hypothesis and the proved linearity wrt. addition in the first slot.
+    \end{itemize}
+
+    Continuing our gradual process of generalization, let us now prove that $m\langle \frac{1}{m}x, y \rangle = \langle x, y \rangle$ for every positive integer $m$ and every $x ,y \in U$.
+
+    We have that $\langle x, y \rangle = \langle \frac{m}{m}x, y \rangle = \langle m(\frac{x}{m}), y \rangle = m\langle \frac{x}{m}, y \rangle = m \langle \frac{1}{m}x, y \rangle$, where we simply used the previously proven statement $\langle nx, y \rangle = x \langle x, y \rangle$ for $n$ positive integer.
+
+    Let us now prove that $\langle rx, y \rangle = r\langle x, y \rangle$ for $r$ rational number, $x, y \in U$. Since $r$ is rational, we have that $r = \frac{\kappa}{\lambda}$ for $\kappa, \lambda$ integers (assume, for now, positive). Then, by using the two statements proved above:
+    $$\langle rx, y \rangle = \langle \frac{\kappa}{\lambda} x, y \rangle = \kappa \langle \frac{1}{\lambda}x, y \rangle = \kappa \frac{\lambda}{\lambda} \langle \frac{1}{\lambda}x, y \rangle = \frac{\kappa}{\lambda} \langle x, y \rangle = r \langle x, y \rangle$$
+    , where we directly used the two statements proved above for integers. Furthermore, we note that $\langle -x, y \rangle = \frac{1}{4}(\lvert \lvert -x + y \rvert \rvert^2 - \lvert \lvert -x - y \rvert \rvert^2) = \frac{1}{4}(\lvert \lvert x - y \rvert \rvert^2 - \lvert \lvert x + y \rvert \rvert^2) = -\langle x, y \rangle$, so it holds for negative rational numbers as well.
+
+    We now proceed to prove that the Cauchy-Schwarz inequality holds. We begin by applying the triangle inequality for any $x, y \in U$, which we know holds (property 3). First, we note that due to linearity wrt. addition in the first slot and due to the symmetry of the inner product, it's also true that $\langle x, y + z \rangle = \langle x, y \rangle + \langle x, z \rangle$. Then:
+    $$\lvert \lvert x + y \rvert \rvert \leq \lvert \lvert x \rvert \rvert + \lvert \lvert y \rvert \rvert \implies \lvert \lvert x + y \rvert \rvert^2 \leq (\lvert \lvert x \rvert \rvert + \lvert \lvert y \rvert \rvert)^2 \implies \langle x + y, x + y \rangle \leq \lvert \lvert x \rvert \rvert^2 + 2 \lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert + \lvert \lvert y \rvert \rvert^2$$
+    $$\implies \langle x, x \rangle + \langle x, y \rangle + \langle y, x \rangle + \langle y, y \rangle \leq \lvert \lvert x \rvert \rvert^2 + 2 \lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert + \lvert \lvert y \rvert \rvert^2 \implies \langle x, y \rangle \leq \lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert$$
+
+    Then:
+    $$\lvert \lvert x - y \rvert \rvert \leq \lvert \lvert x \rvert \rvert + \lvert \lvert - y \rvert \rvert \implies \lvert \lvert x - y \rvert \rvert^2 \leq (\lvert \lvert x \rvert \rvert + \lvert \lvert y \rvert \rvert)^2 \implies \langle x - y, x - y \rangle \leq \lvert \lvert x \rvert \rvert^2 + 2\lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert + \lvert \lvert y \rvert \rvert^2$$
+    $$\implies \langle x, x \rangle - \langle x, y \rangle - \langle y, x \rangle + \langle y, y \rangle \leq \lvert \lvert x \rvert \rvert^2 + 2\lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert + \lvert \lvert y \rvert \rvert^2 \implies -2\langle x, y \rangle \leq 2\lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert $$
+    $$\implies \langle x, y \rangle \geq - \lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert$$
+
+    These two facts yield $\lvert \langle x, y \rangle \rvert \leq \lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert$.
+
+    Now we prove that for $c \in \mathbf{R}$, $r$ rational number and $x, y \in U$,
+    $$\lvert c \langle x , y \rangle - \langle cx, y \rangle \rvert = \lvert (c - r)\langle x, y \rangle - \langle (c- r)x, y \rangle \rvert \leq 2\lvert c - r \rvert \lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert$$ 
+    Firstly:
+    $$\lvert (c - r)\langle x, y \rangle - \langle (c-r)x, y \rangle \rvert = \lvert c\langle x, y \rangle - r\langle x, y \rangle -\langle cx - rx, y \rangle \rvert = \lvert c \langle x, y \rangle - r\langle x, y \rangle - \langle cx, y \rangle - \langle-rx, y\rangle \rvert $$
+    $$= \lvert c\langle x, y \rangle - r\langle x, y \rangle -\langle cx, y \rangle + r\langle x, y \rangle \rvert = \lvert c\langle x, y \rangle - \langle cx, y \rangle \rvert$$
+    , where we used the previously proven statement about rational numbers.
+    Now, by the triangle inequality (on real numbers) and the Cauchy-Schwarz inequality:
+    $$\lvert (c - r)\langle x, y \rangle - \langle (c -r)x, y \rangle\rvert \leq \lvert c -r \rvert \lvert \langle x, y \rangle \rvert + \lvert \langle (c-r)x, y \rangle \rvert \leq \lvert c - r \rvert \lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert + \lvert \lvert (c-r)x \rvert \rvert \lvert \lvert y \rvert \rvert$$
+    $$ = 2\lvert c -r \rvert \lvert \lvert x \rvert \rvert \lvert \lvert y \rvert \rvert$$
+    , which completes the proof of the statement.
+
+    Having proved this, consider an arbitrary $c \in \mathbf{R}$. We know that we can approach ``arbitrarily close'' to $c$ with a sequence of rational numbers, i.e. $\lvert c - r \rvert$ can be made arbitrarily small. Therefore, by the previous inequality, we can make $\lvert c\langle x, y \rangle - \langle cx, y \rangle \rvert$ arbitrarily small as well. This means, then, that $c\langle x, y \rangle = \langle cx, y \rangle$, which establishes homogeneity wrt. the first slot of the ``aspiring'' inner product.
+
+\end{itemize}
+Having proved these properties, we conclude that $\langle , \rangle$ is indeed an inner product on $U$ and is associated with the given norm. This concludes the proof for real vector spaces.
+
+We will now prove another useful lemma, namely that if $V$ is a complex inner product space with an inner product $\langle ., . \rangle$, and $[., .]$ is the real-valued function such that $[x, y] = Re\{\langle x, y \rangle\}$ for all $x, y \in V$, then $[., .]$ is an inner product over $V$, where $V$ is regarded as a vector space over $\mathbf{R}$. Additionally, we'll show that $[x, ix] = 0$ for all $x \in V$. We examine the properties necessary and sufficient for a function to be considered an inner product one by one:
+\begin{itemize}
+    \item \textbf{Positivity}: For $x \in V$, we have that $[x, x] = Re\{\langle x, x \rangle \} \geq 0$, since it is true that $\langle x, x \rangle \geq 0$ from the definition of inner product applied on$\langle ., .\rangle$.
+    \item \textbf{Definitiness}: For $x \in V$, we are interested in when $[x, x]$ is zero. We have, then, that: $[x, x] = 0 \iff Re\{ \langle x, x \rangle \} = 0$, which since $\langle x, x \rangle \in \mathbf{R}$ is equivalent to $\langle x, x \rangle = 0$, which happens iff $x = 0$, again from the definition of inner product applied on $\langle ., . \rangle$. Therefore $[x, x] = 0 \iff x = 0$.
+    \item \textbf{Linearity in the first slot}: Firstly, for $x, y ,z \in V$: $[x + y, z] = Re\{\langle x + y, z \rangle\} = Re\{ \langle x, z \rangle + \langle y, z \rangle\} = Re\{\langle x, z \rangle\} + Re\{ \langle y, z \rangle\} = [x, z] + [y, z]$, where we used the additivity of the real part as well as the additivity in the first slot of $\langle ., . \rangle$. Therefore, additivity in the first slot holds for $[., . ]$.
+
+    Secondly, since we are considering $V$ as a vector space over $\mathbf{R}$, we need to show that $[\alpha x, y] = \alpha[x, y]$ for $\alpha \in \mathbf{R}$ and $x, y \in V$. We have that $[\alpha x, y ] = Re\{\langle \alpha x, y \rangle\} = Re\{ \alpha \langle x, y \rangle\} = \alpha Re\{ \langle x, y \rangle\} = \alpha[x, y]$, where we used the homogeneity in the first slot of $\langle ., . \rangle$ and the fact that $\alpha \in \mathbf{R}$, which means that $Re\{\alpha c \} = \alpha Re\{c\}$ for any $c \in \mathbf{C}$.
+    \item \textbf{(Conjugate) Symmetry}: Since we're discussing a real inner product, the symmetry property states that $[y, x] = [x, y]$ for $x, y \in V$. To prove this, we have that $[y, x] = Re\{\langle y, x \rangle\} = Re\{\overline{ \langle x, y \rangle}\} = Re\{\langle x, y \rangle\} = [x, y]$, where we used the conjugate symmetry property of $\langle ., . \rangle$ as well as the fact that $Re\{\overline{c}\} = Re\{c\}$ for all $c \in \mathbf{C}$.
+
+    Therefore, $[., .]$ is indeed an inner product over $V$, where $V$ is regarded as a vector space over $\mathbf{R}$. We also have that:
+    $$[x, ix] = Re\{\langle x, ix \rangle\} = Re\{ \overline{i}\langle x, x \rangle\} = Re\{ -i \langle x, x \rangle \} = 0$$
+    , since $\langle x, x\rangle \in \mathbf{R}$ for all $x \in V$, which implies that $-i\langle x, x\rangle$ is an imaginary number, i.e. real part zero.
+\end{itemize}
+
+Continuing the process of proving the initial statement for complex vector spaces, we'll need the following lemma as well:
+
+Let $V$ be a vector space over $\mathbf{C}$ and suppose that $[., .]$ is a real inner product on $V$, where $V$ is regarded as a vector space over $\mathbf{R}$, such that $[x, ix] = 0$ for all $x \in V$. Let $\langle ., . \rangle$ be the complex-valued function defined by
+$$\langle x, y \rangle = [x, y] + i[x, iy]$$ for $x, y \in V$.
+Then, $\langle ., . \rangle$ is a complex inner product on $V$.
+Once again, we examine the properties that define an inner product one by one:
+\begin{itemize}
+    \item \textbf{Positivity}: We have that $\langle x, x \rangle = [x, x] + i[x, ix] = [x, x] + i\cdot0 = [x, y] \geq 0$, since $[., .]$ is an inner product on $V$.
+    \item \textbf{Definiteness}: We have that $\langle x, x \rangle = 0 \iff [x, x] + i[x, ix] = 0 \iff [x, x] = 0$, which happens if and only if $x = 0$ since $[., .]$ is an inner product on $V$.
+    \item \textbf{Linearity in the first slot}: Firstly, for $x, y, z \in V$:
+    $$\langle x + y, z \rangle = [x + y, z] + i[x + y, iz] = [x, z] + [y, z] + i([x, iz] + [y, iz]) = $$
+    $$[x, z] + i[x, iz] + [y, z] + i[y, iz] = \langle x, z\rangle + \langle y, z \rangle$$, where we've used the linearity of $[., .]$ as an inner product.
+    Secondly, let $\alpha = b + ci \in \mathbf{C}$ be a scalar. Then:
+    $$\langle \alpha x, y \rangle = \langle (b + ci)x, y \rangle = [(b + ci)x, y] + i[(b + ci)x, iy] = [bx + cix, y] + i[bx + cix, iy]$$
+    $$= [bx, y] + [cix, y] + i[bx, iy] + i[cix, iy] = b[x, y] + c[ix, y] + bi[x, iy] + ci[ix, iy] = $$
+    $$b([x, y] + i[x, iy]) + ci([ix, iy] - i[ix, y]) = b\langle x, y \rangle + ci([ix, iy] - i[ix, y])$$
+
+    Observe that from the equation above it becomes clear that if we show that $\langle x, y \rangle = [ix, iy] -i[ix, y]$, then we'll also have shown homogeneity in the first slot. To show this, we have that, for any $x, y \in V$:
+    $$[x + y, i(x + y)] = 0 \implies [x, ix] + [x, iy] + [y, ix] + [y, iy] = 0 \implies [x, iy] + [y, ix] = 0 $$
+    $$\implies [x, iy] = -[y, ix]$$
+    , where we've used the fact that the inner product $[., .]$ is additive in the first and second slots (second slot additivity is provable, as is done in the book).
+    Therefore: $[ix, iy] = -[y, i(ix)] = -[y, -x] = [y, x] = [x, y]$, by using the symmetry and homogeneity of $[., ]$. Furthermore, $[ix, y] = [ix, i(-iy)] = -[-iy, i(ix)] = [iy, -x] = -[x, iy]$, once again using the symmetry and homogeneity of $[., .]$.
+
+    By these two facts, $[ix, iy] - i[ix, y] = [x, y] -i(-[x, iy]) = [x, y] + i[x, iy] = \langle x, y \rangle$. As observed above, this essentially implies that $\langle \alpha x, y \rangle = \alpha \langle x, y \rangle$ for $\alpha \in \mathbf{C}$. Therefore, we've now shown linearity in the first slot for $\langle, \rangle$.
+    \item \textbf{Conjugate symmetry}: We have that $\overline{\langle y, x \rangle} = \overline{[y, x] + i[y, ix]} = \overline{[y, x]} + \overline{i[y, ix]} = [y, x] - i[y, ix] = [x, y] - i[ix, y] = [x, y] -i(-[x, iy]) = [x, y] + i[x, iy] = \langle x, y \rangle$, where we applied the symmetry of $[., .]$ (real inner product) as well as the previously proven fact $[ix, y] = -[x, iy]$. We've therefore shown that conjugate symmetry holds for $\langle ., . \rangle$.
+\end{itemize}
+Therefore, $\langle ., . \rangle$ is indeed a complex inner product on $V$.
+
+Finally, let's use all of the lemmas we've proved to show that a norm satisfying the parallelogram equality comes from an inner product in complex vector spaces as well. Suppose then $V$ is a complex vector space and $\lvert \lvert \cdot \rvert \rvert$ is a norm as defined in the exercise. Then:
+\begin{itemize}
+    \item Let $[x, y] = \frac{1}{4}(\lvert \lvert x + y \rvert \rvert^2 - \lvert \lvert x - y \rvert \rvert^2)$. We proved that if we consider $V$ as a vector space over $\mathbf{R}$, $ [., .]$ is an inner product for which $\langle x, x \rangle = \lvert \lvert x \rvert \rvert^2$ for all $x \in V$. It is furthermore the case that:
+    $$[x, ix] = \frac{1}{4}(\lvert \lvert x + ix \rvert \rvert^2 - \lvert \lvert x - ix \rvert \rvert^2) = \frac{1}{4}(\lvert 1 + i \lvert \lvert x \rvert \rvert^2 - \lvert 1 - i \lvert \lvert x \rvert \rvert^2) = \frac{1}{4}(\sqrt{2}\lvert \lvert x \rvert \rvert^2 - \sqrt{2} \lvert \lvert x \rvert \rvert^2) = 0$$
+    \item Now, let $\langle x, y \rangle = [x, y] + i[x, iy]$. Since $[., .]$ is an inner product on $V$ regarded as a vector space over $\mathbf{R}$ and has the property that $[x, ix] = 0$, we know from the previously proved lemma that $\langle., .\rangle$ is a complex inner product on $V$.
+    \item Lastly, for $x \in V$: $\langle x, x \rangle  = [x, x] + i[x, ix] = \lvert \lvert x \rvert \rvert^2$. We conclude, therefore, that $\langle ., .\rangle$ is an inner product on $V$ associated with the given norm, and thus we --- finally --- conclude the proof.
+\end{itemize}
+\end{solution}
+
+\begin{exercise}{26}
+Suppose $f, g$ are differentiable functions from $\mathbf{R}$ to $\mathbf{R}^n$.
+
+(a) Show that $$\langle f(t), g(t) \rangle' = \langle f'(t), g(t) \rangle + \langle f(t), g'(t) \rangle$$
+
+(b) Suppose $c > 0$ and $\lvert \lvert f(t) \rvert \rvert = c$ for every $t \in \mathbf{R}$. Show that $\langle f'(t), f(t) \rangle = 0$ for every $t \in \mathbf{R}$.
+
+(c) Interpret the result in part (b) geometrically in terms of the tangent vector to a curve lying on a sphere in $\mathbf{R}^n$ centered at the origin.
+\end{exercise}
+
+\begin{solution}
+(a)
+
+By using the definition of the derivative, we have that: $$\langle f(t), g(t) \rangle' = \lim_{h \to 0}\left(\frac{\langle f(t + h), g(t + h)\rangle - \langle f(t), g(t) \rangle}{h}\right) = $$
+$$= \lim_{h \to 0}\left( \frac{\langle f(t + h), g(t + h) \rangle - \langle f(t+h), g(t) \rangle + \langle f(t+h), g(t) \rangle -\langle f(t), g(t) \rangle}{h}\right) = $$
+$$\lim_{h \to 0}\left(\frac{\langle f(t+h), g(t+h)-g(t)\rangle + \langle f(t+h)-f(t), g(t)\rangle}{h}\right) = $$
+$$\lim_{h \to 0}\left(\langle f(t+h), \frac{g(t+h)-g(t)}{h}\rangle + \langle \frac{f(t+h)-f(t)}{h}, g(t)\rangle\right)$$
+
+, where we used the first and second slot linearity of the inner product, as well as its symmetry as a real inner product
+
+Observe now that if it holds that $\lim_{x \to x_0}(\langle f_1(x), f_2(x) \rangle) = \langle \lim_{x \to x_0}(f_1(x)), \lim_{x \to x_0}(f_2(x)) \rangle$, for any $x_0$ and any $f_1, f_2$ functions whose limits at $x_0$ are well defined, then the equality above essentially yields what we require. This is because: $$\lim_{h \to 0}(f(t+h)) = f(t), \lim_{h \to 0}\left( \frac{g(t+h) - g(t)}{h}\right) = g'(t), \lim_{h \to 0}\left( \frac{f(t+h) - f(t)}{h}\right) = f'(t), \lim_{h \to 0}(g(t)) = g(t)$$
+
+In fact, if we can show that $\langle \cdot, \cdot \rangle$ is continuous, then the composition rule for limits in combination with the continuity of our $f, g$ will guarantee the equality we required above (and which completes the proof). In other words, we need to show that the function $F: \mathbf{R}^n \times \mathbf{R}^n \to \mathbf{R}, F(x_1, x_2) = \langle x_1, x_2 \rangle$ is continuous. This is equivalent to showing that:
+$$\forall a, b \in \mathbf{R}^n, \lim_{x_1 \to a, x_2 \to b}\left(\langle x_1, x_2 \rangle\right) = \langle a, b \rangle$$
+
+, which can be shown by proving that for any $\epsilon > 0$, we can choose $\delta > 0$ such that whenever $\lvert \lvert x_1 - a \rvert \rvert \leq \delta, \lvert \lvert x_2 - a \rvert \rvert \leq \delta$ it is true that $\lvert \langle x_1, x_2 \rangle  - \langle a, b \rangle \rvert \leq \epsilon$. Let us pick therefore any $\epsilon > 0$. We begin by observing that:
+$$\lvert \langle x_1, x_2 \rangle - \langle a, b \rangle \rvert = \lvert \langle x_1, x_2 \rangle - \langle a, x_2 \rangle + \langle a, x_2 \rangle - \langle a, b \rangle \rvert = \lvert \langle x_1 - a, x_2 \rangle + \langle a, x_2 - b \rangle \rvert \leq \lvert \langle x_1 - a, x_2 \rangle \rvert + \lvert \langle a, x_2 - b \rangle \rvert$$
+$$\leq \lvert \lvert x_1 - a \rvert \rvert \cdot \lvert \lvert x_2 \rvert \rvert + \lvert \lvert a \rvert \rvert \cdot \lvert \lvert x_2 - b \rvert \rvert$$
+
+, where at the last step we used the Cauchy-Schwarz inequality. Now pick $\delta = \min{\frac{\epsilon}{2}, \frac{\epsilon}{2(\lvert \lvert b \rvert \rvert + \epsilon)},\frac{\epsilon}{2(\lvert \lvert a \rvert \rvert + \epsilon)}}$. Observe that for this choice of $\delta$, whenever $\lvert \lvert x_2 - b \rvert \rvert \leq \delta, \lvert \lvert x_1 - a \rvert \rvert \leq \delta$ we have that:
+$$\lvert \lvert a \rvert \rvert \cdot \lvert \lvert x_2 - b \rvert \rvert \leq \lvert \lvert a \rvert \rvert \frac{\epsilon}{2(\epsilon + \lvert \lvert a \rvert \rvert)} \leq \frac{\epsilon}{2}$$
+
+Furthermore $\lvert \lvert x_2 \rvert \rvert - \lvert \lvert b \rvert \rvert \leq \lvert \lvert x_2 - b \rvert \rvert \leq \epsilon$ (the first inequality follows easily from squaring and using the Cauchy-Schwarz inequality), which means that $\lvert \lvert x_2 \rvert \rvert \leq \epsilon + \lvert \lvert b \rvert \rvert$. Then:
+$$\lvert \lvert x_1 - a \rvert \rvert \cdot \lvert \lvert x_2 \rvert \rvert \leq \frac{\epsilon}{2(\lvert \lvert b \rvert \rvert + \epsilon)} \cdot (\epsilon + \lvert \lvert b \rvert \rvert) = \frac{\epsilon}{2}$$. Putting it all together, we conclude that for the above choice of $\delta$ it holds that $$\lvert \langle x_1, x_2 \rangle - \langle a, b \rangle \rvert \leq \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$$.
+
+We therefore proved that the inner product function is continuous, which combined with the observations we made prior to this proof, yields the result $\langle f(t), g(t) \rangle' = \langle f'(t), g(t) \rangle + \langle f(t), g'(t) \rangle$.
+
+(b)
+
+Observe that $\langle f(t), f(t) \rangle' = \langle f'(t), f(t) \rangle + \langle f(t), f'(t) \rangle \implies (\lvert \lvert f(t) \rvert \rvert^2)' = 2\langle f(t), f'(t) \rangle$. If $\lvert \lvert f(t) \rvert \rvert = c$ for every $t \in \mathbf{R}$, then $\lvert \lvert f(t) \rvert \rvert^2 = c^2 \implies (\lvert \lvert f(t) \rvert \rvert^2)' = 0$ for all $t \in \mathbf{R}$.
+
+By the previous observation, we have then that for every $t \in \mathbf{R}$, $\langle f(t), f'(t) \rangle = 0$.
+
+(c)
+
+If $\lvert \lvert f(t) \rvert \rvert = c$ for all $t \in \mathbf{R}$, every point of the (parameterized) curve of $f$ lies on a sphere of radius $c$ centered at the origin. At any point $f(t)$ of this sphere, the tangent plane comprises all vectors that are orthogonal to the vector $f(t)$. Since the curve lies entirely on the sphere's surface, $f'(t)$ will belong to the tangent plane of the sphere at point $f(t)$, and will thus be orthogonal to $f(t)$, as we showed in (b).
+\end{solution}
+
+\newpage
+\section{Orthonormal Bases}
+
+\begin{exercise}{1}
+    (a) Suppose $\theta \in \mathbf{R}$. Show that $(\cos \theta, \sin \theta), (-\sin \theta, \cos \theta)$ and $(\cos \theta, \sin \theta), (\sin \theta, -\cos \theta)$ are orthonormal bases of $\mathbf{R}^2$.
+    
+    (b) Show that each orthonormal basis of $\mathbf{R}^2$ is of the form given by one of the two possibilities of part (a).
+\end{exercise}
+
+\begin{solution}
+
+(a) 
+
+For the first list, we have that $\lvert \lvert(\cos \theta, \sin \theta) \rvert \rvert = \sqrt{\cos^2 \theta + \sin^2\theta} = 1$ and \\ $\lvert \lvert (-\sin \theta, \cos \theta) \rvert \rvert = \sqrt{(-\sin \theta)^2 + \cos^2 \theta} = 1$ , by the well known trigonometric identity. Furthermore, $\langle (\cos \theta, \sin \theta), (-\sin \theta, \cos \theta) \rangle = -\sin \theta \cos \theta + \sin \theta \cos \theta = 0$, so the list is indeed orthonormal (orthogonal vectors with norm 1). The proof is almost identical for the second list given in the exercise.
+
+(b) 
+
+Let $v_1, v_2$ be an orthonormal basis of $\mathbf{R}^2$. First of all, observe that if we define as $\theta$ the angle of a vector $v$ of length $\alpha > 0$ with the $x'x$ axis (the angle defined by the mathematical positive rotation of the $x'x$ axis), we can express $v$ as $v = (\alpha \cos \theta, \alpha, \sin \theta)$. Therefore, let $v_1 = (\alpha_1 \cos {\theta}_1, \alpha_1 \sin {\theta}_1), v_2 = (\alpha_2 \cos {\theta}_2, \alpha_2 \sin {\theta}_2)$ be the vectors of our orthonormal basis expressed in this formulation. Since the basis is orthonormal, the vectors must each have norm 1, so $\alpha_1 = \alpha_2 = 1$. Furthermore, it must hold that:
+
+$$\langle v_1, v_2 \rangle = 0 \implies \cos \theta_1 \cos \theta_2 + \sin \theta_1 \sin \theta_2 = 0 \implies \cos \theta_1 \cos \theta_2 = -\sin \theta_1 \sin \theta_2$$
+
+If $\cos \theta_1 = 0$, then $\sin \theta_1 = \pm 1$ and by the above equality we have that $\sin \theta_2 = 0$, therefore $\cos \theta_2 = \pm 1$. In any case though, it holds that: $\sin \theta_2 = \cos \theta_1$ and $\sin \theta_2 = - \cos \theta_1$ (since they're both zero) and either that $\cos \theta_2 = \sin \theta_1$ or that $\cos \theta_2 = -\sin \theta_1$. It's then clear that the orthonormal basis has one of the forms of (a).
+
+If $\cos \theta_1 \neq 0$, then by the above equality, $\cos \theta_2 = -\frac{\sin \theta_1 \sin \theta_2}{\cos \theta_1}$. By plugging this in the basic trigonometric identity for $\theta_2$ we obtain that:
+
+$$\cos^2 \theta_2 + \sin^2 \theta_2 = 1 \implies \sin^2 \theta_2 + \frac{\sin^2 \theta_1 \sin^2 \theta_2}{\cos^2 \theta_1} = 1 \implies \sin^2 \theta_2 \cos^2 \theta_1 + \sin^2 \theta_1 \sin^2 \theta_2 = \cos^2 \theta_1$$
+$$\implies \sin^2 \theta_2(\cos^2 \theta_1 + \sin^2 \theta_1) = \cos^2 \theta_1 \implies \sin^2 \theta_2 = \cos^2 \theta_1$$
+
+This implies that either $\sin \theta_2 = \cos \theta_1$ or that $\sin \theta_2 = -\cos \theta_1$. In the first case, we have that $\cos \theta_2 = -\frac{\sin \theta_1 \sin \theta_2}{\cos \theta_1} = -\frac{\sin \theta_1 \cos \theta_1}{\cos \theta_1}  = -\sin \theta_1$. Therefore, $v_2 = (-\sin \theta_1, \cos \theta_1)$ and $v_1 = (\cos \theta_1, \sin \theta_1)$, which is of the first possibility proposed in (a). In the second case, we have that $\cos \theta_2 = -\frac{\sin \theta_1 \sin \theta_2}{\cos \theta_1} = -\frac{\sin \theta_1 (-\cos \theta_1)}{\cos \theta_1} = \sin \theta_1$. Therefore, $v_2 = (\sin \theta_1, -\cos \theta_1)$ and $v_1 = (\cos \theta_1, \sin \theta_1)$, which is of the second possibility proposed in(a).
+
+In any case, since $v_1, v_2$ was selected as an arbitrary orthonormal basis of $\mathbf{R}^2$, we have proved that each orthonormal basis of $\mathbf{R}^2$ is of the form proposed in part (a).
+
+\end{solution}
+
+\newpage
+\begin{exercise}{2}
+    Suppose $e_1, e_2, \ldots, e_m$ is an orthonormal list of vectors in $V$. Let $v \in V$. Prove that
+    $$\lvert \lvert v \rvert \rvert^2 = \lvert \langle v, e_1 \rangle \rvert^2 + \ldots + \lvert \langle v, e_m \rangle \rvert^2$$
+    if and only if $v \in \text{span}(e_1, \ldots, e_m)$.
+\end{exercise}
+
+\begin{solution}
+    
+    $\impliedby$: If $v \in \text{span}(e_1, \ldots, e_m)$, and $e_1, \ldots, e_m$ is an orthonormal list, we already know that $\lvert \lvert v \rvert \rvert^2 = \lvert \langle v, e_1 \rangle \rvert^2 + \ldots + \lvert \langle v, e_m \rangle \rvert^2$.
+    
+    $\implies$: If $\lvert \lvert v \rvert \rvert^2 = \lvert \langle v, e_1 \rangle \rvert^2 + \ldots + \lvert \langle v, e_m \rangle \rvert^2$, we have that:
+    $$ \langle v - \sum_{i} \langle v, e_i \rangle e_i, v - \sum_{j} \langle v, e_j \rangle e_j \rangle = \langle v, v \rangle - \langle v, \sum_{j} \langle v, e_j \rangle e_j \rangle - \langle \sum_{i} \langle v, e_i \rangle e_i, v \rangle + \langle \sum_{i} \langle v, e_i \rangle e_i, \sum_{j} \langle v, e_j \rangle e_j \rangle = A$$
+
+    , where we used the first and second slot additivity of the inner product. Continuing, we have that:
+
+    $$A = \lvert \lvert v \rvert \rvert^2 - \sum_{i} \overline{\langle v, e_i \rangle}\langle v, e_i \rangle - \sum_{i} \langle v, e_i \rangle \langle e_i, v \rangle + \sum_{i} \langle v, e_i \rangle \langle e_i, \sum_{j} \langle v, e_j \rangle e_j \rangle$$
+
+    , where we again used first and second slot additivity as well as first slot homogeneity and second slot conjugate homogeneity of the inner product. Then:
+
+    $$A = \lvert \lvert v \rvert \rvert^2 - \sum_{i} \lvert \langle v, e_i \rangle \rvert^2 - \sum_{i} \langle v, e_i \rangle \langle e_i, v \rangle + \sum_{i}\langle v, e_i \rangle (\sum_{j}\overline{\langle v, e_j \rangle} \langle e_i, e_j \rangle) = $$
+    $$ = \lvert \lvert v \rvert \rvert^2 - \sum_{i} \lvert \langle v, e_i \rangle \rvert^2 - \sum_{i} \langle v, e_i \rangle \overline{\langle v, e_i \rangle} + \sum_{i}\langle v, e_i \rangle (\sum_{j}\overline{\langle v, e_j \rangle} \langle e_i, e_j \rangle) $$
+
+    , where we used the conjugate symmetry of the inner product. Now, for the last term of this sum observe that due to $e_i$ being orthonormal, $\langle e_i, e_j \rangle = 0$ except when $i = j$, in which case $\langle e_i, e_j \rangle = 1$. Therefore:
+
+    $$A = \lvert \lvert v \rvert \rvert^2 - 2\sum_{i} \lvert \langle v, e_i \rangle \rvert^2 + \sum_{i} \langle v, e_i \rangle \overline{\langle v, e_i \rangle} = \sum_{i} \lvert \langle v, e_i \rangle \rvert^2 - 2 \sum_{i} \lvert \langle v, e_i \rangle \rvert^2 + \sum_{i} \lvert \langle v, e_i \rangle \rvert^2 = 0$$
+
+    , where we used the assumption of the ``$\implies$'' direction. Since $A = \langle v - \sum_{i} \langle v, e_i \rangle e_i, v - \sum_{j} \langle v, e_j \rangle e_j \rangle$, and since $\langle x, x \rangle = 0$ iff $x = 0$, we conclude that $v = \sum_{i} \langle v, e_i \rangle e_i$, hence $v \in \text{span}(e_1, \ldots, e_m)$, completing the proof.
+\end{solution}
+
+\begin{exercise}{4}
+    Suppose $n$ is a positive integer. Prove that
+    $$\frac{1}{\sqrt{2\pi}}, \frac{\cos(x)}{\sqrt{\pi}}, \frac{\cos(2x)}{\sqrt{\pi}}, \ldots, \frac{\cos(nx)}{\sqrt{\pi}}, \frac{\sin(x)}{\sqrt{\pi}}, \frac{\sin(2x)}{\sqrt{\pi}}, \ldots, \frac{\sin(nx)}{\sqrt{\pi}}$$
+    is an orthonormal list of vectors in $C[-\pi, \pi]$, the vector space of continuous real-valued functions on $[-\pi, \pi]$ with the inner product
+    $$ \langle f, g \rangle = \int_{-\pi}^{\pi} f(x)g(x) dx$$
+\end{exercise}
+
+\begin{solution}
+
+    We begin by examining the norms of each vector.
+    \begin{itemize}
+        \item $\lvert \lvert \frac{1}{\sqrt{2\pi}} \rvert \rvert= \int_{-\pi}^{\pi} \frac{1}{\sqrt{2\pi}} \frac{1}{\sqrt{2\pi}} dx = \left(\frac{x}{2\pi}\right)\Big|_{-\pi}^{\pi} = \frac{\pi}{2\pi} - (-\frac{\pi}{2\pi}) = 1$
+        \item $\lvert \lvert \frac{\cos(nx)}{\sqrt{pi}} \rvert \rvert = \int_{-\pi}^{\pi} \frac{\cos(nx)}{\sqrt{pi}} \frac{\cos(nx)}{\sqrt{pi}} dx = \left(\frac{1}{2\pi}(x + \frac{\sin(2nx)}{2n})\right)\Big|_{-\pi}^{\pi} = \frac{1}{2\pi}(\pi + 0 - (-\pi + 0)) = 1$, where we omitted several steps in the calculation of the --- indefinite ---integral of $\cos^2(nx)$ (trig. identities etc.) since they're more relevant to a calculus course. Note that we this is true for any positive integer $n$.
+        \item $\lvert \lvert \frac{\sin(nx)}{\sqrt{pi}} \rvert \rvert = \int_{-\pi}^{\pi} \frac{\sin(nx)}{\sqrt{pi}} \frac{\sin(nx)}{\sqrt{pi}} dx = \left(-\frac{\sin(2nx) - 2nx}{4\pi n}\right)\Big|_{-\pi}^{\pi} = (-\frac{0 - 2n\pi}{4\pi n}) - (-\frac{0 + 2n\pi}{4\pi n}) = 1$, again by omitting several steps, and again true for any positive $n$.
+    \end{itemize}
+    Therefore every vector of the list has norm 1. Now we need to show that $\langle f_1, f_2 \rangle = 0$ whenever $f_1, f_2$ are vectors of the list which are not equal.
+    \begin{itemize}
+        \item If $f_1 = \frac{1}{\sqrt{2\pi}}$, and $f_2 = \frac{\cos(nx)}{\sqrt{\pi}}$, then $\int_{-\pi}^{\pi} \frac{1}{\sqrt{2\pi}}\frac{\cos(nx)}{\sqrt{\pi}} dx = \left(\frac{1}{\pi\sqrt{2}} \frac{\sin(nx)}{n}\right)\Big|_{-\pi}^{\pi} = 0 - 0$, for any positive integer $n$.
+        \item If $f_1 = \frac{1}{\sqrt{2\pi}}$, and $f_2 = \frac{\sin(nx)}{\sqrt{\pi}}$, then $\int_{-\pi}^{\pi} \frac{1}{\sqrt{2\pi}}\frac{\sin(nx)}{\sqrt{\pi}} dx = 0$ because $\sin$ is an odd function.
+        \item If $f_1 = \frac{\cos(n_1 x)}{\sqrt{\pi}}$ and $f_2 = \frac{\sin(n_2 x)}{\sqrt{\pi}}$, then observe that their product is an odd function because $\cos$ is even and $\sin$ is odd, so its integral from $-\pi$ to $\pi$ will be 0.
+        \item If $f_1$, $f_2$ are both cosines or both sines, we can show that they are orthogonal by computing the respective integrals. Again, however, this is rather tedious and has more to do with calculus practice, so we'll omit it.
+    \end{itemize}
+    Therefore, we've also shown that all of the vectors in the list are orthogonal, hence proving the orthonormality of the list.
+\end{solution}
+
+\begin{exercise}{9}
+    What happens if the Gram-Schmidt Procedure is applied to a list of vectors that is not linearly independent?
+\end{exercise}
+
+\begin{solution}
+
+    If the first vector of this list is the zero vector, then the Gram-Schmidt procedure will try to divide with zero (the vector's norm). Otherwise, by the linear dependence lemma, there exists some $j > 1$ such that $v_j \in \text{span}(v_1, \ldots, v_{j-1})$, with $v_1, \ldots, v_{j-1}$ being linearly independent (this can be obtained by picking the minimum $j$ for which the lemma holds).
+
+    Therefore, the Gram-Schmidt Procedure will work normally until $v_j$, yielding the orthonormal vectors $e_1, \ldots, e_{j-1}$. At this point, observe that $v_j \in \text{span}(v_1, \ldots, v_{j-1})$ and that from the Procedure we know that $\text{span}(v_1, \ldots, v_{j-1}) = \text{span}(e_1, \ldots, e_{j-1})$, thus $v_j \in \text{span}(e_1, \ldots, e_{j-1})$ and since this is an orthonormal list, we know that $v_j = \langle v_j, e_1 \rangle e_1 + \ldots + \langle v_j, e_{j-1} \rangle e_{j-1}$. Clearly, this implies that the Gram-Schmidt procedure would again try to divide by zero (the magnitude of the difference of the two sides of this equation).
+\end{solution}
+
+\begin{exercise}{15}
+    Suppose $C_{\mathbf{R}}([-1, 1])$ is the vector space of continuous real-valued functions on the interval $[-1, 1]$ with inner product given by
+    $$\langle f, g \rangle = \int_{-1}^{1} f(x)g(x) dx$$
+    for $f, g \in C_{\mathbf{R}}([-1, 1])$. Let $\phi$ be the linear functional on $C_{\mathbf{R}}([-1, 1])$ defined by $\phi(f) = f(0)$. Show that there does not exist $g \in C_{\mathbf{R}}([-1, 1])$ such that
+    $$\phi(f) = \langle f, g \rangle$$
+    for every $f \in C_{\mathbf{R}}([-1, 1])$.
+\end{exercise}
+
+\begin{solution}
+
+    Suppose that such a $g$ existed. 
+    \begin{itemize}
+        \item First of all, observe that $g(x)$ cannot be the zero function, because then $\langle f, g \rangle = 0$ for every $f$, which would mean that it could not, for example, express the value $f(0)$ for the function $f(x) = 1$. 
+        \item Let $f_1$ be a function in our vector space such that $f_1(0) = 0$ and $f_1(x) > 0$ for all $x \neq 0$ (such a function can easily be constructed, e.g. a second-degree polynomial). If it was the case that $g(x) \geq 0$ for all $x \in (-1, 1)$, then $\langle f_1, g \rangle > 0$, since the function $f(x)g(x)$ being integrated would be continuous (product of continuous functions in $C_{\mathbf{R}}([-1, 1])$) and non-negative everywhere, and since $f_1 \neq 0, g \neq 0$. But, $f(0) = 0$ so $\langle f_1, g \rangle \neq f_1(0)$. Therefore, there exists some $x_1 \in (-1, 1)$ such that $g(x_1) < 0$.
+        \item Let $f_2$ be a function in our vector space such that $f_2(0) = 0$ and $f_2(x) < 0$ for all $x \neq 0$ (again, it's easy to construct such a function). By the same argument as before, if it was the case that $g(x) \leq 0$ everywhere, then $\langle f_2, g \rangle < 0$ and $f_2(0) = 0$, a contradiction. Therefore, there exists some $x_2 \in (-1, 1)$ such that $g(x_2) > 0$.
+    \end{itemize}
+    Without loss of generality, $x_1 < x_2$. Since $g$ is continuous, we can apply the intermediate value theorem in $[x_1, x_2]$ and obtain that $g(\xi) = 0$ for at least one $\xi \in [x_1, x_2]$. Furthermore, by the same theorem, $g(x) \leq 0$ in a neighborhood $[x_3, \xi]$ and $g(x) \geq 0$ for a neighborhood $[\xi, x_4]$. Because $g$ is not zero everywhere, it is also the case that we can pick $x_3, x_4$ such that even if $g$ is zero in a neighborhood around $\xi$, there do exist neighborhoods around $[x_3, a], [b, x_4]$ where g is strictly negative. Let us then consider a function $f$ such that:
+    $$f(x) = \begin{cases} -x + x_3, & x_3 \leq x \leq \frac{\xi + x_3}{2} \\ x - \xi, & \frac{\xi + x_3}{2} < x \leq \frac{\xi + x_4}{2} \\ -x + x_4, & \frac{\xi + x_4}{2} < x \leq x_4 \\ 0, & \text{elsewhere} \end{cases}$$
+    $f$ is certainly continuous (it's essentially a ``triangular'' pulse), and we can see that $f(x)g(x) = 0$ for $x \notin [x_3, x_4]$, $f(x)g(x) \geq 0$ for $x \in [x_3, x_4]$, since we designed $f$ such that it has the same sign as $g$ in $[x_3, x_4]$. Furthermore, the product is not always 0 due to $g, f$ not being always zero. Thus $\langle f, g \rangle > 0$. If $\xi = 0$, then $f(0) = f(\xi) = 0$. If $\xi \neq 0$, then we can choose $x_3, x_4$ arbitrarily close to it, and thus we can safely assume that $0 \notin (x_3, x_4)$, which means that $f(0) = 0$ (since 0 is outside the interval where $f$ is non-zero). This means that $\langle f, g \rangle \neq f(0)$, a contradiction.
+
+    Therefore, such a $g$ cannot exist.
+
+\end{solution}
+
+\begin{exercise}{17}
+    For $u \in V$, let $\Phi u$ denote the linear functional on V defined by
+    $$(\Phi u)(v) = \langle v, u \rangle$$
+    for $v \in V$.
+
+    (a) Show that if $\mathbf{F} = \mathbf{R}$, then $\Phi$ is a linear map from $V$ to $V'$.
+
+    (b) Show that if $\mathbf{F} = \mathbf{C}$ and $V \neq {0}$, then $\Phi$ is not a linear map.
+
+    (c) Show that $\Phi$ is injective.
+
+    (d) Suppose $\mathbf{F} = \mathbf{R}$ and $V$ is finite-dimensional. Use parts (a) and (c) and a dimension-counting argument (but without using 6.42) to show that $\Phi$ is an isomorphism from $V$ to $V'$.
+\end{exercise}
+
+\begin{solution}
+
+    (a) 
+    For $u_1, u_2 \in V$, we have that $\Phi(u_1 + u_2) = f$, where $f$ is a function from $V$ to $\mathbf{R}$ such that $f(v) = \langle v, u_1 + u_2 \rangle = \langle v, u_1 \rangle + \langle v, u_2 \rangle$, due to additivity of the inner product. It's also the case that $\Phi(u_1) = f_1, \Phi(u_2) = f_2$ such that $f_1(v) = \langle v, u_1 \rangle, f_2(v) = \langle v, u_2 \rangle$, which leads to the conclusion that for every $v \in V, f(v) = f_1(v) + f_2(v)$, therefore $\Phi(u_1 + u_2) = \Phi(u_1) + \Phi(u_2)$.
+    
+    Furthermore, for $\lambda \in \mathbf{R}$ and $u \in V$, $\Phi(\lambda u) = f$, where f is a function from $V$ to $\mathbf{R}$ such that for $v \in V, f(v) = \langle v, \lambda u \rangle = \lambda \langle v, u \rangle$, where we used the second-slot homogeneity of the inner product (which holds due to $\mathbf{F} = \mathbf{R}$). This means that $\Phi(\lambda u) = \lambda \Phi(u)$.
+
+    We have thus proved linearity and homogeneity for $\Phi$. Obviously, the domain of $\Phi$ is $V$, whereas $\Phi(u) = f$, such that $f(v) = \langle v, u \rangle$, and because the inner product is linear in its first slot, $f$ is linear, thus the codomain of $\Phi$ is indeed $L(V, \mathbf{F}) = V'$.
+
+    (b) If $\mathbf{F} = \mathbf{C}$, $V \neq 0$, then observe that for $\lambda \in \mathbf{C}$, $u \in V, u \neq 0$ (such a $u$ exists because $V \neq {0}$), $\Phi(\lambda u) = f$, such that $f(v) = \langle v, \lambda u \rangle = \overline{\lambda} \langle v, u \rangle$. Clearly, if $\lambda \notin \mathbf{R}$ this is not equal to $\Phi(u)$, therefore homogeneity does not hold and $\Phi$ cannot be linear.
+
+    (c) We need to examine when is it the case that $\Phi(u)$ is the zero function, i.e.\ when is it true that $\langle v, u \rangle = 0$ for every $v \in V$. This is equivalent to $u$ being orthogonal to every vector $v \in V$, which happens iff $u = 0$, therefore $\Phi(u) \iff u = 0$, i.e.\ $\Phi$ is injective.
+
+    (d) From (c), it is the case that $\text{dim(null} \Phi)= 0$, therefore by the Fundamental Theorem of Linear Maps, $\text{dim} V = \text{dim(null} \Phi) + \text{dim(range} \Phi) \implies \text{dim} V = \text{dim(range} \Phi)$, and we know that $\text{dim} V = \text{dim} V'$, therefore $\Phi$ is surjective, and since it's also injective, it's invertible, i.e.\ it's an isomorphism between $V$ and $V'$.
+\end{solution}
+
+\section{Orthogonal Complements and Minimization Problems}
+
+\begin{exercise}{1}
+    Suppose $v_1, \ldots, v_m \in V$. Prove that
+    $$\{ v_1, \ldots, v_m \}^\bot = (\text{span(}v_1, \ldots, v_m))^\bot$$
+\end{exercise}
+\begin{solution}
+
+    Let $S_1 = \{ v_1, \ldots, v_m \}^\bot, S_2 = (\text{span(}v_1, \ldots, v_m))^\bot$, and let also $v \in S_1$. By definition, $\langle v, v_i \rangle = 0$ for all $v_i$. Now if $u \in S_2$, that means that $u = \sum_{i=1}^{m} \alpha_i v_i$. Therefore, $\langle v, u \rangle = \langle v,  \sum_{i=1}^{m} \alpha_i v_i \rangle = \sum_{i=1}^{m} \overline{\alpha_i } \langle v, v_i \rangle = 0$, and since $u$ was chosen arbitrarily, it holds that $v \in S_2$. Therefore, $S_1 \subset S_2$.
+
+    Now, let $v \in S_2$, in which case it is true that $\langle v, \sum_{i=1}^{m} \alpha_i v_i \rangle$ for any choice of $\alpha_i$. More specifically, if we choose exactly one $\alpha_i$ to be 1 and the rest to be 0, we obtain that $\langle v, v_i \rangle = 0$. Since this is true for all $i$, we conclude that $v \in S_1$, thus that $S_2 \subset S_1$, completing the proof that $S_1 = S_2$.
+\end{solution}
+
+\begin{exercise}{2}
+    Suppose $U$ is a finite-dimensional subspace of $V$. Prove that $U^\bot = \{0\}$ if and only if $U = V$.
+\end{exercise}
+
+\begin{solution}
+
+    $\impliedby$: If $U = V$, then we already know that $V^\bot = \{0\}$, thus $U^\bot = \{0\}$ (the idea is that for a $v \in V^\bot$, $v$ needs to be orthogonal to itself, which happens iff $v = 0$).
+    
+    $\implies$: If $U^\bot = \{0\}$, let $v \in V$. Observe that because $U$ is finite-dimensional, we know that $V = U \oplus U^\bot$. Therefore, $v = u + w$ for a unique choice of $u \in U, w \in U^{\bot}$. Because $U^\bot = \{0\}, w = 0$. This means that $v = u \in U$, which means that $V \subset U$, and since $U \subset V$ (subspace), we have that $U = V$.
+\end{solution}
+
+\begin{exercise}{5}
+    Suppose $V$ is finite-dimensional and $U$ is a subspace of $V$. Show that $P_{U^\bot} = I - P_U$, where $I$ is the identity operator on $V$.
+\end{exercise}
+
+\begin{solution}
+
+    Since $V$ is finite-dimensional, every one of its subspaces is also finite-dimensional. This means that $U, U^\bot$ are finite-dimensional, and thus it holds that $(U^\bot)^\bot = U$. It is also true that $V = U^\bot \oplus U$. This means that any $v \in V$ can be uniquely written as $v = w + u, w \in U^\bot, u \in U$. Then, by definition $P_U(v) = u$ and $P_{U^\bot}(v) = w = v - u = v - P_U(v) = I(v) - P_U(v)$, which means that indeed $P_{U^\bot} = I - P_U$.
+\end{solution}
+
+\begin{exercise}{6}
+    Suppose $U, W$ are finite-dimensional subspaces of $V$. Prove that $P_U P_W = 0$ if and only if $\langle u, w \rangle = 0$ for all $u \in U, w \in W$.
+\end{exercise}
+
+\begin{solution}
+
+    $\implies$: If $P_U P_W (v) = 0$ for every $v \in V$, then let us select a random $w \in W$. Because $\text{range}(P_W) = W$, there exists some $v$ for which $P_W(v) = w$, which means that it must hold that $P_U(w) = 0$. This in turn means that $w = P_U(w) + x$, where $x \in U^\bot$ and $P_U(w) = 0$. Therefore $w = x \in U^\bot$, which by definition means that $\langle u, w \rangle = 0$ for every $u \in U$.
+
+    $\impliedby$: We need to show that if $\langle u, w \rangle = 0$ for every $u \in U, w \in W$, then $P_U P_W (v) = 0$ for any $v \in V$. Let then $v$ be any vector in $V$. Then $P_U P_W (v) = P_U(w)$ for some $w \in W$ (by the definition of $P_W$). The fact that $\langle u, w \rangle = 0$ for all $u \in U$ means that this $w$ is an element of $U^\bot$. Then, the direct sum decomposition $V = U \oplus U^\bot$ yields that $w = 0 + x, x \in U^\bot$, and therefore $P_U(w) = 0$, which means that $P_U P_W(v) = 0$ for an arbitrary $v \in V$, thus $P_U P_W = 0$.
+\end{solution}
+
+\begin{exercise}{7}
+    Suppose $V$ is finite-dimensional and $P \in L(V)$ is such that $P^2 = P$ and every vector in $\text{null} P$ is orthogonal to every vector in$\text{range} P$. Prove that there exists a subspace $U$ of $V$ such that $P = P_U$.
+\end{exercise}
+
+\begin{solution}
+
+    We begin by observing that because $P^2 = P$, for any $v \in V$ it must hold that $P^2(v) = P(v) \implies P(P(v)) - P(v) = 0 \implies P(P(v) - v) = 0 \implies P(v) - v \in \text{null} P$. By the given hypothesis, it then holds that $\langle P(v) - v, P(w) \rangle = 0$ for any two $v, w \in V$ (since every vector in $\text{null} P$ is orthogonal to every vector in $P$'s range). 
+
+    We need to show that there exists some $U$ subspace of $V$ such that $P_U = P$. This would mean then that $V = U \oplus U^\bot$, and that for every $v \in V$, $v = P_U(v) + w = P(v) + w$, with $w \in U^\bot$ (where we used $P_U = P$). Additionally, this would mean that $\langle P(v), w \rangle = 0$. Observe now that we can write $v = (v - P(v)) + P(v)$, and that we proved above that $\langle P(v) - v, P(v) \rangle = 0$ for any $v \in V$. Furthermore, since $P$ is a function, $P(v)$ is unique and thus there is a unique way of writing $v$ in this manner.  If we were then to set $U = \text{range} P$ (which is clearly a subspace), then any $v \in V$ can be written uniquely as $v = P(v) + (v - P(v)$, with these two vectors being orthogonal and $P(v) \in U$, thus it is indeed true that $P(v) = P_U(v)$ for this choice of $U$.
+\end{solution}
+
+\begin{exercise}{14}
+    Suppose $C_\textbf{R}([-1, 1]$ is the vector space of continuous real-valued functions on the interval [-1, 1] with inner product given by 
+    $$\langle f, g \rangle = \int_{-1}^{1} f(x)g(x) dx$$
+    , for $f, g \in C_\textbf{R}([-1, 1]$. Let $U$ be the subspace of $C_\textbf{R}([-1, 1]$ defined by
+    $$U = \{f \in C_\textbf{R}([-1, 1]: f(0) = 0\}$$
+    (a) Show that $U^\bot = \{0\}$.
+
+    (b) Show that 6.47 and 6.51 do not hold without the finite-dimensional hypothesis.
+\end{exercise}
+
+\begin{solution}
+
+    (a) Clearly, $g(x) = 0$ belongs in $U^\bot$ since $\int_{-1}^{1}f(x)0 dx = 0$ for every $f \in U$, therefore $\langle f, g \rangle = 0$ for every $f \in U$.
+    We need to show that no other $g$ is in $U^\bot$. Suppose that this were not true, i.e.\ there exists some $g \in C_\textbf{R}([-1, 1]$ which is not always zero and is such that $\langle f, g \rangle = 0$ for every f in $U$.
+
+    Suppose first that $g(x) \geq 0$ everywhere. Then, consider an $f$ such that $f(0) = 0$ and $f(x) > 0$ everywhere else (e.g.\ a parabola symmetric around 0). Then, we can clearly see that $\int_{-1}^{1}f(x)g(x) dx > 0$ (because $g$ is not zero everywhere and is continuous). This means that $\langle f, g \rangle > 0$, i.e.\ $g \notin U^\bot$. A completely symmetric argument (by considering e.g.\ $f$ as a concave parabola with $f(0) = 0)$) gives us that it cannot be the case that $g(x) \leq 0$ everywhere (with $g$ not zero everywhere).
+
+    Therefore, there exist $x_1, x_2 \in [-1, 1]$ such that $g(x_1)g(x_2) < 0$, and since $g$ is continuous, by the intermediate value theorem we have that $g(\xi) = 0$ for some $\xi \in (-1, 1)$. Due to continuity, it must furthermore be the case that $g(x) \geq 0$ in some neighborhood around $\xi$ and that $g(x) \leq 0$ in some neighborhood around $\xi$, and that $g$ is not always zero in either of these neighborhoods. It is then easy to find a continuous $f$ such that it has the same sign as $g$ in both of these neighborhoods (consider, e.g.\ a triangular pulse with $f(\xi = 0)$ like we did in 6.B.17), is not zero everywhere in either of these and has $f(0) = 0$ (even if $g(0) \neq 0$, we can still have $f$ have the same sign as $g$ around 0 and have $f(0) = 0$). But then the product $f(x)g(x)$ is always non-negative and is not zero everywhere, while it is furthermore continuous as a product of continuous functions. Then, $\langle f, g \rangle = \int_{-1}^{1} f(x)g(x) dx > 0$, but $f \in U$ and $g \in U^\bot$, which is a contradiction.
+
+    Therefore, there cannot exist a non-zero $g \in U^\bot$, thus $U^\bot = \{0\}$.
+
+    (b) Since $U\bot = \{0\}$, if 6.47 was true, i.e.\ if $V = U \oplus U^\bot$, then we would essentially have $V = U$, which is impossible, since, for example, the function $f(x) = 1$ is in $C_\textbf{R}([-1, 1]$ but not in $U$ ($f(0) \neq 0$).
+
+    If 6.51 was true, i.e.\ if $U = (U^\bot)^\bot$, then that would mean that $(\{0\})^\bot = U$. We know, however, that $\{0\}^\bot = V$ (the proof for this never assumed that $V$ was finite-dimensional), thus we would have that $U = V$, which as we showed is impossible.
+    
+\end{solution}

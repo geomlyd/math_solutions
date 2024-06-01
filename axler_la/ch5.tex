@@ -1,0 +1,160 @@
+\chapter{Eigenvalues, Eigenvectors and Invariant Subspaces}
+
+\section{Invariant Subspaces}
+
+\begin{exercise}{24}
+Suppose \textit{A} is an \textit{n}-by-\textit{n} matrix with entries in \textbf{F}. Define $ T \in L(\mathbf{F^{n}}) $ by $ T x = A x$, where elements of $\mathbf{F^{n}}$ are thought of as \textit{n}-by-1 column vectors.
+
+(a) Suppose the sum of the entries in each row of \textit{A} equals 1. Prove that 1 is an eigenvalue of \textit{T}.
+
+(b) Suppose the sum of the entries in each column of A equals 1. Prove that 1 is an eigenvalue of \textit{T}.
+\end{exercise}
+
+\begin{solution}
+
+(a) We need to show that there exists non-zero $x \in \mathbf{F^n}$ such that $Tx = x$. We know that $Tx = Ax$. Let:
+
+$$x = \begin{pmatrix} 1 \\ 1 $$ \\ \vdots \\ 1 \end{pmatrix}$$
+
+Then:
+
+$$Ax = \begin{pmatrix} A_{11} & A_{12} & \cdots & A_{1n} \\
+                       A_{21} & A_{22} & \cdots &  A_{2n} \\
+                       \vdots & \vdots & \ddots & \vdots \\
+                       A_{n1} & A_{n2} & \cdots & A_{nn} \end{pmatrix} 
+                       \begin{pmatrix} 1 \\ 1 $$ \\ \vdots \\ 1 \end{pmatrix} = 
+        \begin{pmatrix} \sum_{i = 1}^{n}{A_{1i}} \\ 
+                        \sum_{i = 1}^{n}{A_{2i}} \\
+                        \vdots \\
+                        \sum_{i = 1}^{n}{A_{ni}} \end{pmatrix}$$
+
+However, we know that the sum of each row of \textit{A} is 1. This means that $\forall j, 1 \le j \le n, \sum_{i = 1}^{n}{A_{ji}} = 1$. It is then clear that:
+
+$$Ax =         \begin{pmatrix} \sum_{i = 1}^{n}{A_{1i}} \\ 
+                        \sum_{i = 1}^{n}{A_{2i}} \\
+                        \vdots \\
+                        \sum_{i = 1}^{n}{A_{ni}} \end{pmatrix} = 
+                \begin{pmatrix} 1 \\ 1 $$ \\ \vdots \\ 1 \end{pmatrix} = x$$
+
+, which means that $Tx = Ax = x$, therefore 1 is an eigenvalue of T with $x$ being a corresponding eigenvector.
+
+(b) Again, we need to show that there exists non-zero $x \in \mathbf{F^n}$ such that $Tx = x$. If $T^{'}$ is the dual map of $T$, we know that $M(T') = A^{T}$ (with respect to the dual basis of the standard basis of $\mathbf{F^n}$. Since every column of \textit{A} has a sum of 1, by the definition of the transpose we know that every row of $A^T$ has a sum of 1. Therefore, by part (a) we know that the vector $\phi$ such that $M(\phi) = \begin{pmatrix} 1 \\ 1 $$ \\ \vdots \\ 1 \end{pmatrix}$ with respect to the dual basis of the standard basis of $\mathbf{F^{n}}$ is an eigenvector of  \textit{T'} with 1 being the corresponding eigenvalue. This in turn means that:
+
+$$ T^{'} \phi = \phi \implies T^{'} \phi - \phi = 0 \implies \phi(T(v)) - \phi(v) = 0, \forall v \in \mathbf{F^n}
+\implies \phi(T(v) - v) = 0, \forall v \in \mathbf{F^n} \implies$$
+$$  \phi((T - I)(v)) = 0, \forall v \in \mathbf{F^n}$$
+
+We observe that this means that $\phi \in (range(T - I))^{0}$, that is, $\phi$ is in the annihilator of $range(T - I)$. Since $\phi$ is not the zero functional, we conclude that $dim((range(T - I))^{0}) \ge 1$. Then:
+
+$$ dim(range(T - I)) + dim((range(T - I))^{0}) = dim \mathbf{F^n} \implies
+dim(range(T - I)) = dim \mathbf{F^n} - dim((range(T - I))^{0}) \implies$$
+$$ dim(range(T - I)) < dim \mathbf{F^n}$$
+
+, where the last inequality holds since we are subtracting at least 1 from $dim \mathbf{F^n}$. Therefore, $T - I$ is not surjective, which means that 1 is an eigenvalue of \textit{T}.
+\end{solution}
+
+\section{Eigenvectors and Upper-Triangular Matrices}
+
+
+\begin{exercise}{3}
+Suppose $T \in L(V)$ and $T^2 = I$ and -1 is not an eigenvalue of $T$. Prove that $T = I$.
+\end{exercise}
+
+\begin{solution}
+
+Observe that by the definition of linear map composition and the distributive property, we have:
+
+$$(T - I)(T + I)(v) = T^2(v) + TI(v) -IT(v) -I^2(v) = T^2(v) + T(v) - T(v) - v = T^2(v) - v$$
+
+, for all $v \in V$. Furthermore, we know that $T^2 = I$, therefore:
+
+$$(T - I)(T + I)(v) = v - v = 0$$
+
+Since -1 is not an eigenvalue of $T$, $T(v) \neq -v$ for all (nonzero) $v \in V$, which means that $T(v) + v = (T + I)(v) \neq 0$ for all $v \in V$. If $V = \{0\}$ the exercise is trivial since $T(0) = 0$ for any linear map. In the non-trivial case, there exists at least one nonzero $v \in V$, for which $(T + I)(v) = w \neq 0$. But:
+
+$$(T - I)(T + I)(v) = (T - I)(w) = 0$$
+
+, which means that $T(w) = w$ for a non-zero w, therefore 1 is an eigenvalue of T.
+
+\end{solution}
+
+\begin{exercise}{9}
+Suppose V is finite-dimensional, $T \in L(V)$ and $v \in V$ with $v \neq 0$. Let $p$ be a nonzero polynomial of smallest degree such that $p(T)(v) = 0$. Prove that every zero of $p$ is an eigenvalue of $T$.
+\end{exercise}
+
+\begin{solution}
+
+Let $\lambda$ be a zero of $p$, i.e. $p(\lambda) = 0$. $p$ can be written as:
+
+$$p(z) = (z - \lambda)q(z)$$
+
+This means that $p(T)(u) = (T - \lambda I)q(T)(u)$ for  all $u \in V$. $q$ is of smaller degree than $p$, which means that $q(T)(v) \neq 0$, since by definition $p$ has the smallest degree such that $p(T)(v) = 0$. Then let $w = q(T)(v) \neq 0$ which yields that:
+
+$$p(T)(v) = (T - \lambda I)(w) = 0$$
+
+, and since $w$ is nonzero we have that $\lambda$ is an eigenvalue of T. Since $\lambda$ was selected as any zero of $p$, we have that all zeros of $p$ are eigenvalues of $T$.
+\end{solution}
+
+\begin{exercise}{13}
+Suppose $W$ is a complex vector space and $T \in L(W)$ has no eigenvalues. Prove that every subspace of $W$ invariant under $T$ is either ${0}$ or infinite-dimensional.
+\end{exercise}
+
+\begin{solution}
+
+If $W$ is $\{0\}$ the exercise is trivial, therefore from now on we assume that there exists $v \in W, v \neq 0$.
+Obviously, $\{0\}$ is invariant under $T$. Let $U \neq \{0\}$ be a subspace of $W$ invariant under $T$. We need to show that $U$ is infinite-dimensional. We'll do this by proving that for any given integer $m$, $U$ contains a linearly independent list of length $m$ (by a previous result in the book this is equivalent to $U$ being infinite-dimensional, the intuition is that no finite spanning list can exist since it should be at least as long as any linearly independent list).
+
+For any positive integer $m$, consider the list:
+
+$$v, Tv, T^2(v), \ldots, T^m(v)$$
+
+Since $U$ is invariant under $T$, all elements of this list are also in $U$. Assume that the list is linearly dependent. Then, we can follow the structure of Axler's proof of the result "Every operator on a finite-dimensional non-zero complex vector space has an eigenvalue" to prove that $T$ must have an eigenvalue, which is a contradiction. Therefore the list is linearly independent, and since this is true for any $m$, $U$ must be infinite-dimensional.
+\end{solution}
+
+\section{Eigenspaces and Diagonal Matrices}
+
+\begin{exercise}{7}
+Suppose $T \in L(V)$ has a diagonal matrix $A$ with respect to some basis of $V$ and that $\lambda \in \mathbf{F}$. Prove that $\lambda$ appears on the diagonal of $A$ precisely dim$E(\lambda, T)$ times.
+\end{exercise}
+
+\begin{solution}
+
+Since $T$ is diagonalizable, there exists a basis of $V$, $v_1, v_2, \ldots, v_n$ such that all $v_i$ are eigenvectors of $T$. Furthermore, by the definition of the matrix of $T$ with respect to that basis, it's true that:
+
+$$Tv_i = A_{ii}v_i$$
+
+,and $A_{ii}$ are precisely the eigenvalues of $T$ (i.e. all of them are eigenvalues and there are no other eigenvalues). Now, let $\lambda \in \mathbf{F}$. If $\lambda$ is not an eigenvalue of $T$, then dim$E(\lambda, T)$ = 0, and from the previous observation, $\lambda$ cannot equal any of the $A_{ii}$, which means that it appears zero times on the diagonal of $M(T)$, thus the claim is true.
+
+If, on the other hand, $\lambda$ is an eigenvalue of $T$, then it must appear on the diagonal. Then, let $I = \{i \in \{1, 2, \ldots, n\}$ such that $A_{ii} = \lambda\}$, i.e. the set of all indices for which the corresponding element of the diagonal equals $\lambda$. Let also $l$ be the list of $v_k$ such that $k \in I$. We observe that all of the $v_k$ are in $E(\lambda, T)$, since they are eigenvectors corresponding to $\lambda$. Furthermore, they are linearly independent (sub-list of basis). If we assume that they not a spanning list of $E(\lambda, T)$, then there must exist a $v \in E(\lambda, T)$ linearly independent from all of them. But this $v$ cannot belong in the basis of $V$, because then it would have been included in $l$. This means that the basis is not a spanning list of $V$, contradiction. Therefore, $l$ spans $E(\lambda, T)$, and, being linearly independent, is a basis of it. Therefore its length, equal to the appearances of $\lambda$ in the diagonal, is equal to dim$E(\lambda, T)$.
+\end{solution}
+
+\begin{exercise}{13}
+Find $R, T \in L(\mathbf{F^4})$ such that $R, T$ each have 2, 6, 7 as eigenvalues, $R, T$ have no other eigenvalues, and there does not exist an invertible operator $S \in L(\mathbf{F^4})$ such that $R = S^{-1}TS$.
+\end{exercise}
+
+\begin{solution}
+
+The example itself is not so much of interest here as is the reasoning for finding it. Our starting point will be to explore if this would be possible for $R$ diagonalizable and $T$ not diagonalizable. Since $R$ is diagonalizable, there exists a basis $v_1, v_2, v_3, v_4 \in \mathbf{F^4}$ all of which are eigenvectors of $R$. $S$ would then be fully defined by its values $Sv_1 = w_1, Sv_2 = w_2, Sv_3 = w_3, Sv_4 = w_4$. Since $S$ should be invertible, this list should be a basis of $V$ too. It would also be true that:
+
+$$R = S^{-1}TS \implies T = SRS^{-1}$$
+
+Then:
+
+$$Tw_i = SRS^{-1}(w_i) = SR(v_i) = S(\lambda_i v_i) = \lambda_i w_i$$
+
+, where we used the fact that $S^{-1}w_i = v_i$ and assumed that $\lambda_i$ is the eigenvalue of $R$ corresponding to $v_i$. But then this means that each $w_i$ is an eigenvector of $T$, therefore that there exists a basis of $V$ consisting of eigenvectors of $T$, therefore $T$ is diagonalizable, contradiction.
+
+It suffices therefore to find $R$ diagonalizable and $T$ not diagonalizable. One such example is
+
+$$R = \begin{pmatrix} 2 & 0 & 0 & 0 \\ 0 & 2 & 0 & 0 \\ 0 & 0 & 6 & 0 \\ 0 & 0 & 0 & 7 \end{pmatrix}, T = \begin{pmatrix} 2 & 1 & 1 & 1 \\ 0 & 2 & 0 & 0 \\ 0 & 0 & 6 & 0 \\ 0 & 0 & 0 & 7 \end{pmatrix}$$
+
+, where it's clear that $R$ is diagonalizable (it's diagonal wrt. the standard basis of $\mathbf{F^4}$) and that both $R, T$ have exactly 2, 6, 7 as eigenvalues. It remains to be proved that $T$ is indeed not diagonalizable. To see this, let's solve for the eigenvectors of $T$:
+
+$$Tv = \lambda v \implies \begin{pmatrix} 2 & 1 & 1 & 1 \\ 0 & 2 & 0 & 0 \\ 0 & 0 & 6 & 0 \\ 0 & 0 & 0 & 7 \end{pmatrix} 
+\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = \lambda \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} $$
+
+$$\implies \begin{pmatrix} 2x_1 + x_2 + x_3 + x_4 \\ 2x_2 \\ 6x_3 \\ 7x_4 \end{pmatrix} = \begin{pmatrix} \lambda x_1 \\ \lambda x_2 \\ \lambda x_3 \\ \lambda x_4 \end{pmatrix} $$
+
+, for $\lambda = 7$ we get that $x_4 \in \mathbf{F}$, $x_3 = 0$, $x_2 = 0$ and $x_1 = x_4/5$. $\begin{pmatrix} 1/5 \\ 0 \\ 0 \\ 1 \end{pmatrix}$ is then a basis of $E(7, T)$. For $\lambda = 6$ we get that $x_3 \in \mathbf{F^4}, x_4 = x_2 = 0$ and $x_1 = x_3/4$.  $\begin{pmatrix} 1/4 \\ 0 \\ 1 \\ 0 \end{pmatrix}$ is then a basis of $E(6, T)$. For $\lambda = 2$, we get that $x_2 = x_3 = x_4 = 0, x_1 \in \mathbf{F}$. $\begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}$ is then a basis of $E(2, T)$. We can then see that there exist only three linearly independent vectors of $T$, therefore not enough for a basis of $\mathbf{F^4}$, therefore $T$ cannot be diagonalizable.
+
+\end{solution}
