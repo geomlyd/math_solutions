@@ -227,4 +227,35 @@
     But then the nested interval theorem dictates that the infinite intersection of $I_1, I_2, \ldots$ contains precisely one element, which means $x = y$, a contradiction.
 \end{solution}
 
+\begin{exercise}{23}
+    The endpoints of $\Delta$ are those points in $\Delta$ having a finite-length base 3 decimal expansion (not necessarily in the proper form), that is, all of the points in $\Delta$ of the form $a/3^n$ for some integers $n$ and $0 \leq a \leq 3^n$.
+    Show that the endpoints of $\Delta$ other than 0 and 1 can be written as $0.a_1 a_2 \ldots a_{n+1}$ (base 3) where each $a_k$ is 0 or 2, except $a_{n+1}$, which is either 1 or 2.
+    That is, the discarded ``middle third'' intervals are of the form $(0.a_1 a_2 \ldots a_n 1, 0.a_1 a_2 \ldots a_n 2)$ where both entires are points of $\Delta$ written in base 3.
+\end{exercise}
+
+\begin{solution}
+    
+    We will apply induction on $n$, which corresponds to the ``level'' of the ``tree'' of the Cantor set.
+    More specifically, we will prove the following.
+    \begin{itemize}
+        \item If $x \neq 0$ is a left endpoint of the Cantor set, that is, the the intersection forming the Cantor set contains it in the $n$-th ``tree-level union '' in some interval $[x, y]$, then it can be written in the form $0.a_1 \ldots a_n 2$ where $a_i \in \{0, 2\}, i =1, \ldots, n$.
+        \item If $x \neq 1$ is a right endpoint of the Cantor set, that is, the intersection forming the Cantor set contains it in the $n$-th ``tree-level union'' in some interval $[y, x]$, then it can be written in the form $0.a_1 \ldots a_n 1$ where $a_i \in \{0, 2\}, i =1, \ldots, n$.
+    \end{itemize}
+    As stated, we will use induction on $n$ starting at 0, which corresponds to the first level of the tree.
+    \begin{itemize}
+        \item \textbf{Base case}: if $n = 0$, then the corresponding union is $I_1 = [0, 0.1] \cup [0.2, 1]$ (written in ternary).
+        Obviously, the only non-zero left endpoint is 0.2, which satisfies the claim stated above.
+        Similarly, the only right endpoint not equal to 1 is 0.1, which also satisfies the claim.
+        \item \textbf{Inductive hypothesis}: Suppose that for $n = k, k \geq 0$ it holds that $I_n = [0, x_1] \cup [x_2, x_3] \cup \ldots \cup [x_M, 1]$, where each left and right endpoint fulfill the conditions stated above (note that $M = 2^{n + 1}$).
+        \item \textbf{Inductive step}: Observe then that the intervals comprising $I_{n+1}$ are formed by taking each interval $[x, y]$ comprising $I_n$ and replacing it by $[x, x + 0.\underbrace{0 \ldots 0}_{n + 1} 1] \cup [y - \underbrace{0.0\ldots 0}_{n + 1} 1, y]$.
+        Therefore, new right endpoints are formed by taking either 0 or a previous left endpoint and adding $0.\underbrace{0 \ldots 0}_{n + 1} 1$.
+        Clearly, adding such a number to 0 results in a right endpoint fulfilling the claim stated in the beginning.
+        In the other case, we have an endpoint of the form $0.a_1 \ldots a_n 2 + 0.\underbrace{0 \ldots 0}_{n + 1} 1 = 0.a_1 \ldots a_n 2 1$, which based on the inductive hypothesis also fulfills the initial claim.
+        Similarly, new left endpoints are formed by taking either 1 or previous right endpoints and subtracting $0.\underbrace{0 \ldots 0}_{n + 1} 1$.
+        Subtracting this quantity from 1 results in $0.\underbrace{2 \ldots 2}_{n + 1} 2$, which fulfills the claim for a left endpoint.
+        On the other hand, subtracting it from a previous right endpoint results in an endpoint of the form $0.a_1 \ldots a_n 1 - 0.\underbrace{0 \ldots 0}_{n + 1} 1 = 0.a_1 \ldots a_n 0 2$, which based on the inductive hypothesis also satisfies the claim for left endpoints.
+    \end{itemize}
+    This concludes the proof that endpoints of $\Delta$ have a ternary decimal expansion described in the exercise.
+\end{solution}
+
 \end{section}
