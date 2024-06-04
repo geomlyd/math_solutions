@@ -1,6 +1,6 @@
 \chapter{Countable and Uncountable Sets}
 
-\begin{section}{Equivalence and Cardinality}
+\section{Equivalence and Cardinality}
 
 \begin{exercise}{3}
     Given finitely many countable sets $A_1, \ldots, A_n$, show that $A_1 \cup \ldots \cup A_n$ and $A_1 \times \ldots \times A_n$ are countable sets.
@@ -186,9 +186,8 @@
     This means that there exist at least as many rationals as intervals, therefore an uncountable number of them, which we know is a contradiction.
 \end{solution}
 
-\end{section}
 
-\begin{section}{The Cantor Set}
+\section{The Cantor Set}
     
 \begin{exercise}{21}
     Show that any ternary decimal of the form $0.a_1 a_2 \ldots a_n 11$ (base 3), i.e., any finite-length decimal ending in two (or more) 1s is \textit{not} an element of $\Delta$.
@@ -258,4 +257,46 @@
     This concludes the proof that endpoints of $\Delta$ have a ternary decimal expansion described in the exercise.
 \end{solution}
 
-\end{section}
+\begin{exercise}{26}
+    Let $f: \Delta \rightarrow [0,1]$ be the Cantor function and let $x, y \in \Delta$ with $x < y$.
+    Show that $f(x) \leq f(y)$.
+    If $f(x) = f(y)$, show that $x$ has two distinct ternary decimal representations.
+    Finally, show that $f(x) = f(y)$ if and only if $x, y$ are ``consecutive'' endpoints of the form $x = 0.a_1 a_1 \ldots a_{n} 1$ and $y = a_1 a_2 \ldots a_n 2$ (base 3).
+\end{exercise}
+
+\begin{solution}
+    
+    Let $x = 0.a_1 a_2 \ldots$ and $y = 0.b_1 b_2 \ldots$.
+    Because $x, y \in \Delta$, we know that we can write $x, y$ such that each of $a_i, b_i$ is either 0 or 1.
+    Now, because $x < y$ it has to be the case that for some $i \geq 1, a_i < b_i$ and $a_k = b_k$ for $k < i$.
+    This can be seen by making a ``digit-wise'' comparison: the first decimal digit in which $x, y$ differ determines which one is larger, since after that point the decimal digits get multiplied by smaller powers of 3 and the smaller number can never ``catch up''.
+    The only possible exception would be if $x = 0.a_1 \ldots a_i 0 0 \ldots$ and $y = 0.a_1 \ldots (a_i - 1) 2 2 \ldots$, but we know that this cannot be true since it would require $a_i = 1$ or $a_i - 1 = 1$, which is impossible due to the way we've written $x, y$.
+    Now consider the decimal strings $x' = 0.(\frac{a_1}{2}) (\frac{a_2}{2}) \ldots, y' = 0.(\frac{b_1}{2}) ( \frac{b_2}{2}) \ldots$.
+    What the Cantor function does is interpret these as binary instead of ternary numbers, and set then $f(x) = x'_{\text{bin}}, f(y) = y'_{\text{bin}}$.
+    But then $\frac{a_k}{2} = \frac{b_k}{2}$ for $k < i, \frac{a_i}{2} < \frac{b_i}{2}$.
+    By this we have established that it is impossible that $f(x) > f(y)$, thus $f(x) \leq f(y)$.
+    If it is the case that $f(x) = f(y)$, then for $k > i, \frac{a_k}{2} = 1, \frac{b_k}{2} = 0$ and $\frac{a_i}{2} = 0, \frac{b_i}{2} = 1$.
+    Going back to the ternary numbers $x, y$, this implies that $x$ is of the form:
+    $$x = 0.a_1 \ldots a_{i-1} 0 2 2 2 \ldots,$$
+    which can also be written as $x = 0.a_1 \ldots a_{i-1} 1$.
+    Furthermore, it implies that $y$ is of the form:
+    $$y = 0.a_1 \ldots a_{i-1} 2 0 0 0 \ldots,$$
+    which completes the proof that a) $x$ has two distinct ternary decimal expansions, and that whenever $f(x) = f(y), x, y$ are endpoints of ``discarded'' middle third intervals.
+    For the other direction of the last equivalence, if $x, y$ are endpoints of ``discarded'' middle third intervals, write both of them such that they only contain 0s and 2s in ternary, apply $f$ and observe that $f(x)$ ends in infinite 1s, $f(y)$ in 0s, and for some $i, f(x)_i 0, f(y)_i = 1$ and $f(x)_k = f(y)_k, k < i$, which of course means that $f(x) = f(y)$.
+\end{solution}
+
+\begin{exercise}{29}
+    Prove that the extended Cantor function $f: [0, 1] \rightarrow [0, 1]$ (as defined above) is increasing. [Hint: consider cases.]
+\end{exercise}
+
+\begin{solution}
+    
+    For any two $x, y \in [0, 1]$, with $x < y$, we have the following:
+    \begin{itemize}
+        \item If $x, y \in \Delta$, we have shown in exercise 23 that $f(x) \leq f(y)$.
+        \item If $x \in \Delta, y \notin \Delta$, then  $f(y) = \sup\{f(z), z \leq y, z \in \Delta\}$.
+        This means that $f(x) \in \{f(z), z \leq y, z \in \Delta\}$, and thus it must be the case that $f(x) \leq f(y)$.
+        \item If $x, y \notin \Delta$, then $f(x) = \sup\{f(z), z \leq x, z \in \Delta\}$ and $f(y) = \sup\{f(z), z \leq y, z \in \Delta\}$.
+        But then since $x < y$, the set over which the second supremum is computed is a superset of the set over which the first supremum is computed, meaning that $f(x) \leq f(y)$.
+    \end{itemize}
+\end{solution}
