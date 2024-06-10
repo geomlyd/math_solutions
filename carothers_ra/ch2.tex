@@ -284,7 +284,6 @@
     which completes the proof that a) $x$ has two distinct ternary decimal expansions, and that whenever $f(x) = f(y), x, y$ are endpoints of ``discarded'' middle third intervals.
     For the other direction of the last equivalence, if $x, y$ are endpoints of ``discarded'' middle third intervals, write both of them such that they only contain 0s and 2s in ternary, apply $f$ and observe that $f(x)$ ends in infinite 1s, $f(y)$ in 0s, and for some $i, f(x)_i 0, f(y)_i = 1$ and $f(x)_k = f(y)_k, k < i$, which of course means that $f(x) = f(y)$.
 \end{solution}
-
 \begin{exercise}{29}
     Prove that the extended Cantor function $f: [0, 1] \rightarrow [0, 1]$ (as defined above) is increasing. [Hint: consider cases.]
 \end{exercise}
@@ -299,4 +298,62 @@
         \item If $x, y \notin \Delta$, then $f(x) = \sup\{f(z), z \leq x, z \in \Delta\}$ and $f(y) = \sup\{f(z), z \leq y, z \in \Delta\}$.
         But then since $x < y$, the set over which the second supremum is computed is a superset of the set over which the first supremum is computed, meaning that $f(x) \leq f(y)$.
     \end{itemize}
+\end{solution}
+
+\section{Monotone Functions}
+
+\begin{exercise}{34}
+    Let $D = \{x_1, x_2, \ldots\}$, and let $\epsilon_n > 0$ with $\sum_{n=1}^{\infty} \epsilon_n < \infty$.
+    Define $f(x) = \sum_{x_n \leq x} \epsilon_n$ (as above).
+    Check the following:
+    
+    (i) $f$ is discontinuous at the points of $D$
+
+    (ii) $f$ is right-continuous everywhere
+
+    (iii) $f$ is continuous at each point $x \in \mathbb{R} \setminus D$
+
+    How might this construction be modified to yield a \textit{strictly} increasing function with these same properties?
+\end{exercise}
+
+\begin{solution}
+
+    (i) Given (ii), it makes sense to try to prove that $f$ is not left-continuous at the points of $D$ (and one can also see this ``graphically'').
+
+    Pick any $x_i \in D$.
+    Then $f(x_i) = \sum_{x_n \leq x_i} \epsilon_n$, which equals precisely the sum of the first $i$ terms of the corresponding series of $\epsilon_n$.
+    Now consider what happens as $x \rightarrow x_i-$, namely what happens when $x_{i-1} < x < x_i$, which is something that needs to be considered in order for $x$ to get arbitrarily close to $x_i$ from the left.
+    Note that here we implicitly make use of the fact that there always exists a real number between two reals.
+    In this case we have that $f(x) = \sum_{x_n \leq x} \epsilon_n$, and because $x_i > x$ and $x_{i-1} < x < x_i$ this sum reduces to $f(x) = \sum_{x_n \leq x_{i-1}} \epsilon_n$.
+    All $\epsilon_n$ are strictly positive, and thus $f(x) < f(x_i)$.
+    Furthermore, as indicated above whenever $x_{i-1} < x < x_i, f(x)$ is in fact constant since there are no points of $D$ between $x_{i-1}, x$ (due to the order imposed by countability).
+    Thus:
+    $$\lim_{x \rightarrow x_i-} f(x) < f(x_i),$$
+    and therefore $f$ is (left) discontinuous at the points of $D$.
+
+    (ii) For right continuity, pick $x \in \mathbb{R}$.
+    If $x \in D$, then we've already seen in the book that $f(x_k+) = f(x_k)$.
+    If $x \notin D$, then either $x < x_1$, or there exists $i \in \mathbb{N}^+$ such that $x_{i} < x < x_{i+1}$, or $x > x_i$ for all $i$. 
+    We examine each case separately:
+    \begin{itemize}
+        \item $x < x_1$: We know that $f(x) = 0$ whenever the corresponding sum is empty, and therefore $f(x) = 0$ for $x < x_1$, which means that $f$ is more specifically right-continuous (and in fact continuous) at $x$.
+        \item $x_i < x < x_{i+1}$ for some $i \in \mathbb{N}^+$: Then notice that by the definition of $f$, whenever $x_i < y < x_{i+1}, f(y) = \sum_{x_n \leq x_i} \epsilon_n$, which means that $f$ is in fact constant in $[x_i, x_{i+1})$, and is therefore right-continuous (and in fact continuous) at $x$.
+        \item $x_i < x$ for all $i$: in this case we observe that $D$ is upper-bounded, and therefore whenever $y$ is an upper bound for $D$, $f(y) = \sum_{x_n \leq y} \epsilon_n = \sum_{n=1}^{\infty} \epsilon_n$, which is given to converge and is thus well-defined.
+        But then $f$ is constant starting at the supremum of $D$, and thus more specifically is right-continuous (and in fact continuous) at $x$.
+    \end{itemize}
+    This covers all possible cases, and therefore $f$ is right-continuous outside of $D$ as well.
+
+    (iii) We've already shown this in part (ii) by the arguments involving the fact that $f$ is piecewise constant.
+    What we also know is that $\epsilon_n > 0$, and as such the partial sums of the corresponding series is strictly increasing, meaning that $f(x_i) < f(x_{i+1})$ for all $i$.
+    In addition, we showed that $f(x) = f(x_i)$ for $x \in [x_i, x_{i+1})$.
+    Therefore, to make $f$ strictly increasing it suffices to make it strictly increasing inside each interval $[x_i, x_{i+1})$, strictly increasing for $x < x_1$, and, in case $D$ is bounded, strictly increasing for $x \geq \sup D$.
+    To do this, we modify the definition of $f$ to be:
+    $$f(x) = \begin{cases}
+        x - x_1 + \epsilon_1 & ,x < x_1 \\
+        \sum_{x_n \leq x} \epsilon_n & ,x \in D \\
+        \sum_{x_n \leq x} \epsilon_n + (x - x_n)\frac{\epsilon_{n+1}}{x_{n+1} - x_n} & , x \in (x_n, x_{n+1}) \text{ for some } $n$ \\\
+        \sum_{n=1}^{\infty} \epsilon_n + x - \sup D & , x \geq \sup D
+    \end{cases},$$
+    where we consider the last case to trivially never hold if $D$ is not bounded above.
+    It's fairly easy to see that this function is indeed strictly increasing, since it is piecewise linear with a slope that is always positive, while it additionally maintains all the properties we previously proved (one has but to take limits at the points where the function's definition changes to see this).
 \end{solution}
