@@ -576,10 +576,12 @@
     
 \end{solution}
 
+\newpage
+
 \begin{exercise}{44}
     Let $A \in \mathbb{R}^{n \times n}$. We write $A = (a_1 \cdots a_n)$ if $a_j \in \mathbb{R}^n$ is the $j$-th column vector of $A, 1 \leq j \leq n$.
     This means that we identify $\mathbb{R}^{n \times n}$ with $\mathbb{R}^n \times \ldots \mathbb{R}^n$.
-    Furthermore, we denote by $A^{\#}$ the complementary matrix as in Cramer's rule (so $A^{\#} = (a_{ij}^{\#} = ((-1)^{i - j}\det A_{ji})$, where $A_{ij}$ is the matrix obtained by deleting the $i$-th row and $j$-th column).
+    Furthermore, we denote by $A^{\#}$ the complementary matrix as in Cramer's rule (so $A^{\#} = (a_{ij}^{\#} = ((-1)^{i - j}\det A_{ji}))$, where $A_{ij}$ is the matrix obtained by deleting the $i$-th row and $j$-th column).
 
     (i) Consider the function $\det: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}$ as an element of $\mathcal{L}^{n}(\mathbb{R}^n, \mathbb{R})$ via the identification above.
     Now prove that its derivative $D (\det)(A) \in \mathcal{L}(\mathbb{R}^n, \mathbb{R})$ is given by
@@ -602,6 +604,18 @@
     (iii) Assume that $A$ is an invertible $n \times n$ matrix.
     Using $\det(A + H) = \det(A) \det(I + A^{-1}H)$, deduce (**) from (*) in (i).
     Now also derive $(\det A)A^{-1} = A^{\#}$ from (i).
+
+    (iv) Assume that $A: \mathbb{R} \rightarrow \mathbf{GL}(n, \mathbb{R})$ (i.e.\ $A$ always yields invertible matrices) is a differentiable mapping.
+    Derive from part (i) the following formula for the derivative of $\det \circ A: \mathbb{R} \rightarrow \mathbb{R}$:
+    $$\frac{1}{\det \circ A}(\det \circ A)' = \tr(A^{-1} \circ DA),$$
+    in other words (compare with part (ii))
+    $$\frac{d}{dt}(\log \det A)(t) = \tr(A^{-1} \frac{dA}{dt})(t), t \in \mathbb{R}$$
+
+    (v) Suppose that the mapping $A: \mathbb{R} \rightarrow \mathbb{R}^{n \times n}$ is differentiable and that $F: \mathbb{R} \rightarrow \mathbb{R}^{n \times n}$ is continuous, while we have the differential equation
+    $$\frac{dA}{dt}(t) = F(t)A(t), t \in \mathbb{R}$$
+    In this context, the \textit{Wronskian} $w \in C^{1}(\mathbb{R})$ of $A$ is defined as $w(t) = \det A(t)$.
+    Use part (i), exercise 2.1 (i) and Cramer's rule to show that for $t \in \mathbb{R}$
+    $$\frac{dw}{dt}(t) = \tr F(t) w(t), \text{ and deduce } w(t) = w(0)e^{\int_{0}^{t} \tr F(\tau) d\tau}$$
 \end{exercise}
 
 \begin{solution}
@@ -665,4 +679,29 @@
     $$\frac{1}{\lvert \lvert AU \rvert \rvert}\lvert \lvert \det(A)(\det(I+U) - 1) \rvert \rvert \leq \frac{1}{\lvert \lvert A^{-1} \rvert \rvert \cdot \lvert \lvert U \rvert \rvert}\lvert \lvert \det(A)(\det(I+U) - 1) \rvert \rvert $$
     But now the right side is known to tend to zero if one were to subtract $\det(A) \tr(U)$ from the quantity inside the magnitude of the numerator.
     This therefore motivates us to have $\mathcal{L}(AU) = \det(A) \tr(U)$, which, substituting $U$, yields $\mathcal{L}(H) = \det(A) \tr(A^{-1}H)$, and since \textit{a} linear transformation that makes the limit zero is \textit{the} derivative of $\det$ at $A$, we have indeed arrived at (**).
+
+    (iv) We have shown in (i) that for $A$ invertible:
+    $$D(\det)(A)(H) = \det(A) tr(A^{-1}H)$$
+    Let then $f(t) = \det(A(t)), f: \mathbb{R} \rightarrow \mathbb{R}$.
+    By using the chain rule:
+    $$D(f)(t)(h) = D(\det)(A(t))(D(A)(t)(h)) \implies D(f)(t)(h) = \det(A(t)) \tr((A(t)^{-1}D(A)(t)(h)))$$
+    Because $A(t)$ is always invertible, we can divide both sides by it, and by simplifying the notation to match the exercise we obtain:
+    $$\frac{1}{\det A}(\det \circ A)' = \tr(A^{-1} \circ DA)$$
+    Now, by recalling the derivative of the (natural) logarithm, we can also rewrite this as:
+    $$\frac{d}{dt}(\log \det A)(t) = \tr(A^{-1}\frac{dA}{dt})(t)$$
+
+    (v) We begin by differentiating $w(t)$ and using part (i):
+
+    $$D(w)(t)(h) = D(\det)(A(t))(D(A)(t)(h)) \implies D(w)(t)(h) = \tr(A(t)^{\#} D(A)(t)(h))$$
+
+    Note now that by simplifying the notation and substituting from the given differential equation we obtain that:
+    
+    $$\frac{dw}{dt}(t) = \tr(A(t)^{\#} F(t)A(t)) \implies \frac{dw}{dt}(t)= \tr(A{t}^{\#}A(t)F(t)) \implies \frac{dw}{dt}(t) = \tr(\det A(t) I F(t)) $$
+    $$\implies \frac{dw}{dt}(t) = \det A(t) \tr(F(t)) = w(t) \tr(F(t)),$$
+    
+    where we have used properties of the trace (shown in exercise 2.1) and Cramer's rule.
+    This is a differential equation somewhat similar to (ii), except that $w(t)$ is multiplied with a function of $t$ instead of a constant.
+    Because $F$ is continuous, the solution to this differential equation is of the form:
+    $$w(t) = c e^{\int_{0}^{t} \tr F(\tau) d \tau},$$
+    and by substituting $t = 0$ we have $w(0) = c$, where $w(0)$ depends on $A(0)$ (an ``initial condition'' for the differential equation).
 \end{solution}
