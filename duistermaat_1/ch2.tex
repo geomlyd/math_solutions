@@ -576,10 +576,12 @@
     
 \end{solution}
 
+\newpage
+
 \begin{exercise}{44}
     Let $A \in \mathbb{R}^{n \times n}$. We write $A = (a_1 \cdots a_n)$ if $a_j \in \mathbb{R}^n$ is the $j$-th column vector of $A, 1 \leq j \leq n$.
     This means that we identify $\mathbb{R}^{n \times n}$ with $\mathbb{R}^n \times \ldots \mathbb{R}^n$.
-    Furthermore, we denote by $A^{\#}$ the complementary matrix as in Cramer's rule (so $A^{\#} = (a_{ij}^{\#} = ((-1)^{i - j}\det A_{ji})$, where $A_{ij}$ is the matrix obtained by deleting the $i$-th row and $j$-th column).
+    Furthermore, we denote by $A^{\#}$ the complementary matrix as in Cramer's rule (so $A^{\#} = (a_{ij}^{\#} = ((-1)^{i - j}\det A_{ji}))$, where $A_{ij}$ is the matrix obtained by deleting the $i$-th row and $j$-th column).
 
     (i) Consider the function $\det: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}$ as an element of $\mathcal{L}^{n}(\mathbb{R}^n, \mathbb{R})$ via the identification above.
     Now prove that its derivative $D (\det)(A) \in \mathcal{L}(\mathbb{R}^n, \mathbb{R})$ is given by
@@ -589,8 +591,31 @@
     $$D(\det)(A) H = \tr(A^{\#}H) = \langle (A^{\#})^T, H \rangle, H \in \mathbb{R}^{n \times n}$$
     Here we use the result from exercise 2.1 (ii).
     In particular, verify that $\nabla \det A = (A^{\#})^T$, the cofactor matrix, and
-    $$(D \det)(I) = \tr, (D \det)(A) = \det A (\tr \circ A^{-1}),$$
+    $$(D \det)(I) = \tr \ \ (*), (D \det)(A) = \det A (\tr \circ A^{-1}) \ \ (**),$$
     for $A$ invertible, by means of Cramer's rule.
+
+    (ii) Let $X \in \mathbb{R}^{n \times n}$ and define $e^X \in \mathbb{R}^{n \times n}$ as in Example 2.4.10 (i.e. $e^X = I +  X + \frac{1}{2}X^2 + \frac{1}{3!}X^3 + \ldots$).
+    Show that for $t \in \mathbb{R}$:
+    $$\frac{d}{dt} \det(e^{tX}) = \frac{d}{ds} \Biggr \rvert_{s=0} \det(e^{(s+ t)X}) = \frac{d}{ds} \Biggr \rvert_{s = 0} \det(e^{sX}) \det(e^{tX}) = \tr X \det(e^{tX})$$
+
+    Deduce by solving this differential equation that (compare also with Formula 5.33)
+    $$\det(e^{tX}) = e^{t \cdot \tr X}$$
+
+    (iii) Assume that $A$ is an invertible $n \times n$ matrix.
+    Using $\det(A + H) = \det(A) \det(I + A^{-1}H)$, deduce (**) from (*) in (i).
+    Now also derive $(\det A)A^{-1} = A^{\#}$ from (i).
+
+    (iv) Assume that $A: \mathbb{R} \rightarrow \mathbf{GL}(n, \mathbb{R})$ (i.e.\ $A$ always yields invertible matrices) is a differentiable mapping.
+    Derive from part (i) the following formula for the derivative of $\det \circ A: \mathbb{R} \rightarrow \mathbb{R}$:
+    $$\frac{1}{\det \circ A}(\det \circ A)' = \tr(A^{-1} \circ DA),$$
+    in other words (compare with part (ii))
+    $$\frac{d}{dt}(\log \det A)(t) = \tr(A^{-1} \frac{dA}{dt})(t), t \in \mathbb{R}$$
+
+    (v) Suppose that the mapping $A: \mathbb{R} \rightarrow \mathbb{R}^{n \times n}$ is differentiable and that $F: \mathbb{R} \rightarrow \mathbb{R}^{n \times n}$ is continuous, while we have the differential equation
+    $$\frac{dA}{dt}(t) = F(t)A(t), t \in \mathbb{R}$$
+    In this context, the \textit{Wronskian} $w \in C^{1}(\mathbb{R})$ of $A$ is defined as $w(t) = \det A(t)$.
+    Use part (i), exercise 2.1 (i) and Cramer's rule to show that for $t \in \mathbb{R}$
+    $$\frac{dw}{dt}(t) = \tr F(t) w(t), \text{ and deduce } w(t) = w(0)e^{\int_{0}^{t} \tr F(\tau) d\tau}$$
 \end{exercise}
 
 \begin{solution}
@@ -602,6 +627,81 @@
     We therefore have but to show that the RHS of the equation given in (i) equals the RHS of this equation.
     We have that $(\tr \circ A^{\#})(H) = \tr(A^{\#} H)$.
     Due to the trace we are only interested in the diagonal elements of the argument.
-    For the diagonal element of the $i$-th row, call it $d_i$, we get the following expression:
-    $$d_i = \sum_{j=1}^{n} (-1)^{i - j} (\det A_{ji}) h_{ji}$$
+    In particular, we have that:
+    $$\tr(A^{\#}H) = \sum_{i=1}^{n} \sum_{j=1}^{n} (-1)^{i - j} \det A_{ji} h_{ji}$$
+    We now manipulate the expression we have from Spivak using the property of row linearity:
+    $$D(\det)(a_1, \ldots, a_n)(h_1, \ldots, h_n) = \sum_{i=1}^{n} \sum_{j=1}^{n} h_{ij} \det \begin{pmatrix}
+        a_1 \\ \vdots \\ a_{i-1} \\ e_j \\ \vdots \\ a_n
+    \end{pmatrix}$$
+    Now we observe that we can apply row-wise Laplace expansion on the $i$-th row of each of the summands for which the outer index equals $i$ to rewrite it as:
+    $$\det \begin{pmatrix}
+        a_1 \\ \vdots \\ a_{i-1} \\ e_j \\ \vdots \\ a_n
+    \end{pmatrix} = (-1)^{i +j} \det A_{ij},$$
+    where we used the fact that this row contains exactly one non-zero element (at column $j$), and that deleting this row and column yields the same result as deleting the same row and column from $A$.
+    Note that $(-1)^{i + j} = (-1)^{i - j}$, and thus from this derivation we obtain that:
+    $$D(\det)(a_1, \ldots, a_n) (h_1, \ldots, h_n) = \tr(H A^{\#}) = \tr(A^{\#}H),$$
+    by using the commutative property of the trace.
+    This concludes the proof,
+    and now we can of course write $D(\det)(A)H = \langle (A^{\#})^{T}, H \rangle$ by the definition of inner product for matrices we saw in exercise 2.1.
+    From this we additionally conclude that $\nabla \det A = (A^{\#})^T$: the gradient is precisely the vector whose inner product with each ``direction vector'' (here, the matrix $H$) yields the directional derivative along $H$, i.e.\ $D(\det) (A) H$.
+
+    Now if we were to evaluate at $A = I$, we first have that $A^{\#} = I$.
+    To see why this is the case, consider erasing column $i$ and row $i$: we are simply left with a smaller identity matrix, which of course has determinant 1.
+    On the other hand, erasing row $i$, column $j, i \neq j$ will result in an either upper or lower triangular matrix that has at least one zero on the diagonal, and such a matrix will have determinant zero.
+
+    Thus:
+    $$D(\det)(I)(H) = \tr (I H) = \tr(H)$$
+    For $A$ invertible, we know by Cramer's rule that $\det A \cdot I = A A^{\#} = A^{\#} A$, and since $A^{-1}$ is well defined, $(\det A) A^{-1} = A^{\#}$.
+    Substituting into the trace expression from before:
+    $$D(\det)(A)(H) = \tr(A^{\#}H) = \tr((\det A)A^{-1} H) = \det A \tr(A^{-1}H)$$
+
+    (ii) Call $f(t) = e^{tX}, g(A) = \det A $, in which case $f: \mathbb{R} \rightarrow \mathbb{R}^{n \times n}$ and $g: \mathbb{R}^{n \times n} \rightarrow \mathbb{R}$, and in which case we are interested in $(g \circ f)'$.
+    By the chain rule, we have that:
+    $$ D (g \circ f) (t) (h) = [D (g) (f(t))]( [D (f) (t)] (h))$$
+    We know from Example 2.4.10 that $[D(f)(t)](h) = h e^{tX} X$, and by also using the expression we obtained in part (i) for $A$ invertible (as is $e^{tX}$) we get:
+    $$ D (g \circ f) (t) (h) = [D (g) (f(t))](he^{tX}X) = \det(e^{tX}) \tr((e^{tX})^{-1}he^{tX}X) = \det(e^{tX}) \tr(hX) = \det{e^{tX}} \tr(X)h,$$
+    which is equivalent to saying that $\frac{d}{dt} \det(e^{tX}) = \tr(X) \det(e^{tX})$.
+
+    Now notice that the function $g \circ f$ maps from $\mathbb{R}$ to $\mathbb{R}$, and therefore this differential equation is of the general form:
+    $$\frac{d}{dt} (g \circ f)(t) = a (g \circ f)(t),$$
+    whose solution is well known to be $(g \circ f)(t) = Ce^{at}$, which implies that $\det(e^{tX}) = Ce^{\tr(X) t}$. 
+    To determine $C$, we set $t = 0$, in which case $e^{tX}$ is the identity matrix, and thus the LHS is 1 and the RHS is $C$, meaning that $C = 1$.
+
+    (iii) We begin by writing out the limit that corresponds to (*), i.e.\ to $(D \det)(I) = tr$:
+    $$\lim_{H \rightarrow 0}\frac{1}{\lvert \lvert H \rvert \rvert}( \det(I + H) - \det(I) - \tr(H)) = 0 \implies \lim_{H \rightarrow 0}\frac{1}{\lvert \lvert H \rvert \rvert}(\det(I+H) - 1 -\tr(H)) = 0$$
+    Now, for the derivative of $\det$ at an invertible $A$, we are interested in finding the linear transformation $\mathcal{L}$ such that:
+    $$\lim_{H \rightarrow 0}\frac{1}{\lvert \lvert H \rvert \rvert}(\det(A + H) - \det(A) - \mathcal{L}(H)) = 0$$
+    Using the provided hint:
+    $$\lim_{H \rightarrow 0}\frac{1}{\lvert \lvert H \rvert \rvert}(\det(A + H) - \det(A) - \mathcal{L}(H)) = \lim_{H \rightarrow 0}\frac{1}{\lvert \lvert H \rvert \rvert}(\det(A) \det(I + A^{-1}H) - \det(A) - \mathcal{L}(H))$$
+    This then motivates us to set $U = A^{-1}H$, which means $AU = H$, and also that since $A^{-1}$ is kept constant as $H \rightarrow 0$, it is also the case that $U \rightarrow 0$. Therefore, the above limit can be rewritten as:
+    $$\lim_{U \rightarrow 0}\frac{1}{\lvert \lvert A U \rvert \rvert}(\det(A) \det(I + U) - \det(A) - \mathcal{L}(AU)) = \lim_{U \rightarrow 0}(\frac{1}{\lvert \lvert AU \rvert \rvert}\det(A)(\det(I + U) - 1) - \frac{1}{\lvert \lvert AU \rvert \rvert}\mathcal{L}(AU))$$
+    Now we have that $\lvert \lvert U \rvert \rvert = \lvert \lvert A^{-1}A U \rvert \rvert \leq \lvert \lvert A^{-1} \rvert \rvert \cdot \lvert \lvert A U \rvert \rvert$, we observe that for the first term of the sum:
+    $$\frac{1}{\lvert \lvert AU \rvert \rvert}\lvert \lvert \det(A)(\det(I+U) - 1) \rvert \rvert \leq \frac{1}{\lvert \lvert A^{-1} \rvert \rvert \cdot \lvert \lvert U \rvert \rvert}\lvert \lvert \det(A)(\det(I+U) - 1) \rvert \rvert $$
+    But now the right side is known to tend to zero if one were to subtract $\det(A) \tr(U)$ from the quantity inside the magnitude of the numerator.
+    This therefore motivates us to have $\mathcal{L}(AU) = \det(A) \tr(U)$, which, substituting $U$, yields $\mathcal{L}(H) = \det(A) \tr(A^{-1}H)$, and since \textit{a} linear transformation that makes the limit zero is \textit{the} derivative of $\det$ at $A$, we have indeed arrived at (**).
+
+    (iv) We have shown in (i) that for $A$ invertible:
+    $$D(\det)(A)(H) = \det(A) tr(A^{-1}H)$$
+    Let then $f(t) = \det(A(t)), f: \mathbb{R} \rightarrow \mathbb{R}$.
+    By using the chain rule:
+    $$D(f)(t)(h) = D(\det)(A(t))(D(A)(t)(h)) \implies D(f)(t)(h) = \det(A(t)) \tr((A(t)^{-1}D(A)(t)(h)))$$
+    Because $A(t)$ is always invertible, we can divide both sides by it, and by simplifying the notation to match the exercise we obtain:
+    $$\frac{1}{\det A}(\det \circ A)' = \tr(A^{-1} \circ DA)$$
+    Now, by recalling the derivative of the (natural) logarithm, we can also rewrite this as:
+    $$\frac{d}{dt}(\log \det A)(t) = \tr(A^{-1}\frac{dA}{dt})(t)$$
+
+    (v) We begin by differentiating $w(t)$ and using part (i):
+
+    $$D(w)(t)(h) = D(\det)(A(t))(D(A)(t)(h)) \implies D(w)(t)(h) = \tr(A(t)^{\#} D(A)(t)(h))$$
+
+    Note now that by simplifying the notation and substituting from the given differential equation we obtain that:
+    
+    $$\frac{dw}{dt}(t) = \tr(A(t)^{\#} F(t)A(t)) \implies \frac{dw}{dt}(t)= \tr(A{t}^{\#}A(t)F(t)) \implies \frac{dw}{dt}(t) = \tr(\det A(t) I F(t)) $$
+    $$\implies \frac{dw}{dt}(t) = \det A(t) \tr(F(t)) = w(t) \tr(F(t)),$$
+    
+    where we have used properties of the trace (shown in exercise 2.1) and Cramer's rule.
+    This is a differential equation somewhat similar to (ii), except that $w(t)$ is multiplied with a function of $t$ instead of a constant.
+    Because $F$ is continuous, the solution to this differential equation is of the form:
+    $$w(t) = c e^{\int_{0}^{t} \tr F(\tau) d \tau},$$
+    and by substituting $t = 0$ we have $w(0) = c$, where $w(0)$ depends on $A(0)$ (an ``initial condition'' for the differential equation).
 \end{solution}
