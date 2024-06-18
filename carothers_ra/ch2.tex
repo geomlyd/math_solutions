@@ -318,42 +318,125 @@
 
 \begin{solution}
 
-    (i) Given (ii), it makes sense to try to prove that $f$ is not left-continuous at the points of $D$ (and one can also see this ``graphically'').
+    (i) Notice that we've already seen in the main text that for $x_k \in D, f(x_k-) = f(x_k) - \epsilon_k$, that is, the left limit of $f$ at each point of $D$ can never equal its value on the respective point, since $\epsilon_k > 0$.
+    Therefore $f$ is not continuous at the points of $D$.
 
-    Pick any $x_i \in D$.
-    Then $f(x_i) = \sum_{x_n \leq x_i} \epsilon_n$, which equals precisely the sum of the first $i$ terms of the corresponding series of $\epsilon_n$.
-    Now consider what happens as $x \rightarrow x_i-$, namely what happens when $x_{i-1} < x < x_i$, which is something that needs to be considered in order for $x$ to get arbitrarily close to $x_i$ from the left.
-    Note that here we implicitly make use of the fact that there always exists a real number between two reals.
-    In this case we have that $f(x) = \sum_{x_n \leq x} \epsilon_n$, and because $x_i > x$ and $x_{i-1} < x < x_i$ this sum reduces to $f(x) = \sum_{x_n \leq x_{i-1}} \epsilon_n$.
-    All $\epsilon_n$ are strictly positive, and thus $f(x) < f(x_i)$.
-    Furthermore, as indicated above whenever $x_{i-1} < x < x_i, f(x)$ is in fact constant since there are no points of $D$ between $x_{i-1}, x$ (due to the order imposed by countability).
-    Thus:
-    $$\lim_{x \rightarrow x_i-} f(x) < f(x_i),$$
-    and therefore $f$ is (left) discontinuous at the points of $D$.
+    (ii) Again, in the main text we've seen that $f$ is right-continuous at the points of $D$.
+    It suffices therefore to check that for $x \in \mathbb{R} \setminus D, f(x+) = f(x)$.
+    Expanding this, we have:
+    $$f(x+) = \lim_{y \rightarrow x+} f(y)$$
+    Pick any $\epsilon > 0$.
+    We need to show then that there exists $\delta > 0$ such that whenever $y - x < \delta$ it holds that $f(y) - f(x) < \epsilon$ (note that the fact that $f$ is increasing and the fact that we are taking a right limit allows us to omit absolute values).
+    We have that:
+    $$f(y) - f(x) = \sum_{\{n: x_n \leq y\}} \epsilon_n - \sum_{\{n: x_n \leq x\}} \epsilon_n = \sum_{\{n: x < x_n \leq y\}} \epsilon_n$$
+    As has already been observed in the main text, since the series corresponding to $\epsilon_n$ converges, it is the case that $\sum_{n=N}^{\infty} \epsilon_n = 0$ as $N \rightarrow \infty$.
+    This means that given our chosen $\epsilon > 0$, we can find an $N > 0$ such that $\sum_{n=N}^{\infty} \epsilon_n < \epsilon$.
+    Therefore, after excluding a \textit{finite} number of terms from the series, namely $\{\epsilon_1, \epsilon_2, \ldots, \epsilon_{N-1}\}$ we can make the corresponding remaining infinite sum arbitrarily small.
+    Because the set is finite, we can then pick $\delta > 0$ such that none of these terms are in the interval $(x, y]$: simply find the closest term to $x$ and pick $y$ to be closer to $x$ than that. 
+    Then by necessity:
+    $$\sum_{\{n: x < x_n \leq y\}} \epsilon_n \leq \sum_{n=N}^{\infty} \epsilon_n < \epsilon,$$
+    which means precisely that $f(y) - f(x) < \epsilon$, thus completing the proof that $f$ is right-continuous everywhere.
 
-    (ii) For right continuity, pick $x \in \mathbb{R}$.
-    If $x \in D$, then we've already seen in the book that $f(x_k+) = f(x_k)$.
-    If $x \notin D$, then either $x < x_1$, or there exists $i \in \mathbb{N}^+$ such that $x_{i} < x < x_{i+1}$, or $x > x_i$ for all $i$. 
-    We examine each case separately:
+    (iii) Due to part (ii) we only need to prove that $f$ is left-continuous at $x \in \mathbb{R} \setminus D$.
+    That is, we need to prove that for $x \in \mathbb{R} \setminus D$:
+    $$\lim_{y \rightarrow x-} f(y) = f(x)$$
+    Pick any $\epsilon >0 $.
+    We need to find $\delta > 0$ such that whenever $x - y < \delta$:
+    $$f(x) - f(y) < \epsilon \implies \sum_{\{n: x_n \leq x\}} \epsilon_n - \sum_{\{n: x_n \leq y\}} \epsilon_n < \epsilon \implies \sum_{\{n : y < x_n \leq x\}} \epsilon_n < \epsilon$$
+    This means that we can now use the exact same observation as in (ii) to bring $y$ sufficiently close to $x$ such that the LHS sum is strictly smaller than $\epsilon$, thus proving that $f$ is indeed left-continuous at $x$.
+    Note that the important difference from the case $x \in D$ examined in the book is that here $x_n \leq x$ does not introduce a fixed term in the sum, which would of course impose a lower bound on it.
+    In contrast, when $x \in D$ it is not guaranteed that we can always exclude the finite set of terms obtained in (ii) since one of them \textit{may be} $x$ \textit{itself}.
+
+    Now for the question posed in the exercise, consider the function $g(x) = f(x) + x$.
+    Because the identity function is continuous everywhere, $g$ will maintain all properties of $f$ shown in the exercise: it will be right-continuous everywhere as a sum of right-continuous functions, it will be continuous at $\mathbb{R} \setminus D$ and at the points of $D$ it will be discontinuous (since otherwise $f(x) = g(x) - x$ would be continuous as a difference of continuous functions).
+    In addition, for any two $x_1 < x_2$, we have that $f(x_1) \leq f(x_2)$, and therefore clearly $g(x_1) < g(x_2)$, meaning that $g$ is strictly increasing.
+\end{solution}
+
+\begin{exercise}{35}
+    Let $f: [a, b] \rightarrow \mathbb{R}$ be increasing, and let $(x_n)$ be an enumeration of the discontinuities of $f$.
+    For each $n$, let $a_n = f(x_n) - f(x_n-)$ and $b_n = f(x_n+) - f(x_n)$ be the left and right ``jumps'' in the graph of $f$, where $a_n = 0$ if $x_n = a$ and $b_n = 0$ if $x_n = b$.
+    Show that $\sum_{n=1}^{\infty} a_n \leq f(b) - f(a)$ and $\sum_{n=1}^{\infty} b_n \leq f(b) - f(a)$.
+\end{exercise}
+
+\begin{solution}
+    
+    We will first use exercise 33 (without the absolute values since we have an \textit{increasing} function) to obtain an intermediate result about the first $n$ terms of the sums that appear in this exercise.
+    Namely, applying exercise 33 on the points $(x_n)$ we have that:
+    $$\sum_{i=1}^{n} f(x_i+) - f(x_i-) \leq f(b) - f(a) \implies \sum_{i=1}^{n} f(x_i+) - f(x_i) + f(x_i) - f(x_i-) \leq f(b) - f(a)$$
+    $$\implies \sum_{i=1}^{n} f(x_i+) - f(x_i) + \sum_{i=1}^{n} f(x_i) - f(x_i-) \leq f(b) - f(a) \implies \sum_{i=1}^{n} b_i + \sum_{i=1}^{n} a_i \leq f(b) - f(a)$$
+
+    Since we are dealing with non-negative quantities from this we can conclude that $$\sum_{i=1}^{n} b_i \leq f(b) - f(a), \sum_{i=1}^{n} a_i \leq f(b) - f(a)$$
+
+    Observe therefore that if the left or right discontinuities are finite in number, this result proves what is needed in the exercise (for $a_i$ or $b_i$ respectively).
+    We now examine the case where the left discontinuities are infinite in number.
+    Observe that each $a_n$ is non-negative, and therefore the sequence of partial sums is non-decreasing, while we've already shown that it is bounded.
+    We thus know that it converges, and since limits maintain non-strict inequalities, we obtain that $\sum_{n=1}^{\infty} a_n \leq f(b) - f(a)$.
+    The exact same reasoning can also be applied to right discontinuities.
+\end{solution}
+
+\begin{exercise}{36}
+    In the notation of Exercise 35, define $h(x) = \sum_{\{n: x_n \leq x\}} a_n + \sum_{\{n: x_n < x\}} b_n$.
+    Show that $h$ is increasing and that $g = f - h$ is both continuous and increasing.
+    Thus, each increasing function $f$ can be written as the sum of a continuous increasing function $g$ and a ``pure jump'' function $h$.
+\end{exercise}
+
+\begin{solution}
+    
+    We begin by showing that $h$ is increasing.
+    Consider $y_1, y_2 \in [a, b], y_1 < y_2$.
+    Then:
+    $$h(y_2) - h(y_1) = \sum_{\{n: x_n \leq y_2\}} a_n + \sum_{\{n: x_n < y_2\}} b_n - \sum_{\{n: x_n \leq y_1\}} a_n - \sum_{\{n: x_n < y_1\}} b_n$$
+    $$ = \sum_{\{n: y_1 < x_n \leq y_2\}} a_n + \sum_{\{n: y_1 \leq x_n < y_2\}} b_n \geq 0,$$
+    since each term of these sums is non-negative (recall that $f$ is increasing).
+    Therefore $h$ is increasing.
+    Now we examine the continuity of $g$, for which we'll have to examine the left and right limits at the points of discontinuity of $f$ and at the points where $f$ is continuous.
+
+    First let's consider $x_i \in \{x_1, x_2, \ldots\}$, i.e.\ a point of discontinuity of $f$:
     \begin{itemize}
-        \item $x < x_1$: We know that $f(x) = 0$ whenever the corresponding sum is empty, and therefore $f(x) = 0$ for $x < x_1$, which means that $f$ is more specifically right-continuous (and in fact continuous) at $x$.
-        \item $x_i < x < x_{i+1}$ for some $i \in \mathbb{N}^+$: Then notice that by the definition of $f$, whenever $x_i < y < x_{i+1}, f(y) = \sum_{x_n \leq x_i} \epsilon_n$, which means that $f$ is in fact constant in $[x_i, x_{i+1})$, and is therefore right-continuous (and in fact continuous) at $x$.
-        \item $x_i < x$ for all $i$: in this case we observe that $D$ is upper-bounded, and therefore whenever $y$ is an upper bound for $D$, $f(y) = \sum_{x_n \leq y} \epsilon_n = \sum_{n=1}^{\infty} \epsilon_n$, which is given to converge and is thus well-defined.
-        But then $f$ is constant starting at the supremum of $D$, and thus more specifically is right-continuous (and in fact continuous) at $x$.
+        \item For $y \rightarrow x_i+$, we are interested in the following limit:
+        $$\lim_{y \rightarrow x_i+} g(y) = \lim_{y \rightarrow x_i+} (f(y) - h(y)) = \lim_{y \rightarrow x_i+} \Bigl(f(y) - \sum_{\{n: x_n \leq y\}} a_n - \sum_{\{n: x_n < y\}}b_n\Bigr)$$
+        Now notice that in this case it is always true that $y > x_i$, leading us to decompose the sums as follows:
+        $$f(y) - \sum_{\{n: x_n \leq x_i\}}a_n - \sum_{\{n: x_i < x_n \leq y\}} a_n - \sum_{\{n: x_n < x_i\}} b_n - \sum_{\{n: x_i \leq x_n < y\}} b_n$$
+        $$ = f(y) - h(x_i) - \Bigl(\sum_{\{n: x_i < x_n \leq y\}} a_n + \sum_{\{n: x_i \leq x_n < y\}} b_n\Bigr)$$
+        Now we observe that since we saw in exercise 35 that the series of the non-negative $(a_n)$ converges, the sum of $a_n$ inside the parenthesis can be made to go to zero as $y \rightarrow x_i+$: the argument here is the same as in exercise 34, where we show that we need but to exclude a finite number of terms of the series.
+        The same applies to the sum of $b_n$, except that it tends to $b_i$ instead (due to the ``less than or equal to $x_i$'' in its sum, where $x_i$ does correspond to a term of the sequence).
+        Consequently, the limit of this expression as $y \rightarrow x_i+$ must be:
+        $$f(x_i+) - h(x_i) - 0 - b_i = f(x_i+) - h(x_i) - f(x_i+) + f(x_i) = f(x_i) - h(x_i),$$
+        where the first term comes from the definition of the right limit of $f$ at $x_i$, the second term is constant and the third and fourth were explained above.
+        Therefore we conclude that $\lim_{y \rightarrow x_i+} g(y) = f(x_i) - h(x_i) = g(x_i)$.
+        \item For $y \rightarrow x_i-$, the proof will be highly similar:
+        $$\lim_{y \rightarrow x_i-} g(y) = \lim_{y \rightarrow x_i-} \Bigl( f(y) - \sum_{\{n: x_n \leq y\}} a_n - \sum_{\{n: x_n < y\}} b_n \Bigr)$$
+        The decomposition now looks like:
+        $$f(y) - \sum_{\{n: x_n \leq x_i\}}a_n + \sum_{\{n: y < x_n \leq x_i\}} a_n - \sum_{\{n: x_n < x_i\}} b_n + \sum_{\{n: y \leq x_n < x_i\}} b_n$$
+        $$ = f(y) - h(x_i) + \Bigl(\sum_{\{n: y < x_n \leq x_i\}} a_n + \sum_{\{n: y \leq x_n < x_i\}} b_n\Bigr)$$
+        A similar argument as above yields that the first sum here tends to $a_i$ and the second to zero.
+        Therefore the desired limit will equal:
+        $$f(x_i-) - h(x_i) + a_i = f(x_i-) - h(x_i) + f(x_i) - f(x_i-) = f(x_i) - h(x_i),$$
+        which is again the desired quantity.
     \end{itemize}
-    This covers all possible cases, and therefore $f$ is right-continuous outside of $D$ as well.
+    Now we consider $x \notin \{x_1, x_2, \ldots\}$:
+    \begin{itemize}
+        \item For $y \rightarrow x+$, we are interested in:
+        $$\lim_{y \rightarrow x+}g(y) = \lim_{y \rightarrow x} (f(y) - h(y))$$
+        Carrying out the calculations will lead to an expression identical to the first bullet above, except that since $x \notin \{x_1, x_2, \ldots\}$ all sums that involve $a_n, b_n$ will now go to zero (unlike before, they never contain a ``fixed'' term corresponding to $x_i$).
+        Therefore we'll eventually arrive at $\lim_{y \rightarrow x+} g(y) = f(x+) - h(x) = f(x) - h(x)$, since $f$ is now continuous at $x$.
+        \item For $y \rightarrow x-$, everything is exactly symmetrical to the above, and therefore once more $\lim_{y \rightarrow x-} g(y) = f(x) - h(x)$.
+    \end{itemize}
+    This completes the proof that $g$ is in fact continuous in all of $[a, b]$.
 
-    (iii) We've already shown this in part (ii) by the arguments involving the fact that $f$ is piecewise constant.
-    What we also know is that $\epsilon_n > 0$, and as such the partial sums of the corresponding series is strictly increasing, meaning that $f(x_i) < f(x_{i+1})$ for all $i$.
-    In addition, we showed that $f(x) = f(x_i)$ for $x \in [x_i, x_{i+1})$.
-    Therefore, to make $f$ strictly increasing it suffices to make it strictly increasing inside each interval $[x_i, x_{i+1})$, strictly increasing for $x < x_1$, and, in case $D$ is bounded, strictly increasing for $x \geq \sup D$.
-    To do this, we modify the definition of $f$ to be:
-    $$f(x) = \begin{cases}
-        x - x_1 + \epsilon_1 & ,x < x_1 \\
-        \sum_{x_n \leq x} \epsilon_n & ,x \in D \\
-        \sum_{x_n \leq x} \epsilon_n + (x - x_n)\frac{\epsilon_{n+1}}{x_{n+1} - x_n} & , x \in (x_n, x_{n+1}) \text{ for some } $n$ \\\
-        \sum_{n=1}^{\infty} \epsilon_n + x - \sup D & , x \geq \sup D
-    \end{cases},$$
-    where we consider the last case to trivially never hold if $D$ is not bounded above.
-    It's fairly easy to see that this function is indeed strictly increasing, since it is piecewise linear with a slope that is always positive, while it additionally maintains all the properties we previously proved (one has but to take limits at the points where the function's definition changes to see this).
+    All that remains is to show that $g$ is increasing as well.
+    Take $y_1, y_2 \in [a, b]$ with $y_1 < y_2$.
+    We want to show that $g(y_1) \leq g(y_2)$.
+    We have that:
+    $$g(y_2) - g(y_1) = f(y_2) - h(y_2) - f(y_1) + h(y_1) = f(y_2) - f(y_1) - (h(y_2) - h(y_1))$$
+    We examine $h(y_2) - h(y_1)$:
+    $$h(y_2) - h(y_1) = \sum_{\{n: x_n \leq y_2\}} a_n + \sum_{\{n: x_n < y_2\}} b_n - \sum_{\{n: x_n \leq y_1\}} a_n - \sum_{\{n: x_n < y_1\}} b_n$$
+    $$= \sum_{\{n: y_1 < x_n \leq y_2\}} a_n + \sum_{\{n: y_1 \leq x_n < y_2\}} b_n$$
+    Notice that every term that appears in this sum corresponds to a $x_n \in [y_1, y_2]$.
+    Recall also from exercise 35 that we had $\sum_{i=1}^{n} b_i + \sum_{i = 1}^{n} a_i \leq f(b) - f(a)$ and that taking the limit of each of the two sums was well-defined, which means that this inequality as well holds at the limit.
+    The only detail that may potentially be problematic here is that we may also be summing over the terms $f(y_1+) - f(y_1), f(y_2) - f(y_2-)$ in case one or both endpoints $y_1, y_2$ are also discontinuities.
+    However, it can be shown fairly easily that with a small modification to 33 the inequality given there can also be shown to hold for $n$ points in the closed interval [a, b] instead of just the open (one just has to take a finite number of $x_1, \ldots, x_n$ and consider $a < a' < x_1, x_n < b' < b$).
+    Then 35 can be applied to generalize this to countably infinite points which may be the case here.
+    
+    All of this results in the fact that the sum above is at most $f(y_2) - f(y_1)$ (since these are the endpoints of the relevant interval), and therefore also $g(y_2) \geq g(y_1)$, which shows that $g$ is increasing.
 \end{solution}
