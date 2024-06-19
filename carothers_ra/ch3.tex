@@ -16,19 +16,29 @@
     where we used the symmetry property of metric $d$.
     Putting the two inequalities together results in:
     $$\lvert d(x, z) - d(y, z) \rvert \leq d(x, y)$$
-\end{solution}\chapter{Metrics and Norms}
-
-\section{Metric Spaces}
+\end{solution}
 
 \begin{exercise}{3}
     As it happens, some of our requirements for a metric are redundant.
     To see why this is so, let $M$ be a set and suppose $d: M \times M \rightarrow \mathbb{R}$ satisfies $d(x, y) = 0$ if and only if $x = y$, and $d(x, y) \leq d(x, z) + d(y, z)$ for all $x, y, z \in M$.
-    Prove that $d$ is a metric; that is, show that $d(x, y) \geq 0$ and $d(x, y) = d(y, x)$ hold for all $x, y$
+    Prove that $d$ is a metric; that is, show that $d(x, y) \geq 0$ and $d(x, y) = d(y, x)$ hold for all $x, y$.
 \end{exercise}
 
 \begin{solution}
     
-    
+    Pick any two $x, y \in M$.
+    We know then that for any $z \in M$ it holds that $d(x, z) \leq d(x, y) + d(z, y)$.
+    More specifically, this holds for $z = x$, in which case we obtain:
+    $$d(x, x) \leq d(x, y) + d(x, y) \implies 0 \leq 2d(x, y),$$
+    which means that for any two $x, y \in M, d(x, y) \geq 0$.
+
+    For the symmetry propety, once again pick any two $x, y \in M$.
+    Then $d(x, y) \leq d(x, z) + d(y, z)$ for any $z$.
+    Pick then $z = x$, in which case we obtain $d(x, y) \leq d(x, x) + d(y, x) \implies d(x, y) \leq d(y, x)$.
+    By exchanging the roles of $x, y$, we have that $d(y, x) \leq d(y, z) + d(x, z)$ for any $z$.
+    Pick $z = y$ to observe that $d(y, x) \leq d(y, y) + d(x, y) \implies d(y, x) \leq d(x, y)$.
+    But then $d(x, y) \leq d(y, x) \leq d(x, y)$, thus the only possibility is that $d(x, y) = d(y, x)$.
+    Therefore $d$ is indeed a metric.
 \end{solution}
 
 \begin{exercise}{12}
