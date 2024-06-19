@@ -1,0 +1,19 @@
+\chapter{Metrics and Norms}
+
+\section{Metric Spaces}
+
+
+\begin{exercise}{2}
+    If $d$ is a metric on $M$, show that $\lvert d(x, z) - d(y, z) \rvert \leq d(x, y) $ for any $x, y, z \in M$.
+\end{exercise}
+
+\begin{solution}
+    
+    First, we apply the triangle inequality as follows:
+    $$d(x, z) \leq d(x, y) + d(y ,z) \implies d(x, z) - d(y, z) \leq d(x, y)$$
+    Another application of it yields:
+    $$d(y, z) \leq d(y, x) + d(x, z) \implies -d(y, x) \leq d(x, z) - d(y, z) \implies -d(x, y) \leq d(x, z) - d(y,z),$$
+    where we used the symmetry property of metric $d$.
+    Putting the two inequalities together results in:
+    $$\lvert d(x, z) - d(y, z) \rvert \leq d(x, y)$$
+\end{solution}
