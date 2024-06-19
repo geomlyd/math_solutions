@@ -1,0 +1,78 @@
+\chapter{Metrics and Norms}
+
+\section{Metric Spaces}
+
+\begin{exercise}{3}
+    As it happens, some of our requirements for a metric are redundant.
+    To see why this is so, let $M$ be a set and suppose $d: M \times M \rightarrow \mathbb{R}$ satisfies $d(x, y) = 0$ if and only if $x = y$, and $d(x, y) \leq d(x, z) + d(y, z)$ for all $x, y, z \in M$.
+    Prove that $d$ is a metric; that is, show that $d(x, y) \geq 0$ and $d(x, y) = d(y, x)$ hold for all $x, y$
+\end{exercise}
+
+\begin{solution}
+    
+    
+\end{solution}
+
+\begin{exercise}{12}
+    Check that $d(f, g) = \max_{a \leq t \leq b} \lvert f(t) - g(t) \rvert$ defines a metric on $C[a, b]$, the collection of all continuous, real valued functions defined on the closed interval $[a, b]$.
+\end{exercise}
+
+\begin{solution}
+    
+    Note that here continuity is important to ensure that the difference of any two functions is continuous, and as such achieves a maximum value in any closed interval.
+    Using exercise 3, we need to check the following:
+    \begin{itemize}
+        \item One, that $d(f, g) = 0$ iff $f = g$.
+        Suppose first that $d(f, g) = 0$, that is, $\max_{a \leq b} \lvert f(t) - g(t) \rvert = 0$.
+        If $f, g$ were not equal, there would exist $x \in [a, b]$ such that $f(x) \neq g(x)$.
+        Clearly then $\max_{a \leq t \leq b} \lvert f(t) - g(t) \rvert \geq \lvert f(x) - g(x) \rvert > 0$, which is a contradiction.
+        Therefore $f = g$.
+        In the other direction, if $f = g$, we equivalently have that $f - g$ is the zero function on $[a, b]$, and therefore $d(f, g) = \max_{a \leq t \leq b} \lvert f(t) - g(t) \rvert = 0$.
+        \item Two, that for any three $f, g, h \in C[a, b], d(f, h) \leq d(f, g) + d(g, h)$.
+        We have first that $d(f, h) = \max_{a \leq t \leq b} \lvert f(t) - h(t) \rvert$.
+        Suppose that this function achieves its maximum value on $t_M \in [a, b]$ (if there are more than one, pick any).
+        Then $d(f, h) = \lvert f(t_M) - h_(t_M) \rvert = \lvert f(t_M) - g(t_M) + g(t_M) - h(t_M) \rvert \leq \lvert f(t_M) - g(t_M) \rvert + \lvert g(t_M) - h(t_M) \rvert$.
+        By definition, it holds that $\lvert f(t_M) - g(t_M) \rvert \leq \max_{a \leq t \leq b} \lvert f(t) - g(t) \rvert = d(f, g)$, and similarly $\lvert g(t_M) - h(t_M) \rvert \leq d(g, h)$.
+        We therefore obtain that $d(f, h) \leq d(f, g) + d(g, h)$.
+    \end{itemize}
+    Therefore $d$ is indeed a metric on $C[a, b]$.
+\end{solution}
+
+\begin{exercise}{14}
+    We say that a subset $A$ of a metric space is \textbf{bounded} if there is some $x_0 \in M$ and some constant $C < \infty$ such that $d(a, x_0) \leq C$ for all $a \in A$.
+    Show that a finite union of bounded sets is again bounded.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose we have the finite union 
+    $$U = A_1 \cup A_2 \cup \ldots \cup A_n$$
+    of $n$ bounded subsets of a metric space $M$.
+    Let then $x_1, x_2, \ldots, x_n, C_1, \ldots, C_n$ be such that $d(a, x_i) \leq C$ for $a \in A_i$.
+    Form the set $\{d(x_1, x_1), d(x_1, x_2), \ldots, d(x_n, x_1)\}$, which, crucially, has a finite number of elements, and therefore also has a maximum element, $M$.
+    By the same reasoning, there exists $C$ such that $C = \max\{C_1, \ldots, C_n\}$.
+    Now pick any $a \in U$, which must belong in at least one $A_i$.
+    Therefore:
+    $$d(a, x_1) \leq d(a, x_i) + d(x_i, x_1) \leq C_i + M \leq C + M$$
+    If we thus set $x_U = x_1$ and $C_U = C + M$, we have shown precisely that $U$ is bounded.
+\end{solution}
+
+\begin{exercise}{15}
+    We define the \textbf{diameter} of a nonempty subset $A$ of $M$ by $\text{diam}(A) = \sup\{d(a, b) : a, b \in A\}$.
+    Show that $A$ is bounded if and only if $\text{diam}(A)$ is finite.
+\end{exercise}
+
+\begin{solution}
+    
+    $\implies$: Suppose first that $A$ is bounded.
+    Then there exists $x_0 \in M, C \in \mathbb{R}$ such that $d(a, x_0) \leq C$ for all $a \in A$.
+    Pick any two $a, b \in A$.
+    We then have that $d(a, b) \leq d(a, x_0) + d(x_0, b) \leq 2C$.
+    Therefore the set $\{d(a, b): a, b \in A$\} has an upper bound, namely, $2C$, and therefore also a finite least upper bound, which means precisely that $\text{diam}(A)$ is finite.
+
+    $\impliedby$: Now suppose $\text{diam}(A) = C \in \mathbb{R}$.
+    Fix an $a \in A$ (which exists since $A$ is nonempty).
+    Pick any $b \in A$, in which case we have that:
+    $$d(a, b) \in \{d(x, y): x, y \in A\} \implies d(a, b) \leq \text{diam}(A) = C$$
+    If thus set $x_0 = a$ and $C$ the respective constant, we see that the definition of $A$ being bounded is fulfilled.
+\end{solution}
