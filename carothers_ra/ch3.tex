@@ -41,6 +41,7 @@
     Therefore $d$ is indeed a metric.
 \end{solution}
 
+\newpage
     
 \begin{exercise}{7}
     Here is a generalization of exercises 5 and 6.
@@ -59,7 +60,32 @@
 
 \begin{solution}
     
-    
+    As indicated in the hint, we first show that (a) $\implies$ (b) $\implies$ (c).
+    If, after that, we can show that (c) implies the triangle inequality for $f$, we know also that any of (a), (b) imply it as well (since they imply (c)).
+
+    (a) $\implies$ (b): Since $f'' \leq 0$, $f$ more specifically has a first derivative on every point of $[0, \infty)$.
+    From calculus 1, it's known also that this implies that $f'$ is decreasing (one would prove this via the Mean Value Theorem).
+
+    (b) $\implies$ (c): (b) implies that $f$ is differentiable, thus $g(x) = f(x)/x, x > 0$ is also differentiable, with $g'(x) = \frac{f'(x)x - f(x)}{x^2}$.
+    If we can show that the numerator here is non-positive for $x > 0$, we'll have shown that $g$ is decreasing.
+    Pick any $x > 0$, and apply the Mean Value Theorem on $f$ in the interval $[0, x]$.
+    This means that there exists $y \in (0, x)$ such that:
+    $$f'(y) = \frac{f(x) - f(0)}{x - 0} = \frac{f(x)}{x},$$
+    where we used the fact that $f(0) = 0$.
+    Therefore, we have that:
+    $$f'(x)x - f(x) = f'(x)x - xf'(y) = x(f'(x) - f'(y)) \leq 0,$$
+    since $f'$ is decreasing and $y < x$.
+    This completes the proof that (b) $\implies$ (c).
+
+    We now need to show that the triangle inequality for $f$ follows from (c).
+    Pick any two $x, y \geq 0$.
+    If any of them, or both, are zero, the triangle inequality follows from the fact that $f(0) = 0$.
+    If $x, y \neq 0$, then we know that $x \leq x + y, y \leq x + y$, and thus that $\frac{f(x)}{x} \geq \frac{f(x + y)}{x + y}, \frac{f(y)}{y} \geq \frac{f(x + y)}{x + y}$ (by the fact that $f(x)/x$ is decreasing). 
+    We can rewrite these as:
+    $$(x + y)f(x) \geq xf(x+ y), (x+ y)f(y) \geq yf(x + y),$$
+    and now we can add them to obtain that:
+    $$(x + y)(f(x) + f(y)) \geq f(x + y)(x + y) \implies f(x) + f(y) \geq f(x + y),$$
+    which is of course what we wanted to show.
 \end{solution}
 
 \begin{exercise}{12}
