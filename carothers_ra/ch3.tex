@@ -42,6 +42,27 @@
 \end{solution}
 
 \newpage
+
+\begin{exercise}{6}
+    If $d$ is any metric on $M$, show that $\rho(x, y) = \sqrt{d(x, y)}, \sigma(x, y) = d(x, y)/(1 + d(x, y))$ and $\tau(x, y) = \min\{d(x, y), 1\}$ are also metrics on $M$.
+    [Hint: $\sigma(x, y) = F(d(x, y))$, where $F$ is as in exercise 5.]
+\end{exercise}
+
+\begin{solution}
+    
+    We will solve this as a simple application of 7.
+    If $F_1: [0, \infty) \rightarrow [0, \infty), F_1(x) = \sqrt{x}$, then $\rho(x, y) = F_1(d(x, y))$.
+    Then $F_1(x)/x = 1/\sqrt{x}$, which is clearly decreasing for $x> 0$, and therefore exercise 7 guarantees that $\rho$ is a metric.
+
+    Similarly, if $F_2: [0, \infty) \rightarrow [0, \infty), F_2(x) = \frac{x}{1 + x}$, then $F_2'(x) = \frac{x + 1 - x}{(1 + x)^2} = \frac{1}{(x + 1)^2}$, which is clearly decreasing as for $x \geq 0$, and therefore $\sigma$ is also a metric.
+
+    Lastly, if $F_3: [0, \infty) \rightarrow [0, \infty), F_3(x) = \min\{x, 1\}$, then $\tau(x, y) = F_3(d(x, y))$ and:
+    $$F_3(x)/x = \begin{cases}
+        1, & x \leq 1 \\
+        \frac{1}{x}, & x > 1
+    \end{cases},$$
+    which is of course a decreasing function for $ x > 0$, and therefore $\tau$ is a metric.
+\end{solution}
     
 \begin{exercise}{7}
     Here is a generalization of exercises 5 and 6.
@@ -86,6 +107,39 @@
     and now we can add them to obtain that:
     $$(x + y)(f(x) + f(y)) \geq f(x + y)(x + y) \implies f(x) + f(y) \geq f(x + y),$$
     which is of course what we wanted to show.
+\end{solution}
+
+\begin{exercise}{10}
+    The \textit{Hilbert cube}, $H^{\infty}$, is the collection of all real sequences $x = (x_n)$ with $\lvert x_n \rvert \leq 1, n = 1, 2, \ldots$.
+
+    (i) Show that $d(x, y) = \sum_{n=1}^{\infty} 2^{-n} \lvert x_n - y_n \rvert$ defines a metric on $H^{\infty}$.
+
+    (ii) Given $x, y \in H^{\infty}$ and $k \in \mathbb{N}$, let $M_k = \max\{ \lvert x_1 - y_1 \rvert, \ldots, \lvert x_k - y_k \rvert\}$.
+    Show that $2^{-k}M-k \leq d(x, y) \leq M_k + 2^{-k}$.
+\end{exercise}
+
+\begin{solution}
+    
+    (i) We will make use of exercise 3, which allows us to conclude that $d$ is a metric if the following three things hold:
+    \begin{itemize}
+        \item First, that $d(x, y)$ is a non-negative real numer for any $x, y$, which, due to the infinite sum, is non-trivial here. 
+        Consider any two sequences $x, y$. We know that $\lvert x_n \rvert \leq 1, \lvert y_n \rvert \leq 1$, for all $n$, therefore the maximum value that $\lvert x_n - y_n \rvert$ is 2.
+        This means that $2^{-n} \lvert x_n - y_n \rvert \leq 2^{-n+1}$.
+        The partial sums that correspond to $d$ are therefore non-decreasing and upper bounded by a convergent geometric series, therefore the series that defines $d$ also converges.
+        \item Second, that $d(x, y) = 0$ iff $x = y$.
+        If two sequences $x, y$ are equal, then $x_n = y_n$ for all $n$, thus $d(x, y) = \sum_{n=1}^{\infty} 2^{-n} \lvert x_n - x_n \rvert = 0$.
+        Conversely, if $d(x, y) = 0$, then we have a non-decreasing sequence of non-negative partial sums that converges to zero.
+        The only way this can happen is if each term of the sequence is zero, i.e.\ if $\lvert x_n - y_n \rvert = 0$ for all $n$, that is, if $x_n = y_n$ for all $n$.
+        But this means precisely that $x = y$.
+        \item Third, that the triangle inequality holds.
+        Pick any three sequences $x, y, z$, and $k \in \mathbb{N}^+$.
+        Then:
+        $$\sum_{n = 1}^{k} 2^{-n} \lvert x_n - y_n \rvert = \sum_{n=1}^{k} 2^{-n} \lvert x_n - z_n + z_n - y_n \rvert \leq \sum_{n=1}^{k} 2^{-n} \lvert x_n - z_n \rvert + \sum_{n=1}^{k} 2^{-n} \lvert z_n - y_n \rvert,$$
+        by the triangle inequality.
+        Since this holds for any $k$ and all series converge (by the first item proven), we know that the inequality holds for the infinite series as well, i.e.\ that:
+        $$d(x, y) \leq d(x, z) + d(y, z)$$
+    \end{itemize}
+    Therefore $d$ is a metric on the Hilbert cube.
 \end{solution}
 
 \begin{exercise}{12}
