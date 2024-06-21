@@ -115,7 +115,7 @@
     (i) Show that $d(x, y) = \sum_{n=1}^{\infty} 2^{-n} \lvert x_n - y_n \rvert$ defines a metric on $H^{\infty}$.
 
     (ii) Given $x, y \in H^{\infty}$ and $k \in \mathbb{N}$, let $M_k = \max\{ \lvert x_1 - y_1 \rvert, \ldots, \lvert x_k - y_k \rvert\}$.
-    Show that $2^{-k}M-k \leq d(x, y) \leq M_k + 2^{-k}$.
+    Show that $2^{-k}M_k \leq d(x, y) \leq M_k + 2^{-k + 1}$.
 \end{exercise}
 
 \begin{solution}
@@ -140,6 +140,20 @@
         $$d(x, y) \leq d(x, z) + d(y, z)$$
     \end{itemize}
     Therefore $d$ is a metric on the Hilbert cube.
+
+    (ii) Pick any two sequences $x, y$ in the Hilbert cube and $k \in \mathbb{N}$.
+    We know then by definition that $M_k \geq \lvert x_n - y_n \rvert$ for $i \leq k$.
+    In addition, for $n > k$, the $n$-th term of the series that forms the metric $d$ is $2^{-n}\lvert x_n - y_n \rvert \leq 2^{-n+1}$.
+    Thus:
+    $$d(x, y) = \sum_{n=1}^{k} 2^{-n} \lvert x_n - y_n \rvert + \sum_{n > k}^{\infty}2^{-n}\lvert x_n - y_n \rvert \leq M_k \sum_{n=1}^{k}2^{-n} + \sum_{n=k+1}^{\infty} 2^{-n + 1}$$
+    $$ = M_k(1 - 2^{-k}) + 2(2 - 1 - (1 - 2^{-k})) = M_k - 2^{-k}M_k + 2^{-k+1} \leq M_k + 2^{-k+1},$$
+    where we used the fact that the geometric series with ratio $r=1/2$ sums to 2, and our second sum here was thus 2 minus the sum of the first $k$ terms minus 1 since the series starts at 1 instead of 0.
+    In the last step we also use the fact that $M_k \geq 0$.
+    For the other inequality, we have again that:
+    $$d(x, y) = \sum_{n=1}^{k} 2^{-n} \lvert x_n - y_n \rvert + \sum_{n > k}^{\infty}2^{-n}\lvert x_n - y_n \rvert$$
+    Notice that in order for $x, y$ to minimize this, it should be the case that $x_n - y_n = 0, n > k$, and that the maximum absolute difference $M_k$ is multiplied with the smallest possible quantity up to $k$, that is, with $2^{-k}$, while for all other $n < k, x_n - y_n = 0$.
+    This would yield that $d(x, y) \geq M_k2^{-k} + 0 + 0 = M_k2^{-k}$.
+
 \end{solution}
 
 \begin{exercise}{12}
