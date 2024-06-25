@@ -219,3 +219,91 @@
     $$d(a, b) \in \{d(x, y): x, y \in A\} \implies d(a, b) \leq \text{diam}(A) = C$$
     If thus set $x_0 = a$ and $C$ the respective constant, we see that the definition of $A$ being bounded is fulfilled.
 \end{solution}
+
+\section{Normed Vector Spaces}
+
+\begin{exercise}{16}
+    Let $V$ be a vector space, and let $d$ be a metric on $V$ satisfying $d(x, y) = d(x - y, 0)$ and $d(ax, ay) = \lvert a \rvert d(x, y)$ for every $x, y \in V$ and every scalar $a$.
+    Show that $\lvert \lvert x \rvert \rvert = d(x, 0)$ defines a norm on $V$ (that has $d$ as its ``usual'' metric).
+    Give an example of a metric on the vector space $\mathbb{R}$ that fails to be associated with a norm in this way.
+\end{exercise}
+
+\begin{solution}
+    Let us examine the properties that would make $\lvert \lvert \cdot \rvert \rvert$ one by one:
+    \begin{itemize}
+        \item Suppose $x \in V$.
+        Then $\lvert \lvert x \rvert \rvert = d(x, 0) \geq 0$, since $d$ is a metric (and of course $\lvert \lvert x \rvert \rvert$ is well-defined as a finite real number for the same reason).
+        \item Suppose $\lvert \lvert x \rvert \rvert = 0$.
+        Then $d(x, 0) = 0$, which by the properties of metrics we know is true iff $x = 0$.
+        Conversely, if $x = 0$, by the same argument $d(x, 0) = 0 \implies \lvert \lvert x \rvert \rvert = 0$.
+        Thus $\lvert \lvert x \rvert \rvert = 0 \iff x = 0$.
+        \item For any scalar $a$, we have that $\lvert \lvert a x \rvert \rvert = d(ax, 0) = d(ax, a0) = \lvert a \rvert d(x, 0) = \lvert a \rvert \lvert \lvert x \rvert \rvert$ by the exercise hypothesis.
+        \item Pick any two $x, y \in V$.
+        Then: 
+        $$\lvert \lvert x +y \rvert \rvert = d(x + y, 0) \leq d(x + y, y) + d(y, 0) = d(x + y - y, 0) + d(y, 0) = d(x, 0) + d(y, 0) = \lvert \lvert x \rvert \rvert + \lvert \lvert y \rvert \rvert,$$
+        where we used the triangle inequality property for metrics and the fact that $d(x, y) = d(x - y, 0)$.
+        Therefore the triangle inequality holds for the proposed norm.
+    \end{itemize}
+    We have thus shown that $\lvert \lvert \cdot \rvert \rvert$ is indeed a norm, and its usual metric will of course be $d'(x, y) = \lvert \lvert x - y \rvert \rvert = d(x - y, 0) = d(x, y)$, i.e.,\ $d$.
+
+    For the requested example, consider the metric $\sigma(x, y) = \lvert x - y \rvert/(1 + \lvert x - y \rvert)$ from exercise 6 of section 3.1.
+    Notice that the ``proposed'' norm would then be $\lvert \lvert x \rvert \rvert = \sigma(x, 0) = \lvert x \rvert/(1 + \lvert x \rvert)$.
+    Then for a scalar $a$:
+    $$\lvert \lvert a x \rvert \rvert = \lvert a x \rvert/(1 + \lvert a x \rvert) = \lvert a \rvert \cdot \lvert x \rvert/(1 + \lvert a \rvert \cdot \lvert x \rvert),$$
+    which we can see does not necessarily equal $\lvert a \rvert \cdot \lvert \lvert x \rvert \rvert$, and therefore the ``proposed'' norm is not really a norm.
+    The cause for this is the fact that $\sigma(ax, ay) \neq \lvert a \rvert \sigma(x, y)$ in general, for similar reasons.
+\end{solution}
+
+\begin{exercise}{18}
+    Show that $\lvert \lvert x \rvert \rvert_{\infty} \leq \lvert \lvert x \rvert \rvert_2 \leq \lvert \lvert x \rvert \rvert_1$ for any $x \in \mathbb{R}^n$.
+    Also check that $\lvert \lvert x \rvert \rvert_1 \leq n \lvert \lvert x \rvert \rvert_{\infty}$ and $\lvert \lvert x \rvert \rvert_1 \leq \sqrt{n} \lvert \lvert x \rvert \rvert_2$.
+\end{exercise}
+
+\begin{solution}
+    
+    We have that $\lvert \lvert x \rvert \rvert_{\infty} = \max_{1 \leq i \leq n} \lvert x_i \rvert$, while $\lvert \lvert x \rvert \rvert_2 = \sqrt{\sum_{i=1}^{n} \lvert x_i \rvert^2}$.
+    By definition, there must exist at least one $j \in \{1, 2, \ldots, n\}$ such that $\lvert x_j \rvert = \max_{1 \leq i \leq n} \lvert x_i \rvert$.
+    In addition, the square is an increasing function for $x \geq 0$, which would mean that $(\max_{1 \leq i \leq n} \lvert x_i \rvert)^2 = \max_{1 \leq i \leq n} \lvert x_i \rvert^2$.
+    We therefore have that:
+    $$\sum_{i=1}^{n} \lvert \lvert x_i \rvert \rvert^2 = (\max_{1 \leq i \leq n} \lvert x_i \rvert)^2 + X,$$
+    for $X \geq 0$ (the sum of the absolute values of the remaining coordinates).
+    Thus $(\lvert \lvert x \rvert \rvert_2)^2 \geq (\lvert \lvert x \rvert \rvert_{\infty})^2$, and by taking square roots we have the first desired result.
+    
+    We also have that:
+    $$(\lvert \lvert x \rvert \rvert_1)^2 = \Biggl(\sum_{i=1}^{n} \lvert x_i \rvert\Biggr)\Biggl(\sum_{i=1}^{n} \lvert x_i \rvert\Biggr) \geq \sum_{i=1}^{n} \lvert x_i \rvert^2 = (\lvert \lvert x_2 \rvert \rvert)^2,$$
+    which we obtain by observing that the product results in a sum of non-negative terms over all pairs of indices $i, j \in \{1, 2, \ldots, n\}$, which of course includes all terms for which $i = j$.
+    Taking square roots yields the second desired result.
+
+    For the third result, observe that for each $i, \lvert x_i \rvert \leq \max_{1 \leq i \leq n} \lvert x_i \rvert = \lvert \lvert x \rvert \rvert_{\infty}$.
+    This means of course that:
+    $$\lvert \lvert x \rvert \rvert_1 = \sum_{i=1}^{n} \lvert x_i \rvert \leq n \lvert \lvert x \rvert \rvert_{\infty}$$
+    
+    Lastly, we consider the following ``trick'' for the last part.
+    For a given $x = (x_1, x_2, \ldots, x_n)$, consider the vectors $y, z \in \mathbb{R}^{n^2}$:
+    $$y = \begin{pmatrix}
+        \lvert x_1 \rvert \\
+        \lvert x_2 \rvert \\
+        \vdots \\
+        \lvert x_n \rvert \\
+        \vdots \\
+        \lvert x_1 \rvert \\
+        \lvert x_2 \rvert \\
+        \vdots \\
+        \lvert x_n \rvert
+    \end{pmatrix}, z = \begin{pmatrix}
+        \lvert x_1 \rvert  \\
+        \lvert x_1 \rvert \\
+        \vdots \\
+        \lvert x_1 \rvert \\
+        \vdots \\
+        \lvert x_n \rvert \\
+        \lvert x_n \rvert\\
+        \vdots \\
+        \lvert x_n \rvert
+    \end{pmatrix}$$
+    We have that $\lvert \lvert z \rvert \rvert_2 = \lvert \lvert y \rvert \rvert_2 = \sqrt{\sum_{i=1}^{n} n\lvert x_i \rvert^2 } = \sqrt{n} \lvert \lvert x \rvert \rvert_2$,
+    while $\langle y, z \rangle = \sum_{i=1}^{n} \sum_{j=1}^{n} \lvert x_i \rvert \cdot \lvert x_j \rvert = (\sum_{i=1}^{n} \lvert x_i \rvert)^2 = (\lvert \lvert x \rvert \rvert_1)^2$.
+    Applying the Cauchy-Schwarz inequality on $y, z$, we then have that:
+    $$\langle y, z \rangle \leq \lvert \lvert y \rvert \rvert \cdot \lvert \lvert z \rvert \rvert \implies (\lvert \lvert x \rvert \rvert_1)^2 \leq \sqrt{n} \lvert \lvert x \rvert \rvert_2 \sqrt{n} \lvert \lvert x \rvert \rvert_2,$$
+    which, once more by taking square roots, gives us the last desired result.
+\end{solution}
