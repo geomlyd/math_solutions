@@ -307,3 +307,66 @@
     $$\langle y, z \rangle \leq \lvert \lvert y \rvert \rvert \cdot \lvert \lvert z \rvert \rvert \implies (\lvert \lvert x \rvert \rvert_1)^2 \leq \sqrt{n} \lvert \lvert x \rvert \rvert_2 \sqrt{n} \lvert \lvert x \rvert \rvert_2,$$
     which, once more by taking square roots, gives us the last desired result.
 \end{solution}
+
+\begin{exercise}{19}
+    Show that we have $\sum_{i=1}^{n} x_i y_i = \lvert \lvert x \rvert \rvert_2 \lvert \lvert y \rvert \rvert_2$ (equality in the Cauchy-Schwarz inequality) if and only if $x, y$ are \textit{proportional}, that is, if and only if $x = ay$ or $y = ax$ for some $a \geq 0$.
+\end{exercise}
+
+\begin{solution}
+
+    $\impliedby$: Suppose $x = ay$ for some $a \geq 0$ (everything is symmetric for $y = ax$).
+    Then:
+    $$\lvert \lvert x \rvert \rvert_2 \lvert \lvert y \rvert \rvert_2 = \lvert \lvert a y \rvert \rvert_2 \lvert \lvert y \rvert \rvert_2 = \lvert a \rvert \cdot \lvert \lvert y \rvert \rvert_2^2,$$
+    where we used the ``scalar multiplication''/positive homogeneity property of the norm.
+    Furthermore:
+    $$\sum_{i = 1}^{n} x_i y_i = \sum_{i=1}^{n} (a y_i) y_i = a \sum_{i=1}^{n} y_i^2 = a \lvert \lvert y \rvert \rvert_2^2,$$ 
+    by the definition of the 2-norm on sequences, which yields the desired equality.
+
+    $\implies$: First, if $y = 0$ then this is trivially true. If $y \neq 0$, it's also the case that $\lvert \lvert y \rvert \rvert_2 \neq 0$ and we have the following.
+    Consider the beginning of the proof of the Cauchy-Schwarz inequality:
+    $$0 \leq \lvert \lvert x + ty \rvert \rvert_2^2 = \lvert \lvert x \rvert \rvert_2^2 + 2t \langle x, y \rangle + t^2 \lvert \lvert y \rvert \rvert_2^2,$$
+    for any $t \in \mathbb{R}$. 
+    As we saw, the discriminant here is $\Delta = (2\langle x, y \rangle)^2 - 4 \lvert \lvert x \rvert \rvert_2^2 \lvert \lvert y \rvert \rvert_2^2 = 0$, by our hypothesis that $\sum_{i=1}^{n} x_i y_i = \lvert \lvert x \rvert \rvert_2 \lvert \lvert y \rvert \rvert_2$ (since $\langle x, y \rangle = \sum_{i=1}^{n} x_i y_i$).
+    Then this means that the corresponding second-degree polynomial of $t$ has a \textit{unique} solution $a$:
+    $$a = \frac{-2 \langle x, y \rangle}{2\lvert \lvert y \rvert \rvert_2^2} = -\frac{ \langle x, y \rangle}{\lvert \lvert y \rvert \rvert_2^2}$$
+    By the above equation, it must also be the case that:
+    $$0 = \lvert \lvert x + ay \rvert \rvert_2^2,$$
+    which, by the properties of the norm, means that by necessity $x = -ay$.
+    Now we only need to show that $a \leq 0$.
+    Observe that the denominator of $a$ is clearly positive as the norm of $y$.
+    The numerator equals, by definition, $\sum_{i=}^{n} x_i y_i = \lvert \lvert x \rvert \rvert_2 \lvert \lvert y \rvert \rvert_2$ (by the hypothesis), so it's clearly also non-negative.
+    The minus sign in front of the fraction makes $a$ non-positive, which completes the proof.
+
+\end{solution}
+
+\section{More Inequalities}
+
+\begin{exercise}{24}
+    The conclusion of Lemma 3.7 (Hölder's inequality) also holds in the case $p = 1$ and $q = \infty$.
+    Why?
+\end{exercise}
+
+\begin{solution}
+    
+    As a reminder, we say that a sequence $y$ is in $l_{\infty}$ if $y$ is bounded above, and in that case we define $\lvert \lvert y \rvert \rvert_{\infty} = \sup_{n} \lvert y_n \rvert$. 
+    Let us first formally state what Hölder's inequality would assert in this case:
+
+    Given $x \in l_1$ and $y \in l_{\infty}$, we have $\sum_{i=1}^{\infty} \lvert x_i y_i \rvert \leq \lvert \lvert x \rvert \rvert_1 \lvert \lvert y \rvert \rvert_{\infty}$.
+
+    Inded, pick any $n \geq 1$.
+    We then have that:
+    $$\sum_{i=1}^{n} \lvert x_i y_i \rvert = \sum_{i=1}^{n} \lvert x_i \rvert \cdot \lvert y_i \rvert \leq \sum_{i=1}^{n} \lvert x_i \rvert \cdot \sup_{k} \lvert y_k \rvert = \sup_{k} \lvert y_k \rvert \cdot \sum_{i=1}^{n} \lvert x_i \rvert \leq \lvert \lvert y \rvert \rvert_{\infty} \cdot \lvert \lvert x \rvert \rvert_1,$$
+    where we used the definition of the supremum and the fact that $\lvert \lvert x \rvert \rvert_1$ is well-defined.
+    Since the partial sums are non-decreasing and bounded, the LHS converges and the inequality (i.e., Hölder's) holds for the infinite series as well.
+\end{solution}
+
+\begin{exercise}{25}
+    The same techniques can be used to show that $\lvert \lvert f \rvert \rvert_p = (\int_{0}^{1} \lvert f(t) \rvert^p dt)^{1/p}$ defines a norm on $C[0, 1]$ for any $1 < p < \infty$.
+    State and prove the analogues of Lemma 3.7 and Theorem 3.8 in this case.
+    (Does Lemma 3.7 still hold in this setting for $p = 1, q = \infty$?)
+\end{exercise}
+
+\begin{solution}
+    
+    
+\end{solution}
