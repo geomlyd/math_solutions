@@ -368,5 +368,17 @@
 
 \begin{solution}
     
+    We begin by noting that due to the absolute value, the functions being integrated are always non-negative.
+    For any $t \in (0, 1)$, we can thus apply Young's inequality on $a = \frac{\lvert f(t) \rvert}{\lvert \lvert f \rvert \rvert_p}, b = \frac{\lvert g(t) \rvert}{\lvert \lvert g \rvert \rvert_q}$:
+
+    $$\frac{\lvert f(t) \rvert}{\lvert \lvert f \rvert \rvert_p}\cdot \frac{\lvert g(t) \rvert}{\lvert \lvert g \rvert \rvert_q} \leq \frac{1}{p}\cdot \frac{\lvert f(t) \rvert^p}{\lvert \lvert f \rvert \rvert_p^p} + \frac{1}{q} \cdot \frac{\lvert g(t) \rvert^q}{\lvert \lvert g \rvert \rvert_q^{q}}$$
+
+    Since this is true for all $t \in (0, 1)$, we can integrate both sides wrt. $t$ to obtain:
     
+    $$\int_{0}^{1}\frac{\lvert f(t) \rvert}{\lvert \lvert f \rvert \rvert_p}\cdot \frac{\lvert g(t) \rvert}{\lvert \lvert g \rvert \rvert_q} dt \leq \frac{1}{p}\cdot \int_{0}^{1} \frac{\lvert f(t) \rvert^p}{\lvert \lvert f \rvert \rvert_p^p} dt + \frac{1}{q} \cdot \int_{0}^{1} \frac{\lvert g(t) \rvert^q}{\lvert \lvert g \rvert \rvert_q^{q}} dt \implies$$
+    $$\frac{1}{\lvert \lvert f \rvert \rvert_p \cdot \lvert \lvert g \rvert \rvert_q} \int_{0}^{1} \lvert f(t) g(t) \rvert dt \leq \frac{1}{p}\cdot \frac{1}{\lvert \lvert f \rvert \rvert_p^p}\int_{0}^{1} \lvert f(t) \rvert^p dt + \frac{1}{q} \cdot \frac{1}{\lvert \lvert g \rvert \rvert_q^{q}} \int_{0}^{1} \lvert g(t) \rvert^q dt = \frac{1}{p} + \frac{1}{q} = 1$$
+
+    This yields $\int_{0}^{1} \lvert f(t) g(t) \rvert dt \leq \lvert \lvert f \rvert \rvert_p \cdot \lvert \lvert g \rvert \rvert_q$, which would be the equivalent of Hölder's inequality.
+
+    Now, Minkowski's inequality would state firstly that for any $1 < p < \infty$, if the $p$-norm exists for $f, g \in C[0, 1]$, it also exists for $f + g$, and secondly that $\lvert \lvert f + g \rvert \rvert_p \leq \lvert \lvert f \rvert \rvert_p + \lvert \lvert g \rvert \rvert_p$.
 \end{solution}
