@@ -381,4 +381,61 @@
     This yields $\int_{0}^{1} \lvert f(t) g(t) \rvert dt \leq \lvert \lvert f \rvert \rvert_p \cdot \lvert \lvert g \rvert \rvert_q$, which would be the equivalent of Hölder's inequality.
 
     Now, Minkowski's inequality would state firstly that for any $1 < p < \infty$, if the $p$-norm exists for $f, g \in C[0, 1]$, it also exists for $f + g$, and secondly that $\lvert \lvert f + g \rvert \rvert_p \leq \lvert \lvert f \rvert \rvert_p + \lvert \lvert g \rvert \rvert_p$.
+
+    For the analogue of Minkowski's inequality (``if $f, g \in C[0, 1]$ and $\lvert \lvert f \rvert \rvert_p, \lvert \lvert g \rvert \rvert_p$ both exist, then $\lvert \lvert f + g \rvert \rvert_p$ exists and $\lvert \lvert f + g \rvert \rvert_p \leq \lvert \lvert f \rvert \rvert_p + \lvert \lvert g \rvert \rvert_p$''), we first prove an analogue of Lemma 3.5 that allows us to immediately obtain that $\lvert \lvert f + g \rvert \rvert_p$ exists.
+    More specifically, for any $t \in (0, 1)$, from Lemma 3.5 applied on $a = \lvert f(t) \rvert, b = \lvert g(t) \rvert$, we have that:
+
+    $$(\lvert f(t) \rvert + \lvert g(t) \rvert)^p \leq 2^p(\lvert f(t) \rvert^p + \lvert g(t) \rvert^p)$$
+
+    By the triangle inequality of the absolute value, we also have that $\lvert f(t) + g(t) \rvert^p \leq (\lvert f(t) \rvert+ \lvert g(t) \rvert)^p$ since $p > 1$.
+    Therefore, since these hold for any $t \in (0, 1)$:
+
+    $$\lvert f(t) + g(t) \rvert^p \leq 2^p(\lvert f(t) \rvert^p + \lvert g(t) \rvert^p)\implies \int_{0}^{1} \lvert f(t) + g(t) \rvert^p dt \leq 2^p(\int_{0}^{1} \lvert f(t) \rvert^p dt + \int_{0}^{1} \lvert g(t) \rvert^p dt)$$
+    $$\implies \lvert \lvert f + g \rvert \rvert_p^p \leq 2^p(\lvert \lvert f \rvert \rvert_p^p + \lvert \lvert g \rvert \rvert_p^p),$$
+    
+    which imposes a bound on $\lvert \lvert f + g \rvert \rvert_p$, thus showing it exists.
+
+    Now, following the proof in the book, we observe the following regarding $\lvert \lvert f \rvert \rvert_p^{p-1}$, for $1/p + 1/q = 1$:
+
+    $$\lvert \lvert f^{p-1} \rvert \rvert_q = (\int_{0}^{1} \lvert f^{q(p-1)}(t) \rvert dt)^{1/q} = (\int_{0}^{1} \lvert f(t) \rvert^{p} dt)^{1/q} = (\int_{0}^{1} \lvert f(t) \rvert^{p} dt)^{\frac{p-1}{p}} = \lvert \lvert f \rvert \rvert_p^{p - 1}$$
+
+    Now, for any $t \in (0, 1)$:
+
+    $$\lvert f(t) + g(t) \rvert^p = \lvert f(t) + g(t) \rvert \cdot \lvert f(t) + g(t) \rvert^{p-1} \leq \lvert f(t) \rvert \cdot \lvert f(t) + g(t) \rvert^{p-1} + \lvert g(t) \rvert \cdot \lvert f(t) + g(t) \rvert^{p-1},$$
+
+    which means we can integrate to obtain that:
+
+    $$\int_{0}^{1} \lvert f(t) + g(t) \rvert^p dt \leq \int_{0}^{1} \lvert f(t) \rvert \cdot \lvert f(t) + g(t) \rvert^{p-1}dt + \int_{0}^{1} \lvert g(t) \rvert \cdot \lvert f(t) + g(t) \rvert^{p-1}dt$$
+
+    Now, define $q$ such that $1/p + 1/q = 1$, and by Hölder's inequality and the observation above:
+
+    $$\int_{0}^{1} \lvert f(t) + g(t) \rvert^p dt \leq \lvert \lvert f \rvert \rvert_p \cdot \lvert \lvert (f + g)^{p-1} \rvert \rvert_q + \lvert \lvert g \rvert \rvert_p \cdot \lvert \lvert (f + g)^{p-1} \rvert \rvert_q \leq \lvert \lvert f \rvert \rvert_p \cdot \lvert \lvert f + g \rvert \rvert_{p}^{p-1} + \lvert \lvert g \rvert \rvert_p \cdot \lvert \lvert f + g \rvert \rvert_p^{p-1}$$
+    $$\implies \lvert \lvert f + g \rvert \rvert^p \leq \lvert \lvert f + g \rvert \rvert_p^{p-1}(\lvert \lvert f \rvert \rvert_p + \lvert \lvert g \rvert \rvert_p),$$
+
+    from which Minkowski's inequality follows directly.
+    For the case $p = 1, q = \infty$, we have that for any $t \in (0, 1)$:
+
+    $$\lvert f(t) g(t) \rvert = \lvert f(t) \rvert \cdot \lvert g(t) \rvert \leq \lvert f(t) \rvert \cdot \max_{0 \leq t \leq 1} \lvert g(t) \rvert = \lvert f(t) \rvert \cdot \lvert \lvert g \rvert \rvert_{\infty}$$
+    $$\implies \int_{0}^{1} \lvert f(t) g(t) \rvert dt \leq \lvert \lvert g \rvert \rvert_{\infty} \int_{0}^{1} \lvert f(t) \rvert dt = \lvert \lvert g \rvert \rvert_{\infty} \cdot \lvert \lvert f \rvert \rvert_{1},$$
+
+    showing that Hölder's inequality does indeed hold again.
+\end{solution}
+
+\begin{exercise}{26}
+    Given $a, b > 0$, show that $\lim_{p \rightarrow \infty}(a^p + b^p)^{1/p} = \max\{a, b\}$. [Hint: If $a < b$ and $r = a/b$ show that $(1/p)\log(1 + r^p) \rightarrow 0$ as $p \rightarrow \infty$.] What happens as $p \rightarrow 0$? as $p \rightarrow -1$? as $p \rightarrow -\infty$?
+\end{exercise}
+
+\begin{solution}
+    
+    First, if $a = b$, the statement is obvious.
+    Therefore we can assume from now on that $a < b$, and, as indicated in the hint, set $r = a / b < 1$.
+    Since $r < 1$, we have that $\lim{_p \rightarrow \infty} r^p \rightarrow 0$ (an exponential with a base less than 1).
+    Therefore, by standard limit rules, $\lim_{p \rightarrow \infty} \log(1 + r^p) = \log(1) = 0$. 
+    Furthermore $\lim_{p \rightarrow \infty} \frac{1}{p} = 0$, which means $\lim_{p \rightarrow \infty} (1/p)\log(1 + r^p) = 0$.
+    Now we apply the following ``trick'':
+
+    $$(a^p + b^p)^{1/p} = e^{\log(a^p + b^p)^{1/p}} = e^{\frac{\log(a^p + b^p)}{p}} = e^{\frac{\log((rb)^p + b^p)}{p}} = e^{\frac{\log(b^p) + \log(1 + r^p)}{p}} = e^{\log(b) + \frac{\log(1 + r^p)}{p}}$$
+    
+    Clearly, what we showed based on the hint allows us to take limits on both sides and easily obtain that:
+    $$\lim_{p \rightarrow \infty}(a^p + b^p)^{1/p} = e^{\log(b)} = b = \max\{a, b\}$$
 \end{solution}
