@@ -427,7 +427,7 @@
 
 \begin{solution}
     
-    First, if $a = b$, the statement is obvious.
+    First, if $a = b$, the statement is obvious: the quantity inside the limit simplifies to $(2a^p)^{1/p} = 2^{1/p}a$, and as $p \rightarrow \infty, 1/p \rightarrow 0$ thus $2^{1/p}a \rightarrow 1a = a = \max\{a, b\}$.
     Therefore we can assume from now on that $a < b$, and, as indicated in the hint, set $r = a / b < 1$.
     Since $r < 1$, we have that $\lim{_p \rightarrow \infty} r^p \rightarrow 0$ (an exponential with a base less than 1).
     Therefore, by standard limit rules, $\lim_{p \rightarrow \infty} \log(1 + r^p) = \log(1) = 0$. 
@@ -438,4 +438,22 @@
     
     Clearly, what we showed based on the hint allows us to take limits on both sides and easily obtain that:
     $$\lim_{p \rightarrow \infty}(a^p + b^p)^{1/p} = e^{\log(b)} = b = \max\{a, b\}$$
+
+    Now, for the case of $p \rightarrow 0$, if $a = b, \lim_{p \rightarrow 0}(a^p + b^p)^{1/p} = \lim_{p \rightarrow 0}(2a^p)^{1/p} = \lim_{p \rightarrow 0}(2^{1/p}a)$, and as $p \rightarrow 0+$ this quantity will tend to positive infinity, whereas if $p \rightarrow 0-$ it will tend to zero, thus the limit does not exist.
+    If $a < b$, based on the above observation what interests us is $\lim_{p \rightarrow 0} \frac{\log(1 + r^p)}{p}$.
+    In this case, $r^p \rightarrow 1$ as $p \rightarrow 0$, and thus the numerator tends to $\log(2)$, thus the entire fraction tends to positive infinity as $p \rightarrow 0+$ and negative infinity as $p \rightarrow 0-$, which means the limit does not exist.
+
+    The expression inside the limit is continuous as a function of $p$ at -1, since $a, b > 0$.
+    Therefore $\lim_{p \rightarrow -1}(a^p + b^p)^{1/p} = (\frac{1}{a} + \frac{1}{b})^{-1} = \frac{1}{\frac{1}{a} + \frac{1}{b}} = \frac{ab}{a + b}$.
+
+    Lastly, for $p \rightarrow -\infty$, for $a = b$ we are interested in $\lim_{p \rightarrow -\infty}(2^{1/p}a)$, which is easily seen to equal $a$.
+    For $a < b$, we are interested in $\lim_{p \rightarrow -\infty}\frac{\log(1 + r^p)}{p}$.
+    Because $0 < r < 1$, the quantity inside the logarithm will tend to positive infinity, whereas the denominator tends to negative infinity.
+    Applying L'Hospital's rule and calling this limit $L$ we have that:
+
+    $$L = \lim_{p \rightarrow -\infty} \frac{\log(r)r^p}{1 + r^p} = \lim_{p \rightarrow -\infty} \frac{\log(r)}{1 + \frac{1}{r^p}}$$
+
+    Here the numerator is constant, whereas since $0 < r < 1, r^p \rightarrow \infty$, and thus the denominator will tend to 1.
+    This means that $L = \log(r) = \log(a/b) = \log(a) - \log(b)$.
+    Going back to our original limit we would have that $\lim_{p \rightarrow -\infty}(a^p + b^p)^{1/p} = e^{\log(b) + \log(a) - \log(b)} = a = \min\{a, b\}$, which we can see was also true for $a = b$.
 \end{solution}
