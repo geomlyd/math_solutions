@@ -439,3 +439,35 @@
     Clearly, what we showed based on the hint allows us to take limits on both sides and easily obtain that:
     $$\lim_{p \rightarrow \infty}(a^p + b^p)^{1/p} = e^{\log(b)} = b = \max\{a, b\}$$
 \end{solution}
+
+\begin{exercise}{ - Unlisted; Arose from a discussion of exercise 26}
+    a) Prove that if $1 \leq p \leq q \leq \infty$, then $l^p \subset l^q$.
+\end{exercise}
+
+\begin{solution}
+    
+    a) Let $x$ be a sequence in $l^p$.
+    If $p = q$, then the statement is obvious, so we continue the proof assuming that $p \neq q$.
+    In the case where $q = \infty$, we know that if, for some $1 \leq p < \infty, \lvert \lvert x \rvert \rvert _p$ exists, then the sequence of partial sums corresponding to $(\lvert x_i \rvert^p)$ must be bounded and non-decreasing.
+    But then the same must hold true for the sequence $(\lvert x_i \rvert)$, which leads us to conclude that $x$ is in fact bounded, and thus has a supremum.
+    This means then that $x \in l_q$, since $q = \infty$ and the infinity norm is defined as the supremum of absolute values.
+
+    Now, in the remaining case we have that $1 \leq p < q$ and both are real numbers.
+    Note that, by using e.g. the Archimidean property of $\mathbb{R}$, we can write $q = np + \epsilon$, where $n$ is a positive integer and $\epsilon > 0$.
+    Consider now examining the first $m$ terms of $x$ in the following way:
+
+    $$\sum_{i=1}^{m} \lvert x_i \rvert^q = \sum_{i=1}^{m} \lvert x_i \rvert^{np + \epsilon} = \sum_{i=1}^{m} \lvert x_i \rvert^{np} \cdot \lvert x_i \rvert^{\epsilon}$$
+
+    Recall that we already showed that if $x \in l_p$, then $\lvert x_i \rvert$ are bounded above, and thus we can say that for every $i, \lvert x_i \rvert^\epsilon \leq S^\epsilon, S =\sup_{j} \lvert x_j \rvert$.
+    Furthermore, since $n$ is a positive integer, we have that:
+    
+    $$\sum_{i=1}^{m} \lvert x_i \rvert^{np} \leq (\sum_{i=1}^{m} \lvert x_i \rvert^p)^n,$$
+    since if one expands the power of the RHS, we get at least all terms of the LHS plus possibly more, all of which are non-negative.
+    Combining these two facts, we have that:
+
+    $$\sum_{i=1}^{m} \lvert x_i \rvert^q \leq (\sum_{i=1}^{m} \lvert x_i \rvert^p)^n S^\epsilon \leq \lvert \lvert x \rvert \rvert_p^{pn} S^{\epsilon},$$
+
+    which we can safely conclude since the $p$-norm exists.
+    But then the partial sums are bounded above for each $m$ and are non-decrasing, meaning that the LHS converges as $m \rightarrow \infty$, and this equals precisely $\lvert \lvert x \rvert \rvert_q^q$.
+    Thus $x$ is indeed also in $l^q$.
+\end{solution}
