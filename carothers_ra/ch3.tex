@@ -339,6 +339,24 @@
 
 \end{solution}
 
+\begin{exercise}{21}
+    Recall that we defined $l_1$ to be the collection of all absolutely summable sequences under the norm $\lvert \lvert x \rvert \rvert_1 = \sum_{n=1}^{\infty} \lvert x_n \rvert$, and we defined $l_{\infty}$ to be the collection of all bounded sequences under the norm $\lvert \lvert x \rvert \rvert_{\infty} = \sup_{n \geq 1} \lvert x_n \rvert$.
+    Fill in the details showing that each of these spaces is in fact a normed vector space.
+\end{exercise}
+
+\begin{solution}
+    
+    For each of the two proposed norms, we need to show that they are in fact norms, and also that the sequences which converge under them form a vector space.
+    We begin with showing that $l_1$ defines a norm:
+    \begin{itemize}
+        \item It's obvious from the definition that $\lvert \lvert x \rvert \rvert_1 \geq 0$ whenever it exists, as a sum of non-negative terms.
+        \item For any scalar $a$, we have that if for a sequence $x$ the series $\sum_{n=1}^{\infty} \lvert x_n \rvert$ converges to $\lvert \lvert x \rvert \rvert _1$, then by well-known properties of limits, the series $\sum_{n=1}^{\infty} \lvert a x_n \rvert$ will converge to $\lvert a \rvert \cdot \lvert \lvert x \rvert \rvert _1$.
+        \item If $\sum_{i=0}^{\infty} \lvert x_n \rvert$ converges to zero, then since all terms are strictly non-negative, it must be the case that all of them are zero, thus that $\lvert \lvert x \rvert \rvert _1 = 0$ implies $x = 0$.
+        The converse is obvious.
+        \item We now need to prove the triangle inequality.
+    \end{itemize}
+\end{solution}
+
 \section{More Inequalities}
 
 \begin{exercise}{24}
@@ -442,6 +460,10 @@
 
 \begin{exercise}{ - Unlisted; Arose from a discussion of exercise 26}
     a) Prove that if $1 \leq p \leq q \leq \infty$, then $l^p \subset l^q$.
+
+    b) If $x \in l_p \subset l_q$ for $1 \leq p \leq q \leq \infty$, then $\lvert \lvert x \rvert \rvert_p \geq \lvert \lvert x \rvert \rvert_q$.
+
+    c) If $x \in l^{p_0}$ for some $p_0$, prove that $\lim_{p \rightarrow \infty} \lvert \lvert x \rvert \rvert_p = \lvert \lvert x \rvert \rvert _\infty$.
 \end{exercise}
 
 \begin{solution}
@@ -470,4 +492,57 @@
     which we can safely conclude since the $p$-norm exists.
     But then the partial sums are bounded above for each $m$ and are non-decrasing, meaning that the LHS converges as $m \rightarrow \infty$, and this equals precisely $\lvert \lvert x \rvert \rvert_q^q$.
     Thus $x$ is indeed also in $l^q$.
+
+    b) Consider a sequence $x = (x_1, x_2, \ldots) \in l_p \subset l_q$. 
+    The statement is obvious if $p = q$, and also if $x$ is the zero sequence.
+    Therefore from now on we assume $p < q, x \neq 0$, which means also $\lvert \lvert x \rvert \rvert _p > 0, \lvert \lvert x \rvert \rvert _q > 0$.
+    In the case where $q = \infty$, we have that $\lvert \lvert x \rvert \rvert_q = \sup_{i} \lvert x_i \rvert$.
+    For any $m > 0$, we have that:
+
+    $$\sum_{i=1}^{m} \lvert x_i \rvert^p \geq \max_{1 \leq i \leq m} \lvert x \rvert^p$$
+
+    If we take limits on both sides, and by thinking about the $\epsilon$-based definition of the supremum, we can see that this yields $\lvert \lvert x \rvert \rvert _p^p \geq \lvert \lvert x \rvert \rvert _\infty^p \implies \lvert \lvert x \rvert \rvert_p \geq \lvert \lvert x \rvert \rvert_\infty$.
+
+
+    In the case where $p < q < \infty$, consider the following.
+    Let $y$ be the sequence formed by $y_i = \frac{x_i}{\lvert \lvert x \rvert \rvert _p}$.
+    Notice first that $\lvert \lvert y \rvert \rvert _p = 1$.
+    Notice also that for any $i, \lvert y_i \rvert^p \leq 1$, since $\lvert \lvert y \rvert \rvert _p = 1 \implies \sum_{i=1}^{\infty} \lvert y_i \rvert^p = 1^p$, so any individual term of the series must be at most 1.
+    Since $q > p \geq 1$, we have that it must be the case that $q = rp$ for some $r > 1$.
+    Then, by using properties of powers, for any $i$:
+    
+    $$\lvert y_i \rvert^p \leq 1 \implies \lvert y_i \rvert^{rp} \leq \lvert y_i \rvert^p \implies \lvert y_i \rvert^q \leq \lvert y_i \rvert^p $$
+
+    This in turn implies that for any $m > 0$:
+
+    $$\sum_{i=1}^{m} \lvert y_i \rvert^q \leq \sum_{i=1}^{m} \lvert y_i \rvert^p \leq \lvert \lvert y \rvert \rvert _p^p = 1$$
+
+    Since this holds for any $m$, it also holds at infinity, meaning that $\lvert \lvert y \rvert \rvert _q^q \leq 1 = \lvert \lvert y \rvert \rvert _p ^q$, and thus by taking $q$-roots we obtain that $\lvert \lvert y \rvert \rvert_q \leq \lvert \lvert y \rvert \rvert_p$.
+    But then by using the definition of $y$:
+    
+    $$\lvert \lvert y \rvert \rvert_q \leq \lvert \lvert y \rvert \rvert _p \implies \Biggl\lvert \Biggl \lvert \frac{x}{\lvert \lvert x \rvert \rvert _p} \Biggr \rvert \Biggr \rvert _q \leq \Biggl \lvert \Biggl \lvert \frac{x}{\lvert \lvert x \rvert \rvert _p} \Biggr \rvert \Biggr \rvert _p \implies \lvert \lvert x \rvert \rvert _q \leq \lvert \lvert x \rvert \rvert _p,$$
+
+    where we used the ``multiplication by scalar'' property of norms.
+    This completes the proof.
+
+    c) First of all, we observe from part (a) that since $\lvert \lvert x \rvert \rvert_{p_0}$ exists for some $p_0$, it will also be the case that $x \in l^p$ for all $p \geq p_0$, as well as that $x \in l^{\infty}$.
+    We now have the following:
+
+    $$\lim_{p \rightarrow \infty} \frac{\lvert \lvert x \rvert \rvert _p}{\lvert \lvert x \rvert \rvert _\infty} = \lim_{p \rightarrow \infty} e^{\log \Bigl (\frac{\lvert \lvert x \rvert \rvert _p}{\lvert \lvert x \rvert \rvert _{\infty}} \Bigr )}$$
+
+    We focus on the exponent:
+
+    $$\lim_{p \rightarrow \infty} \log \Biggl( \frac{\lvert \lvert x \rvert \rvert _p}{\lvert \lvert x \rvert \rvert _{\infty}}\Biggr) = \lim_{p \rightarrow \infty} \log \Biggl( \frac{(\sum_{i=1}^{\infty} \lvert x_i \rvert^p)^{1/p}}{(\lvert \lvert x \rvert \rvert _{\infty}^p)^{1/p}}\Biggr) = \lim_{p \rightarrow \infty} \frac{1}{p} \cdot \log \Biggl( \sum_{i=1}^{\infty} \frac{\lvert x_i \rvert^p}{\lvert \lvert x \rvert \rvert _{\infty}^{p}} \Biggr)$$
+
+    Now we make the observation that since the series corresponding to $\lvert \lvert x \rvert \rvert_p^p$ converges, the individual terms tend to zero.
+    This means that must exist at least one $j$ such that $\lvert x_j \rvert$ equals the supremum of $x$.
+    This is because the only other possibility would be for $\lvert x_i \rvert$ to tend to their supremum without achieving it, but then the series would not converge.
+    Therefore, the argument of the logarithm is at least 1 (since $\frac{\lvert x_j \rvert^p}{\lvert \lvert x \rvert \rvert _{\infty}^p} = 1$).
+    Additionally, the existence of $\lvert \lvert x \rvert \rvert _p$ implies that the argument does not go to infinity.
+    Thus, the numerator of the last limit above tends to $L > 1$ and the denominator to positive infinity, which means that the limit tends to zero.
+    But then:
+
+    $$\lim_{p \rightarrow \infty} \frac{\lvert \lvert x \rvert \rvert _p}{\lvert \lvert x \rvert \rvert _{\infty}} = e^0 = 1,$$
+
+    which concludes the proof since $\lvert \lvert x \rvert \rvert _{\infty}$ is constant with respect to the limit variable.
 \end{solution}
