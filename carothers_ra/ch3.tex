@@ -354,7 +354,32 @@
         \item If $\sum_{i=0}^{\infty} \lvert x_n \rvert$ converges to zero, then since all terms are strictly non-negative, it must be the case that all of them are zero, thus that $\lvert \lvert x \rvert \rvert _1 = 0$ implies $x = 0$.
         The converse is obvious.
         \item We now need to prove the triangle inequality.
+        Pick $x, y \in l_1$ and any $n > 0$.
+        Then, by the triangle inequality for absolute values:
+
+        $$ \sum_{i=1}^{n} \lvert x_i + y_i \rvert \leq \sum_{i=1}^{n} \lvert x_i \rvert + \sum_{i=1}^{n} \lvert y_i \rvert$$
+
+        Notice that as $n \rightarrow \infty$, the two sums on the RHS converge to $\lvert \lvert x \rvert \rvert _1, \lvert \lvert y \rvert \rvert _1$ respectively.
+        This imposes a bound on the series corresponding to the LHS, whose partial sums are also non-decreasing.
+        Hence, the LHS also converges, and in fact the inequality holds at infinity, yielding $\lvert \lvert x + y \rvert \rvert _1 \leq \lvert \lvert x \rvert \rvert _1 + \lvert \lvert y \rvert \rvert _1$.
     \end{itemize}
+    Therefore, $\lvert \lvert x \rvert \rvert_1$ is a norm.
+    The third point above showed that $0 \in l_1$, while the triangle inequality proof showed that $l_1$ is closed under addition.
+    Lastly, the second point above showed that $l_1$ is closed under scalar multiplication.
+    Therefore, we've already shown that $l_1$ is a vector space, and thus $(l_1, \lvert \lvert \cdot \rvert \rvert_1)$ is a normed vector space.
+
+    Now we examine $\lvert \lvert \cdot \rvert \rvert _{\infty}$ in a similar fashion.
+    \begin{itemize}
+        \item Again, from the definition it is obvious that whenever $x$ is a bounded sequence, $\lvert \lvert x \rvert \rvert _{\infty} \geq 0$.
+        \item For any scalar $a$, and any bounded sequence $x$, the sequence $(\lvert a x_i \rvert)$ will have as supremum $\lvert a \rvert \cdot \lvert \lvert x \rvert \rvert _{\infty}$. 
+        If this were not the case, one would get a contradiction for $x$ by dividing with $\lvert a \rvert$ (and if $a = 0$, then the supremum of $(\lvert a x_i \rvert)$ is obviously zero).
+        \item It's clear that $\lvert \lvert x \rvert \rvert _{\infty}$ is zero iff $x$ is the zero sequence, since the supremum of a set of non-negative numbers is zero iff all of them are zero.
+        \item Lastly, the triangle inequality in this case arises as follows.
+        Pick any $x, y \in l_{\infty}$.
+        Then, for any $i$ we have that $\lvert x_i + y_i \rvert \leq \lvert x_i \rvert + \lvert y_i \rvert \leq \lvert \lvert x \rvert \rvert _{\infty} + \lvert \lvert y \rvert \rvert _{\infty}$ by the definition of the infinity norm.
+        But then this sum constitutes an upper bound for $\lvert x_i + y_i \rvert$ for all $i$, which means that by definition the supremum $\sup_{i} \lvert x_i + y_i \rvert$ both exists and is such that $\lvert \lvert x + y \rvert \rvert _{\infty} \leq \lvert \lvert x \rvert \rvert _{\infty} + \lvert \lvert y \rvert \rvert _{\infty}$.
+    \end{itemize}
+    The above shows both that $\lvert \lvert \cdot \rvert \rvert _{\infty}$ is a norm, and that $l_{\infty}$ is a vector space, thus that $(l_{\infty}, \lvert \lvert \cdot \rvert \rvert _{\infty})$ is a normed vector space.
 \end{solution}
 
 \section{More Inequalities}
@@ -545,4 +570,61 @@
     $$\lim_{p \rightarrow \infty} \frac{\lvert \lvert x \rvert \rvert _p}{\lvert \lvert x \rvert \rvert _{\infty}} = e^0 = 1,$$
 
     which concludes the proof since $\lvert \lvert x \rvert \rvert _{\infty}$ is constant with respect to the limit variable.
+\end{solution}
+
+\begin{exercise}{ - Unlisted; Arose from a discussion of exercise 26}
+    Recall that for a continuous function $f \in C([0, 1])$ we define
+    
+    $$ \lvert \lvert f \rvert \rvert _p = (\int_{0}^{1} \lvert f(x) \rvert^p dx)^{1/p}, \lvert \lvert f \rvert \rvert _{\infty} = \max_{x \in [0, 1]} \lvert f(x) \rvert $$
+    Show that:
+
+    a) If $f \in C[0, 1]$, then for $1 \leq p \leq q \leq \infty, \lvert \lvert f \rvert \rvert_{1} \leq \lvert \lvert f \rvert \rvert_{p} \leq \lvert \lvert f \rvert \rvert_{q} \leq \lvert \lvert f \rvert \rvert_{\infty}.$
+
+    b) If $f \in C[0, 1]$, then $\lim_{p \rightarrow \infty} \lvert \lvert f \rvert \rvert_{p} = \lvert \lvert f \rvert \rvert_{\infty}$.
+\end{exercise}
+
+\begin{solution}
+    
+    a) We begin by showing that for any real number $p \geq 1, \lvert \lvert f \rvert \rvert _{p} \leq \lvert \lvert f \rvert \rvert _{\infty}$.
+    We do this as follows. First, we have that:
+    
+    $$\lvert \lvert f \rvert \rvert_p^{p} = \int_{0}^{1} \lvert f(x) \rvert^p dx$$
+
+    Since $p \geq 1$, the $p$-th power is a non-decreasing function, and we know that by definition, $\lvert f^p(x) \rvert \leq \max_{0 \leq x \leq 1} \lvert f^p(x) \rvert$ for any $x \in [0, 1]$. 
+    By integrating both sides we have that:
+
+    $$\int_{0}^{1} \lvert f^p(x)  \rvert dx \leq \max_{0 \leq x \leq 1} \lvert f^p(x) \rvert \implies \lvert \lvert f \rvert \rvert _{p}^{p} \leq \lvert \lvert f \rvert \rvert _{\infty}^{p}$$
+
+    By taking $p$-roots, we have the desired inequality.
+    Now consider any two real numbers $p, q \geq 1$ such that $p < q$.
+    This means that there exists $r > 1$ such that $q = rp$.
+    Let $g(x) = f^P(x)$ and set $r'$ to be the number satisfying $1/r + 1/r' = 1$.
+    We now apply Hölder's inequality for the functions $g$ and $h(x) = 1$:
+
+    $$\int_{0}^{1} \lvert g(x) \cdot 1 \rvert dx \leq \lvert \lvert g \rvert \rvert_{r} \cdot \lvert \lvert 1 \rvert \rvert_{r'} \implies \int_{0}^{1} \lvert f^p(x) \rvert dx \leq (\int_{0}^{1} \lvert f^{rp}(x) \rvert)^{(1/r)} \implies (\int_{0}^{1} \lvert f^p(x) \rvert dx)^{r} \leq \int_{0}^{1} \lvert f^{rp}(x) \rvert dx,$$
+
+    where for the last step we used the fact that $r > 1$.
+    Continuing:
+
+    $$(\int_{0}^{1} \lvert f^p(x) \rvert dx)^{r} \leq \int_{0}^{1} \lvert f^{rp}(x) \rvert dx \implies (\int_{0}^{1} \lvert f^p(x) \rvert dx)^{q/p} \leq \int_{0}^{1} \lvert f^{q}(x) \rvert dx$$
+    $$ \implies (\int_{0}^{1} \lvert f^p(x) \rvert dx)^{1/p} \leq (\int_{0}^{1} \lvert f^{q}(x) \rvert dx)^{1/q} \implies \lvert \lvert f \rvert \rvert _{p} \leq \lvert \lvert f \rvert \rvert _{q}$$
+    
+    This completes the proof of the remaining inequalities, thus establishing that for $1 \leq p \leq q \leq \infty, \lvert \lvert f \rvert \rvert _{1} \leq \lvert \lvert f \rvert \rvert _{p} \leq \lvert \lvert f \rvert \rvert _{q} \leq \lvert \lvert f \rvert \rvert _{\infty}$.
+
+    b) From part (a) we already know that as $p \rightarrow \infty, \lvert \lvert f \rvert \rvert _p$ always exists, and in fact is bounded above by $\lvert \lvert f \rvert \rvert _{\infty}$ and is non-decreasing (since for $p \leq q, \lvert \lvert f \rvert \rvert _p \leq \lvert \lvert f \rvert \rvert _q$).
+    This means that $\lim_{p \rightarrow \infty} \lvert \lvert f \rvert \rvert _p$ exists, and will equal the supremum of the set $S = \{ \lvert \lvert f \rvert \rvert _{p}, p \geq 1\}$.
+    We thus only need to show that this supremum is in fact $\lvert \lvert f \rvert \rvert _{\infty}$.
+    Since we already know that this constitutes an upper bound for $S$, assume that the supremum of $S$ is $M < \lvert \lvert f \rvert \rvert_{\infty}$.
+    Then, by the definition of the infinity norm, there exists $x_0 \in [0, 1]$ such that $\lvert f(x_0) \rvert = \lvert \lvert f \rvert \rvert _{\infty} > M$.
+    For the sake of simplicity, we shall assume that $x_0 \in (0, 1)$: as will become clear, in the ``edge cases'' the only thing that changes is that some quantities lack a factor of 2.
+    Set now $\epsilon = \lvert f(x_0) \rvert - M > 0$.
+    Since $f$ is continuous, there must exist $\delta > 0$ such that:
+    
+    $$\lvert x - x_0 \rvert < \delta \implies \lvert f(x_0) \rvert - \lvert f(x) \rvert < \epsilon,$$
+
+    where the absolute value in the second inequality can be omitted since $\lvert f(x_0) \rvert$ is the maximum value of $\lvert f \rvert$.
+    Now, this can be rewritten as $\lvert f(x) \rvert > \lvert f(x_0) \rvert - \epsilon = \lvert f(x_0) \rvert - \lvert f(x_0) \rvert + M = M$, which means that in the interval $(x_0 - \delta, x_0 + \delta), \lvert f(x) \rvert > M$.
+    Therefore:
+
+    $$\int_{x_0 - \delta}^{x_0 + \delta} \lvert f(x) \rvert dx > 2M \delta$$
 \end{solution}
