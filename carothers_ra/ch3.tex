@@ -642,7 +642,20 @@
 
     where the absolute value in the second inequality can be omitted since $\lvert f(x_0) \rvert$ is the maximum value of $\lvert f \rvert$.
     Now, this can be rewritten as $\lvert f(x) \rvert > \lvert f(x_0) \rvert - \epsilon = \lvert f(x_0) \rvert - \lvert f(x_0) \rvert + M = M$, which means that in the interval $(x_0 - \delta, x_0 + \delta), \lvert f(x) \rvert > M$.
-    Therefore:
+    Therefore, for all $x$ in this interval we have that $\lvert f(x) \rvert > M \implies \lvert f^p(x) \rvert > M^p$. 
+    By integrating:
 
-    $$\int_{x_0 - \delta}^{x_0 + \delta} \lvert f(x) \rvert dx > 2M \delta$$
+    $$\int_{x_0 - \delta}^{x_0 + \delta} \lvert f^p(x) \rvert dx > 2M^p \delta \implies \Biggl(\int_{x_0 - \delta}^{x_0 + \delta} \lvert f^p(x) \rvert dx\Biggr)^{1/p} > (2\delta)^{1/p}M$$
+
+    We now have that $\lvert \lvert f \rvert \rvert _p$ is greater than or equal to the LHS here, since $(x_0 - \delta, x_0 + \delta) \subset (0, 1)$.
+    Furthermore, as $p \rightarrow \infty$, the RHS tends to M, since $\delta$ is constant.
+    By taking limits, we can thus obtain that:
+
+    $$\lim_{p \rightarrow \infty} \lvert \lvert f \rvert \rvert _p \geq M$$
+
+    Now we observe that we can repeat the entirety of the argument above for some $N$ with $M < N < \lvert \lvert f \rvert \rvert _{\infty}$.
+    But then this means also that $\lim_{p \rightarrow \infty} \lvert \lvert f \rvert \rvert _p \geq N$, and then the $\epsilon$-based limit definition would allow us to find $p$ such that $\lvert \lvert f \rvert \rvert _p > M$, which contradicts the defining property of $M$ as the supremum of all $\lvert \lvert f \rvert \rvert _p$.
+
+    Therefore, we have arrived at a contradiction, and thus it must be the case that $\lim_{p \rightarrow \infty} \lvert \lvert f \rvert \rvert _p = \lvert \lvert f \rvert \rvert _{\infty}$.
+
 \end{solution}
