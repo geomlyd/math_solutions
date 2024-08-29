@@ -659,3 +659,102 @@
     Therefore, we have arrived at a contradiction, and thus it must be the case that $\lim_{p \rightarrow \infty} \lvert \lvert f \rvert \rvert _p = \lvert \lvert f \rvert \rvert _{\infty}$.
 
 \end{solution}
+
+\section{Limits in Metric Spaces}
+
+\begin{exercise}{30}
+    If $A \subset B$, show that $\text{diam}(A) \leq \text{diam}(B)$.
+\end{exercise}
+
+\begin{solution}
+    
+    Consider the definition of $\text{diam}(A): \text{diam}(A) = \{\sup\{d(a, b): a, b \in A\}$.
+    Because $A \subset B$, we have that any two $a, b \in A$ also belong in $B$.
+    Therefore, the set $S_1$ over which the diameter is computed for $B$ is a superset of the set $S_2$ over which the diameter is computed for $A$.
+    But then exercise 2 of Chapter 1 guarantees that $\sup S_1 \leq \sup S_2$, which means precisely that $\text{diam}(A) \leq \text{diam}(B)$.
+\end{solution}
+
+\begin{exercise}{32}
+    In a normed vector space $(V, \lvert \lvert \cdot \rvert \rvert)$ show that $B_r(x) = x + B_r(0) = \{x + y: \lvert \lvert y \rvert \rvert < r\}$ and that $B_r(0) = rB_1(0) = \{r x : \lvert \lvert x \rvert \rvert <1 \}$.
+\end{exercise}
+
+\begin{solution}
+    
+    Let us call $S = \{x + y: \lvert \lvert y \rvert \rvert < r\}$, in which case we asked to show that $B_r(x) = S$.
+    First, let $z \in B_r(x)$.
+    By definition, this means that $d(x, z) < r$.
+    Recall that in a normed vector space we have that $\lvert \lvert z - x \rvert \rvert = d(x, y)$ (unless a different metric is explicitly specified).
+    Observe then that we can write $z = x + (z - x)$, where $\lvert \lvert z - x \rvert \rvert = d(z, x) = d(x, z) < r$. 
+    By setting $y = z - x$, we obtain that $z \in S$.
+    Therefore, $B_r(x) \subset S$.
+
+    In the other direction, suppose $z \in S$, which means that there exists $y, \lvert \lvert y \rvert \rvert < r$ such that $z = x + y$.
+    Then we observe that $d(x, z) = \lvert \lvert z - x \rvert \rvert = x + y - x \rvert \rvert = \lvert \lvert y \rvert \rvert < r$.
+    By definition, this means that $z \in B_r(x)$, and thus that $S \subset B_r(x)$, meaning that in fact $S = B_r(x)$.
+
+    For the second part of the exercise, set $S = \{rx : \lvert \lvert x \rvert \rvert < 1 \}$.
+    First, suppose $x \in B_r(0)$, which means $ \lvert \lvert x \rvert \rvert < r$.
+    By using the scalar multiplication properties of vector spaces, we can then write $x = r \cdot \frac{x}{r}$.
+    Set $y = \frac{x}{r}$, in which case $\lvert \lvert y \rvert \rvert = \lvert \lvert \frac{x}{r} \rvert \rvert = \frac{1}{\lvert r \rvert} \lvert \lvert x \rvert \rvert < 1$. 
+    This means that $x$ can be written in the form $ry, \lvert \lvert y \rvert \rvert < 1$, thus that $x \in S$, thus that $B_r(0) \subset S$.
+    Conversely, assume $x \in S$, which means $x = ry, \lvert \lvert y \rvert \rvert < 1$.
+    But then $\lvert \lvert x \rvert \rvert = \lvert \lvert r y \rvert \rvert =  \lvert r \rvert \cdot \lvert \lvert y \rvert \rvert < r$, i.e. that $x \in B_r(0)$, and thus that $S \subset B_r(0)$, completing the proof that $B_r(0) = S$.
+\end{solution}
+
+\begin{exercise}{33}
+    Limits are unique. [Hint: $d(x, y) \leq d(x, x_n) + d(x_n, y)$.]
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose that a sequence $(x_n)$ in a metric space $M$ converges to two $a, b \in M$ such that $a \neq b$.
+    By the definition of metrics, we know then that it must be the case that $d(a, b) > 0$.
+    Set $\epsilon = d(a, b) > 0$, in which case by the definition of the limit in a metric space there must exist $N_1, N_2$ such that $d(x_n, a) < \epsilon/4, d(x_n, b) < \epsilon/4$ for $n \geq N_1, n \geq N_2$ respectively.
+    If we then pick $n > \max\{N_1, N_2\}$ we have that both of these inequalities hold for $x_n$.
+    Recall the triangle inequality for metrics:
+
+    $$d(a, b) \leq d(a, x_n) + d(x_n, b) < \frac{\epsilon}{4} + \frac{\epsilon}{4} = \frac{\epsilon}{2} < \epsilon = d(a, b)$$
+
+    This is a clear contradiction, which means that if a sequence in a metric space has a limit, the limit has to be unique.
+\end{solution}
+
+\begin{exercise}{34}
+    If $x_n \rightarrow x$ in $(M, d)$, show that $d(x_n, y) \rightarrow d(x, y)$ for any $y \in M$.
+    More generally, if $x_n \rightarrow x, y_n \rightarrow y$, show that $d(x_n, y_n) \rightarrow d(x, y)$.
+\end{exercise}
+
+\begin{solution}
+    
+    Pick $\epsilon > 0$.
+    Because $x_n r\rightarrow x$, we know that there exists $N > 0$ such that $d(x_n, x) < \epsilon$ for all $n \geq N$.
+    By the triangle inequality, for $n \geq N$ we have that:
+    $$d(x_n, y) \leq d(x, y) + d(x_n, x) < \epsilon + d(x, y) \implies d(x_n, y) - d(x, y) < \epsilon$$
+    $$d(x, y) \leq d(x_n, y) + d(x_n, x) \implies d(x_n, y) \geq d(x, y) - d(x_n, x) > d(x, y) - \epsilon \implies d(x_n, y) - d(x, y) > -\epsilon$$
+
+    Combining these two inequalities we obtain that $\lvert d(x_n, y) - d(x, y) \rvert < \epsilon$ for all $n > N$, which is precisely the definition of $d(x_n, y) \rightarrow d(x, y)$.
+
+    For the second, more general statement, pick again $\epsilon > 0$.
+    Then there exist $N_1, N_2$ such that $d(x_n, x) < \frac{\epsilon}{2}, d(y_n, y) < \frac{\epsilon}{2}$ whenever $n > N_1, n > N_2$ respectively.
+    Set then $N = \max\{N_1, N_2\}$.
+    By the triangle inequality for $n > N$ we have that:
+
+    $$d(x_n, y_n) \leq d(x_n, x) + d(x, y_n) \leq d(x_n, x) + d(x, y) + d(y, y_n) < d(x, y) + \frac{\epsilon}{2} + \frac{\epsilon}{2}$$
+    $$\implies d(x_n, y_n) - d(x, y) < \epsilon$$
+    
+    $$d(x, y) \leq d(x, x_n) + d(x_n, y) \leq d(x, x_n) + d(x_n, y_n) + d(y_n, y) < \frac{\epsilon}{2} + \frac{\epsilon}{2} + d(x_n, y_n)$$
+    $$\implies d(x,y) - d(x_n, y_n) < \epsilon \implies - \epsilon < d(x_n, y_n) - d(x, y)$$
+
+    Putting together these two inequalities results in $\lvert d(x_n, y_n) - d(x,y) \rvert < \epsilon$ for $n > N$, which is precisely the definition of $d(x_n, y_n) \rightarrow d(x, y)$.
+\end{solution}
+
+\begin{exercise}{35}
+    If $x_n \rightarrow x$, then $x_{n_k} \rightarrow x$ for any subsequence $(x_{n_k})$ of $(x_n)$.
+\end{exercise}
+
+\begin{solution}
+    
+    Since $x_n \rightarrow x$, for any given $\epsilon > 0$ we can always find $N > 0 $ such that for all $n \geq N, d(x_n, x) < \epsilon$.
+    Because $(x_{n_k})$ contains infinite terms of $(x_n)$ selected in an order which maintains the order of indices, it must be the case that there exists $K > 0$ such that for all $k \geq K, n_k \geq N$, which in turn means that from that point on, $d(x_{n_k}, x) < \epsilon$.
+    We conclude that $x_{n_k} \rightarrow x$.
+
+\end{solution}
