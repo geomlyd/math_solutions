@@ -729,7 +729,9 @@
     Because $x_n r\rightarrow x$, we know that there exists $N > 0$ such that $d(x_n, x) < \epsilon$ for all $n \geq N$.
     By the triangle inequality, for $n \geq N$ we have that:
     $$d(x_n, y) \leq d(x, y) + d(x_n, x) < \epsilon + d(x, y) \implies d(x_n, y) - d(x, y) < \epsilon$$
-    $$d(x, y) \leq d(x_n, y) + d(x_n, x) \implies d(x_n, y) \geq d(x, y) - d(x_n, x) > d(x, y) - \epsilon \implies d(x_n, y) - d(x, y) > -\epsilon$$
+    By exercise 2 of Chapter 3, we also have that:
+    $$\lvert d(x_n, x) - d(y, x) \rvert \leq d(x_n, y) \implies -d(x_n, y) \leq d(x_n, x) - d(x, y) < \epsilon - d(x, y) $$
+    $$\implies d(x_n, y) - d(x, y) > -\epsilon$$
 
     Combining these two inequalities we obtain that $\lvert d(x_n, y) - d(x, y) \rvert < \epsilon$ for all $n > N$, which is precisely the definition of $d(x_n, y) \rightarrow d(x, y)$.
 
@@ -754,7 +756,68 @@
 \begin{solution}
     
     Since $x_n \rightarrow x$, for any given $\epsilon > 0$ we can always find $N > 0 $ such that for all $n \geq N, d(x_n, x) < \epsilon$.
-    Because $(x_{n_k})$ contains infinite terms of $(x_n)$ selected in an order which maintains the order of indices, it must be the case that there exists $K > 0$ such that for all $k \geq K, n_k \geq N$, which in turn means that from that point on, $d(x_{n_k}, x) < \epsilon$.
+    Because $(x_{n_k})$ contains infinite terms of $(x_n)$ selected in an order which maintains the order of indices, it must be the case that for $n_k \geq N$, $d(x_{n_k}, x) < \epsilon$.
     We conclude that $x_{n_k} \rightarrow x$.
 
+\end{solution}
+
+\begin{exercise}{36}
+    A convergent sequence is Cauchy, and a Cauchy sequence is bounded (that is, the set $\{x_n : n \geq 1\}$ is bounded).
+\end{exercise}
+
+\begin{solution}
+    
+    We begin by showing that a convergent sequence is Cauchy.
+    Pick any $\epsilon > 0$.
+    Because the sequence converges, say to $x$, there exists $N > 0$ such that whenever $n \geq N$ it is the case that $d(x_n, x) < \epsilon/2$.
+    For any two such $n_1, n_2 \geq N$ we then have:
+    
+    $$d(x_{n_1}, x_{n_2}) \leq d(x_{n_1}, x) + d(x, x_{n_2}) < \epsilon,$$
+    
+    which is precisely the definition of $x$ being Cauchy.
+
+    Now assume $(x_n)$ is Cauchy.
+    Pick e.g. $\epsilon = 1$, and find $N > 0$ such that for $n_1, n_2 \geq N$ it holds that $d(x_{n_1}, x_{n_2}) < \epsilon$.
+    Consider the set $\{d(x_n, x_1), 1 \leq n \leq N\}$.
+    This has a finite number of non-negative elements, and as such a well-defined non-negative maximum $M$.
+    For any $n > N$ we then have that:
+
+    $$d(x_n, x_1) \leq d(x_n, x_N) + d(x_N, x_1) < M + \epsilon,$$
+
+    and therefore all elements of the sequence satisfy $d(x_n, x_1) < M + \epsilon$, i.e. they are contained in the open ball $B_{M + \epsilon}(x_1)$, which is to say that the sequence is bounded.
+
+\end{solution}
+
+\begin{exercise}{37}
+    A Cauchy sequence with a convergent subsequence converges.
+\end{exercise}
+
+\begin{solution}
+    
+    Let $(x_n)$ be a Cauchy sequence with a convergent subsequence $(x_{n_k}) \rightarrow x$.
+    Pick any $\epsilon > 0$.
+    Because $(x_{n_k}) \rightarrow x$, there exists $N_1 > 0$ such that for $n_k \geq N_1$ it holds that $d(x_{n_k}, x) < \epsilon/2$.
+    Furthermore, because $(x_n)$ is Cauchy, there exists $N_2 > 0$ such that for $i, j \geq N_2$ it holds that $d(x_{i}, x_{j}) < \epsilon/2$.
+    Set $N = \max\{N_1, N_2\}$ and pick any $n > N$.
+    Then, by the triangle inequality:
+
+    $$d(x_n, x) \leq d(x_n, x_{N_1}) + d(x_{N_1}, x) < \epsilon/2 + \epsilon/2 = \epsilon$$
+
+    But then this means that $(x_n)$ converges to $x$, which completes the proof.
+\end{solution}
+
+\begin{exercise}{39}
+    If every subsequence of $(x_n)$ has a \textit{further} subsequence that converges to $x$, then $(x_n)$ converges to x.
+\end{exercise}
+
+\begin{solution}
+
+    By way of contradiction, assume $(x_n)$ does not converge to $x$.
+    Then there exists $\epsilon > 0$ such that for all $N > 0$ there exists $n \geq N$ such that $d(x_n, x) \geq \epsilon$.
+    Consider constructing the following subsequence of $(x_n)$: for any $i > 0$, the $i$-th element of the subsequence equals the first $x_n$ such that $d(x_n, x) \geq \epsilon, n \geq i$ and $x_n$ has not been selected before.
+    By the hypothesis above, this is always well-defined.
+
+    As a subsequence of $(x_n)$, by the hypothesis of the exercise this subsequence will have a further subsequence converging to $x$.
+    Notice, however, that by construction all elements of this ``further subsequence'' are such that $d(x_{n_{k_l}}, x) \geq \epsilon$, which contradicts convergence to $x$.
+    Therefore, $(x_n)$ itself must converge to $x$.
 \end{solution}
