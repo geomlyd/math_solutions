@@ -829,5 +829,24 @@
 
 \begin{solution}
     
-    
+    We begin first by verifying that if $a, b, c \in l_2$, then $\langle a + b, c \rangle = \langle a, b \rangle + \langle a, c \rangle$.
+    We have that:
+
+    $$\langle a + b, c \rangle = \sum_{i=1}^{\infty}(a_i + b_i)c_i = \sum_{i=1}^{\infty}(a_ic_i + b_ic_i)$$
+
+    Notice that because $a, b, c$ are all in $l_2$, we can safely split this series into a sum of the two series corresponding $\langle a, c \rangle, \langle b, c \rangle$.
+    Now we move on to the main part of the proof by picking any $\epsilon > 0$.
+    To begin with, for any $k, x^{(k)}, y^{(k)} \in l_2$ so any inner products involving them are well-defined:
+
+    $$\lvert \langle x, y \rangle - \langle x^{(k)}, y^{(k)} \rangle \rvert = \lvert \langle x, y \rangle - \langle x, y^{(k)} \rangle + \langle x, y^{(k)} \rangle - \langle x^{(k)}, y^{(k)} \rangle \rvert = \lvert \langle x, y - y^{(k)} \rangle + \langle x - x^{(k)}, y^{(k)} \rangle \rvert$$
+    $$\leq \lvert \langle x, y - y^{(k)} \rangle \rvert + \lvert \langle x - x^{(k)}, y^{(k)} \rangle \rvert \leq \lvert \lvert x \rvert \rvert_2 \cdot \lvert \lvert y - y^{(k)} \rvert \rvert_2 + \lvert \lvert x - x^{(k)} \rvert \rvert_2 \cdot \lvert \lvert y^{(k)} \rvert \rvert_2$$
+
+    Notice now that because $y^{(k)} \rightarrow y, x^{(k)} \rightarrow x$, we can, for this $\epsilon$, find $K > 0$ such that for all $k \geq K, \lvert \lvert x - x^{(k)} \rvert \rvert_2 < \epsilon, \lvert \lvert y - y^{(k)} \rvert \rvert_2 < \epsilon$.
+    By the extension of the triangle inequality, it will then also hold that $\bigl \lvert \lvert \lvert y^{(k)} \rvert \rvert_2 - \lvert \lvert y \rvert \rvert_2 \bigr \rvert < \epsilon$.
+    Note that here we are using the association of the $l_2$ norm to the corresponding metric in $l_2$.
+    Coupled with these observations, the above inequality implies:
+
+    $$\lvert \langle x, y \rangle - \langle x^{(k)}, y^{(k)} \rangle \rvert < \lvert \lvert x \rvert \rvert_2 \cdot \epsilon + \epsilon \cdot (\lvert \lvert y \rvert \rvert_2 + \epsilon)$$
+
+    Now note that the RHS is a function of $\epsilon$ that tends to zero as $\epsilon$ tends to zero, which means (by the ``elegance is not required'' theorem from Hubbard \& Hubbard) that indeed $\langle x^{(k)}, y^{(k)} \rangle \rightarrow \langle x, y \rangle$.
 \end{solution}
