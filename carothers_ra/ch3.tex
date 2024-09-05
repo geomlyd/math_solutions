@@ -908,6 +908,55 @@
     Then the fact that $\rho(y_n, x_i)$ eventually becomes less than $\epsilon$ implies that it must be the case that after some $N, y_n = x_i$, such that the metric becomes zero.
     Consequently, it also holds that $d(y_n, x_i)\rightarrow 0$.
 
+\end{solution}
 
+\begin{exercise}{44}
+    Show that the metrics induced by $\lvert \lvert \cdot \rvert \rvert_1, \lvert \lvert \cdot \rvert \rvert_2, \lvert \lvert \cdot \rvert \rvert_{\infty}$ on $\mathbb{R}^n$ are all equivalent.
+    [Hint: see exercise 18.]
+\end{exercise}
 
+\begin{solution}
+    
+    Call the corresponding metrics $d_1, d_2, d_{\infty}$ respectively.
+    Let $(x_n)$ be a sequence in $\mathbb{R}^n$ that converges to $x$ under $d_2$.
+    Pick any $\epsilon > 0$ and find $N$ such that $d_2(x_n, x) < \epsilon$ for $n \geq N$.
+    By exercise 18, we have that:
+
+    $$d_{\infty}(x_n, x) = \lvert \lvert x_n - x \rvert \rvert_{\infty} \leq \lvert \lvert x_n - x \rvert \rvert_2 = d_2(x_n, x) < \epsilon,$$
+
+    which shows that $d_{\infty}(x_n, x) \rightarrow 0$.
+    Also by exercise 18, we have that:
+
+    $$d_1(x_n, x) = \lvert \lvert x_n - x \rvert \rvert_1 \leq \sqrt{n} \lvert \lvert x_n - x \rvert \rvert_2 = \sqrt{n} d_2(x_n, x) < \sqrt{n} \epsilon,$$
+
+    and we once again refer to the ``elegance is not required'' theorem which guarantees that $d_1(x_n, x) \rightarrow 0$.
+
+    Now suppose $(x_n)$ converges to $x$ under $d_1$.
+    The bound $\lvert \lvert x \rvert \rvert_2 \leq \lvert \lvert x \rvert \rvert_1$ from exercise 18 and a process almost identical to the above show that it converges under $d_2$ as well, and then of course under $d_{\infty}$.
+    Lastly, the bound $\lvert \lvert x \rvert \rvert_1 \leq n \lvert \lvert x \rvert \rvert_{\infty}$ shows that convergence under $d_{\infty}$ implies convergence under $d_1$, thus completing the ``implication circle'' that indicates that all three metrics are equivalent.
+\end{solution}
+
+\begin{exercise}{46}
+    Given two metric spaces $(M, d)$ and $(N, \rho)$, we can define a metric on the product $M \times N$ in a variety of ways.
+    Our only requirement is that a sequence of pairs $(a_n, x_n)$ in $M \times N$ should converge precisely when both coordinate sequences $(a_n), (x_n)$ converge in $(M, d), (N, \rho)$ respectively.
+    Show that each of the following define metrics on $M \times n$ that enjoy this property and that all three are equivalent:
+
+    $$d_1((a, x), (b, y)) = d(a, b) + \rho(x, y)$$
+    $$d_2((a, x), (b, y)) = (d(a, b)^2 + \rho(x, y)^2)^{1/2}$$
+    $$d_{\infty}((a, x), (b, y)) = \max\{d(a, b), \rho(x, y)\}$$
+
+    Henceforth, any implict reference to ``the'' metric on $M \times N$, sometimes called the \textbf{product metric}, will mean one of $d_1, d_2, d_{\infty}$.
+    Any one of them will serve equally well; use whichever looks most convenient for the argument at hand.
+\end{exercise}
+
+\begin{solution}
+    
+    We begin by showing that $d_1$ has the property mentioned.
+    First, suppose $(x_n) \in M, (y_n) \in N$ converge to $x, y$ respectively under $d, \rho$.
+    Pick $\epsilon > 0$ and $N, M > 0$ such that for $n \geq N, m \geq M, d(x_n, x) < \epsilon/2, \rho(y_n, y) < \epsilon/2$.
+    Then, for the sequence $(x_n, y_n)$, for $n \geq \max\{N, M\}$ we have that:
+
+    $$d_1((x_n, y_n), (x, y)) = d(x_n, x) + \rho(y_n, y) < \epsilon,$$
+
+    which of course shows that $(x_n, y_n) \rightarrow (x, y)$ under $d_1$.
 \end{solution}
