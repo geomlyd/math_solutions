@@ -877,3 +877,37 @@
      Lastly, for $\tau(x, y) = \min\{d(x, y), 1\}$, if $d(x_n, x) \rightarrow 0$, then for $\epsilon > 1$ it trivially holds that $\tau(x_n, x) < \epsilon$ for $n \geq 1$, while for $\epsilon \leq 1$ we have that for sufficiently large $N > 0, d(x_n, x) < \epsilon$ and thus $\tau(x_n, x) = d(x_n, x) < \epsilon$, thus showing that $\tau(x_n, x) \rightarrow 0$.
      Conversely, if $\tau(x_n, x) \rightarrow 0$ then for any given $\epsilon > 0$, there exists $N > 0$ such that for $n \geq N, \tau(x_n, x) < \epsilon \implies \min\{d(x_n, x), 1\} < \epsilon$, thus for $\epsilon < 1$ it has to be that $d(x_n, x) < \epsilon$, which is enough to show that $d(x_n, x) \rightarrow 0$ (since for larger $\epsilon, N$ can trivially be found by using $\epsilon' < 1$).
 \end{solution}
+
+\begin{exercise}{43}
+    Show that the usual metric on $\mathbb{N}$ is equivalent to the discrete metric.
+    Show that any metric on a \textit{finite} set is equivalent to the discrete metric.
+\end{exercise}
+
+\begin{solution}
+    
+    As a reminder, for $x, y \in \mathbb{N}$ the discrete metric is $d(x, y) = 1$ iff $x \neq y$ and $d(x, y) = 0$ otherwise.
+    The usual metric on $\mathbb{N}$ is $\rho(x, y) = \lvert x - y \rvert$. 
+    To show that the two metrics are equivalent, suppose first that $x_n \rightarrow x$ under $d$.
+    In order for this to happen, notice that for any given $\epsilon > 0$ we must be able to find $N > 0$ such that for $n \geq N, d(x_n, x) < \epsilon$.
+    The definition of $d$ then dictates that in fact after some $N, x_n$ are always equal to $x$.
+    Then it is clear that $\rho(x_n, x) = 0$ for $n \geq N$, meaning of course that $\rho(x_n, x) \rightarrow 0$.
+    Conversely, assume $x_n \rightarrow x$ under $\rho$.
+    Once again, for any given $\epsilon > 0$ we can find $N > 0$ such that for $n \geq N, \rho(x_n, x) < \epsilon$.
+    Choose $\epsilon = 1/2$.
+    Then $\rho(x_n, x) < 1/2 \implies \lvert x_n - x \rvert < 1/2$ means that in fact $x_n = x$, since these are natural numbers.
+    Then it is of course true that $d(x_n, x) \rightarrow 0$ as well.
+
+    For the second part of the exercise, let $M = \{x_1, x_2, \ldots, x_N\}$ be a finite set, $d$ be the discrete metric and $\rho$ be any metric on it.
+    Suppose the sequence $(y_n)$ is such that 
+    $d(y_n, x_i) \rightarrow$ for some $x_i \in M$.
+    By the same observation as above, for $n \geq K$ for some $K$ it must hold that $y_n = x_i$.
+    Then it must be the case that \textit{any} metric $\rho$, purely by being a metric, must satisfy $\rho(y_n, x_i) = 0$.
+    This shows that $\rho(y_n, x_i) \rightarrow 0$.
+    Conversely, if $\rho(y_n, x_i) \rightarrow 0$, then for any $\epsilon > 0$ there exists $K > 0$ such that for $n \geq K, \rho(y_n, x_i) < \epsilon$.
+    Pick then $\epsilon = \min\{\rho(x_j, x_i), j = 1, 2, \ldots, N\, j \neq i \}$, which is well-defined due to $M$ being finite.
+    Then the fact that $\rho(y_n, x_i)$ eventually becomes less than $\epsilon$ implies that it must be the case that after some $N, y_n = x_i$, such that the metric becomes zero.
+    Consequently, it also holds that $d(y_n, x_i)\rightarrow 0$.
+
+
+
+\end{solution}
