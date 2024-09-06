@@ -959,4 +959,23 @@
     $$d_1((x_n, y_n), (x, y)) = d(x_n, x) + \rho(y_n, y) < \epsilon,$$
 
     which of course shows that $(x_n, y_n) \rightarrow (x, y)$ under $d_1$.
+
+    Conversely, let's assume that $((x_n, y_n))$ is a sequence of ordered pairs in $M \times N$ that converges to $(x, y)$ under $d_1$.
+    Then, for any given $\epsilon > 0$ we can find $N > 0$ such that for $n \geq N$, $d_1((x_n, y_n), (x, y)) < \epsilon \implies d(x_n, x) + \rho(y_n, y) < \epsilon$.
+    Because a metric always yields non-negative values, each of $d(x_n, x) < \epsilon, \rho(y_n, y) < \epsilon$ must hold for $n \geq N$, which shows that $d(x_n, x) \rightarrow 0, \rho(y_n, y) \rightarrow 0$.
+
+    For $d_2$, observe that not much will change in the proof: in one direction, we simply need to adjust the chosen $\epsilon$ for $x_n, y_n$ based on the squares and square roots, and in the other we will merely have to take squares of both sides of an inequality.
+
+    For $d_{\infty}$, in one direction it suffices to make both $d(x_n, x), \rho(y_n, y)$ less than $\epsilon$, and then their max also satisfies this.
+    In the other, for a ``target'' $\epsilon$, start from $d_{\infty}$ with $\epsilon$ and observe that the max enforces both $d(x_n, x), \rho(y_n, y)$ to satisfy this.
+
+    Hence we only need to show the equivalency of the the three.
+    Suppose $(x_n, y_n)$ converges to $(x, y)$  under $d_1$.
+    Pick any $\epsilon > 0$ and set $\epsilon' = \epsilon / \sqrt{2}$.
+    By the property just proved above, we can find $N, M$ such that $d(x_n, x) < \epsilon', \rho(y_n, y) < \epsilon'$.
+    For $K = \max\{N, M\}$ and $n \geq K$:
+
+    $$d_2((x_n, y_n), (x, y)) = \sqrt{d(x_n, x)^2 + \rho(y_n, y)^2} < \sqrt{\epsilon'^2 + \epsilon'^2} = \sqrt{\epsilon^2/2 + \epsilon^2/2} = \epsilon,$$
+
+    which shows convergence under $d_2$.
 \end{solution}
