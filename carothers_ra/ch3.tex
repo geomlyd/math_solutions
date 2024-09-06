@@ -970,12 +970,8 @@
     In the other, for a ``target'' $\epsilon$, start from $d_{\infty}$ with $\epsilon$ and observe that the max enforces both $d(x_n, x), \rho(y_n, y)$ to satisfy this.
 
     Hence we only need to show the equivalency of the the three.
-    Suppose $(x_n, y_n)$ converges to $(x, y)$  under $d_1$.
-    Pick any $\epsilon > 0$ and set $\epsilon' = \epsilon / \sqrt{2}$.
-    By the property just proved above, we can find $N, M$ such that $d(x_n, x) < \epsilon', \rho(y_n, y) < \epsilon'$.
-    For $K = \max\{N, M\}$ and $n \geq K$:
+    Suppose $(x_n, y_n)$ converges to $(x, y)$  under any of them.
+    Then we already showed that $x_n \rightarrow x, y_n \rightarrow y$ under $d, \rho$ respectively.
+    But we also showed that for any of the other two product metrics, this is enough to guarantee that $(x_n, y_n)$ converges to $(x, y)$ under them, thus showing that they are in fact equivalent.
 
-    $$d_2((x_n, y_n), (x, y)) = \sqrt{d(x_n, x)^2 + \rho(y_n, y)^2} < \sqrt{\epsilon'^2 + \epsilon'^2} = \sqrt{\epsilon^2/2 + \epsilon^2/2} = \epsilon,$$
-
-    which shows convergence under $d_2$.
 \end{solution}
