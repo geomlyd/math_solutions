@@ -1,0 +1,65 @@
+\chapter{Open Sets and Closed Sets}
+
+\begin{exercise}{1}
+    Show that an ``open rectangle'' $(a, b) \times (c, d)$ is an open set in $\mathbb{R}^2$.
+    More generally, if $A, B$ are open in $\mathbb{R}$, show that $A \times B$ is open in $\mathbb{R}^2$.
+    If $A, B$ are closed in $\mathbb{R}$, show that $A \times B$ is closed in $\mathbb{R^2}$.
+\end{exercise}
+
+\begin{solution}
+    
+    Call the open rectangle $S$, in which case its defining property is $S = \{(x, y) \in \mathbb{R}^2 : a < x < b, c < y < d\}$.
+    Let $p = (x, y) \in S$, and set $r = \min\{x - a, b - x, c - y, d - y\}$.
+    Now let $p' = (x', y')$ be any point in $B_r(p)$.
+    This means that $\lvert \lvert p' - p \rvert \rvert_2 < r$.
+    More specifically, this translates to the following inequalities:
+
+    $$\lvert x' - x \rvert < x - a \implies x' - x > a - x \implies a < x'$$
+    $$\lvert x' - x \rvert < b - x \implies x' - x < b - x \implies x' < b$$    
+    $$\lvert y' - y \rvert < y - c \implies y' - y > c - y \implies y' > c$$
+    $$\lvert y' - y \rvert < d - y \implies y' - y > d - y \implies y' < d$$
+
+    These four properties mean that $p' \in S$, and thus we have proved that $S$ is indeed open.
+
+    Now suppose $A, B$ are open sets in $\mathbb{R}$.
+    We know by theorem 4.6 that this means that they can be written as countable unions of disjoint open intervals.
+    In other words, $A = \cup_{i=1}^{\infty} I_n, B = \cup_{i=1}^{\infty} J_n, I_n = (a_n, b_n), J_n = (c_n, d_n), I_n \cap I_m = \emptyset, n \neq m, J_n \cap J_m = \emptyset, n \neq m$.
+    Consider then what this means for the Cartesian product:
+
+    $$A \times B = \{(x, y): x \in A, y \in B\} = \{(x, y): x \in I_n, y \in J_m, n = 1, 2, \ldots, m = 1, 2, \ldots\} $$
+    $$ = \cup_{(n, m) \in \{1, 2, \ldots\} \times \{1, 2, \ldots\}} I_n \times J_m,$$
+
+    and we now observe that each term of this union is an open rectangle in $\mathbb{R}^2$, thus the union itself, i.e. $A \times B$, is an open set.
+    For the last part of the exercise, we have first that if $A, B$ are closed in $\mathbb{R}$, then $A = C^c, B = D^c$ where $C, D$ are open.
+    Then we see that:
+
+    $$A \times B = \{(x, y) \lvert x \in A, y \in B\} = (\{(x, y) \lvert x \notin A \text{ or } y \notin B\})^c = ((C \times \mathbb{R}) \cup (\mathbb{R} \times D))^c$$
+
+    By the above, we have that $C \times \mathbb{R}, \mathbb{R} \times D$ are both open, and thus their union is open.
+    But then this means precisely that $A \times B$ is closed as the complement of an open set.
+\end{solution}
+
+\begin{exercise}{3}
+    Some authors say that two metrics $d, \rho$ on a set $M$ are equivalent if they generate the same open sets.
+    Prove this.
+    (Recall that we defined equivalence to mean that $d, \rho$ generate the same convergent sequences.)
+\end{exercise}
+
+\begin{solution}
+    
+    First suppose that two metrics $d, \rho$ generate the same open sets.
+    Pick any sequence $(x_n) \in M$ such that $d(x_n, x) \rightarrow 0$, and pick $\epsilon > 0$.
+    The ball $B_{\epsilon}^{\rho}(x)$ is open under $\rho$, and must thus also be open (although not necessarily a ball) under $d$.
+    By convergence of $x_n \rightarrow x$ under $d$, we have that $(x_n)$ is eventually in $B_{\epsilon}^{\rho}(x)$, which of course means that we have showed that $\rho(x_n, x) \rightarrow 0$ as well.
+    Exchanging the roles of $d, \rho$ completes the proof that they are equivalent under the sequence-based definition.
+
+    Conversely, assume that $d, \rho$ generate the same convergent sequences.
+    Suppose $S$ is an open set under $d$.
+    If $S$ is the empty set, it is also clearly open under $\rho$.
+    Otherwise, suppose for the sake of contradiction that $S$ is not open under $\rho$, which means that there exists $x \in S$ such that for every $\epsilon > 0$, $B_{\epsilon}^{\rho}(x) \not\subset S$.
+    More specifically, this means that for a sequence of $\epsilon_n = \frac{1}{n}$, we can always find $x_n \notin S$ such that $x_n \in B_{\epsilon_n}^{\rho}(x)$.
+    But then it becomes clear that $\rho(x_n, x) \rightarrow 0$, which means that $d(x_n, x) \rightarrow 0$ as well.
+    Therefore we have constructed a sequence that has an infinite number of terms that do not belong in $S$, and at the same time converges to $x \in S$ under $d$.
+    Because $S$ is open under $d$, this is a contradiction, and we therefore conclude that $S$ must also be open under $\rho$.
+    Exchanging the roles of the two metrics completes the proof in this direction, thus showing that the two definitions are equivalent.
+\end{solution}

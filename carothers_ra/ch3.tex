@@ -822,6 +822,39 @@
     Therefore, $(x_n)$ itself must converge to $x$.
 \end{solution}
 
+\begin{exercise}{40}
+    Here is a positive result about $l_1$ that may restore your faith in intuition.
+    Given any fixed element $x \in l_1$, show that the sequence $x^{(k)} = (x_1, \ldots, x_k, 0, \ldots) \in l_1$ (i.e. the first $k$ terms of $x$ followed by all 0s) converges to $x$ in $l_1$-norm.
+    Show that the same holds true in $l_2$, but give an example showing that it fails (in general) in $l_{\infty}$.
+\end{exercise}
+
+\begin{solution}
+    
+    For any given $k$, we make the following observation:
+
+    $$\lvert \lvert x - x^{(k)} \rvert \rvert_1 = \sum_{i=1}^{k} \lvert x_i - x_i \rvert + \sum_{i=k+1}^{\infty} \lvert x_i \rvert = \sum_{i=k+1}^{\infty} \lvert x_i \rvert$$
+
+    Notice now that, since $x \in l_1$, the RHS here equals $\lvert \lvert x \rvert \rvert_1 - \sum_{i=1}^{k} \lvert x_i \rvert$.
+    Furthermore, because the $l-1$ norm of $x$ viewed as an infinite series converges, it must be the case that by selecting $k$ large enough, the term $\sum_{i=1}^{k} \lvert x_i \rvert$ can be made to be arbitrarily close to it, which in other words means that the RHS above can be made arbitrarily small.
+    Of course, this has the immediate consequence that for any $\epsilon > 0$ we can find $K > 0$ such that for $n \geq K, \lvert \lvert x - x^{(n)} \rvert \rvert_1 < \epsilon$, which means that the sequence $x^{(k)}$ converges to $x$ under the $l_1$-norm.
+    
+    To show that the same holds for the $l_2$-norm, we compute:
+
+    $$\lvert \lvert x - x^{(k)} \rvert \rvert_2^2 = \sum_{i=1}^{k} \lvert x_i - x_i \rvert^2 + \sum_{i=k+1}^{\infty} \lvert x_i \rvert^2 = \sum_{i=k+1}^{\infty} \lvert x_i \rvert^2$$
+
+    The RHS here equals $\lvert \lvert x \rvert \rvert_2^2 - \sum_{i=1}^{k} \lvert x_i \rvert^2$.
+    Because the square of the $l_2$-norm of $x$ viewed as an infinite series converges, it must be the case that $\sum_{i=1}^{k} \lvert x_i \rvert^2$ gets arbitrarily close to it by picking an appropriate $k$.
+    The remaining argument is also the same as for $l_1$, which means that $x^{(k)} \rightarrow x$ under $l_2$ as well.
+
+    For the case of $l_{\infty}$, we consider the sequence formed by $x_n = 1 - \frac{1}{n}$.
+    This can be easily shown to have $\lvert \lvert x \rvert \rvert_{\infty} = 1$.
+    However, for $x^{(k)}$ as defined in the exercise:
+
+    $$\lvert \lvert x - x^{(k)} \rvert \rvert_{\infty} = \sup\{0, x_{k+1}, x_{k+2}, \ldots\} = 1$$
+
+    The reason this holds is because $x_n \rightarrow 1$, and it is thus made clear that $x^{(k)}$ cannot converge to $x$ under the $l_{\infty}$ norm.
+\end{solution}
+
 \begin{exercise}{41}
     Given $x, y \in l_2$, recall that $\langle x, y \rangle = \sum_{i=1}^{\infty} x_i y_i$.
     Show that if $x^{(k)} \rightarrow x$ and $y^{(k)} \rightarrow y$ in $l_2$, then $\langle x^{(k)}, y^{(k)} \rangle \rightarrow \langle x, y \rangle$.
@@ -935,6 +968,28 @@
     The bound $\lvert \lvert x \rvert \rvert_2 \leq \lvert \lvert x \rvert \rvert_1$ from exercise 18 and a process almost identical to the above show that it converges under $d_2$ as well, and then of course under $d_{\infty}$.
     Lastly, the bound $\lvert \lvert x \rvert \rvert_1 \leq n \lvert \lvert x \rvert \rvert_{\infty}$ shows that convergence under $d_{\infty}$ implies convergence under $d_1$, thus completing the ``implication circle'' that indicates that all three metrics are equivalent.
 \end{solution}
+
+\begin{exercise}{45}
+    We say that two norms on the same vector space $X$ are equivalent if the metrics they induce are equivalent.
+    Show that $\lvert \lvert \cdot \rvert \rvert$ and $\lvert \lvert \lvert \cdot \rvert \rvert \rvert$ are equivalent on $X$ iff they generate the same sequences tending to 0; that is, $\lvert \lvert x_n \rvert \rvert \rightarrow 0$ iff $\lvert \lvert \lvert x_n \rvert \rvert \rvert \rightarrow 0$.
+\end{exercise}
+
+\begin{solution}
+    \newcommand{\trvert}[1]{\lvert \lvert \lvert #1 \rvert \rvert \rvert}
+
+    $\implies$: We call the induced metrics of $\lvert \lvert \cdot \rvert \rvert, \trvert{\cdot}, d_1$ and $d_2$ respectively. 
+    Suppose $\lvert \lvert \cdot \rvert \rvert$ is equivalent to $\trvert{\cdot}$.
+    Pick any $(x_n)$ such that it converges to 0 under $d_1$.
+    This means that $d(x_n, 0) \rightarrow 0$, and thus also that $d_2(x_n, 0) \rightarrow 0$ (by the equivalency of the metrics).
+    Obviously, the argument is symmetric for exchanging the roles of the two norms, which means that $\lvert \lvert x_n \rvert \rvert \rightarrow 0$ iff $\trvert{x_n} \rightarrow 0$.
+
+    $\impliedby$: Now suppose that $\lvert \lvert x_n \rvert \rvert \rightarrow 0$ iff $\trvert{x_n} \rightarrow 0$, and let $(y_n)$ be a sequence that converges to $y$ under $d_1$.
+    This means that $\lvert \lvert y_n - y \rvert \rvert \rightarrow 0$.
+    In other words, the sequence $(y_n) - y$ tends 0 under $\lvert \lvert \cdot \rvert \rvert$, and thus by our hypothesis also under $\trvert{\cdot}$, which directly translates to $d_2(y_n, y) \rightarrow 0$, i.e., $(y_n)$ converges to $y$ under $d_2$.
+    Once again, the argument is exactly symmetric for exchanging the roles of the two norms, and this leads us to conclude that the metrics they induce are equivalent, and thus that the norms are also equivalent.
+\end{solution}
+
+\newpage
 
 \begin{exercise}{46}
     Given two metric spaces $(M, d)$ and $(N, \rho)$, we can define a metric on the product $M \times N$ in a variety of ways.
