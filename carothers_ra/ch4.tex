@@ -3,7 +3,7 @@
 \begin{exercise}{1}
     Show that an ``open rectangle'' $(a, b) \times (c, d)$ is an open set in $\mathbb{R}^2$.
     More generally, if $A, B$ are open in $\mathbb{R}$, show that $A \times B$ is open in $\mathbb{R}^2$.
-    If $A, B$ are closed in $\mathbb{R}$, show that $A \times B$ is closed in $\mathbb{R^2}$.
+    If $A, B$ are closed in $\mathbb{R}$, show that $A \times B$ is closed in $\mathbb{R}^2$.
 \end{exercise}
 
 \begin{solution}
@@ -21,23 +21,29 @@
 
     These four properties mean that $p' \in S$, and thus we have proved that $S$ is indeed open.
 
-    Now suppose $A, B$ are open sets in $\mathbb{R}$.
-    We know by theorem 4.6 that this means that they can be written as countable unions of disjoint open intervals.
-    In other words, $A = \cup_{i=1}^{\infty} I_n, B = \cup_{i=1}^{\infty} J_n, I_n = (a_n, b_n), J_n = (c_n, d_n), I_n \cap I_m = \emptyset, n \neq m, J_n \cap J_m = \emptyset, n \neq m$.
-    Consider then what this means for the Cartesian product:
+    For the sake of generality, for the remaining exercise we will work with $A, B$ being subsets of two general metric spaces $(M, d), (N, \rho)$, respectively, and then the general result will imply what is asked for here.
+    First of all, we select $d_{\infty}$ as the metric of $M \times N$, with the definition given in exercise 46 of Chapter 3.
+    Suppose first that $A, B$ are open, and pick $(a, b) \in A \times B$.
+    There exist then open balls $B_{\epsilon_1}^{d}(a) \subset A, B_{\epsilon_2}^{\rho}(b) \subset B$.
+    Pick $\epsilon = \min\{\epsilon_1, \epsilon_2\}$, and consider any $(x, y) \in B_{\epsilon}^{d_{\infty}}((a, b))$.
+    We have that:
+    
+    $$d_{\infty}((x, y), (a, b)) < \epsilon \implies \max\{d(x, a), \rho(y, b)\} < \min\{\epsilon_1, \epsilon_2\}$$
 
-    $$A \times B = \{(x, y): x \in A, y \in B\} = \{(x, y): x \in I_n, y \in J_m, n = 1, 2, \ldots, m = 1, 2, \ldots\} $$
-    $$ = \cup_{(n, m) \in \{1, 2, \ldots\} \times \{1, 2, \ldots\}} I_n \times J_m,$$
+    Notice that this implies that, more specifically, $d(x, a) < \epsilon_1, \rho(y, b) < \epsilon_2$, which means $x \in B_{\epsilon_1}^{d}(a) \subset A, y \in B_{\epsilon_2}^{\rho}(b) \subset B$.
+    In other words, $x \in A, b \in B$, and so $(x, y) \in A \times B$, which shows that $B_{\epsilon}^{d_{\infty}}(a, b) \subset A \times B$, and thus the Cartesian product is also open.
 
-    and we now observe that each term of this union is an open rectangle in $\mathbb{R}^2$, thus the union itself, i.e. $A \times B$, is an open set.
-    For the last part of the exercise, we have first that if $A, B$ are closed in $\mathbb{R}$, then $A = C^c, B = D^c$ where $C, D$ are open.
-    Then we see that:
+    Now suppose that $A, B$ are closed, which implies $M \setminus A, N \setminus B$ are open.
+    Consider rewriting $A \times B$ as follows:
 
-    $$A \times B = \{(x, y) \lvert x \in A, y \in B\} = (\{(x, y) \lvert x \notin A \text{ or } y \notin B\})^c = ((C \times \mathbb{R}) \cup (\mathbb{R} \times D))^c$$
+    $$A \times B = \{(x, y) \in M \times N \lvert x \in A, y \in B\} = (M \times N) \setminus \{(x, y) \in M \times N \lvert x \notin A \text{ or } y \notin B\}$$
+    $$ = (M \times N) \setminus ((A^{c} \times N) \cup (M \times B^{c}))$$
 
-    By the above, we have that $C \times \mathbb{R}, \mathbb{R} \times D$ are both open, and thus their union is open.
-    But then this means precisely that $A \times B$ is closed as the complement of an open set.
+    Now, from the immediately preceding proof, $A^{c} \times N, M \times B^{c}$ are open as Cartesian products of open sets (a metric space is always open).
+    Their union is thus also open, and then the complement of this union, which we showed equals $A \times B$, is thus closed.
 \end{solution}
+
+\newpage
 
 \begin{exercise}{3}
     Some authors say that two metrics $d, \rho$ on a set $M$ are equivalent if they generate the same open sets.
@@ -62,4 +68,44 @@
     Therefore we have constructed a sequence that has an infinite number of terms that do not belong in $S$, and at the same time converges to $x \in S$ under $d$.
     Because $S$ is open under $d$, this is a contradiction, and we therefore conclude that $S$ must also be open under $\rho$.
     Exchanging the roles of the two metrics completes the proof in this direction, thus showing that the two definitions are equivalent.
+\end{solution}
+
+\begin{exercise}{5}
+    Let $f: \mathbb{R} \rightarrow \mathbb{R}$ be continuous.
+    Show that $\{x: f(x) > 0\}$ is an open subset of $\mathbb{R}$, and that $\{x: f(x) = 0\}$ is a closed subset of $\mathbb{R}$.
+\end{exercise}
+
+\begin{solution}
+    
+    Let $S = \{x: f(x) > 0\}$.
+    Pick any $x \in S$, in which case $f(x) > 0$.
+    Let $\epsilon = f(x)$, and then because $f$ is continous, there must exist $\delta > 0$ such that:
+
+    $$\lvert y - x \rvert < \delta \implies \lvert f(y) - f(x) \rvert < \epsilon$$
+
+    The second inequality implies $-\epsilon < f(y) - f(x) \implies f(y) > f(x) - f(x) = 0$.
+    Notice then that for every $y \in B_{\delta}(x)$ we have $f(y) > 0$, and thus that $y \in S$, which shows that $S$ is open.
+
+    Now let $T = \{x: f(x) = 0\}$.
+    Notice that $T = \mathbb{R} \setminus (\{x: f(x) > 0\} \cup \{x: f(x) < 0\})$.
+    It is very easy to show that the above also holds for ``less than zero'', thus rendering the union here a union of open sets, and then $T$ a closed set as a complement of an open set.
+
+\end{solution}
+
+\begin{exercise}{7}
+    Show that every open set in $\mathbb{R}$ is the union of countably many open intervals with $\textit{rational}$ endpoints.
+    Use this to show that the collection $\mathcal{U}$ of all open subsets of $\mathbb{R}$ has the same cardinality as $\mathbb{R}$ itself.
+\end{exercise}
+
+\begin{solution}
+    
+    We know already that an open set $S \subset \mathbb{R}$ can be written as $S = \cup_{n=1}^{\infty}(a_n, b_n)$, where the intervals are all disjoint, and perhaps unbounded.
+    Consider the following procedure.
+    We take the interval $(a_n, b_n)$, where in general the endpoints are real numbers.
+    We know that between them there will always be a rational number $q_n$.
+    In fact, $b_n$ can be approached by a (increasing) sequence of rational numbers starting at $q_n$ and getting infinitely close to it, and the same holds for $a_n$ (only difference being the fact that this will be a decreasing sequence).
+    These are \textit{countably infinite} in number: indeed, each sequence is equivalent to the natural numbers, since these directly form its indices, and of course $\mathbb{N} \cup \mathbb{N} \sim \mathbb{N}$ (``two sequences are equivalent to one sequence'').
+
+    We can thus replace $(a_n, b_n)$ with a union of the form $\cup_{k=1}^{\infty} (q_k, r_k)$ where the endpoints are rationals.
+    But then we have that $S$ is a countable union of countable sets, which we know (Theorem 2.6)  is also countable, and thus $S$ is indeed a countable union of intervals with rational endpoints.
 \end{solution}
