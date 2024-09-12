@@ -108,4 +108,64 @@
 
     We can thus replace $(a_n, b_n)$ with a union of the form $\cup_{k=1}^{\infty} (q_k, r_k)$ where the endpoints are rationals.
     But then we have that $S$ is a countable union of countable sets, which we know (Theorem 2.6)  is also countable, and thus $S$ is indeed a countable union of intervals with rational endpoints.
+
+    Now let $f: \mathbb{R} \setminus \{0\} \rightarrow \mathcal{U}, f(x) = (0, x)$ if $x > 0$, and $f(x) = (x, 0)$ otherwise. 
+    This function is clearly an injection from the reals except zero to the set of open sets.
+    Recall also (exercise 17, ch. 2) that $\mathbb{R} \sim \mathbb{R} \setminus \{0\}$, and thus we can easily see that there exists an injection $h_1$ from $\mathbb{R}$ to $\mathcal{U}$.
+    Additionally, let $g((q_n)) = \cup_{n=1}^{\infty} (q_n, q_{n+1})$ be a function mapping sequences of rationals to open sets.
+    We've shown that \textit{every} open set can be written in this form, meaning that $g$ is a surjection.
+    But then for every open interval we can find at least one sequence of rationals that via $g$ (since it's a function) corresponds to it and to no other open interval.
+    This shows the existence of an injection $h_2: \mathcal{U} \rightarrow \mathbb{Q}^{\mathbb{N}}$.
+    Putting together the existence of $h_1, h_2$ and the fact that $\mathbb{Q}^{\mathbb{N}} \sim \mathbb{R}$, we apply the Cantor-Schröder-Bernstein theorem to see that $\mathcal{U}$ and $\mathbb{R}$ are in fact equivalent.
+\end{solution}
+
+\begin{exercise}{8}
+    Show that every open interval (and hence every open set) in $\mathbb{R}$ is a countable union of closed intervals and that every closed interval in $\mathbb{R}$ is a countable intersection of open intervals.
+\end{exercise}
+
+\begin{solution}
+    
+    Consider any interval of the form $(a, b)$, first where $a, b \in \mathbb{R}$, and consider the union:
+
+    $$U = \bigcup_{n=1}^{\infty} \Biggl[\frac{a+b}{2} - \sum_{i=2}^{n}(b-a)\frac{1}{2^i}, \frac{a+b}{2} + \sum_{i=2}^{n}(b-a)\frac{1}{2^i} \Biggr]$$
+
+    For the sake of brevity, we will omit some details, but one can see that as $n \rightarrow \infty$, the terms inside the sums converge to $(b-a)/2$.
+    But this means that for any given $x \in (a, b)$, it suffices to check whether $x < (a+b)/2$ or $x > (a+b)/2$, and then pick $n$ accordingly to make the left or right endpoint of the $n$-th term of the union become smaller or greater than $x$ respectively.
+    This is always possible due to the sums converging to $(b-a)/2$, which in turn makes the endpoints converge to $a, b$.
+    The union thus includes all points in $(a, b)$, and furthermore it is clearly countable.
+
+    If it is the case that $a = -\infty$ and $b = \infty$, we propose the union $U = \cup_{n=1}^{\infty} [-2^n, 2^n]$, and we can thus clearly always find $n$ big enough such that any $x \in \mathbb{R}$ belongs in one such interval.
+    The ``intermediate'' case of one of $a, b$ being infinity and the other a real number would be handled as a mixture of the above.
+
+    Now consider instead an interval of the form $[a, b], a, b \in \mathbb{R}$.
+    Consider the intersection:
+
+    $$I = \bigcap_{n=1}^{\infty} \Biggl[ a - \frac{1}{2^n}, b + \frac{1}{2^n}\Biggr]$$
+
+    We claim that this (countable) intersection equals $[a, b]$.
+    First, it is easy to see that any $x \in [a,b]$ is contained in every interval, since $b + \frac{1}{2^n} > b, a - \frac{1}{2^n} < a$ for all $n$.
+    Second, we claim that no $y \notin [a, b]$ can be contained in $I$.
+    Indeed, if $y < a$, because $a - \frac{1}{2^n}$ gets arbitrarily close to $a$ from the left, we can always find $n$ sufficiently large such that $y < a - \frac{1}{2^n}$, and a similar argument works for $ y > b$, showing that $y$ will not be contained in the intervals corresponding to $k \geq n$, and thus neither will it be contained in $I$.
+    This concludes the proof.
+\end{solution}
+
+\begin{exercise}{11}
+    Let $e^{(k)} = (0, \ldots, 0, 1, 0, \ldots)$, where the $k$-th entry is 1 and the rest are 0s.
+    Show that $\{e^{(k)}: k \geq 1\}$ is closed as a subset of $l_1$.
+\end{exercise}
+
+\begin{solution}
+    
+    Let $x = (x_1, x_2, \ldots)$ be any element of $S = \{e^{(k)}: k \geq 1\}$.
+    We will show that if, for every $\epsilon > 0$, it is the case that $B_{\epsilon}(x) \cap S \neq \emptyset$ (under $l_1$), then $x \in S$, which we know is one of the three equivalent ways of defining closed sets.
+    What this statement means is that for every $\epsilon > 0$, there must exist a sequence $y = (0, 0, \ldots, 1, 0, \ldots)$ with precisely one (say, the $i$-th) element equal to 1 and the rest equal to 0, and at the same time $\lvert \lvert (x_1, x_2, \ldots, x_i, \ldots) - (0, 0, \ldots, 1, 0, \ldots) \rvert \rvert_1 < \epsilon \implies \lvert \lvert (x_1, x_2, \ldots 1 - x_i, x_{i+1}, \ldots) \rvert \rvert_1 < \epsilon$.
+    Suppose then that $x \notin S$.
+    One possibility is that $x$ has at least two non-zero elements, $x_j, x_k$.
+    Notice then that no matter the position of $i$, it holds that $\lvert \lvert (x_1, x_2, \ldots 1 - x_i, x_{i+1}, \ldots) \rvert \rvert_1 \geq \min\{\lvert x_j \rvert, \lvert x_k \rvert\}$: indeed, $y$ can at most zero out one of the two non-zero elements of $x$. 
+    But this means that for sufficiently small $\epsilon$ the statement above will not hold, a contradiction.
+    Therefore $x$ has at most one non-zero element.
+    If $x$ is the zero sequence, it is clear that the LHS above will always have a norm of 1, and thus we again arrive at a contradiction.
+    The only possibility is thus that $x = (0, \ldots, a, 0, \ldots), a \neq 0$.
+    Suppose that $a \neq 1$, and observe that for $\epsilon < 1$ it must be the case that the $y$ we seek has $y_i = 1$, otherwise $\lvert \lvert (0, \ldots, 1, \ldots, a, \ldots) \rvert \rvert_1 \geq 1$.
+    Therefore, it must be the case that $\lvert \lvert (0, \ldots 1 - a, 0, \ldots) \rvert \rvert_1 < \epsilon$ for all $\epsilon < 1$, which enforces $\lvert 1 -a \rvert < \epsilon$, and of course this can only be true for $a = 1$, thus showing that $x \in S$.
 \end{solution}
