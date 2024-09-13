@@ -149,6 +149,21 @@
     This concludes the proof.
 \end{solution}
 
+\begin{exercise}{10}
+    Given $y = (y_n) \in H^{\infty}, N \in \mathbb{N}, \epsilon > 0$, show that $\{x = (x_n) \in H^{\infty}: \lvert x_k - y_k \rvert < \epsilon, k =1, \ldots, N\}$ is open in $H^{\infty}$ (see Exercise 3.10).
+\end{exercise}
+
+\begin{solution}
+    
+    Let $S = \{x = (x_n) \in H^{\infty}: \lvert x_k - y_k \rvert < \epsilon, k =1, \ldots, N\}$, and suppose $x \in S$.
+    We need to find an appropriate $\epsilon' > 0$ such that $B_{\epsilon'}^{d}(x) \subset S$.
+    As a reminder from exercise 3.10, the metric that is used in the Hilbert cube $H^{\infty}$ is $d(x, y) = \sum_{n=1}^{\infty}  2^{-n}\lvert x_n - y_n \rvert$.
+    Pick $\epsilon' = \frac{\epsilon}{2}$.
+    Then the corresponding ball around $x$ is:
+
+    $$B_{\epsilon'}^{d}(x) = \{z \in H^{\infty}: \sum_{n=1}^{\infty} 2^{-n}\lvert z_n - x_n \rvert < \epsilon/2\}$$
+\end{solution}
+
 \begin{exercise}{11}
     Let $e^{(k)} = (0, \ldots, 0, 1, 0, \ldots)$, where the $k$-th entry is 1 and the rest are 0s.
     Show that $\{e^{(k)}: k \geq 1\}$ is closed as a subset of $l_1$.
