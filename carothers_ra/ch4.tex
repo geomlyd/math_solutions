@@ -156,12 +156,29 @@
 \begin{solution}
     
     Let $S = \{x = (x_n) \in H^{\infty}: \lvert x_k - y_k \rvert < \epsilon, k =1, \ldots, N\}$, and suppose $x \in S$.
-    We need to find an appropriate $\epsilon' > 0$ such that $B_{\epsilon'}^{d}(x) \subset S$.
-    As a reminder from exercise 3.10, the metric that is used in the Hilbert cube $H^{\infty}$ is $d(x, y) = \sum_{n=1}^{\infty}  2^{-n}\lvert x_n - y_n \rvert$.
-    Pick $\epsilon' = \frac{\epsilon}{2}$.
-    Then the corresponding ball around $x$ is:
+    Suppose also, by way of contradiction, that there exists a sequence $z^{(k)} \rightarrow x$ with an infinite number of its elements not in $S$.
+    This means that there must exist infinite $k$ such that $\lvert z^{(k)}_n - y_n \rvert \geq \epsilon$ for at least one $n = 1, 2, \ldots, N$.
+    We first make the observation that $z^{(k)} \rightarrow x$ implies coordinate-wise convergence for each $n$, in other words that $z^{(k)} \rightarrow x_n$ for all n.
+    Indeed, given a particular $n$, pick any $\epsilon > 0$ and set $\epsilon' = 2^{-n} \epsilon$.
+    Then there must exist $K > 0$ such that for $k \geq K$ (recall the metric for $H^{\infty}$ from exercise 3.10):
 
-    $$B_{\epsilon'}^{d}(x) = \{z \in H^{\infty}: \sum_{n=1}^{\infty} 2^{-n}\lvert z_n - x_n \rvert < \epsilon/2\}$$
+    $$d(z^{(k)}, x) < \epsilon' \implies \sum_{m=1}^{\infty} 2^{-m} \lvert z^{(k)}_m - x_m \rvert < \epsilon'$$
+
+    But then it is the case that $2^{-n} \lvert z^{(k)}_n - x_n \rvert < 2^{-n}\epsilon \implies \lvert z^{(k)}_n - x_n \rvert < \epsilon$ for all $k \geq K$, which is the definition of convergence for the $n$-th coordinate.
+    Now pick an arbitrary $n$, and consider the following:
+
+    $$\lvert z_n^{(k)} - y_n \rvert \leq \lvert z_n^{(k)} - x_n \rvert + \lvert x_n - y_n \rvert $$
+
+    The second term here is independent of $z$, so let it equal $c_n < \epsilon$ (by the definition of $S$).
+    Set $\epsilon_n = \epsilon - c_n > 0$, and notice that there must exist $K > 0$ such that for $k \geq K, \lvert z_n^{k} - x_n \rvert < \epsilon_n$.
+    Then:
+
+    $$\lvert z_n^{(k)} - y_n \rvert < \epsilon_n + c_n = \epsilon - c_n + c_n = \epsilon$$
+
+    The implication here is that after some $K$, this $n$ can no longer ``play the part'' of keeping $z^{(k)} \notin S$ by satisfying $\lvert z_n^{(k)} - y_n \rvert \geq \epsilon$.
+    This is true for any $n = 1, 2, \ldots, N$, so we can find a maximum such $K$ such that for $k \geq K$ the above holds for \textit{all} $n$.
+    However, the existence of infinite $k$ such that $z^{(k)} \notin S$ directly contradicts this, and thus $S$ must indeed be open.
+
 \end{solution}
 
 \begin{exercise}{11}
@@ -183,4 +200,24 @@
     The only possibility is thus that $x = (0, \ldots, a, 0, \ldots), a \neq 0$.
     Suppose that $a \neq 1$, and observe that for $\epsilon < 1$ it must be the case that the $y$ we seek has $y_i = 1$, otherwise $\lvert \lvert (0, \ldots, 1, \ldots, a, \ldots) \rvert \rvert_1 \geq 1$.
     Therefore, it must be the case that $\lvert \lvert (0, \ldots 1 - a, 0, \ldots) \rvert \rvert_1 < \epsilon$ for all $\epsilon < 1$, which enforces $\lvert 1 -a \rvert < \epsilon$, and of course this can only be true for $a = 1$, thus showing that $x \in S$.
+\end{solution}
+
+\begin{exercise}{13}
+    Show that $c_0$ is a closed subset of $l_{\infty}$.
+    [Hint: If $(x^{(n)})$ is a sequence of sequences in $c_0$ converging to $x \in l_{\infty}$, note that $\lvert x_k \rvert \leq \lvert x_k - x_k^{(n)} \rvert + \lvert x_k^{(n)} \rvert$ and now choose $n$ so that $\lvert x_k - x_k^{(n)} \rvert$ is small \textit{independent} of $k$.]
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose that $(x^{(n)}) \in c_0$ is a sequence of sequences converging to $x$.
+    We need to show that $x \in c_0$, in other words that $x_k \rightarrow 0$.
+    We follow the hint by observing that, for any given term $x^{(n)}$ of the sequence of sequences, via the triangle inequality we have that:
+
+    $$\lvert x_k \rvert = \lvert x_k - x_{k}^{(n)} + x_{k}^{(n)} \rvert \leq \lvert x_k - x_k^{(n)} \rvert + \lvert x_k^{(n)} \rvert$$
+
+    Pick any $\epsilon > 0$.
+    Because $x^{(n)} \rightarrow x$, there exists $N > 0$ such that for $n \geq N$ we have that $d_{\infty}(x^{(n)}, x) < \epsilon \implies \sup_{k} \lvert x_k^{(n)} - x_k \rvert < \epsilon/2$.
+    This guarantees that $\lvert x_k^{(n)} - x_k \rvert < \epsilon/2$ for \textit{any} $k$.
+    In addition, we know that for any $n, x^{(n)} \in c_0 \implies x_k^{n} \rightarrow 0$, and so there must exist $K \geq 0$ such that $\lvert x_k^{n} \rvert < \epsilon/2$ for $k \geq K$.
+    By using any $n \geq N$ in the inequality stated above, we see that for $k \geq K$ we have that $\lvert x_k \rvert < \epsilon$, which means that $x \rightarrow 0$, and thus that $x \in c_0$.
 \end{solution}
