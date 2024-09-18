@@ -221,3 +221,50 @@
     In addition, we know that for any $n, x^{(n)} \in c_0 \implies x_k^{n} \rightarrow 0$, and so there must exist $K \geq 0$ such that $\lvert x_k^{n} \rvert < \epsilon/2$ for $k \geq K$.
     By using any $n \geq N$ in the inequality stated above, we see that for $k \geq K$ we have that $\lvert x_k \rvert < \epsilon$, which means that $x \rightarrow 0$, and thus that $x \in c_0$.
 \end{solution}
+
+\begin{exercise}{17}
+    Show that $A$ is open if and only if $A^{\circ} = A$ and that $A$ is closed if and only if $\overline{A} = A$.
+\end{exercise}
+
+\begin{solution}
+    
+    We begin with the first statement.
+    Note that it always holds that $A^{\circ} \subset A$, so in both directions of the equivalence we'll only need to show or assume that $A \subset A^{\circ}$.
+    
+    $\implies$: Suppose $A$ is open and pick any $x \in A$.
+    We need to show that $x \in A^{\circ} = \cup \{B_{\epsilon}(y) \subset A, \text{ for some } y \in A, \epsilon > 0\}$.
+    Because $A$ is open, there exists some $\epsilon > 0$ such that $B_{\epsilon}(x) \subset A$.
+    This clearly implies that $B_{\epsilon}(x)$ is included in the union that forms $A^{\circ}$, and so $x \in A^{\circ}$, which means $A \subset A^{\circ}$.
+
+    $\impliedby$: Suppose now that $A \subset A^{\circ}$, and pick any $x \in A$.
+    To show that $A$ is open, we need to find $\epsilon > 0$ such that $B_{\epsilon}(x) \subset A$.
+    By our assumption, it must be the case that there exist $y \in A, \rho > 0$ such that $x \in B_{\rho}(y) \subset A$.
+    In other words, it is the case that $d(x, y) < \rho$.
+    Set $\epsilon = \rho - d(x, y)$, and consider the ball $B_{\epsilon}(x)$.
+    For any $z$ in this ball, we have that:
+
+    $$d(z, x) < \epsilon \implies d(z, x) < \rho - d(x, y) \implies d(x, y) + (z, x) < \rho \implies d(y, z) < \rho,$$
+
+    where we used the triangle inequality in the last step.
+    Thus $z \in B_{\rho}(y) \subset A$, which means $B_{\epsilon}(x) \subset A$, and so we've shown that $A$ is indeed open.
+    Now, for the second statement we have that $A \subset \overline{A}$, so we'll only need to show or assume that $\overline{A} \subset A$:
+
+    $\implies$: Suppose $A$ is closed, and pick any $x \in \overline{A}$.
+    Then, for every $\epsilon > 0$ we have that $B_{\epsilon}(x) \cap A \neq \emptyset$.
+    Because $A$ is closed, recall that this must imply that $x \in A$.
+
+    $\impliedby$: Conversely, assume $\overline{A} \subset A$, and pick any $x$ such that for every $\epsilon > 0, B_{\epsilon}(x) \cap A \neq \emptyset$.
+    If we can show that this implies $x \in A$, we will have shown that $A$ is closed.
+    By the definition of the closure, we have that it implies that $x \in \overline{A}$, and by our assumption also that $x \in A$, thus completing the proof that $A$ is closed.
+
+\end{solution}
+
+\begin{exercise}{18}
+    Given a nonempty bounded subset $E$ of $\mathbb{R}$, show that $\sup E, \inf E$ are elements of $\overline{E}$.
+    Thus $\sup E, \inf E$ are elements of $E$ whenever $E$ is closed.
+\end{exercise}
+
+\begin{solution}
+    
+    
+\end{solution}
