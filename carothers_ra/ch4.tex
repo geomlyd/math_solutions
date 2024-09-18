@@ -266,5 +266,20 @@
 
 \begin{solution}
     
+    Recall from exercise 3 of Chapter 1 that for every $\epsilon > 0$, there exists $a \in E$ such that $a > \sup E - \epsilon$ and $b \in E$ such that $b < \inf E + \epsilon$.
+    But then observe that in $\mathbb{R}$, $B_{\epsilon}(\sup E) = \{x \in \mathbb{R}: \lvert x - \sup E \rvert < \epsilon\}$, and the same holds for the infimum, which by the above means that $B_{\epsilon}(\sup E) \cap E \neq \emptyset, B_{\epsilon}(\inf E) \cap E \neq \emptyset$ since these intersections include $a, b$ respectively.
+    Since this holds for any $\epsilon > 0$, it must be the case that $\sup E, \inf E \in \overline{E}$.
+    By exercise 17, we have that $\overline{E} = E$ whenever $E$ is closed, and thus in this case it also holds that $\sup E, \inf E$ are elements of $E$.
+\end{solution}
+
+\begin{exercise}{19}
+    Show that $\text{diam}(A) = \text{diam}(\overline{A})$.
+\end{exercise}
+
+\begin{solution}
+    
+    By definition, we have that $\text{diam}(A) = \sup \{d(a, b), a, b \in A\}, \text{diam}(\overline{A}) = \sup \{d(a, b), a, b \in \overline{A} \}$.
+    Notice that because $A \subset \overline{A}$, it must be the case that $\text{diam}(A) \leq \text{diam}(\overline{A})$.
+    Suppose then that the inequality is strict, in which case it must hold that for at least two $a, b \in \overline{A}, d(a, b) > \text{diam}(A)$.
     
 \end{solution}
