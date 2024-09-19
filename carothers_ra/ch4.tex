@@ -281,5 +281,59 @@
     By definition, we have that $\text{diam}(A) = \sup \{d(a, b), a, b \in A\}, \text{diam}(\overline{A}) = \sup \{d(a, b), a, b \in \overline{A} \}$.
     Notice that because $A \subset \overline{A}$, it must be the case that $\text{diam}(A) \leq \text{diam}(\overline{A})$.
     Suppose then that the inequality is strict, in which case it must hold that for at least two $a, b \in \overline{A}, d(a, b) > \text{diam}(A)$.
+    By the definition of the closure, there must exist sequences $(x_n), (y_n) \subset A$ such that $x_n \rightarrow a, y_n \rightarrow b$.
+    Then, by exercise 34 of 3.4 we know that $d(x_, y_n) \rightarrow d(a, b)$.
+    Thus, for any given $\epsilon > 0$, there exists $N > 0$ such that for $n \geq N, \lvert d(x_n, y_n) - d(a, b) \rvert < \epsilon \implies d(x_n, y_n) > d(a, b) - \epsilon$.
+    But, because $d(a, b)$ is an upper bound for $\{d(x, y), x, y \in \} (A \subset \overline{A})$ again by exercise 3, Chapter 1), this means precisely that $\sup \{d(x_n, y_n), n = 1, 2, \ldots\} = d(a, b)$ and thus $\text{diam}(A) \geq d(a, b) = \text{diam}(\overline{A})$, which is a contradiction.
     
+\end{solution}
+
+\begin{exercise}{33}
+    Let $A$ be a subset of $M$.
+    A point $x \in M$ is called a \textbf{limit point} of $A$ if every neighborhood of $x$ contains a point of $A$ that is different from $x$ itself, that is, if $(B_{\epsilon}(x) \setminus \{x\}) \cap A \neq \emptyset$ for every $\epsilon > 0$.
+    If $x$ is a limit point of $A$, show that every neighborhood of $x$ contains infinitely many points of $A$.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose that this is not true, i.e. that $x$ is a limit point of $A$ and a neighborhood $S$ of $x$ contains only finitely many points of $A$.
+    Call these $x_1, x_2, \ldots x_n$ and define $\epsilon = \min\{d(x_1, x), d(x_2, x), \ldots, d(x_n, x)\}$.
+    Then consider the ball $B_{\epsilon}(x) \subset S$: it becomes clear that no point of $A$ in $S$, except for $x$, is inside this ball.
+    But this contradicts the definition of limit point as given in the exercise, and thus every neighborhood of $x$ must contain infinitely many points of $A$.
+\end{solution}
+
+\begin{exercise}{34}
+    Show that $x$ is a limit point of $A$ if and only if there is a sequence $x(x_n)$ in $A$ such that $x_n \rightarrow x$ and $x_n \neq x$ for all $n$.
+\end{exercise}
+
+\begin{solution}
+    
+    $\implies$: If $x$ is a limit point of $A$, for any given $\epsilon > 0$, find $x_n \in A, x_n \neq x$ such that $x_n \in B_{\epsilon}(x)$.
+    Constructing a sequence of such $x_n$ by taking successive $\epsilon_n = 1/n, n = 1, 2, \ldots$ yields the desired result: $x_n \rightarrow x, x_n \neq x$ for all $n$.
+
+    $\impliedby$: Now suppose that there exists a sequence $(x_n)$ in $A$ with $x_n \rightarrow x, x_n \neq x$. 
+    Then for any given $\epsilon > 0$, we can find $N > 0$ such that for $n \geq N, d(x_n, x) < \epsilon$, which means that the ball $B_{\epsilon}(x)$ contains a point (in fact, infinitely many) of $A$ that does not equal $x$ (since $x_n \neq x$ for all $n$).
+\end{solution}
+
+\begin{exercise}{40}
+    If $x \in A$ and $x$ is \textit{not} a limit point of $A$, then $x$ is called an \textbf{isolated point} of $A$.
+    Show that a point $x \in A$ is an isolated point of $A$ if and only if $(B_{\epsilon}(x) \setminus \{x\}) \cap A = \emptyset$ for some $\epsilon > 0$.
+    Prove that a subset of $\mathbb{R}$ can have at most countably many isolated points, thus showing that every uncountable subset of $\mathbb{R}$ has a limit point.
+\end{exercise}
+
+\begin{solution}
+
+    The first part of the exercise arises simply by negating the definition of limit point in exercise 33.
+    For the second part, suppose $S$ is a subset of $\mathbb{R}$, and consider any isolated point $x \in S$.
+    By definition, there must exist $\epsilon > 0$ such that $x$ is the \textit{only} point of $S$ in the open interval (ball) $(x - \epsilon, x + \epsilon)$.
+    We now claim that these $\epsilon$, which depend on $x$, can be made sufficiently small so that the corresponding $(x - \epsilon_x, x + \epsilon_x), (y - \epsilon_y, y + \epsilon_y)$ are always disjoint for two different isolated points $x, y$.
+
+    To prove this, we furthermore claim that each limit point $x$ has a well-defined \textit{nearest} limit point $y$, except if $x$ is the only limit point, in which the result is trivial.
+    Consider the set $\{ \lvert x - z \rvert, z \text{ a limit point of } S, z \neq x\}$, which must be lower bound by $\epsilon_x$.
+    By way of contradiction, assume the set has no minimum element.
+    Then there exist $z_n$ that form a sequence such that $\lvert x - z_n \rvert$ is both bounded and strictly decreasing, which means that it converges to $\epsilon' \geq \epsilon_x$, and thus that $z_n$ converge to either $x + \epsilon'$ or $x - \epsilon'$.
+    If $(z_n)$ features terms both less than $x$ and greater than $x$, simply select an appropriate subsequence that only features one of these kinds, and call $e$ the corresponding point $x + \epsilon'$ or $x - \epsilon'$.
+    But then a particular $z_n$ such that $\lvert z_n - e \rvert < \epsilon$ for some $\epsilon > 0$ dictates that there exist no points of $S$ closer than $\epsilon$ to $z_n$
+
+    By exercise 15 of Chapter 2, any collection of such intervals must be at most countable, and so due to the existence of the abovementioned invertible mapping between isolated points of $S$ and disjoint nonempty open intervals, isolated points must also be at most countable.
 \end{solution}
