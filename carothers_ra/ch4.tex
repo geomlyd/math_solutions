@@ -337,3 +337,55 @@
 
     By exercise 15 of Chapter 2, any collection of such intervals must be at most countable, and so due to the existence of the abovementioned invertible mapping between isolated points of $S$ and disjoint nonempty open intervals, isolated points must also be at most countable.
 \end{solution}
+
+\begin{exercise}{41}
+    Related to the notion of limit points and isolated points are boundary points.
+    A point $x \in M$ is said to be a \textbf{boundary point} of $A$ if each neighborhood of $x$ hits both $A$ and $A^c$.
+    In symbols, $x$ is a boundary point of $A$ if and only if $B_{\epsilon}(x) \cap A \neq \emptyset$ and $B_{\epsilon}(x) \cap A^c \neq \emptyset$ for every $\epsilon > 0$.
+    Verify each of the following formulas, where $\partial A$ denotes the set of boundary points of $A$:
+
+    (a) $\partial A = \partial A^c$
+
+    (b) $\overline{{A}} = \partial A \cup A^{\circ}$
+
+    (c) $M = A^\circ \cup \partial A \cup ({A^{c}})^{\circ}$
+
+    Notice that the first and last equations tell us that each set $A$ partitions $M$ into three regions: the points ``well inside'' $A$, the points ``well outside'' $A$, and the points on the common boundary of $A, A^{c}$.
+\end{exercise}
+
+\begin{solution}
+    
+    (a) Suppose first that $x \in \partial A$.
+    Then for every $\epsilon > 0$, it holds that $B_{\epsilon}(x) \cap A \neq \emptyset \implies B_{\epsilon}(x) \cap (A^c)^c \neq \empty set$ and also that $B_{\epsilon}(x) \cap A^c \neq \emptyset$.
+    But this means of course that $x \in \partial A^c$, and thus that $\partial A \subset \partial A^c$.
+    Exchanging the roles of $A, A^c$ yields the inclusion in the other direction as well.
+
+    (b) Now suppose $x \in \overline{A}$.
+    Then for every $\epsilon > 0$, the ball $B_{\epsilon}(x)$ has a non-empty intersection with $A$.
+    In the case where, for some such $\epsilon, B_{\epsilon}(x) \subset A$, by definition of the interior it holds that $x \in A^\circ$.
+    In the case where for \textit{every} $\epsilon, B_{\epsilon}(x) \cap A^c \neq \emptyset$, we conclude that $x \in \partial A$.
+    Therefore $x \in \partial A \cup A^\circ$.
+    Conversely, assume $x \in \partial A \cup A^\circ$.
+    If $x \in \partial A$, then more specifically every ball $B_{\epsilon}(x)$ intersects $A$, and thus $x \in \overline{A}$ by definition.
+    If $x \in A^\circ$, then it is trivially true that $x \in A \subset \overline{A}$, thus proving that $\partial A \cup A^\circ \subset \overline{A}$.
+
+    (c) We begin by observing that $M = A^\circ \cup (A^\circ)^c = A^\circ \cup \overline{A^c}$, where we made use of exercise 24, observing that $A^\circ = (\overline{A^c})^c$ and taking the complement of both sides.
+    Now by part (b), $\overline{A^c} = \partial A^c \cup (A^c)^\circ$, and by part (a), $\partial A = \partial A^c$, so $M = A^\circ \cup \partial A \cup (A^c)^\circ$.
+\end{solution}
+
+\begin{exercise}{42}
+    If $E$ is a nonempty bounded subset of $\mathbb{R}$, show that both $\sup E, \inf $ are both boundary points of $E$.
+    Hence, if $E$ is also closed, then $\sup E, \inf E$ are elements of $E$.
+\end{exercise}
+
+\begin{solution}
+    
+    By exercise 18, we already know that $\sup E, \inf E \in \overline{E}$.
+    By exercise 40, we thus know that $\sup E, \inf E \in \partial E \cup E^\circ$.
+    Suppose $\sup E \in E^\circ$.
+    Then there exists $\epsilon > 0$ such that $B_{\epsilon}(\sup E) \subset E \implies \{x \in \mathbb{R}: \lvert x - \sup E \rvert < \epsilon\} \subset E$.
+    But then it holds that $x = \sup E + \epsilon/2 \in B_{\epsilon}(\sup E) \subset E$, which contradicts the definition of the supremum, since $x > \sup E$.
+    Then it must necessarily hold that $x \in \partial E$.
+    The proof for the infimum is symmetrical.
+    Notice that the second part of the exercise follows immediately from exercise 18.
+\end{solution}
