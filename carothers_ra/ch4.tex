@@ -419,3 +419,22 @@
 
     (d) $A^c$ has empty interior.
 \end{exercise}
+
+\begin{solution}
+    
+    Suppose first that $(A^c)^\circ = \emptyset$.
+    Then from exercise 41 we have that $M = A^\circ \cup \partial A \cup (A^c)^\circ, \overline{A} = A^\circ \cup \partial A$, and so we conclude that $M = \overline{A}$.
+    Conversely, suppose $(A^c)^\circ = \emptyset$, in which case by the exact same properties as above, $M = \overline{A} \cup (A^c)^\circ \implies M = \overline{A}$, which means that $A$ is indeed dense, and that we are finished with condition (d).
+
+    For (a) recall Corollary 4.11: $x \in \overline{A}$ iff $x_n \rightarrow x$ for some sequence $(x_n) \subset A$, i.e. $\overline{A}$ is precisely the set of limits of sequences in $A$, and so condition (a) immediately reduces to the definition of $A$ being dense.
+    
+    For (b), observe first that if $\overline{A} = M$, then by the definition of the closure, for every $x \in A$ and every $\epsilon > 0$ it must be the case that $B_{\epsilon}(x) \cap A \neq \emptyset$.
+    Conversely, if (b) holds then every point $x \in M$ fulfills the defining property of $\overline{A}$, and so $M \subset \overline{A}$, which of course means $\overline{A} = M$.
+
+    For (c) we'll make use of the equivalence of (d) to $A$ being dense.
+    Namely, assume first that (d) does not hold, i.e. that there exists $x \in (A^c)^\circ$, which means that for some $\epsilon > 0, B_{\epsilon}(x) \subset A^c$, and so $B_{\epsilon}(x) \cap A = \emptyset$.
+    But this ball is then an open set that renders (c) false, which means we've shown that $\neg (d) \implies \neg (c)$, or, equivalently, that $(c) \implies (d)$.
+    Conversely, if (c) does not hold, then there exists a nonempty open set $U$ such that $U \cap A = \emptyset$, which means $U \subset A^c$.
+    Then, by the definition of the interior, it must be the case that $U \subset (A^c)^\circ$, and therefore that $A^c$ does \textit{not} have an empty interior.
+    This means that (d) does not hold, i.e. we've shown that $ \neg (c) \implies \neg (d)$, which is equivalent to $(d) \implies (c)$, which completes the proof that (c), (d) are equivalent, and therefore that (c) is also equivalent to $M$ being dense.
+\end{solution}
