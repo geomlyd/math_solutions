@@ -326,14 +326,47 @@
     The first part of the exercise arises simply by negating the definition of limit point in exercise 33.
     For the second part, suppose $S$ is a subset of $\mathbb{R}$, and consider any isolated point $x \in S$.
     By definition, there must exist $\epsilon > 0$ such that $x$ is the \textit{only} point of $S$ in the open interval (ball) $(x - \epsilon, x + \epsilon)$.
-    We now claim that these $\epsilon$, which depend on $x$, can be made sufficiently small so that the corresponding $(x - \epsilon_x, x + \epsilon_x), (y - \epsilon_y, y + \epsilon_y)$ are always disjoint for two different isolated points $x, y$.
 
-    To prove this, we furthermore claim that each limit point $x$ has a well-defined \textit{nearest} limit point $y$, except if $x$ is the only limit point, in which the result is trivial.
-    Consider the set $\{ \lvert x - z \rvert, z \text{ a limit point of } S, z \neq x\}$, which must be lower bound by $\epsilon_x$.
-    By way of contradiction, assume the set has no minimum element.
-    Then there exist $z_n$ that form a sequence such that $\lvert x - z_n \rvert$ is both bounded and strictly decreasing, which means that it converges to $\epsilon' \geq \epsilon_x$, and thus that $z_n$ converge to either $x + \epsilon'$ or $x - \epsilon'$.
-    If $(z_n)$ features terms both less than $x$ and greater than $x$, simply select an appropriate subsequence that only features one of these kinds, and call $e$ the corresponding point $x + \epsilon'$ or $x - \epsilon'$.
-    But then a particular $z_n$ such that $\lvert z_n - e \rvert < \epsilon$ for some $\epsilon > 0$ dictates that there exist no points of $S$ closer than $\epsilon$ to $z_n$
+\end{solution}
 
-    By exercise 15 of Chapter 2, any collection of such intervals must be at most countable, and so due to the existence of the abovementioned invertible mapping between isolated points of $S$ and disjoint nonempty open intervals, isolated points must also be at most countable.
+\begin{exercise}{43}
+    Show that $\partial A$ is always a closed set; in fact, $\partial A = \overline{A} \setminus A^\circ$.
+\end{exercise}
+
+\begin{solution}
+
+    Pick any $x \in M$ and any $\epsilon > 0$.
+    We will show that if it always holds that $B_{\epsilon}(x) \cap \partial A \neq \emptyset$ , then $x \in \partial $A, which is one of the definitions of $\partial A$ being a closed set.
+    By using $\epsilon' = \epsilon/2$ in our hypothesis, there exists $y \in \partial A$ such that $d(x, y) < \epsilon/2$.
+    It then holds that $B_{\epsilon/2}(y) \cap A \neq \emptyset, B_{\epsilon/2}(y) \cap A^c \neq \emptyset$, by definition of the boundary.
+    Therefore there must exist $z_1 \in A$ with $d(z_1, y) < \epsilon/2$ and $z_2 \in A^c$ with $d(z_2, y) < \epsilon/2$.
+    Then:
+
+    $$d(x, z_1) \leq d(x, y) + d(y, z_2) < \epsilon, d(x, z_2) \leq d(x, y) + d(y, z_2) < \epsilon$$
+
+    This means that $B_{\epsilon}(x) \cap A \neq \emptyset, B_{\epsilon}(x) \cap A^c \neq \emptyset$, since $z_1, z_2$ belong in these two intersections respectively.
+    Because this holds for any $\epsilon > 0, x$ satisfies the defining property of $\partial A$, and as such $x \in \partial A$, which means that $\partial A$ is closed.
+    Now recall from exercise 41 that $\overline{A} = \partial A \cup A^\circ$, and notice that the two sets on the RHS must always be disjoint: if $x \in \partial A$, then the intersection $B_{\epsilon}(x) \cap A^c$ is always non-empty, which means that there can be no $\epsilon > 0$ such that $B_{\epsilon}(c) \subset A$, and thus $x \notin A^\circ$.
+    Therefore, we can safely conclude that $\partial A = \overline{A} \setminus A^\circ$.
+\end{solution}
+
+\begin{exercise}{46}
+    A set $A$ is said to be \textbf{dense} in $M$ (or, as some authors say, \textit{everywhere dense}) if $\overline{A} = M$.
+    For example, both $\mathbb{Q}, \mathbb{R} \setminus Q$ are dense in $\mathbb{R}$.
+    Show that $A$ is dense in $M$ if and only if any of the following hold:
+
+    (a) Every point in $M$ is the limit of a sequence from $A$.
+
+    (b) $B_{\epsilon}(x) \cap A \neq \emptyset$ for every $x \in M$ and every $\epsilon > 0$.
+
+    (c) $U \cap A \neq \emptyset$ for every nonempty open set $U$.
+
+    (d) $A^c$ has empty interior.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose (d) holds.
+    Recall from exercise 41 that $M = A^\circ \cup \partial A \cup (A^c)^\circ$, and so in this case it must hold that $M = A^\circ \cup \partial A$.
+    But, also from exercise 41, $\overline{A} = A^\circ \cup \partial A$, which shows that $M = \overline{A}$, i.e. that $A$ is dense in $M$.
 \end{solution}
