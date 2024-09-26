@@ -438,3 +438,17 @@
     Then, by the definition of the interior, it must be the case that $U \subset (A^c)^\circ$, and therefore that $A^c$ does \textit{not} have an empty interior.
     This means that (d) does not hold, i.e. we've shown that $ \neg (c) \implies \neg (d)$, which is equivalent to $(d) \implies (c)$, which completes the proof that (c), (d) are equivalent, and therefore that (c) is also equivalent to $M$ being dense.
 \end{solution}
+
+\begin{exercise}{48}
+    A metric space is called \textbf{separable} if it contains a countable dense subset.
+    Find examples of countable dense sets in $\mathbb{R}, \mathbb{R}^2, \mathbb{R}^n$.
+\end{exercise}
+
+\begin{solution}
+    
+    For $\mathbb{R}$, we know that $\mathbb{Q}$ is countable and that $\overline{Q} = \mathbb{R}$, so it's a countable dense set of $\mathbb{R}$.
+    For $\mathbb{R}^2$, consider the set $\mathbb{Q} \times \mathbb{Q}$: by exercise 3 of chapter 2, we have that this is a countable set.
+    Also, any element $(x, y) \in \mathbb{R}^2$ can be approximated coordinate-wise by two sequences $q_n \rightarrow x, q'_n \rightarrow y$ each of which is in $\mathbb{Q}$.
+    Then, exercise 46 of chapter 3 guarantees that $(q_n, q'_n) \rightarrow (x, y)$, and so we've shown condition (a) of exercise 46 above, which means that $\mathbb{Q} \times \mathbb{Q}$ is indeed dense and countable.
+    For $\mathbb{R}^n$, by a similar reasoning as above (extending ex. 46 to $n > 2$) we can use the $n$-times Cartesian product of $\mathbb{Q}$ as an example of a dense countable set.
+\end{solution}
