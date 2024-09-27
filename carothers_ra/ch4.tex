@@ -324,8 +324,22 @@
 \begin{solution}
 
     The first part of the exercise arises simply by negating the definition of limit point in exercise 33.
-    For the second part, suppose $S$ is a subset of $\mathbb{R}$, and consider any isolated point $x \in S$.
-    By definition, there must exist $\epsilon > 0$ such that $x$ is the \textit{only} point of $S$ in the open interval (ball) $(x - \epsilon, x + \epsilon)$.
+    For the second part, we note that if we can find a one-to-one mapping of isolated points of a subset $A \subset \mathbb{R}$ to the rational numbers, we will have shown that these are at most countable.
+    We describe a process by which such a mapping can be created.
+
+    Let $p_1$ be any isolated point of $A$, which means that there exists $\epsilon_1$ such that $(p_1 - \epsilon_1, p_1 + \epsilon_1)$ contains no other points of $A$.
+    We know that must always exist a rational $q_1 \in (p_1, p_1 + \epsilon_1)$.
+    If there exists an isolated point $p_2 > p_1$ such that its \textit{corresponding} $\epsilon_2$ is such that $q_1 \in (p_2 - \epsilon, p_2)$, we select a new rational $q_1' \in (p_1, q_1)$.
+    We claim that there can now be no isolated point $p_3 > p_1$ such that $q_1' \in (p_3 - \epsilon_3, p_3)$ (again, $\epsilon_3$ is such that it satisfies the definition of isolated point).
+    Indeed, if this was true, there would be two cases:
+    \begin{itemize}
+        \item $p_3 > p_2$: Observe that $p_2 > q_1' > p_3 - \epsilon_3$, which would mean $p_2 \in (p_3 - \epsilon_3, p_3)$, which contradicts the fact that $p_3$ is an isolated point with a corresponding $\epsilon_3$.
+        \item $p_3 < p_2$: Then it must necessarily be that $p_3 > q_1$, otherwise $p_3$ would contradict the definitionf of isolated point for $p_1$.
+        However, if this was the case we would have that $p_3 \in (p_2 - \epsilon_2, p_2)$, which contradicts the definition of isolated point for $p_2$.
+    \end{itemize}
+    Notice, also, that $q_1'$ cannot be in any $(p_3 - \epsilon_3, p_3 + \epsilon_3)$ for $p_3 < p_1$, because then $p_1$ would also be in this interval, a contradiction.
+    Therefore, the procedure that we describe will always match an interval of the form $(p_i - \epsilon_i, p_i + \epsilon_i)$ to a rational number that lies \textit{in no other} interval of the form $(p_j - \epsilon_j, p_j + \epsilon_j)$, and thus the mapping of isolated points to rationals must necessarily be injective, which completes the proof.
+
 
 \end{solution}
 
