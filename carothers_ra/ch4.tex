@@ -222,6 +222,30 @@
     By using any $n \geq N$ in the inequality stated above, we see that for $k \geq K$ we have that $\lvert x_k \rvert < \epsilon$, which means that $x \rightarrow 0$, and thus that $x \in c_0$.
 \end{solution}
 
+\begin{exercise}{15}
+    The set $A = \{y \in M : d(x, y) \leq r \}$ is sometimes called the \textit{closed ball} about $x$ of radius $r$.
+    Show that $A$ is a closed set, but give an example showing that $A$ need not equal the closure of the open ball $B_r(x)$.
+\end{exercise}
+
+\begin{solution}
+    
+    To show that $A$ is closed, pick any point $y$ and suppose that the ball $B_{\epsilon}(y)$ intersects $A$ for any $\epsilon > 0$.
+    We need to show that $y \in A$.
+    Indeed, if we assume $y \notin A$, then $d(x, y) > r$.
+    If we pick $\epsilon = d(x, y) - r > 0$, then there must exist $z \in B_{\epsilon}(y) \cap A$.
+    This means that $d(z, x) \leq r$.
+    Then:
+    
+    $$d(y, x) \leq d(y, z) + d(z, x) < \epsilon + d(x, z) = d(x, y) - r + d(x, z) \leq d(x, y) - r + r = d(x, y)$$
+
+    We have arrived at the contradiction $d(y, x) < d(x, y)$, and so $y \in A$, which means that $A$ is closed.
+
+    For the second part of the exercise, consider the discrete metric $d$.
+    Then for some $x \in M, B_1^d(x) = \{x\}$, and the closure of this open ball is also the set $\{x\}$: this contains precisely all the limit points of $\{x\}$.
+    However, the corresponding closed ball would be the set $\{y \in M : d(x, y) \leq 1 \} = M$, by definition of the discrete metric.
+    Clearly, the closure of the open ball around $x$ does not equal the closed ball around $x$.
+\end{solution}
+
 \begin{exercise}{17}
     Show that $A$ is open if and only if $A^{\circ} = A$ and that $A$ is closed if and only if $\overline{A} = A$.
 \end{exercise}
@@ -286,6 +310,37 @@
     Thus, for any given $\epsilon > 0$, there exists $N > 0$ such that for $n \geq N, \lvert d(x_n, y_n) - d(a, b) \rvert < \epsilon \implies d(x_n, y_n) > d(a, b) - \epsilon$.
     But, because $d(a, b)$ is an upper bound for $\{d(x, y), x, y \in \} (A \subset \overline{A})$ again by exercise 3, Chapter 1), this means precisely that $\sup \{d(x_n, y_n), n = 1, 2, \ldots\} = d(a, b)$ and thus $\text{diam}(A) \geq d(a, b) = \text{diam}(\overline{A})$, which is a contradiction.
     
+\end{solution}
+
+\begin{exercise}{20}
+    If $A \subset B$, show that $\overline{A} \subset \overline{B}$.
+    Does $\overline{A} \subset \overline{B}$ imply $A \subset B$?
+    Explain.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose $x \in \overline{A}$.
+    Then there exists a sequence $(x_n) \subset A$ such that $x_n \rightarrow x$.
+    Because $A \subset B$, it must also be the case that $(x_n) \subset B$.
+    Then, by the definition of the closure of a set, we have that the limit of $(x_n)$, i.e., $x$, must also belong in $\overline{B}$, thus showing that $\overline{A} \subset \overline{B}$.
+
+    The statement posed as a question is false.
+    We consider the following counterexample: $B = B_{1}(0) = (-1, 1), A = \{1\}$ in $\mathbb{R}$.
+    Here we easily obtain that $\overline{B} = [-1, 1]$ and $\overline{A} = \{1\}$, and so we have that $\overline{A} \subset \overline{B}$.
+    However, it clearly does not hold that $A \subset B$.
+\end{solution}
+
+\begin{exercise}{22}
+    True or false? $(A \cup B)^{\circ} = A^\circ \cup B^\circ$.
+\end{exercise}
+
+\begin{solution}
+
+    This is not, in general, true.
+    Set $A = (-1, 1], B = [1, 2)$, in which case $A \cup B = (-1, 2)$, and so $B^\circ = (-1, 2)$.
+    Additionally, $A^\circ = (-1, 1), B^\circ = (1, 2) \implies A^\circ \cup B^\circ = (-1, 1) \cup (1, 2)$.
+    Notice then that $1 \in (A \cup B)^\circ$ but $1 \notin A^\circ \cup B^\circ$, so the two sets cannot be equal.
 \end{solution}
 
 \begin{exercise}{33}
