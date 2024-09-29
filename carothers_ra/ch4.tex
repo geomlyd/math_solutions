@@ -343,6 +343,16 @@
     Notice then that $1 \in (A \cup B)^\circ$ but $1 \notin A^\circ \cup B^\circ$, so the two sets cannot be equal.
 \end{solution}
 
+\begin{exercise}{27}
+    Show that $\lvert d(x, A) - d(y, A) \rvert \leq d(x, y)$ and conclude that the map $x \rightarrow d(x, A)$ is continuous.
+    In the context of this problem, ``continuity'' refers to $x_n \rightarrow x \implies d(x_n, A) \rightarrow d(x, A)$.
+\end{exercise}
+
+\begin{solution}
+    
+    From exercise 26, we recall that $d(x, A) = \inf \{d(x, a), a \in A \}$.
+\end{solution}
+
 \begin{exercise}{33}
     Let $A$ be a subset of $M$.
     A point $x \in M$ is called a \textbf{limit point} of $A$ if every neighborhood of $x$ contains a point of $A$ that is different from $x$ itself, that is, if $(B_{\epsilon}(x) \setminus \{x\}) \cap A \neq \emptyset$ for every $\epsilon > 0$.
@@ -368,6 +378,25 @@
 
     $\impliedby$: Now suppose that there exists a sequence $(x_n)$ in $A$ with $x_n \rightarrow x, x_n \neq x$. 
     Then for any given $\epsilon > 0$, we can find $N > 0$ such that for $n \geq N, d(x_n, x) < \epsilon$, which means that the ball $B_{\epsilon}(x)$ contains a point (in fact, infinitely many) of $A$ that does not equal $x$ (since $x_n \neq x$ for all $n$).
+\end{solution}
+
+\begin{exercise}{36}
+    Suppose that $x_n \rightarrow x \in M$ under $d$, and let $A = \{x\} \cup \{x_n : n \geq 1\}$.
+    Prove that $A$ is closed.
+\end{exercise}
+
+\begin{solution}
+    
+    If we can show that for any given $y \in M$ for which $B_{\epsilon}(y) \cap A \neq \emptyset$ holds for all $\epsilon > 0$, it is the case that $y \in A$, we will have shown that $A$ is closed.
+    Pick a $y \in M$ that fulfills the stated condition.
+    If $y = x$ or $y = x_n$ for some $x_n$, it is of course true that $y \in A$.
+    If $y \neq x, y \neq x_n$ for all $n$, then for any given $\epsilon > 0$, we can find an element $z \in A$ such that $d(z, y) < \epsilon$.
+    It is easily seen that by choosing $\epsilon_n = 1/n$, eventually these $z$ must no longer equal $x$: the distance $d(x, y)$ is of course constant and cannot be smaller than all $\epsilon > 0$ if $y \neq x$.
+    Therefore, after some $N$, the $z$ corresponding to $\epsilon_n$ must be elements of the sequence $(x_n)$, and furthermore these elements cannot all originate from the first $K$ terms of $(x_n)$ for any $K$, since then we would be able to find a minimum distance $d(z_n, y)$.
+    We conclude that, by picking $z_n$ with appropriate increasing indices, we can then form a subsequence of $(x_n)$ that converges to $y \neq x$, which by the uniqueness of the limit is a contradiction.
+    Therefore $y$ is either equal to $x$ or some $x_n$ and $A$ is closed.
+    
+
 \end{solution}
 
 \begin{exercise}{40}
