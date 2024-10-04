@@ -351,6 +351,20 @@
 \begin{solution}
     
     From exercise 26, we recall that $d(x, A) = \inf \{d(x, a), a \in A \}$.
+    We begin by observing that for any given $a \in A$, it holds that:
+
+    $$d(x, A) \leq d(x, a) \leq d(x, y) + d(y, a) \implies d(x, A) - d(x, y) \leq d(y, a)$$
+
+    Since this holds for any $a \in A$, the quantity on the LHS constitutes a lower bound for $\{d(y, a), a \in A\}$.
+    By the definition of the infimum, it must then hold that $d(x, A) - d(x, y) \leq d(y, A) \implies d(x, A) - d(y, A) \leq d(x, y)$.
+    By exchanging the roles of $x, y$ above, we can arrive also at the inequality $d(y, A) - d(x, y) \leq d(x, a)$ for any $a \in A$, which leads to $d(y, A) - d(x, y) \leq d(x, A) \implies d(y, A) - d(x, A) \leq d(x, y)$.
+    Putting these two together we obtain that $\lvert d(x, A) - d(y, A) \rvert \leq d(x, y)$.
+    For the second part of the exercise, suppose that $x_n \rightarrow x$ under $d$, that is, that for any $\epsilon > 0$ there exists $N > 0$ such that $d(x_n, x) < \epsilon, n \geq N$.
+    By using the inequality we just proved, we have that:
+
+    $$\lvert d(x_n, A) - d(x, A) \rvert \leq d(x_n, x) < \epsilon,$$
+
+    and so we can indeed safely conclude that $d(x_n, A) \rightarrow d(x, A)$, which is the definition of continuity we use here.
 \end{solution}
 
 \begin{exercise}{33}
