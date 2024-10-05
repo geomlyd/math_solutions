@@ -338,7 +338,7 @@
 \begin{solution}
 
     This is not, in general, true.
-    Set $A = (-1, 1], B = [1, 2)$, in which case $A \cup B = (-1, 2)$, and so $B^\circ = (-1, 2)$.
+    Set $A = (-1, 1], B = [1, 2)$, in which case $A \cup B = (-1, 2)$, and so $(A \cup B)^\circ = (-1, 2)$.
     Additionally, $A^\circ = (-1, 1), B^\circ = (1, 2) \implies A^\circ \cup B^\circ = (-1, 1) \cup (1, 2)$.
     Notice then that $1 \in (A \cup B)^\circ$ but $1 \notin A^\circ \cup B^\circ$, so the two sets cannot be equal.
 \end{solution}
@@ -365,6 +365,27 @@
     $$\lvert d(x_n, A) - d(x, A) \rvert \leq d(x_n, x) < \epsilon,$$
 
     and so we can indeed safely conclude that $d(x_n, A) \rightarrow d(x, A)$, which is the definition of continuity we use here.
+\end{solution}
+
+\begin{exercise}{29}
+    Show that every closed set in $M$ is the intersection of countably many open sets and that every open set in $M$ is the union of countably many closed sets.
+    [Hint: What is $\cap_{n=1}^{\infty} \{x \in M : d(x, A) < 1/n\}$?]
+\end{exercise}
+
+\begin{solution}
+    
+    We begin by following the hint and setting $S = \cap_{n=1}^{\infty} \{x \in M : d(x, A) < 1/n\}$, where $A$ is a closed set.
+    By exercise 28, we know that each of the sets comprising the infinite intersection is open.
+    It suffices therefore to show that $A = S$.
+    First, let $y \in A$.
+    Then, it of course holds that $d(y, A) < 1/n$ for every $n > 0$, and so $y \in S$.
+    Therefore, $A \subset S$.
+    In the other direction, suppose $y \in S$.
+    It must then be the case that $d(y, A) < 1/n$ for every $n > 0$.
+    The only way this can hold is if $d(y, A) = 0$, which by exercise 26 we know is equivalent to $y \in \overline{A}$.
+    Here $A$ is closed, so $A = \overline{A}$, which means $y \in A$, and so $S \subset A$.
+    We've therefore shown that $A = S$, with $S$ being a countable intersection of open sets.
+
 \end{solution}
 
 \begin{exercise}{33}
