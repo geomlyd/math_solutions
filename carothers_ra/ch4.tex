@@ -374,11 +374,11 @@
 
 \begin{solution}
     
-    We begin by following the hint and setting $S = \cap_{n=1}^{\infty} \{x \in M : d(x, A) < 1/n\}$, where $A$ is a closed set.
+    We begin by following the hint and setting $S = \bigcap_{n=1}^{\infty} \{x \in M : d(x, A) < 1/n\}$, where $A$ is a closed set.
     By exercise 28, we know that each of the sets comprising the infinite intersection is open.
     It suffices therefore to show that $A = S$.
     First, let $y \in A$.
-    Then, it of course holds that $d(y, A) < 1/n$ for every $n > 0$, and so $y \in S$.
+    Then, it of course holds that $d(y, A) = 0 < 1/n$ for every $n > 0$, and so $y \in S$.
     Therefore, $A \subset S$.
     In the other direction, suppose $y \in S$.
     It must then be the case that $d(y, A) < 1/n$ for every $n > 0$.
@@ -386,6 +386,13 @@
     Here $A$ is closed, so $A = \overline{A}$, which means $y \in A$, and so $S \subset A$.
     We've therefore shown that $A = S$, with $S$ being a countable intersection of open sets.
 
+    Now suppose instead that $A$ is open.
+    Then $A^c$ must be closed.
+    By the first part, we can write $A^c = \bigcap_{n=1}^{\infty}\{x \in M : d(x, A^c) < 1/n \}$.
+    Consider what it means for an element to \textit{not} belong in $A^c$ (therefore, to belong in $A$): for it to not belong in this infinite intersection, it is both sufficient and necessary for it to not belong in at least one of the sets comprising it, i.e. we have that $A = \bigcup_{n=1}^{\infty}\{x \in M : d(x, A^c) < 1/n\}^c = \bigcup_{n=1}^{\infty}\{x \in M : d(x, A^c) \geq 1/n\}$.
+    This is a countable union, so we must only show that the sets comprising it are closed.
+    Let $S_n = \{x \in M : d(x, A^c) \geq 1/n\}$ and let $(x_i) \in S_n$ be a convergent sequence with $x_i \rightarrow x$.
+    It is then the case that $d(x_i, A^c) \geq 1/n$ for all $i$, and recall from exercise 27 that the function $f(x) = d(x, A)$ is continuous, and so because $x_i \rightarrow x$, it holds that $f(x_i) \rightarrow f(x) = d(x, A)$. Because $d(x_i, A^c) \geq 1/n$ for all $i$, this also holds at the limit: $d(x, A^c) \geq 1/n$, and so $x \in S_n$ and $S_n$ is closed.
 \end{solution}
 
 \begin{exercise}{33}
@@ -432,6 +439,32 @@
     Therefore $y$ is either equal to $x$ or some $x_n$ and $A$ is closed.
     
 
+\end{solution}
+
+\begin{exercise}{38}
+    A set $P$ is called \textbf{perfect} if it is empty or if it is a closed set and every point of $P$ is a limit point of $P$.
+    Show that $\Delta$ is perfect.
+    Show that $\mathbb{R}$ is perfect when considered as a subset of $\mathbb{R}^2$.
+\end{exercise}
+
+\begin{solution}
+
+    We need to show that $\Delta$ is closed (which is stated in example 4.12 but not proved).
+    Suppose $(x_n) \subset \Delta$ converges to $x$, and suppose that $x \notin \Delta$, which means that it must be outside at least one of the ``levels'' of intervals comprising the infinite intersection that is $\Delta$.
+    It is rather onerous to completely formalize everything here, but this would mean that $d(x, e) > 0$ for every endpoint $e$ of the intervals of that level.
+    Since all $x_n$ are in $\Delta$, each must belong in some interval of that level as well, and so  for each $x_n, d(x_n, x) \geq d(x, e_{k_n}) > 0$ for \textit{some} endpoint $e_{k_n}$ out of a finite number of endpoints pf that level.
+    Therefore, for each $n, d(x_n, x) \geq \min_e d(x, e) > 0$ which contradicts convergence of $(x_n)$ to $x$, and so $\Delta$ must be closed.
+
+    Now, to show that $P$ is perfect, we must, for any given $x \in P$, prove that some sequence $(x_n) \subset P$ converges to $x$.
+    Recall that $x \in \Delta$ iff $x = \sum_{n=1}^{\infty} a_n/3^n$ where each $a_n$ is either 0 or 2.
+    If $x$ does not end in an infinite length of zeros, consider the sequence $(x_n)$ where $x_n = \sum_{k=1}^{n} a_k/3^k + \sum_{k=n+1}^{\infty} 0/3^k$, that is, $x_n$ equals $x$ up to the $n$-th digit and then is zero.
+    If $x$ does end in an infinite string of zeros, modify $x_n$ to have 2s instead of 0s as the digits after $n$.
+    It is fairly easy to see that $d(x_n, x) \rightarrow 0$ as $n \rightarrow \infty$ (since the difference $\lvert x_n - x \rvert$ will always be upper bounded by $2/3^n$), while we also observe that $x_n$ can never equal $x$. 
+    Therefore, $x$ is indeed a limit point of a sequence in $P$.
+
+    For the second part of the exercise, if we identify $\mathbb{R}$ with $S = \{(x, 0), x \in \mathbb{R}\}$, then this is quite obviously a closed set.
+    Additionally, if $x \in S$, consider the sequence $p_n = (x + 1/n, 0) \in \mathbb{R}^2$.
+    Again, it is fairly easy to show that it converges coordinate-wise to $(x, 0)$, without ever resulting in $p_n = (x, 0)$, and so every point of $S$ is a limit point of $S$.
 \end{solution}
 
 \begin{exercise}{40}
@@ -584,4 +617,28 @@
     Also, any element $(x, y) \in \mathbb{R}^2$ can be approximated coordinate-wise by two sequences $q_n \rightarrow x, q'_n \rightarrow y$ each of which is in $\mathbb{Q}$.
     Then, exercise 46 of chapter 3 guarantees that $(q_n, q'_n) \rightarrow (x, y)$, and so we've shown condition (a) of exercise 46 above, which means that $\mathbb{Q} \times \mathbb{Q}$ is indeed dense and countable.
     For $\mathbb{R}^n$, by a similar reasoning as above (extending ex. 46 to $n > 2$) we can use the $n$-times Cartesian product of $\mathbb{Q}$ as an example of a dense countable set.
+\end{solution}
+
+\begin{exercise}{51}
+    Show that a separable metric space has at most countably many isolated points.
+\end{exercise}
+
+\begin{solution}
+    
+    We claim that if a metric space $M$ is separable with $S$ being a countable dense subset, then every one of $M$'s isolated points must be in $S$.
+    Indeed, suppose $x \in M$ is an isolated point and $x \notin S$.
+    Then there exists $\epsilon > 0$ such that $B_{\epsilon}(x) \cap S = \emptyset$.
+    Therefore, no sequence $(x_n) \subset S$ can ever have $x$ as a limit point.
+    Furthermore, $x \notin S$ means that the trivial constant sequence with $x_n = x$ does not belong in $S$ either, and thus there is no sequence in $S$ that converges to $x$.
+    But then by the denseness of $S, x \notin \overline{S} = M$, a contradiction.
+    We conclude that all isolated points of $M$ must be contained in the at most countably infinite set $S$, and so they must also be at most countable.
+\end{solution}
+
+\begin{exercise}{53}
+    Can you find a countable dense subset of $C[0, 1]$?
+\end{exercise}
+
+\begin{solution}
+    
+    
 \end{solution}
