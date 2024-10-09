@@ -639,6 +639,48 @@
 \end{exercise}
 
 \begin{solution}
-    
-    
+
+    We will give an example of such a set of continuous functions $F = \{f_1, f_2, \ldots\}$.
+    In order to do this, let us call $P_j = \{0, \frac{1}{2^j}, \frac{2}{2^j}, \ldots, \frac{2^j - 1}{2^j}, 1\}$ for $j= 1, 2, 3, \ldots$ .
+    We can think of $P_j$ as partitioning $[0, 1]$ in $2^j$ disjoint intervals ($[0, 1/2^j), [1/2^j, 2/2^j), \ldots, [(2^j - 1)/2^j, 1]$).
+    We now define a set of functions $F_j$ that achieve a rational value on all the endpoints of these intervals, and are linear in the intervals between successive endpoints.
+    Namely, for a choice of $2^j + 1$ rational numbers $q_1, q_2, \ldots, q_{2^j + 1}$ we can define:
+
+    $$g(x) = \begin{cases}
+        q_j &, x = p_j \text{ for some } p_j \in P_j \\
+        \frac{q_{j+1} - q_j}{p_{j+1} - p_j}(x - p_j) + q_j &, x \in (p_{j}, p_{j+1})
+    \end{cases}$$
+    We define $F_j$ as the set of all possible such functions.
+    We can see that any such function is continuous, and also that for a particular $j$ there are ``as many'' such functions as the elements of $\mathbb{Q} \times \mathbb{Q} \times \ldots \times \mathbb{Q}$, where the Cartesian product is taken $j + 1$ times.
+    This means that each $F_j$ is countable.
+    If we now define $F = \cup_{i=1}^{\infty} F_j$, we have
+    a countable union of countable sets, and so this is countable as well.
+    We can think of increasing $j$ as computing piecewise linear functions where the ``pieces'' get smaller and smaller.
+    What remains now is to show that this is actually a dense subset of $C[0, 1]$, i.e. that any function $f \in C[0,1]$ can be approximated by a sequence $(f_n) \subset F$.
+    In order to do this we must, for any given $f$, be able to find a sequence $(f_n)$ such that for any $\epsilon > 0$ there exists $N > 0$ such that for $n \geq N, d(f, f_n) < \epsilon$.
+
+    We first recall the definition of $d$ (the Frechet metric): $d(f, f_n) = \max_{0 \leq t \leq 1} \lvert f(t) - f_n(t) \rvert$. 
+    Given then a particular $f$, we pick the $n$-th term of the sequence to be the function $f_i \in F_n$ for which $\lvert f_i(p_n) - f(p_n) \rvert < 1/n$ for all $p_n \in P_n$.
+    Note that such a function can always be found: we can always find rationals $f_i(p_n)$ arbitrarily close to the corresponding real $f(p_n)$.
+    We recall, also, (e.g. from Hubbard \& Hubbard) that any continuous function on a compact set is actually uniformly continuous.
+    Thus, pick any $\epsilon > 0$, and:
+    \begin{itemize}
+        \item Select first a $N_1 > 4/\epsilon$.
+        \item From uniform continuity, obtain $\delta > 0$ such that whenever $\lvert x - y \rvert < \delta$ it holds that $\lvert f(x) - f(y) \rvert < \epsilon/4$, and pick $N_2 > \log_2(1/\delta)$.
+        Notice then that for $n > N_2$, the intervals formed by the endpoints of $P_n$ have a length of less than $\delta$ (since their length is $1/2^n$).
+        \item Set $N = \max\{N_1, N_2\}$.
+    \end{itemize}
+    For $n > N$, we have the following.
+    By definition, on all $p_k \in P_n$ we will have that $\lvert f_n(p_k) - f(p_k) \rvert < 1/n \leq 1/N_1 < \epsilon/4$.
+    On all other points $x \notin P_n$, it is the case that $x \in (p_j, p_{j+1})$ for some $j$.
+    Then:
+
+    $$\lvert f(x) - f_n(x) \rvert = \Biggl\lvert f(x) - \Bigl(\frac{f_n(p_{j+1}) - f_n(p_j)}{p_{j+1} - p_j}(x - p_j) + f(p_j)\Bigr) \Biggr\rvert$$
+    $$ \leq \lvert f(x) - f(p_j) \rvert + \Biggl\lvert \frac{f_n(p_{j+1}) - f_n(p_j)}{p_{j+1} - p_j}(x - p_j)\Biggr\rvert < \epsilon/4 + \lvert f_n(p_{j+1}) - f_n(p_j) \rvert$$
+    $$ = \epsilon/4 + \lvert f_n(p_{j+1}) - f(p_j) + f(p_j) - f_n(p_j) \rvert \leq \epsilon/4 + \lvert f_n(p_{j+1}) - f(p_j) \rvert + \lvert f(p_j) - f_n(p_j) \rvert$$
+    $$\leq \epsilon/4 + \epsilon/4 + \lvert f_n(p_{j+1}) - f(p_{j+1}) + f(p_{j+1}) - f(p_j) \rvert \leq \epsilon/4 + \lvert f_n(p_{j+1}) - f(p_{j+1}) \rvert + \lvert f(p_{j+1}) - f(p_j) \rvert = \epsilon$$
+
+    Notice that here we used uniform continuity of $f$ as well as the defining property of $N_1$.
+    We have shown that $\lvert f(x) - f_n(x) \rvert < \epsilon$ for all $x \in (0, 1)$, which means of course that $d(f_n, f) < \epsilon$, and thus that $f_n \rightarrow f$.
+    Therefore, the countable set $F$ is dense in $C[0, 1]$.
 \end{solution}
