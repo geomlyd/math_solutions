@@ -452,7 +452,7 @@
     We need to show that $\Delta$ is closed (which is stated in example 4.12 but not proved).
     Suppose $(x_n) \subset \Delta$ converges to $x$, and suppose that $x \notin \Delta$, which means that it must be outside at least one of the ``levels'' of intervals comprising the infinite intersection that is $\Delta$.
     It is rather onerous to completely formalize everything here, but this would mean that $d(x, e) > 0$ for every endpoint $e$ of the intervals of that level.
-    Since all $x_n$ are in $\Delta$, each must belong in some interval of that level as well, and so  for each $x_n, d(x_n, x) \geq d(x, e_{k_n}) > 0$ for \textit{some} endpoint $e_{k_n}$ out of a finite number of endpoints pf that level.
+    Since all $x_n$ are in $\Delta$, each must belong in some interval of that level as well, and so  for each $x_n, d(x_n, x) \geq d(x, e_{k_n}) > 0$ for \textit{some} endpoint $e_{k_n}$ out of a finite number of endpoints of that level.
     Therefore, for each $n, d(x_n, x) \geq \min_e d(x, e) > 0$ which contradicts convergence of $(x_n)$ to $x$, and so $\Delta$ must be closed.
 
     Now, to show that $P$ is perfect, we must, for any given $x \in P$, prove that some sequence $(x_n) \subset P$ converges to $x$.
@@ -678,9 +678,9 @@
     $$\lvert f(x) - f_n(x) \rvert = \Biggl\lvert f(x) - \Bigl(\frac{f_n(p_{j+1}) - f_n(p_j)}{p_{j+1} - p_j}(x - p_j) + f(p_j)\Bigr) \Biggr\rvert$$
     $$ \leq \lvert f(x) - f(p_j) \rvert + \Biggl\lvert \frac{f_n(p_{j+1}) - f_n(p_j)}{p_{j+1} - p_j}(x - p_j)\Biggr\rvert < \epsilon/4 + \lvert f_n(p_{j+1}) - f_n(p_j) \rvert$$
     $$ = \epsilon/4 + \lvert f_n(p_{j+1}) - f(p_j) + f(p_j) - f_n(p_j) \rvert \leq \epsilon/4 + \lvert f_n(p_{j+1}) - f(p_j) \rvert + \lvert f(p_j) - f_n(p_j) \rvert$$
-    $$\leq \epsilon/4 + \epsilon/4 + \lvert f_n(p_{j+1}) - f(p_{j+1}) + f(p_{j+1}) - f(p_j) \rvert \leq \epsilon/4 + \lvert f_n(p_{j+1}) - f(p_{j+1}) \rvert + \lvert f(p_{j+1}) - f(p_j) \rvert = \epsilon$$
+    $$\leq \epsilon/4 + \epsilon/4 + \lvert f_n(p_{j+1}) - f(p_{j+1}) + f(p_{j+1}) - f(p_j) \rvert \leq \epsilon/2 + \lvert f_n(p_{j+1}) - f(p_{j+1}) \rvert + \lvert f(p_{j+1}) - f(p_j) \rvert = \epsilon$$
 
-    Notice that here we used uniform continuity of $f$ as well as the defining property of $N_1$.
+    Notice that here we used the uniform continuity of $f$ as well as the defining property of $N_1$.
     We have shown that $\lvert f(x) - f_n(x) \rvert < \epsilon$ for all $x \in (0, 1)$, which means of course that $d(f_n, f) < \epsilon$, and thus that $f_n \rightarrow f$.
     Therefore, the countable set $F$ is dense in $C[0, 1]$.
 \end{solution}
