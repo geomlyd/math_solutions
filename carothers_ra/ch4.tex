@@ -467,6 +467,22 @@
     Again, it is fairly easy to show that it converges coordinate-wise to $(x, 0)$, without ever resulting in $p_n = (x, 0)$, and so every point of $S$ is a limit point of $S$.
 \end{solution}
 
+\begin{exercise}{39}
+    Show that a nonempty perfect subset $P$ of $\mathbb{R}$ is uncountable.
+    This gives yet another proof that the Cantor set is uncountable.
+    [Hint: First convince yourself that $P$ is infinite, and assume that $P$ is countable, say $P = \{x_1, x_2, \ldots\}$.
+    Construct a decreasing sequence of nested closed intervals $[a_n, b_n]$ such that $(a_n, b_n) \cap P \neq \emptyset$ but $x_n \notin [a_n, b_n]$.
+    Use the nest interval theorem to get a contradiction.]
+\end{exercise}
+
+\begin{solution}
+    
+    We follow the thought process indicated in the hint.
+    First of all, if we assume $P$ to be finite and have, say, $N$ elements, it becomes clear that none of its points can be limit points: there is a well-defined minimum distance $d_i$ of each point $x_i$ from the other $N - 1$, and for any point $x_i$, no other elements of $P$ lie in $B_\epsilon(x_i), \epsilon < d_i$.
+    Now assume that $P$ is countable, such that $P = \{x_1, x_2, \ldots\}$.
+    Because $P$ has infinite elements, there must exist either infinite elements $x_i > x_1$, or infinite elements $x_i < x_1$.
+\end{solution}
+
 \begin{exercise}{40}
     If $x \in A$ and $x$ is \textit{not} a limit point of $A$, then $x$ is called an \textbf{isolated point} of $A$.
     Show that a point $x \in A$ is an isolated point of $A$ if and only if $(B_{\epsilon}(x) \setminus \{x\}) \cap A = \emptyset$ for some $\epsilon > 0$.
