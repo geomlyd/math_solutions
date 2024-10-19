@@ -480,7 +480,18 @@
     We follow the thought process indicated in the hint.
     First of all, if we assume $P$ to be finite and have, say, $N$ elements, it becomes clear that none of its points can be limit points: there is a well-defined minimum distance $d_i$ of each point $x_i$ from the other $N - 1$, and for any point $x_i$, no other elements of $P$ lie in $B_\epsilon(x_i), \epsilon < d_i$.
     Now assume that $P$ is countable, such that $P = \{x_1, x_2, \ldots\}$.
-    Because $P$ has infinite elements, there must exist either infinite elements $x_i > x_1$, or infinite elements $x_i < x_1$.
+    We can thus find an interval $[a_1, b_1]$ such that $x_1 \notin [a_1, b_1]$ but $[a_1, b_1] \cap P \neq \emptyset$.
+    One easy way to do this is to pick it such that it contains $x_2$.
+    
+    Now we can repeat this procedure to find an interval $[a_2, b_2] \subset [a_1, b_1], b_2 - a_2 < (b_1 - a_1)/2$ (we ``cut'' the interval in half) that again is such that $[a_2, b_2] \cap \emptyset \neq \emptyset$ but $x_2 \notin [a_2, b_2]$.
+    The key observation is that if we were unable to do this, it would mean that the interval $[a_1, b_1]$ does not, in fact, contain infinite points, and so $x_2$ cannot be the limit of a sequence of points in $P$, contradicting $P$'s property of being perfect.
+    Notice that it does not have to be the case that $x_3 \in [a_2, b_2]$ (e.g. if $x_3 < x_1$), but \textit{some} element of $P$ must be in this interval, and it cannot equal either $x_1$ or $x_2$.
+
+    The process can be repeated ad infinitum, with the following observations:
+    \begin{itemize}
+        \item The interval length goes to zero, and the intervals are nested.
+        \item The $n$-th interval contains an element of $P$ that cannot equal any of $x_1, x_2, \ldots, x_n$.
+    \end{itemize}
 \end{solution}
 
 \begin{exercise}{40}
