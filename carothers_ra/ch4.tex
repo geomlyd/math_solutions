@@ -1,5 +1,7 @@
 \chapter{Open Sets and Closed Sets}
 
+\section{Closed sets}
+
 \begin{exercise}{1}
     Show that an ``open rectangle'' $(a, b) \times (c, d)$ is an open set in $\mathbb{R}^2$.
     More generally, if $A, B$ are open in $\mathbb{R}$, show that $A \times B$ is open in $\mathbb{R}^2$.
@@ -483,7 +485,7 @@
     We can thus find an interval $[a_1, b_1]$ such that $x_1 \notin [a_1, b_1]$ but $[a_1, b_1] \cap P \neq \emptyset$.
     One easy way to do this is to pick it such that it contains $x_2$.
     
-    Now we can repeat this procedure to find an interval $[a_2, b_2] \subset [a_1, b_1], b_2 - a_2 < (b_1 - a_1)/2$ (we ``cut'' the interval in half) that again is such that $[a_2, b_2] \cap \emptyset \neq \emptyset$ but $x_2 \notin [a_2, b_2]$.
+    Now we can repeat this procedure to find an interval $[a_2, b_2] \subset [a_1, b_1], b_2 - a_2 < (b_1 - a_1)/2$ (we ``cut'' the interval in half) that again is such that $[a_2, b_2] \cap P \neq \emptyset$ but $x_2 \notin [a_2, b_2]$.
     The key observation is that if we were unable to do this, it would mean that the interval $[a_1, b_1]$ does not, in fact, contain infinite points, and so $x_2$ cannot be the limit of a sequence of points in $P$, contradicting $P$'s property of being perfect.
     Notice that it does not have to be the case that $x_3 \in [a_2, b_2]$ (e.g. if $x_3 < x_1$), but \textit{some} element of $P$ must be in this interval, and it cannot equal either $x_1$ or $x_2$.
 
@@ -492,6 +494,11 @@
         \item The interval length goes to zero, and the intervals are nested.
         \item The $n$-th interval contains an element of $P$ that cannot equal any of $x_1, x_2, \ldots, x_n$.
     \end{itemize}
+    These observations lead us to conclude that we can form a sequence of $x_{k_i}$, one corresponding to each selected interval, and that this sequence must converge to some $x$, which will be the single point contained in the infinite intersection of intervals (by using the nested interval theorem).
+    Furthermore, we have that $x_{k_i} \rightarrow x$.
+    If $x \in P$, we arrive at a contradiction, since it cannot equal any of the elements $x_1, x_2, \ldots$: indeed, if it was equal to one of them, say the $i$-th, the above process would not have continued after the $(i-1)$-th step (by the definition of these intervals).
+    If $x \notin P$, then this contradicts the fact that $P$ is closed as a perfect set.
+    In both cases, we have arrived at a contradiction, which means that $P$ cannot be countable.
 \end{solution}
 
 \begin{exercise}{40}
@@ -755,4 +762,105 @@
     Notice that here we used the uniform continuity of $f$ as well as the defining property of $N_1$.
     We have shown that $\lvert f(x) - f_n(x) \rvert < \epsilon$ for all $x \in (0, 1)$, which means of course that $d(f_n, f) < \epsilon$, and thus that $f_n \rightarrow f$.
     Therefore, the countable set $F$ is dense in $C[0, 1]$.
+\end{solution}
+
+\section{The relative metric}
+
+\begin{exercise}{1}
+    Complete the proof of Proposition 4.13.
+\end{exercise}
+
+\begin{solution}
+    
+    We first restate parts (ii) and (iii) of 4.13 in some more detail:
+
+    (ii) We say that a set $F \subset A \subset M$ is closed in $(A, d)$ iff $A \setminus F$ is open in $A$.
+    We then have that $F$ is closed in $(A, d)$ if and only if $F = A \cap C$, where $C$ is closed in $(M, d)$.
+
+    (iii) Given any $E \subset A \subset M$, we define the closure of $E$ in $A, \text{cl}_{A}(E)$, as the smallest set that is closed in $A$ and contains $E$.
+    Then, for any $E \subset A, \text{cl}_{A}(E) = A \cap \text{cl}_{M}(E)$.
+
+    We now begin with (ii).
+
+    $\implies$: Suppose $F$ is closed in $(A, d)$.
+    Then $A \setminus F$ is open in $A$, which by part (i) is equivalent to the existence of $U \subset M$ such that $A \setminus F = U \cap A$, with $U$ open in $M$.
+    Therefore $F = A \setminus (A \setminus F) = A \setminus (U \cap A) = A \cap U^c$.
+    By definition, $U^c$ is closed in $M$, thus completing the proof in this direction.
+
+    $\impliedby$: Suppose now that $F = A \cap C$ for some $C$ closed in $(M, d)$.
+    Then $C^c$ is open in $M$, and $A \setminus F = A \setminus (A \cap C) = A \cap C^c$, which means that $A \setminus F$ is open in $A$, and so by definition $F$ is closed in $A$.
+
+    Continuing, for part (iii) we have the following.
+
+    Pick any $E \subset A$, and suppose $x \in \text{cl}_A(E)$.
+    It is easy to see that $x \in A$, by the definition of this closure.
+    In addition, for any closed set $C \subset M$ such that $E \subset C$, we have that the set $C \cap A$ is closed in $A$, and contains $E$, therefore $C \cap A \supset \text{cl}_A(E)$, and so $x \in C \cap A$.
+    Since this holds for any closed $C$, it holds for $\text{cl}_{M}(E)$, and therefore $x \in A \cap \text{cl}_M(E)$, which implies $\text{cl}_A(E) \subset A \cap \text{cl}_M(E)$.
+    
+    In the other direction, suppose $x \in A \cap \text{cl}_M(E)$, and let $F$ be any set closed in $A$ containing $E$.
+    By part (ii), $F = A \cap C$ for some $C$ closed in $M$, for which it holds that $\text{cl}_M(E) \subset C \implies x \in C$.
+    But then because $x \in A$ also holds, we obtain $x \in A \cap C = F$.
+    Because this holds for \textit{any} $F$ closed in $A$, it holds for $\text{cl}_A(E)$, which means $x \in \text{cl}_A(E)$, thus proving the inclusion in the other direction, and thus showing that in fact $\text{cl}_A(E) = A \cap \text{cl}_M(E)$.
+\end{solution}
+
+\begin{exercise}{62}
+    Suppose that $A$ is open in $(M, d)$ and that $G \subset A$.
+    Show that $G$ is open in $A$ if and only if $G$ is open in $M$.
+    Is the result still true if ``open'' is replaced everywhere by ``closed''? Explain.
+\end{exercise}
+
+\begin{solution}
+    
+    $\implies$: Suppose $G \subset A$ is open in $A$.
+    Then there exists $U \subset M$ open such that $G = A \cap U$.
+    Therefore, $G$ is open as the intersection of two open sets.
+
+    $\impliedby$: Suppose $G \subset A$ is open in $M$.
+    Then, by writing $G = A \cap G$, we trivially fulfill the definition of $G$ being open in $A$ as well.
+
+    Now suppose that we replace ``open'' with ``closed'' everywhere, to obtain the statement ``if $A$ is closed in $(M, d)$, then any $F \subset A$ is closed in $A$ if and only if $F$ is closed in $M$''.
+
+    $\implies$: Suppose $F$ is closed in $A$, in which case $F = A \cap C$ for some $C$ closed in $M$.
+    Since $A$ is also closed, we have that $F$ is closed in $M$ as the intersection of two closed sets.
+
+    $\impliedby$: Suppose now that $F \subset A$ is closed in $M$.
+    Then we can write $F = A \cap F$, where $F$ is closed in $M$, and so we also have that $F$ is closed in $A$, which means that the statement we obtained is also true.
+\end{solution}
+
+\begin{exercise}{63}
+    Is there a nonempty subset of $\mathbb{R}$ that is open when considered as a subset of $\mathbb{R}^2$? Closed?
+\end{exercise}
+
+\begin{solution}
+    
+    Identify $\mathbb{R}$ with the set $\{(x, 0) \lvert x \in \mathbb{R}\} \subset \mathbb{R}^2$ and consider any $S \subset \mathbb{R}, S \neq \emptyset$ that is open in $\mathbb{R}$ as well as in $\mathbb{R}^2$.
+    Then for any $p \in S$ (there exists at least one since $S$ is not empty), there must exist $\epsilon > 0$ such that $B_{\epsilon}^{\mathbb{R}^2}(p) \subset \mathbb{R}$.
+    $p$ is of the form $p = (x, 0)$, so the point $(x, \epsilon/2)$ is contained in this open ball, and would therefore have to belong in $\mathbb{R}$, which is by definition impossible.
+    Therefore, no nonempty open subset of $\mathbb{R}$ can be empty as a subset of $\mathbb{R}^2$.
+    Turning the discussion to closed sets instead, consider the set $[-1, 1] \subset \mathbb{R}$.
+    It is easy to see that this is a closed set in $\mathbb{R}^2$ (by e.g. using the sequence-based definition of closed-ness).
+    Furthermore, if $C$ is the (closed) unit disk in $\mathbb{R}^2$ we can see that $C \cap \mathbb{R} = [-1, 1]$, and thus $[-1, 1]$ is indeed closed in $\mathbb{R}$.
+\end{solution}
+
+\begin{exercise}{68}
+    If $A$ is a separable subset of $M$ (that is, if $A$ has a countable dense subset of its own), show that $\overline{A}$ is also separable.
+\end{exercise}
+
+\begin{solution}
+    
+    Let $S = \{s_1, s_2, s_3, \ldots\}$ be a countable dense subset of $A$.
+    Recall that $\overline{A}$ consists precisely of elements $y$ such that some sequence $(x_n) \subset A$ converges to $y$ (this sequence may be constant).
+    For any given $y$, we have two cases:
+    \begin{itemize}
+        \item $x_n \rightarrow y$ is a constant sequence, which means $y \in A$.
+        Then by the separability of $A$, there exists $(s_k) \subset S$ such that $s_k \rightarrow y$.
+        \item $x_n \rightarrow y$ is not constant, and therefore $y \notin A$ (in this case, $y$ lies on the boundary of $A$).
+        We describe a process for forming a sequence $(s_k) \subset S$ such that $s_k \rightarrow y$.
+        Let $\epsilon_i = 1/i$, and find $N_i > 0$ such that for $n \geq N_i, d(x_n, y) < \epsilon_i/2$.
+        Find also $K_i > 0$ such that for $k \geq K_i, d(s_{k}, x_{N_i}) < \epsilon_i/2$ (this is possible due to $A$ being separable).
+        By the triangle inequality we obtain that $d(s_{K_i}, y) \leq d(s_{K_i}, x_{N_i}) + d(x_{N_i}, y) < \epsilon_i/2 + \epsilon_i/2 = \epsilon_i$.
+        Therefore, we set the $i$-th term of the constructed sequence to be $s_{K_i}$.
+        The fact that $\epsilon_i$ decrease monotonically means that the sequence formed does indeed converge to $y$.
+    \end{itemize}
+    Since we were able to show that for any $y \in \overline{A}$ there exists $(s_k) \subset S \subset A \subset \overline{A}$ such that $(s_k) \rightarrow y$ and $S$ is countable, we have that $\overline{A}$ is indeed separable.
 \end{solution}
