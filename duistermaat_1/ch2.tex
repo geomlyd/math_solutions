@@ -499,7 +499,28 @@
 
 \begin{solution}
     
-    
+    (i) Suppose $x = (x_1, x_2, \ldots, x_n), y = (y_1, y_2, \ldots, y_n), x, y \in \mathbb{R}^n$.
+    We need to show that $\lvert f(y) - f(x) \rvert \leq \sqrt{n}k \lvert \lvert y - x \rvert \rvert$.
+    Let $h_i = y_i - x_i$, in which case we have that:
+
+    $$\lvert f(y_1, \ldots, y_n) - f(x_1, \ldots, x_n) \rvert = \lvert f(x_1 + h_1, \ldots, x_n + h_n) - f(x_1, \ldots, x_n) \rvert$$
+    $$= \lvert f(x_1 + h_1, \ldots, x_n + h_n) - f(x_1, x_2 + h_2, \ldots, x_n + h_n) + f(x_1, x_2 + h_2, \ldots, x_n + h_n) - \ldots$$
+    $$ + f(x_1, \ldots, x_n + h_n) - f(x_1, \ldots, x_n) \rvert $$
+
+    By writing out like this, we observe that we now have a sum of differences, each of which only differs in one variable of $f$.
+    Because $f$ is $C^1$, by the mean value theorem we can write:
+
+    $$f(x_1, \ldots, x_{i-1}, x_i + h_i, \ldots, x_n + h_n) - f(x_1, \ldots, x_{i-1}, x_i, \ldots x_n + h_n) = $$
+    $$h_i D_i (f)(x_1, \ldots, x_{i-1}, b_i, x_{i+1} + h_{i+1}, \ldots, x_n + h_n),$$
+
+    for some $b_i \in (x_i, x_i + h_i)$.
+    If we call $c_i$ the point at which $D_i(f)$ is evaluated, we can rewrite the difference we started with as:
+
+    $$\lvert f(y) - f(x) \rvert = \lvert \sum_{i=1}^{n} h_i D_i (f)(c_i) \rvert \leq k \lvert \sum_{i=1}^{n} h_i \rvert \leq k \sqrt{n} \lvert \lvert h \rvert \rvert = k \sqrt{n} \lvert \lvert y - x \rvert \rvert,$$
+
+    where we used the inequality given for $D_i(f)$ and the bound for the $l$-1 norm that we have seen in e.g. exercise 18, section 3.2 of Carothers.
+
+    (ii) We need to find a value $V$ such that we could define $g(0) = V$ and the extension of $g$ to all of $\mathbb{R}^n$ would remain continuous.
 \end{solution}
 
 \begin{exercise}{18}
