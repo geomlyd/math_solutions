@@ -520,7 +520,28 @@
 
     where we used the inequality given for $D_i(f)$ and the bound for the $l$-1 norm that we have seen in e.g. exercise 18, section 3.2 of Carothers.
 
-    (ii) 
+    (ii) If we can show that for any two sequences $(x_n), (y_n) \rightarrow 0$ the corresponding $(g(x_n)), (g(y_n))$ converge to same real number $L$, we will have shown that a continuous extension of $g$ to all of $\mathbb{R}^n$ exists (by defining its value at 0 as $L$).
+    We can restrict our attention to the unit ball $B_1(0)$.
+    We would like to be able to use the mean value theorem, but we observe that because $0 \in B_1(0)$, it may not always be the case that for $a, b \in B_1(0) \setminus \{0\}$ the segment $[a, b]$ lies entirely within the domain of $g$.
+
+    Motivated by this, consider partitioning $B_1(0) \setminus \{0\}$ into $2^n$ ``open quadrants'', for all possible combinations of the signs of the coordinates.
+    For example,  $Q_1 = \{(x_1, \ldots, x_n) \in \mathbb{R}^n \lvert x_1 > 0, x_2 > 0\ldots x_n > 0\}, Q_2 = \{(x_1, \ldots, x_n) \in \mathbb{R}^n \lvert x_1 < 0, x_2 > 0\ldots x_n > 0\}$.
+    Notice that these are disjoint, and that if we take the union of all $Q_i$ and of all the planes where at least coordinate equals zero we get $B_1(0) \setminus \{0\}$.
+    Notice also that each $Q_i$ is open, and that since all partial derivatives of $g$ are bounded, the proof of (i) applies on each $Q_i$ (instead of on all of $\mathbb{R}^n$.
+
+    Therefore, for any two sequences $x_k, y_k \rightarrow 0$ inside the same quadrant, we have that $\lvert g(y_k) - g(x_k) \rvert \leq k \sqrt{n} \lvert \lvert y_k - x_k \rvert \rvert$.
+    Firstly, this shows that $g$'s values are bounded inside each quadrant (since the RHS is also bounded).
+    Secondly, the convergence of the two sequences to zero shows that as $k \rightarrow \infty$, $\lvert f(x_k) - f(y_k) \rvert \rightarrow 0$.
+    Putting together these two facts leads to the conclusion that $(f(x_k)), (f(y_k))$ both converge to the same real number.
+
+    Now assume that $(x_k) \subset Q_i, x_k \rightarrow 0$ and that $y_k \rightarrow 0$ is a sequence that lies on the subset plane which is such that at least one coordinate is zero, and that all non-zero coordinates have the same signs as those of $Q_i$ (intuitively, one of the ``borders'' of $Q_i$.
+    Crucially for the remainder of the proof, as long as $n \geq 2$ this subset never degenerates to a single point, which is exactly what happens when $n = 1$.
+    Notice now that the segment formed by the points $x_k, y_k$ lies entirely inside the domain of $g$ (in fact, excluding $y_k$ it lies entirely inside $Q_i$).
+    Thus, the mean value theorem again applies, and we obtain a similar bound on $\lvert g(y_k) - g(x_k) \rvert$, showing that in fact $g(y_k) \rightarrow L_i$ as well, where $L_i$ is the unique limit obtained previously for $Q_i$.
+    The final part of the proof is the observation that given any two quadrants, we can find a ``path'' between them that consists of subsets of planes as described above, and potentially other quadrants.
+    This allows us to transitively reason that all $L_i$ must in fact be equal, thus completing the proof.
+
+    Lastly, a concrete counterexample for $n = 1$ is the function $g(x) = -1, x < 0, g(x) = 1, x > 0$, which has zero partial derivatives everywhere, but cannot be extended to a continuous function in all of $\mathbb{R}$.
 \end{solution}
 
 \begin{exercise}{18}
