@@ -597,6 +597,36 @@
     which yields that $T(g \circ f) = Tg \circ Tf$.
 \end{solution}
 
+\begin{exercise}{24}
+    Let $U$ be a convex open subset of $\mathbb{R}^n$ and let $f: U \rightarrow \mathbb{R}^p$ be a differentiable mapping.
+    Prove that the following assertions are equivalent.
+
+    (i) The mapping $f$ is Lipschitz continuous on $U$ with Lipschitz constant $k$.
+
+    (ii) $\lvert \lvert D f(x) \rvert \rvert \leq k$ for all $x \in U$, where $\lvert \lvert \cdot \rvert \rvert$ denotes the operator norm.
+\end{exercise}
+
+\begin{solution}
+    
+    (i) $\implies$ (ii): Suppose first that $f$ is Lipschitz continuous.
+    Recall the definition of differentiability at a particular $x$:
+
+    $$\lim_{h \rightarrow 0} \frac{f(x + h) - f(x) - D f(x)(h)}{\lvert \lvert h \rvert \rvert} = 0,$$
+
+    with $Df(x)$ being the (unique) linear operator that satisfies this.
+    Take any $\epsilon > 0$.
+    Then there exists $\delta > 0$ such that whenever $\lvert \lvert h \rvert \rvert < \delta$, it holds that:
+
+    $$\Bigl\lvert \Bigl\lvert \frac{f(x + h) - f(x) - Df(x)(h)}{\lvert \lvert h \rvert \rvert} - 0 \Bigr \rvert \Bigr \rvert \leq \epsilon \implies \lvert \lvert f(x + h) - f(x) - Df(x)(h) \rvert \rvert \leq \epsilon \lvert \lvert h \rvert \rvert$$
+
+    By the triangle inequality we have that:
+
+    $$\Bigl \lvert - \lvert \lvert f(x+h) - f(x) \rvert \rvert + \lvert \lvert Df(x)(h) \rvert \rvert \Bigr \rvert \leq \epsilon \lvert \lvert h \rvert \rvert \implies \lvert \lvert Df(x)(h) \rvert \rvert < \epsilon \lvert \lvert h \rvert \rvert + \lvert \lvert f(x+h) - f(x) \rvert \rvert$$
+
+    Now, Lipschitz continuity guarantees that $\lvert \lvert f(x+h) - f(x) \rvert \rvert \leq k \lvert \lvert x + h - x \rvert \rvert = k \lvert \lvert h \rvert \rvert$.
+    We therefore have that $\lvert \lvert Df(x)(h) \rvert \rvert < \epsilon \lvert \lvert h \rvert \rvert + k \lvert \lvert h \rvert \rvert$.
+\end{solution}
+
 \begin{exercise}{32}
     Let $f: \mathbb{R}^n \setminus \{0\} \rightarrow \mathbb{R}$ be a differentiable function.
 
