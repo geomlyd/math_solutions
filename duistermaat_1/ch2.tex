@@ -625,6 +625,11 @@
 
     Now, Lipschitz continuity guarantees that $\lvert \lvert f(x+h) - f(x) \rvert \rvert \leq k \lvert \lvert x + h - x \rvert \rvert = k \lvert \lvert h \rvert \rvert$.
     We therefore have that $\lvert \lvert Df(x)(h) \rvert \rvert < \epsilon \lvert \lvert h \rvert \rvert + k \lvert \lvert h \rvert \rvert$.
+    Note now that for computing the operator norm of $Df(x)$ we are interested in $h$ that have unit norm.
+    Pick then any such $h$, and observe that for any $\epsilon > 0$ there exists $\delta > 0$ such that $h' = \delta h$ satisfies the above inequality, which means:
+
+    $$\lvert \lvert Df(x)(\delta h) \rvert \rvert < \epsilon \lvert \lvert \delta h \rvert \rvert + k \lvert \lvert \delta h \rvert \rvert \implies \lvert \lvert Df(x)(h) \rvert \rvert < (\epsilon + k)$$
+    Because this holds for \textit{any} $\epsilon > 0$, we must necessarily have that $\lvert \lvert Df(x)(h) \rvert \rvert \leq k$, and since this is true for any unit-length vector, we can conclude that $\lvert \lvert Df(x) \rvert \rvert \leq k$ as well.
 \end{solution}
 
 \begin{exercise}{32}
