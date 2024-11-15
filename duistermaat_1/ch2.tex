@@ -630,6 +630,12 @@
 
     $$\lvert \lvert Df(x)(\delta h) \rvert \rvert < \epsilon \lvert \lvert \delta h \rvert \rvert + k \lvert \lvert \delta h \rvert \rvert \implies \lvert \lvert Df(x)(h) \rvert \rvert < (\epsilon + k)$$
     Because this holds for \textit{any} $\epsilon > 0$, we must necessarily have that $\lvert \lvert Df(x)(h) \rvert \rvert \leq k$, and since this is true for any unit-length vector, we can conclude that $\lvert \lvert Df(x) \rvert \rvert \leq k$ as well.
+
+    (ii) $\implies$ (i): First, pick any vector $h \in \mathbb{R}^n$ and observe that:
+
+    $$\lvert \lvert Df(x) \rvert \rvert \leq k \implies \lvert \lvert Df(x)(h/ \lvert \lvert h \rvert \rvert) \rvert \rvert \leq k \implies \lvert \lvert Df(x)(h) \rvert \rvert \leq k \lvert \lvert h \rvert \rvert$$ 
+
+    Given that $U$ is convex and open, we can now simply apply theorem 2.5.3 to conclude that $f$ is Lipschitz continuous on $U$ with Lipschitz constant $k$.
 \end{solution}
 
 \begin{exercise}{32}
