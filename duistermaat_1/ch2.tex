@@ -638,6 +638,26 @@
     Given that $U$ is convex and open, we can now simply apply theorem 2.5.3 to conclude that $f$ is Lipschitz continuous on $U$ with Lipschitz constant $k$.
 \end{solution}
 
+\begin{exercise}{25}
+    Let $U \subset \mathbb{R}^n$ be open and $a \in U$, and let $f: U \setminus \{a\} \rightarrow \mathbb{R}^p$ be differentiable.
+    Suppose there exists $L \in \mathcal{L}(\mathbb{R}^n, \mathbb{R}^p)$ with $\lim_{x \rightarrow a} Df(x) = L$.
+    Prove that $f$ is differentiable at $a$ with $Df(a) = L$.
+
+    \textbf{Hint}: Apply the Mean Value Theorem to $x \mapsto f(x) - Lx$.
+\end{exercise}
+
+\begin{solution}
+    
+    Consider any open half-ball $H_{\delta}(a) \subset U \setminus\{a\}$, and any two $x, y$ inside it.
+    This set is convex, and as such we can apply the mean value theorem on $f$ to obtain the existence of $c$ on the segment connecting $x, y$ such that:
+
+    $$f(y) - f(x) -L(y - x)= Df(c)(y - x) - L(y - x) \implies \lvert \lvert f(y) - f(x) - L(y - x)\rvert \rvert = \lvert \lvert Df(c)(y - x ) - L(y - x)\rvert \rvert$$
+    $$\implies \lvert \lvert f(y) - f(x) - L(y - x)\rvert \rvert \leq \lvert \lvert Df(c) - L \rvert \rvert \cdot \lvert \lvert y - x \rvert \rvert,$$
+
+    where we use the Frobenius norm for the linear function $Df(c) - L$.
+
+\end{solution}
+
 \begin{exercise}{32}
     Let $f: \mathbb{R}^n \setminus \{0\} \rightarrow \mathbb{R}$ be a differentiable function.
 
