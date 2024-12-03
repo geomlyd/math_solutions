@@ -647,6 +647,8 @@
 \end{exercise}
 
 \begin{solution}
+
+    We first note that for the exercise to make sense it has to be the case that $n > 1$, otherwise easy counterexamples can be found, and we cannot safely draw the needed intermediate conclusion (by exercise 15 part 2, and by observing that $\lim_{x \rightarrow a} Df(x) = L$ implies that $D_jf(x)$ are bounded for all $j$) that $f$ is continuous at $a$ and thus $f(a)$ is well-defined.
     
     Consider any open half-ball $H_{\delta}(a) \subset U \setminus\{a\}$, and any two $x, y$ inside it.
     This set is convex, and as such we can apply the mean value theorem on $f$ to obtain the existence of $c$ on the segment connecting $x, y$ such that:
@@ -656,6 +658,19 @@
 
     where we use the Frobenius norm for the linear function $Df(c) - L$.
 
+    Now we note that because $\lim_{x \rightarrow a} Df(x) = L$, for any given $\epsilon > 0$, we can find $\delta$ such that for $\lvert \lvert x -a \rvert \rvert < \delta$ it holds that $\lvert \lvert Df(c) - L \rvert \rvert < \epsilon/2$.
+    For an arbitrary $\epsilon$, pick then this corresponding $\delta$, and consider any two $x, y$ with $\lvert \lvert y - x \rvert \rvert < \delta$.
+    If these lie inside \textit{some} half-ball $H_{\delta}(a)$, then by applying the inequality above we draw the conclusion that $\lvert \lvert f(y) - f(x) - L(y - x) \rvert \rvert < \frac{\epsilon}{2} \cdot \lvert \lvert y - x \rvert \rvert$.
+    If they don't, this means that they are colinear.
+    Crucially, because $n \geq 1$, the ``perpendicular bisector'' (used loosely here, since it may well be more than one-dimensional) of the segment connecting them is not empty.
+    More specifically, there exists $z$ such that $\lvert \lvert z - x \rvert \rvert = \lvert \lvert z - y \rvert \rvert < \min\{\delta_1, \delta_2\}$, where $\delta_1, \delta_2$ are obtained by using the limit definition above for $\epsilon/4$ on half-balls containing $y, z$ (for $\delta_1$) and $z, x$ (for $\delta_2$).
+    This means that:
+
+    $$\lvert \lvert f(y) - f(x) - L(y - x) \rvert \rvert \leq \lvert \lvert f(y) - f(z) + f(z) - f(x) - L(y - z + z - x) \rvert \rvert$$
+    $$\leq \lvert \lvert f(y) - f(z) - L(y - z) \rvert \rvert + \lvert \lvert f(z) - f(x) - L(z - x) \rvert \rvert$$
+    $$\leq \lvert \lvert Df(c_1) - L \rvert \rvert \cdot \lvert \lvert z - y \rvert \rvert + \lvert \lvert Df(c_2) - L \rvert \rvert \cdot \lvert \lvert z - x \rvert \rvert < \frac{\epsilon}{4}\lvert \lvert y - x \rvert \rvert + \frac{\epsilon}{4} \lvert \lvert y -x \rvert \rvert = \frac{\epsilon}{2} \lvert \lvert y - x \rvert \rvert$$
+
+    Notice then that if we let $y \rightarrow a$, and by recalling that limits preserve non-strict inequalities, we have that conclusion that for any $\epsilon > 0$, there exists $\delta > 0$ such that for $\lvert \lvert x - a \rvert \rvert < \delta, \lvert \lvert f(a+ h) - f(a) - L(h) \rvert \rvert \leq \frac{\epsilon}{2} \lvert \lvert h \rvert \rvert < \epsilon \lvert \lvert h \rvert \rvert$, which is precisely the definition of $Df(a) = L$.
 \end{solution}
 
 \begin{exercise}{32}
