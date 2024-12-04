@@ -597,6 +597,53 @@
     which yields that $T(g \circ f) = Tg \circ Tf$.
 \end{solution}
 
+\begin{exercise}{23}
+    This exercise serves as another proof of the mean value theorem.
+    As a reminder for notation, the theorem states that:
+
+    Let $U$ be a convex open subset of $\mathbb{R}^n$ and let $f: U \rightarrow \mathbb{R}^p$ be a differentiable mapping.
+    Suppose that the derivative $Df: U \rightarrow \mathcal{L}(\mathbb{R}^n, \mathbb{R}^p)$ is bounded on $U$, that is, there exists $k > 0$ with $\lvert \lvert Df(\xi)h \rvert \rvert \rvert \rvert \leq k \lvert \lvert h \rvert \rvert$, for all $\xi \in U$ and $h \in \mathbb{R}^n$, which is the case if $\lvert \lvert Df(\xi) \rvert \rvert_{\text{eucl}} \leq k$.
+    Then $f$ is Lipschitz continuous on $U$ with Lipschitz constant $k$, in other words
+
+    $$\lvert \lvert f(x) - f(x') \rvert \rvert \leq k \lvert \lvert x - x' \rvert \rvert, x, x' \in U$$
+
+    Let $x', x \in U$ be arbitrary and consider $x_t, x_s \in L(x', x)$, i.e., on the segment connecting $x', x$.
+    Suppose $m > k$.
+
+    (i) By means of the definition of differentiability verify, for $t > s$ and $t - s$ sufficiently small,
+
+    $$\lvert \lvert f(x_t) - f(x_s) - (t - x)Df(x_s)(x - x') \rvert \rvert \leq (m - k)(t - s)\lvert \lvert x - x' \rvert \rvert$$
+
+    Applying the reverse triangle inequality, deduce
+    
+    $$\lvert \lvert f(x_t) - f(x_s) \rvert \rvert \leq m(t - s)\lvert \lvert x - x' \rvert \rvert$$
+
+\end{exercise}
+
+\begin{solution}
+    
+    (i) Let $\epsilon = m - k > 0$.
+    By the definition of differentiability of $f$ at $s$, we have that there exists $\delta > 0$ such that for any $h$ with $\lvert \lvert h \rvert \rvert < \delta$ it holds that:
+
+    $$\frac{\lvert \lvert f(x_s + h) - f(x_s) - Df(x_s)(h) \rvert \rvert}{\lvert \lvert h \rvert \rvert} < \epsilon$$
+
+    More specifically then, for sufficiently small $t - s > 0$, such that $(t - s)\lvert \lvert x - x' \rvert \rvert < \delta$, the above holds for $h = (t - s) (x - x') = x_t - x_s$.
+    Thus:
+
+    $$\frac{\lvert \lvert f(x_s + (x_t - x_s)) - f(x_s) - Df(x_s)((t - s)(x - x'))\rvert \rvert}{(t - s)\lvert \lvert x - x' \rvert \rvert} < \epsilon \implies$$
+    $$\lvert \lvert f(x_t) - f(x_s) - (t - s)Df(x_s)(x - x') \rvert \rvert <(m - k)(t - s)\lvert \lvert x - x' \rvert \rvert$$
+
+    As pointed out in the hint, by applying the reverse triangle inequality we can also obtain:
+
+    $$\Bigl \lvert \lvert \lvert f(x_t) - f(x_s) \rvert \rvert - (t - s)\lvert \lvert Df(x_s)(x - x') \rvert \rvert \Bigr \rvert < (m - k)(t - s) \lvert \lvert x - x' \rvert \rvert \implies $$
+    $$\lvert \lvert f(x_t) - f(x_s) \rvert \rvert < (m - k)(t - s)\lvert \lvert x - x' \rvert \rvert + (t - s)\lvert \lvert Df(x_s)(x - x') \rvert \rvert \implies$$
+    $$\lvert \lvert f(x_t) - f(x_s) \rvert \rvert < (m - k)(t - s) \lvert \lvert x - x' \rvert \rvert + (t - s)\lvert \lvert Df(x_s) \rvert \rvert \cdot \lvert \lvert x - x' \rvert \rvert \implies $$
+    $$\lvert \lvert f(x_t) - f(x_s) \rvert \rvert < (m - k)(t - s)\lvert \lvert x - x' \rvert \rvert + (t -s)k \lvert \lvert x - x' \rvert \rvert \implies \lvert \lvert f(x_t) - f(x_s) \rvert \rvert < m(t -s)\lvert \lvert x - x' \rvert \rvert,$$
+
+    where we have used the analogue of the Cauchy-Schwarz inequality for linear operators, and the fact that the derivative of $f$ is bounded.
+
+\end{solution}
+
 \begin{exercise}{24}
     Let $U$ be a convex open subset of $\mathbb{R}^n$ and let $f: U \rightarrow \mathbb{R}^p$ be a differentiable mapping.
     Prove that the following assertions are equivalent.
