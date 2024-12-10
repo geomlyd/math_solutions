@@ -618,6 +618,19 @@
     
     $$\lvert \lvert f(x_t) - f(x_s) \rvert \rvert \leq m(t - s)\lvert \lvert x - x' \rvert \rvert$$
 
+    Set $I = \{t \in \mathbb{R} \lvert 0 \leq t \leq 1, \lvert \lvert f(x_t) - f(x') \rvert \rvert \leq mt \lvert \lvert x - x' \rvert \rvert\}$.
+
+    (ii) Use the continuity of $f$ to obtain that $I$ is closed.
+    Note that $0 \in I$ and deduce that $I$ has a largest element $0 \leq s \leq 1$.
+
+    (iii) Suppose that $s < 1$.
+    Then prove by means of $(i)$ and $(ii)$, for $s < t \leq 1$ with $t - s$ sufficiently small,
+
+    $$\lvert \lvert f(x_t) - f(x') \rvert \rvert \leq \lvert \lvert f(x_t) - f(x_s) \rvert \rvert + \lvert \lvert f(x_s) - f(x') \rvert \rvert \leq mt\lvert \lvert x - x' \rvert \rvert$$
+
+    Conclude that $s = 1$, and hence that $\lvert \lvert f(x) - f(x') \rvert \rvert \leq m \lvert \lvert x - x' \rvert \rvert$.
+    Now use the validity of this estimate for every $m > k$ to obtain the Mean Value Theorem.
+
 \end{exercise}
 
 \begin{solution}
@@ -642,6 +655,32 @@
 
     where we have used the analogue of the Cauchy-Schwarz inequality for linear operators, and the fact that the derivative of $f$ is bounded.
 
+    (ii) Suppose that $(t_n) \subset I$ is a convergent sequence that converges to $t$.
+    Since $t_n \in I$ for all $n$, we have that $\lvert \lvert f(x_{t_n}) - f(x') \rvert \rvert \leq m t_n \lvert \lvert x - x' \rvert \rvert$, where $x_{t_n} = x' + t_n(x - x')$.
+    Note that a simple limit calculation yields that $\lim_{n \rightarrow \infty} x_{t_n} = x' + t(x - x') = x_t$, which by the continuity of $f$ also implies $\lim_{n \rightarrow \infty} f(x_{t_n}) = f(x_t)$.
+    Note, also, that by the order limit theorem this means that $\lvert \lvert f(x_t) - f(x') \rvert \rvert \leq m t \lvert \lvert x - x' \rvert \rvert$ (where one considers both sides of the inequality to be functions of $n$).
+    By the definition of $I$ and the fact that $[0, 1]$ is closed (meaning that $t \in [0,1]$ as the limit of $(t_n) \subset [0, 1]$), we obtain that $t \in I$, hence that $I$ is closed.
+    In addition, examining the inequality for $t = 0$ yields $\lvert \lvert f(x_0) - f(x') \rvert \rvert \leq 0$, where $x_0 = x'$, and so of course this inequality is satisfied, meaning that $0 \in I$.
+
+    Observing now that $I$ is bounded (as a subset of $[0, 1]$) and closed, we conclude that it must have a maximum element: indeed, if its supremum did not belong in it, we would have that a sequence in $I$ that converges to the supremum converges to an element not in $I$, a contradiction of the fact that it is closed.
+
+    (iii) We will now prove by contradiction that $s = 1$.
+    Assume $s < 1$, which means that $\lvert \lvert f(x_t) - f(x') \rvert \rvert \leq mt\lvert \lvert x - x' \rvert \rvert$ does not hold for any $t$ with $s < t \leq 1$.
+    However:
+
+    $$\lvert \lvert f(x_t) - f(x') \rvert \rvert = \lvert \lvert f(x_t) - f(x_s) + f(x_s) - f(x') \rvert \rvert \leq \lvert \lvert f(x_t) - f(x_s) \rvert \rvert + \lvert \lvert f(x_s) - f(x') \rvert \rvert$$
+    $$\leq \lvert \lvert f(x_t) - f(x_s) \rvert \rvert + m s \lvert \lvert x - x' \rvert \rvert$$
+
+    Note now that part (i) guarantees that for $t -s $ sufficiently small (which is always possible for $s < t \leq 1$) we can obtain $\lvert \lvert f(x_t) - f(x_s) \rvert \rvert \leq m(t - s) \lvert \lvert x - x' \rvert \rvert$.
+    Substituting in the inequality above yields:
+
+    $$\lvert \lvert f(x_t) - f(x') \rvert \rvert \leq m (t - s + s)\lvert \lvert x - x' \rvert \rvert = mt \lvert \lvert x - x' \rvert \rvert,$$
+
+    which would mean $t \in I, t > s$, a contradiction of $s$ being the largest element of $I$.
+    Therefore it must be the case that $s = 1$.
+    By using (ii) with $x_s = x' + 1(x - x') = x$, we obtain $\lvert \lvert f(x) - f(x') \rvert \rvert \leq m \lvert \lvert x - x' \rvert \rvert$.
+    Notice now that all of the work done so far is applicable for all $m > k$.
+    It must therefore also hold that $\lvert \lvert f(x) - f(x') \rvert \rvert \leq k \lvert \lvert x - x' \rvert \rvert$, and so we arrive at the conclusion of the Mean Value Theorem.
 \end{solution}
 
 \begin{exercise}{24}
