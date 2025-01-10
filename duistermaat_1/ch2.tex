@@ -798,6 +798,52 @@
 
 \newpage
 
+\begin{exercise}{37}
+    Let $\Phi: \mathbb{R}^n \rightarrow \mathbb{R}^p$ be a differentiable mapping such that $D \Phi(x) \in \mathcal{L}(\mathbb{R}^n, \mathbb{R}^p)$ is surjective, for all $x \in \mathbb{R}^n$ (thus $n \geq p$).
+    Let $y \in \mathbb{R}^p$ and define $f: \mathbb{R}^n \rightarrow \mathbb{R}$ by setting $f(x) = \lvert \lvert \Phi(x) - y \rvert \rvert$.
+    Furthermore, suppose that $K \subset \mathbb{R}^n$ is compact and that there exists $\delta > 0$ with
+
+    \[\exists x \in K, f(x) < \delta, \text{ and } f(x) \geq \delta, \forall x \in \partial K\]
+
+    Now prove that $\mathring{K} \neq \emptyset$ and that there is $x \in \partial K$ with $\Phi(x) = y$.
+
+    \textbf{Hint}: Note that the restriction to $K$ of the square of $f$ assumes its minimum in $\mathring{K}$, and differentiate.
+\end{exercise}
+
+\begin{solution}
+
+    First, recall that for any closed set $K, K = \partial K \cup \mathring{K}$.
+    In our case here, we know that all points on the boundary of $K$ satisfy $f(x) \geq \delta$.
+    Since there exists \textit{at least one} $x \in K$ such that this does not hold (i.e., $f(x) < \delta$ for some $x \in K$), we therefore conclude that for this $x, x \notin \partial K$, which, from the above equality, implies $x \in \mathring{K}$.
+    Therefore $K$ has a non-empty interior.
+    Consider the function $g: \mathbb{R}^n \rightarrow \mathbb{R}, g(x) = f^2(x)$, which is of course differentiable and thus continuous.
+    We know then that it must achieve a minimum value on the compact set $K$.
+    The fact that $f(x) \geq \delta$ for all boundary points of $K$, and that there exists $z \in K$ with $f(z) < \delta$ implies that this minimum value must necessarily be achieved in the interior of $K$.
+
+    Suppose then it is achieved on $z \in \mathring{K}$.
+    From the lemma above, we have that it must hold that $Dg(z) = 0$.
+    Let $\Phi(x) = (\Phi_1(x), \ldots, \Phi_p(x))$ where $\Phi_i: \mathbb{R}^n \rightarrow \mathbb{R}$ and then we have that:
+
+    \[ g(z) = g(z_1, \ldots, z_n) = \sum_{i=1}^{p} (\Phi_i(z_1, \ldots, z_n) - y_i)^2 \implies \frac{\partial g}{\partial x_j}(z)(h) = \sum_{i=1}^{p} 2(\Phi_i(z_1, \ldots, z_n) - y_i)\frac{\partial \Phi_i}{\partial x_j}(z)(h),\]
+
+    where $h \in \mathbb{R}$ (since $\frac{\partial g}{\partial x_j}(z) \in \mathcal{L}(\mathbb{R}, \mathbb{R})$).
+    Notice that by recalling that $D_j \Phi(x) = \begin{pmatrix}
+        \frac{\partial \Phi_1}{\partial x_j}(x) \\
+        \vdots \\
+        \frac{\partial \Phi_n}{\partial x_j}(x)
+    \end{pmatrix} \in \mathcal{L}(\mathbb{R}, \mathbb{R}^p)$, we can rewrite the above as:
+
+    \[\frac{\partial g}{\partial x_j}(z)(h) = 2 \langle D_j \Phi(z)(h), \Phi(z) - y \rangle = 0\]
+
+    Notice that this holds for all $j = 1, \ldots, n$.
+    If we sum all of the resulting equations, we obtain that:
+
+    \[\sum_{j=1}^{n} D_j \Phi(z)(\Phi(z) - y) = 0\]
+
+    Now recall that we are given that $D \Phi(x)$ is surjective for any $x$.
+    More specifically, $D \Phi(z)$ is surjective, which means that for $w = \Phi()
+\end{solution}
+
 \begin{exercise}{44}
     Let $A \in \mathbb{R}^{n \times n}$. We write $A = (a_1 \cdots a_n)$ if $a_j \in \mathbb{R}^n$ is the $j$-th column vector of $A, 1 \leq j \leq n$.
     This means that we identify $\mathbb{R}^{n \times n}$ with $\mathbb{R}^n \times \ldots \mathbb{R}^n$.
