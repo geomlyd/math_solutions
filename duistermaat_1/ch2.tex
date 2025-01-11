@@ -597,6 +597,40 @@
     which yields that $T(g \circ f) = Tg \circ Tf$.
 \end{solution}
 
+\begin{exercise}{ - Unlisted; Another proof of theorem 2.5.3 (Multivariate Mean Value Theorem)}
+    Let $U$ be a convex open subset of $\mathbb{R}^n$ and let $f: U \rightarrow \mathbb{R}^p$ be a differentiable mapping.
+    Suppose that the derivative $Df: U \rightarrow \mathcal{L}(\mathbb{R}^n, \mathbb{R}^p)$ is bounded on $U$, that is, there exists $k > 0$ with $\lvert \lvert Df(\xi)(h) \rvert \rvert \leq k \lvert \lvert h \rvert \rvert$, for all $\xi \in U$ and $h \in \mathbb{R}^n$, which is the case if $\lvert \lvert Df(\xi)\rvert \rvert \leq k$.
+    Then $f$ is Lipschitz continuous on $U$ with Lipschitz constant $k$, in other words:
+
+    $$\lvert \lvert f(x) - f(x') \rvert \rvert \leq k \lvert \lvert x - x' \rvert \rvert, (x, x' \in U)$$
+\end{exercise}
+
+\begin{solution}
+    
+    Fix any two $x, y \in \mathbb{R}^n$.
+    The statement is obvious if $f(x) = f(y)$, so from now on assume they are not equal.
+    Define the following function $g: U \rightarrow \mathbb{R}$:
+
+    $$g(z) = \langle f(y) - f(x), f(z) \rangle$$
+
+    By the known theorem regarding differentiation of inner products, we know that $g$ is differentiable with:
+    
+    $$Dg(z)(h) = \langle f(y) - f(x), Df(z)(h) \rangle$$
+
+    Notice, also, that due to the convexity of $U$ we can apply the mean value theorem on the segment connecting $x, y$ to obtain the existence of a $c \in U$ on that segment such that:
+
+    $$g(y) - g(x) = Dg(c)(y-x) = \langle f(y) - f(x), Df(c)(y - x) \rangle \implies $$
+    $$\langle f(y) - f(x), f(y) \rangle - \langle f(y) - f(x), f(x) \rangle = \langle f(y) - f(x), Df(c)(y - x) \rangle \implies$$
+    $$\lvert \lvert f(y) - f(x) \rvert \rvert^2 = \langle f(y) - f(x), Df(c)(y-x) \rangle$$
+
+    By using the Cauchy-Schwarz inequality:
+
+    $$\lvert \lvert f(y) - f(x) \rvert \rvert^2 \leq \lvert \lvert f(y) - f(x) \rvert \rvert \cdot \lvert \lvert Df(c)(y - x) \rvert \rvert \implies \lvert \lvert f(y) - f(x) \rvert \rvert \leq \lvert \lvert Df(c)(y-x) \rvert \rvert \leq k \lvert \lvert y - x \rvert \rvert,$$
+
+    by the assumptions of the theorem.
+
+\end{solution}
+
 \begin{exercise}{24}
     Let $U$ be a convex open subset of $\mathbb{R}^n$ and let $f: U \rightarrow \mathbb{R}^p$ be a differentiable mapping.
     Prove that the following assertions are equivalent.
@@ -636,6 +670,66 @@
     $$\lvert \lvert Df(x) \rvert \rvert \leq k \implies \lvert \lvert Df(x)(h/ \lvert \lvert h \rvert \rvert) \rvert \rvert \leq k \implies \lvert \lvert Df(x)(h) \rvert \rvert \leq k \lvert \lvert h \rvert \rvert$$ 
 
     Given that $U$ is convex and open, we can now simply apply theorem 2.5.3 to conclude that $f$ is Lipschitz continuous on $U$ with Lipschitz constant $k$.
+\end{solution}
+
+\newpage
+
+\begin{exercise}{26}
+    Let $U \subset \mathbb{R}^n$ be convex and open and let $f:U \rightarrow \mathbb{R}^n$ be differentiable.
+    Assume that the self-adjoint part of $Df(x)$ is positive-definite for each $x \in U$, that is, $\langle h, Df(x)(h) \rangle > 0$ if $0 \neq h \in \mathbb{R}^n$.
+    Prove that $f$ is injective.
+
+    \textbf{Hint}: Suppose $f(x) = f(x')$, where $x' = x + h$.
+    Consider $g: [0, 1] \rightarrow \mathbb{R}$ with $g(t) = \langle h, f(x + th) \rangle$.
+    Note that $g(0) = g(1)$ and deduce $g'(\tau) = 0$ for some $0 < \tau < 1$.
+
+    \textbf{Background}: For $n = 1$, this is the well-known result that a function $f: I \rightarrow \mathbb{R}$ on an interval $i$ is strictly increasing and hence injective if $f' > 0$ on $I$.
+\end{exercise}
+
+\begin{solution}
+
+    We have first that:
+
+    $$Df(x) = \frac{Df(x) + Df(x)^*}{2} + \frac{Df(x) - Df(x)^*}{2},$$
+
+    and the ``self-adjoint part'' of $Df(x)$ is the operator $\frac{Df(x) + Df(x)^*}{2}$.
+    It is given that this operator is positive-definite (since it is by definition self-adjoint) for each $x \in U$, which means:
+
+    $$\langle h, \Bigl (\frac{Df(x) + Df(x)^*}{2} \Bigr )(h) \rangle = \frac{1}{2}\langle h, Df(x)(h) \rangle + \frac{1}{2}\langle h, Df(x)^*(h) \rangle = \frac{1}{2}\langle h, Df(x)(h) \rangle + \frac{1}{2}\langle Df(x)(h), h \rangle$$
+    $$ = \langle h, Df(x)(h) \rangle,$$
+
+    and so we can conclude that $\langle h, Df(x)(h) \rangle > 0$ for any $x, h, h \neq 0$.
+    Motivated by the hint, assume that $f$ is not injective, and thus that $f(x) = f(x')$ for some $x \neq x'$, and let $x' = x + h$.
+    Define $g$ as in the hint, and observe that this is a differentiable function as well.
+    It is the case that $g(0) = \langle h, f(x) \rangle, g(1) = \langle h, f(x + h) \rangle = \langle h, f(x') \rangle = \langle h, f(x) \rangle = g(0)$ and so by the mean value theorem we conclude that there exists $\tau \in (0, 1)$ such that $g'(\tau) = 0$.
+    Then:
+
+    $$g'(\tau) = 0 \implies (\sum_{i=1}^{n} h_i f_i(x + \tau h))' = 0 \implies \sum_{i=1}^{n} h_i Df_i(x + \tau h)(h) = 0 \implies \langle h, Df(x'')(h) \rangle = 0,$$
+
+    where $x'' = x + \tau h$.
+    Clearly, this contradicts $\langle h, Df(x)(h) \rangle > 0$ for all $x, h, h \neq 0$, and so $f$ must indeed be injective.
+\end{solution}
+
+\begin{exercise}{28}
+    Let $f: \mathbb{R}^n \rightarrow \mathbb{R}^n$ be a differentiable mapping and assume that
+    
+    $$\sup\{\lvert \lvert Df(x) \rvert \rvert_{\text{Eucl}} \lvert x \in \mathbb{R}^n\} \leq \epsilon < 1$$
+
+    Prove that $f$ is a contraction with contraction factor $\leq \epsilon$.
+    Suppose $F \subset \mathbb{R}^n$ is a closed subset satisfying $f(F) \subset F$.
+    Show that $f$ has a unique fixed point $x \in F$.
+\end{exercise}
+
+\begin{solution}
+    
+    We first note that the hypothesis guarantees that for any $x \in \mathbb{R}^n, \lvert \lvert Df(x) \rvert \rvert_{\text{Eucl}} \leq \epsilon$.
+    Recall that the mean value theorem (2.5.3 in the book) guarantees that $f$ is Lipschitz continuous on $\mathbb{R}^n$ with Lipschitz constant $\epsilon$, which is to say that:
+
+    $$\lvert \lvert f(x) - f(x') \rvert \rvert \leq \epsilon \lvert \lvert x - x' \rvert \rvert,$$
+
+    for any two $x, x' \in \mathbb{R}^n$.
+    Because $\epsilon < 1$, we immediately obtain that $f$ is a contraction with contraction factor $\leq \epsilon$.
+    The second part of the exercise follows immediately from the contraction lemma (1.7.2).    
 \end{solution}
 
 \begin{exercise}{32}
