@@ -165,3 +165,18 @@
 
     Therefore, for any given $\epsilon > 0$, if we set $\delta = \epsilon$, whenever $\lvert \lvert z - x \rvert \rvert < \delta$, the equality above tells us that $\lvert \lvert g(z) - g(x) \rvert \rvert < \delta = \epsilon$, and so that $g$ is continuous on any $x \in V$.
 \end{solution}
+
+\begin{exercise}{25}
+    A function $f: (M, d) \rightarrow (N, \rho)$ is called \textbf{Lipschitz} if there is a constant $K$ such that $\rho(f(x), f(y)) \leq K d(x, y)$ for all $x, y \in M$.
+    Prove that a Lipschitz mapping is continuous.
+\end{exercise}
+
+\begin{solution}
+    
+    Pick any $x \in M$ and any $\epsilon > 0$.
+    Set $\delta = \frac{\epsilon}{K}$, and observe that whenever $d(x, y) < \delta$, we have that:
+
+    \[\rho(f(x), f(y)) \leq K d(x, y) < K \delta = K \frac{\epsilon}{K} = \epsilon,\]
+
+    which is precisely the definition of continuity for $f$.
+\end{solution}
