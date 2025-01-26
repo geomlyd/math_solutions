@@ -631,6 +631,92 @@
 
 \end{solution}
 
+\begin{exercise}{23}
+    This exercise serves as another proof of the mean value theorem.
+    As a reminder for notation, the theorem states that:
+
+    Let $U$ be a convex open subset of $\mathbb{R}^n$ and let $f: U \rightarrow \mathbb{R}^p$ be a differentiable mapping.
+    Suppose that the derivative $Df: U \rightarrow \mathcal{L}(\mathbb{R}^n, \mathbb{R}^p)$ is bounded on $U$, that is, there exists $k > 0$ with $\lvert \lvert Df(\xi)h \rvert \rvert \rvert \rvert \leq k \lvert \lvert h \rvert \rvert$, for all $\xi \in U$ and $h \in \mathbb{R}^n$, which is the case if $\lvert \lvert Df(\xi) \rvert \rvert_{\text{eucl}} \leq k$.
+    Then $f$ is Lipschitz continuous on $U$ with Lipschitz constant $k$, in other words
+
+    $$\lvert \lvert f(x) - f(x') \rvert \rvert \leq k \lvert \lvert x - x' \rvert \rvert, x, x' \in U$$
+
+    Let $x', x \in U$ be arbitrary and consider $x_t, x_s \in L(x', x)$, i.e., on the segment connecting $x', x$.
+    Suppose $m > k$.
+
+    (i) By means of the definition of differentiability verify, for $t > s$ and $t - s$ sufficiently small,
+
+    $$\lvert \lvert f(x_t) - f(x_s) - (t - x)Df(x_s)(x - x') \rvert \rvert \leq (m - k)(t - s)\lvert \lvert x - x' \rvert \rvert$$
+
+    Applying the reverse triangle inequality, deduce
+    
+    $$\lvert \lvert f(x_t) - f(x_s) \rvert \rvert \leq m(t - s)\lvert \lvert x - x' \rvert \rvert$$
+
+    Set $I = \{t \in \mathbb{R} \lvert 0 \leq t \leq 1, \lvert \lvert f(x_t) - f(x') \rvert \rvert \leq mt \lvert \lvert x - x' \rvert \rvert\}$.
+
+    (ii) Use the continuity of $f$ to obtain that $I$ is closed.
+    Note that $0 \in I$ and deduce that $I$ has a largest element $0 \leq s \leq 1$.
+
+    (iii) Suppose that $s < 1$.
+    Then prove by means of $(i)$ and $(ii)$, for $s < t \leq 1$ with $t - s$ sufficiently small,
+
+    $$\lvert \lvert f(x_t) - f(x') \rvert \rvert \leq \lvert \lvert f(x_t) - f(x_s) \rvert \rvert + \lvert \lvert f(x_s) - f(x') \rvert \rvert \leq mt\lvert \lvert x - x' \rvert \rvert$$
+
+    Conclude that $s = 1$, and hence that $\lvert \lvert f(x) - f(x') \rvert \rvert \leq m \lvert \lvert x - x' \rvert \rvert$.
+    Now use the validity of this estimate for every $m > k$ to obtain the Mean Value Theorem.
+
+\end{exercise}
+
+\begin{solution}
+    
+    (i) Let $\epsilon = m - k > 0$.
+    By the definition of differentiability of $f$ at $s$, we have that there exists $\delta > 0$ such that for any $h$ with $\lvert \lvert h \rvert \rvert < \delta$ it holds that:
+
+    $$\frac{\lvert \lvert f(x_s + h) - f(x_s) - Df(x_s)(h) \rvert \rvert}{\lvert \lvert h \rvert \rvert} < \epsilon$$
+
+    More specifically then, for sufficiently small $t - s > 0$, such that $(t - s)\lvert \lvert x - x' \rvert \rvert < \delta$, the above holds for $h = (t - s) (x - x') = x_t - x_s$.
+    Thus:
+
+    $$\frac{\lvert \lvert f(x_s + (x_t - x_s)) - f(x_s) - Df(x_s)((t - s)(x - x'))\rvert \rvert}{(t - s)\lvert \lvert x - x' \rvert \rvert} < \epsilon \implies$$
+    $$\lvert \lvert f(x_t) - f(x_s) - (t - s)Df(x_s)(x - x') \rvert \rvert <(m - k)(t - s)\lvert \lvert x - x' \rvert \rvert$$
+
+    As pointed out in the hint, by applying the reverse triangle inequality we can also obtain:
+
+    $$\Bigl \lvert \lvert \lvert f(x_t) - f(x_s) \rvert \rvert - (t - s)\lvert \lvert Df(x_s)(x - x') \rvert \rvert \Bigr \rvert < (m - k)(t - s) \lvert \lvert x - x' \rvert \rvert \implies $$
+    $$\lvert \lvert f(x_t) - f(x_s) \rvert \rvert < (m - k)(t - s)\lvert \lvert x - x' \rvert \rvert + (t - s)\lvert \lvert Df(x_s)(x - x') \rvert \rvert \implies$$
+    $$\lvert \lvert f(x_t) - f(x_s) \rvert \rvert < (m - k)(t - s) \lvert \lvert x - x' \rvert \rvert + (t - s)\lvert \lvert Df(x_s) \rvert \rvert \cdot \lvert \lvert x - x' \rvert \rvert \implies $$
+    $$\lvert \lvert f(x_t) - f(x_s) \rvert \rvert < (m - k)(t - s)\lvert \lvert x - x' \rvert \rvert + (t -s)k \lvert \lvert x - x' \rvert \rvert \implies \lvert \lvert f(x_t) - f(x_s) \rvert \rvert < m(t -s)\lvert \lvert x - x' \rvert \rvert,$$
+
+    where we have used the analogue of the Cauchy-Schwarz inequality for linear operators, and the fact that the derivative of $f$ is bounded.
+
+    (ii) Suppose that $(t_n) \subset I$ is a convergent sequence that converges to $t$.
+    Since $t_n \in I$ for all $n$, we have that $\lvert \lvert f(x_{t_n}) - f(x') \rvert \rvert \leq m t_n \lvert \lvert x - x' \rvert \rvert$, where $x_{t_n} = x' + t_n(x - x')$.
+    Note that a simple limit calculation yields that $\lim_{n \rightarrow \infty} x_{t_n} = x' + t(x - x') = x_t$, which by the continuity of $f$ also implies $\lim_{n \rightarrow \infty} f(x_{t_n}) = f(x_t)$.
+    Note, also, that by the order limit theorem this means that $\lvert \lvert f(x_t) - f(x') \rvert \rvert \leq m t \lvert \lvert x - x' \rvert \rvert$ (where one considers both sides of the inequality to be functions of $n$).
+    By the definition of $I$ and the fact that $[0, 1]$ is closed (meaning that $t \in [0,1]$ as the limit of $(t_n) \subset [0, 1]$), we obtain that $t \in I$, hence that $I$ is closed.
+    In addition, examining the inequality for $t = 0$ yields $\lvert \lvert f(x_0) - f(x') \rvert \rvert \leq 0$, where $x_0 = x'$, and so of course this inequality is satisfied, meaning that $0 \in I$.
+
+    Observing now that $I$ is bounded (as a subset of $[0, 1]$) and closed, we conclude that it must have a maximum element: indeed, if its supremum did not belong in it, we would have that a sequence in $I$ that converges to the supremum converges to an element not in $I$, a contradiction of the fact that it is closed.
+
+    (iii) We will now prove by contradiction that $s = 1$.
+    Assume $s < 1$, which means that $\lvert \lvert f(x_t) - f(x') \rvert \rvert \leq mt\lvert \lvert x - x' \rvert \rvert$ does not hold for any $t$ with $s < t \leq 1$.
+    However:
+
+    $$\lvert \lvert f(x_t) - f(x') \rvert \rvert = \lvert \lvert f(x_t) - f(x_s) + f(x_s) - f(x') \rvert \rvert \leq \lvert \lvert f(x_t) - f(x_s) \rvert \rvert + \lvert \lvert f(x_s) - f(x') \rvert \rvert$$
+    $$\leq \lvert \lvert f(x_t) - f(x_s) \rvert \rvert + m s \lvert \lvert x - x' \rvert \rvert$$
+
+    Note now that part (i) guarantees that for $t -s $ sufficiently small (which is always possible for $s < t \leq 1$) we can obtain $\lvert \lvert f(x_t) - f(x_s) \rvert \rvert \leq m(t - s) \lvert \lvert x - x' \rvert \rvert$.
+    Substituting in the inequality above yields:
+
+    $$\lvert \lvert f(x_t) - f(x') \rvert \rvert \leq m (t - s + s)\lvert \lvert x - x' \rvert \rvert = mt \lvert \lvert x - x' \rvert \rvert,$$
+
+    which would mean $t \in I, t > s$, a contradiction of $s$ being the largest element of $I$.
+    Therefore it must be the case that $s = 1$.
+    By using (ii) with $x_s = x' + 1(x - x') = x$, we obtain $\lvert \lvert f(x) - f(x') \rvert \rvert \leq m \lvert \lvert x - x' \rvert \rvert$.
+    Notice now that all of the work done so far is applicable for all $m > k$.
+    It must therefore also hold that $\lvert \lvert f(x) - f(x') \rvert \rvert \leq k \lvert \lvert x - x' \rvert \rvert$, and so we arrive at the conclusion of the Mean Value Theorem.
+\end{solution}
+
 \begin{exercise}{24}
     Let $U$ be a convex open subset of $\mathbb{R}^n$ and let $f: U \rightarrow \mathbb{R}^p$ be a differentiable mapping.
     Prove that the following assertions are equivalent.
@@ -671,8 +757,6 @@
 
     Given that $U$ is convex and open, we can now simply apply theorem 2.5.3 to conclude that $f$ is Lipschitz continuous on $U$ with Lipschitz constant $k$.
 \end{solution}
-
-\newpage
 
 \begin{exercise}{26}
     Let $U \subset \mathbb{R}^n$ be convex and open and let $f:U \rightarrow \mathbb{R}^n$ be differentiable.
@@ -732,6 +816,42 @@
     The second part of the exercise follows immediately from the contraction lemma (1.7.2).    
 \end{solution}
 
+\newpage
+
+\begin{exercise}{25}
+    Let $U \subset \mathbb{R}^n$ be open and $a \in U$, and let $f: U \setminus \{a\} \rightarrow \mathbb{R}^p$ be differentiable.
+    Suppose there exists $L \in \mathcal{L}(\mathbb{R}^n, \mathbb{R}^p)$ with $\lim_{x \rightarrow a} Df(x) = L$.
+    Prove that $f$ is differentiable at $a$ with $Df(a) = L$.
+    \textbf{Hint}: Apply the Mean Value Theorem to $x \mapsto f(x) - Lx$.
+\end{exercise}
+
+\begin{solution}
+
+    We first note that for the exercise to make sense it has to be the case that $n > 1$, otherwise easy counterexamples can be found, and we cannot safely draw the needed intermediate conclusion (by exercise 15 part 2, and by observing that $\lim_{x \rightarrow a} Df(x) = L$ implies that $D_jf(x)$ are bounded for all $j$) that $f$ is continuous at $a$ and thus $f(a)$ is well-defined.
+    
+    Consider any open half-ball $H_{\delta}(a) \subset U \setminus\{a\}$, and any two $x, y$ inside it.
+    This set is convex, and as such we can apply the mean value theorem on $f$ to obtain the existence of $c$ on the segment connecting $x, y$ such that:
+
+    $$f(y) - f(x) -L(y - x)= Df(c)(y - x) - L(y - x) \implies \lvert \lvert f(y) - f(x) - L(y - x)\rvert \rvert = \lvert \lvert Df(c)(y - x ) - L(y - x)\rvert \rvert$$
+    $$\implies \lvert \lvert f(y) - f(x) - L(y - x)\rvert \rvert \leq \lvert \lvert Df(c) - L \rvert \rvert \cdot \lvert \lvert y - x \rvert \rvert,$$
+
+    where we use the Frobenius norm for the linear function $Df(c) - L$.
+
+    Now we note that because $\lim_{x \rightarrow a} Df(x) = L$, for any given $\epsilon > 0$, we can find $\delta$ such that for $\lvert \lvert x -a \rvert \rvert < \delta$ it holds that $\lvert \lvert Df(c) - L \rvert \rvert < \epsilon/2$.
+    For an arbitrary $\epsilon$, pick then this corresponding $\delta$, and consider any two $x, y$ with $\lvert \lvert y - x \rvert \rvert < \delta$.
+    If these lie inside \textit{some} half-ball $H_{\delta}(a)$, then by applying the inequality above we draw the conclusion that $\lvert \lvert f(y) - f(x) - L(y - x) \rvert \rvert < \frac{\epsilon}{2} \cdot \lvert \lvert y - x \rvert \rvert$.
+    If they don't, this means that they are colinear.
+    Crucially, because $n \geq 1$, the ``perpendicular bisector'' (used loosely here, since it may well be more than one-dimensional) of the segment connecting them is not empty.
+    More specifically, there exists $z$ such that $\lvert \lvert z - x \rvert \rvert = \lvert \lvert z - y \rvert \rvert < \min\{\delta_1, \delta_2\}$, where $\delta_1, \delta_2$ are obtained by using the limit definition above for $\epsilon/4$ on half-balls containing $y, z$ (for $\delta_1$) and $z, x$ (for $\delta_2$).
+    This means that:
+
+    $$\lvert \lvert f(y) - f(x) - L(y - x) \rvert \rvert \leq \lvert \lvert f(y) - f(z) + f(z) - f(x) - L(y - z + z - x) \rvert \rvert$$
+    $$\leq \lvert \lvert f(y) - f(z) - L(y - z) \rvert \rvert + \lvert \lvert f(z) - f(x) - L(z - x) \rvert \rvert$$
+    $$\leq \lvert \lvert Df(c_1) - L \rvert \rvert \cdot \lvert \lvert z - y \rvert \rvert + \lvert \lvert Df(c_2) - L \rvert \rvert \cdot \lvert \lvert z - x \rvert \rvert < \frac{\epsilon}{4}\lvert \lvert y - x \rvert \rvert + \frac{\epsilon}{4} \lvert \lvert y -x \rvert \rvert = \frac{\epsilon}{2} \lvert \lvert y - x \rvert \rvert$$
+
+    Notice then that if we let $y \rightarrow a$, and by recalling that limits preserve non-strict inequalities, we have that conclusion that for any $\epsilon > 0$, there exists $\delta > 0$ such that for $\lvert \lvert x - a \rvert \rvert < \delta, \lvert \lvert f(a+ h) - f(a) - L(h) \rvert \rvert \leq \frac{\epsilon}{2} \lvert \lvert h \rvert \rvert < \epsilon \lvert \lvert h \rvert \rvert$, which is precisely the definition of $Df(a) = L$.
+\end{solution}
+
 \begin{exercise}{32}
     Let $f: \mathbb{R}^n \setminus \{0\} \rightarrow \mathbb{R}$ be a differentiable function.
 
@@ -769,7 +889,64 @@
     
 \end{solution}
 
-\newpage
+\begin{exercise}{37}
+    Let $\Phi: \mathbb{R}^n \rightarrow \mathbb{R}^p$ be a differentiable mapping such that $D \Phi(x) \in \mathcal{L}(\mathbb{R}^n, \mathbb{R}^p)$ is surjective, for all $x \in \mathbb{R}^n$ (thus $n \geq p$).
+    Let $y \in \mathbb{R}^p$ and define $f: \mathbb{R}^n \rightarrow \mathbb{R}$ by setting $f(x) = \lvert \lvert \Phi(x) - y \rvert \rvert$.
+    Furthermore, suppose that $K \subset \mathbb{R}^n$ is compact and that there exists $\delta > 0$ with
+
+    \[\exists x \in K, f(x) < \delta, \text{ and } f(x) \geq \delta, \forall x \in \partial K\]
+
+    Now prove that $\mathring{K} \neq \emptyset$ and that there is $x \in \partial K$ with $\Phi(x) = y$.
+
+    \textbf{Hint}: Note that the restriction to $K$ of the square of $f$ assumes its minimum in $\mathring{K}$, and differentiate.
+\end{exercise}
+
+\begin{solution}
+
+    We first prove the following lemma:
+
+    If $F: \mathbb{R}^n \rightarrow \mathbb{R}$ is differentiable and $x_0 = (x_{01}, x_{02}, \ldots, x_{0n})$ is a local extremum of $F$, then $DF(x_0) = 0$.
+
+    Indeed, pick any $i = 1, 2, \ldots, n$, and notice that the function $g(x_i) = F(x_{01}, \ldots, x_i, \ldots, x_{0n})$ must have a local extremum at $x = x_{0i}$: if this were not the case, by perturbing the $i$-coordinate of $x_0$ we would have that $F$ does not assume a locally extreme value at $x_0$ either.
+    Fermat's theorem then guarantees that $g'(x_i) = 0 \implies D_i F(x_0) = 0$.
+    The fact that this holds for all $i$ shows that $DF(x_0) = 0$.
+
+    Now, for the exercise, recall that for any closed set $K, K = \partial K \cup \mathring{K}$.
+    In our case here, we know that all points on the boundary of $K$ satisfy $f(x) \geq \delta$.
+    Since there exists \textit{at least one} $x \in K$ such that this does not hold (i.e., $f(x) < \delta$ for some $x \in K$), we therefore conclude that for this $x, x \notin \partial K$, which, from the above equality, implies $x \in \mathring{K}$.
+    Therefore $K$ has a non-empty interior.
+    Consider the function $g: \mathbb{R}^n \rightarrow \mathbb{R}, g(x) = f^2(x)$, which is of course differentiable and thus continuous.
+    We know then that it must achieve a minimum value on the compact set $K$.
+    The fact that $f(x) \geq \delta$ for all boundary points of $K$, and that there exists $z \in K$ with $f(z) < \delta$ implies that this minimum value must necessarily be achieved in the interior of $K$.
+
+    Suppose then it is achieved on $z \in \mathring{K}$.
+    From the lemma above, we have that it must hold that $Dg(z) = 0$.
+    Let $\Phi(x) = (\Phi_1(x), \ldots, \Phi_p(x))$ where $\Phi_i: \mathbb{R}^n \rightarrow \mathbb{R}$ and then we have that:
+
+    \[ g(z) = g(z_1, \ldots, z_n) = \sum_{i=1}^{p} (\Phi_i(z_1, \ldots, z_n) - y_i)^2 \implies \frac{\partial g}{\partial x_j}(z) = \sum_{i=1}^{p} 2(\Phi_i(z_1, \ldots, z_n) - y_i)\frac{\partial \Phi_i}{\partial x_j}(z)\]
+
+    Notice that by recalling that $D_j \Phi(x) = \begin{pmatrix}
+        \frac{\partial \Phi_1}{\partial x_j}(x) \\
+        \vdots \\
+        \frac{\partial \Phi_n}{\partial x_j}(x)
+    \end{pmatrix} \in \mathcal{L}(\mathbb{R}, \mathbb{R}^p)$, and by multiplying both sides with any non-zero $h_1$, we can rewrite the above as:
+
+    \[\frac{\partial g}{\partial x_j}(z)h_1 = 2 \langle D_j \Phi(z)h_1, \Phi(z) - y \rangle\]
+
+    Notice that this must be zero for any $h_1 \neq 0$.
+    Furthermore, by  applying this procedure to all $j$, each time with a different variable $h_j \neq 0$, and by summing the equations, we obtain that:
+
+    \[2\langle \sum_{j=1}^{n} D_j \Phi(z)h_j, \Phi(z) - y \rangle = 0 \implies 2 \langle D \Phi(z)(h), \Phi(z) - y \rangle = 0,\]
+
+    where $h = (h_1, \ldots, h_n)$ and where we think about matrix multiplication in terms of its columns.
+    Now recall that we are given that $D \Phi(x)$ is surjective for any $x$.
+    More specifically, $D \Phi(z)$ is surjective, which means that for $w = \Phi(z) - y \in \mathbb{R}^p$, there must exist some $h \in \mathbb{R}^n$ such that $D\Phi(z)(h) = w$.
+    Substituting in the above equality, which must hold for any $h$:
+
+    \[2 \langle \Phi(z) - y, \Phi(z) - y \rangle = 0,\]
+
+    which implies that $\Phi(z) = y$.
+\end{solution}
 
 \begin{exercise}{44}
     Let $A \in \mathbb{R}^{n \times n}$. We write $A = (a_1 \cdots a_n)$ if $a_j \in \mathbb{R}^n$ is the $j$-th column vector of $A, 1 \leq j \leq n$.
