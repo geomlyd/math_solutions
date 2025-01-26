@@ -1,0 +1,167 @@
+\chapter{Open Sets and Closed Sets}
+
+\section{Continuous Functions}
+
+\begin{exercise}{8}
+    Let $f: \mathbb{R} \rightarrow \mathbb{R}$ be continuous.
+
+    (a) If $f(0) > 0$, show that $f(x) > 0$ for all $x$ in some interval $(-a, a)$.
+
+    (b) If $f(x) \geq 0$ for every rational $x$, show that $f(x) \geq 0$ for all real $x$.
+    Will this result hold with ``$\geq 0$'' replaced by ``$> 0$''?
+    Explain.
+\end{exercise}
+
+\begin{solution}
+    
+    (a) Suppose $f(x) = c > 0$, and set $\epsilon = c/2 > 0$.
+    Due to the continuity of $f$, there exists $\delta > 0$ such that whenever $\lvert x - 0 \rvert < \delta$, it holds that $\lvert f(x) - f(0) \rvert < \epsilon$.
+    This implies that $-c/2 < f(x) - c < c/2 \implies c/2 < f(x) < 3c/2$.
+    But then setting $a = \delta$ means that for $x \in (-a, a)$ it holds that $f(x) > 0$.
+
+    (b) Pick any $y \in \mathbb{R}$.
+    We know that we can always find a sequence $(x_n) \subset \mathbb{Q}$ such that $x_n \rightarrow y$.
+    By the continuity of $f$, it must hold that $f(x_n) \rightarrow f(y)$.
+    Suppose now that $f(y) < 0$, and set $\epsilon = -f(y)/2$.
+    Then we can find $N > 0$ such that whenever $n \geq N$ it holds that:
+
+    \[\lvert f(x_n) - f(y) \rvert < \epsilon \implies f(y)/2 < f(x_n) - f(y) < -f(y)/2 \implies f(x_n) < f(y)/2 < 0,\]
+
+    which is a contradiction.
+    Therefore it must hold that $f(y) \geq 0$ for every $y \in \mathbb{R}$.
+    Now for the second part, consider the function $f(x) = (x - \sqrt{2})^2$.
+    Clearly, $f$ is continuous and strictly positive for all $x \in \mathbb{R} \setminus \{\sqrt{2}\}$, which means that it is more specifically continuous for all $x \in \mathbb{Q}$.
+    However, $f(\sqrt{2}) = 0$, which is not strictly positive, and thus the assertion that ``$f(x) > 0$ for every rational $x$ implies that $f(x) > 0$ for every real $x$'' fails.
+\end{solution}
+
+\begin{exercise}{9}
+    Let $A \subset M$.
+    Show that $f: (A, d) \rightarrow (N, \rho)$ is continuous at $a \in A$ if and only if, given $\epsilon > 0$, there is a $\delta > 0$ such that $\rho(f(x), f(a)) < \epsilon$ whenever $d(x, a) < \delta$ \textit{and} $x \in A$.
+    We paraphrase this statement by saying that ``$f$ has a point of continuity relative to $A$''.
+\end{exercise}
+
+\begin{solution}
+    
+    Recall the definition of continuity in a metric space $M$: $f: (M, d) \rightarrow (N, \rho)$ is continuous at $a \in M$ if for every $\epsilon > 0$ there is a $\delta > 0$ such that whenever $d(x, y) < \delta$ it holds that $\rho(f(x), f(y)) < \epsilon$.
+    We know that if $M$ is a metric space, $A \subset M$ is also a metric space.
+    Therefore, the definition of continuity for functions $f: (A, d) \rightarrow (N, \rho)$ states that $f$ is continuous at $a \in A$ precisely when, for every $\epsilon > 0$, there exists $\delta > 0$ such that $\rho(f(x), f(a)) < \epsilon$ whenever $d(x, a) < \delta$ for $x$ inside the metric space, which in this case is $A$.
+\end{solution}
+
+\begin{exercise}{10}
+    Let $A = (0, 1] \cup \{2\}$, considered as a subset of $\mathbb{R}$.
+    Show that every function $f: A \rightarrow \mathbb{R}$ is continuous, relative to $A$, at 2.
+\end{exercise}
+
+\begin{solution}
+    
+    Pick any $\epsilon > 0$, and set e.g. $\delta = 1/3$.
+    Observe then that $B_{1/3}^{A}(2) = \{2\}$.
+    Therefore, for every $x \in A$ such that $\lvert x - 2 \rvert < 1/3$, it trivially holds that $\lvert f(x) - f(2) \rvert < \epsilon$, and so $f$ is continuous at 2 relative to $A$.
+\end{solution}
+
+\begin{exercise}{14}
+    A continuous function on $\mathbb{R}$ is completely determined by its values on $\mathbb{Q}$.
+    Use this to ``count'' the continuous functions $f: \mathbb{R} \rightarrow \mathbb{R}$.
+\end{exercise}
+
+\begin{solution}
+    
+
+\end{solution}
+
+\begin{exercise}{17}
+    Let $f, g: (M, d) \rightarrow (N, \rho)$ be continuous, and let $D$ be a dense subset of $M$.
+    If $f(x) = g(x)$ for all $x \in D$, show that $f(x) = g(x)$ for all $x \in M$.
+    If $f$ is onto, show that $f(D)$ is dense in $N$.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose that there exists $x \in M \setminus D$ such that $f(x) \neq g(x)$, which means that $\rho(f(x), g(x)) = \epsilon > 0$.
+    By the denseness of $D$, there exists a sequence $(x_n) \subset D, x_n \rightarrow x$.
+    Because $f, g$ are both continuous, it holds that $f(x_n) \rightarrow f(x)$ and $g(x_n) \rightarrow g(x)$.
+    Therefore, there exist $N_1, N_2 > 0$ such that for $n \geq \max\{N_1, N_2\}$ it holds that $\rho(f(x_n), f(x)) < \frac{\epsilon}{2}, \rho(g(x_n), g(x)) < \frac{\epsilon}{2}$.
+    Notice, furthermore, that $f(x_n) = g(x_n)$ since the two functions are equal on $D$.
+    Then, by the triangle inequality we obtain that:
+
+    \[\epsilon = \rho(f(x), g(x)) \leq \rho(f(x), f(x_n)) + \rho(f(x_n), g(x)) = \rho(f(x), f(x_n)) + \rho(g(x_n), g(x)) < \frac{\epsilon}{2} + \frac{\epsilon}{2}\]
+    \[\implies \epsilon < \epsilon,\]
+
+    which is a contradiction.
+    Therefore $f(x) = g(x)$ on all of $M$.
+
+    Now suppose that $f$ is onto, and pick any $y \in N$.
+    Then there exists $x \in M$ such that $f(x) = y$.
+    Furthermore, by the denseness of $D$ there exists $(x_n) \subset D$ such that $x_n \rightarrow x$.
+    The continuity of $f$ then implies $f(x_n) \rightarrow f(x) = y$.
+    But $f(x_n)$ is a sequence entirely in $f(D)$, which means that $f(D)$ is dense in $N$, since $y$ was picked arbitrarily in $N$.
+\end{solution}
+
+\begin{exercise}{19}
+    A function $f: \mathbb{R} \rightarrow \mathbb{R}$ is said to satisfy a \textbf{Lipschitz condition} if there is a constant $K< \infty$ such that $\lvert f(x) - f(y) \rvert \leq K \lvert x - y \rvert$ for all $x, y \in \mathbb{R}$.
+    More economically, we may say that $f$ is Lipschitz (or Lipschitz with constant $K$ if a particular constant seems to matter).
+    Show that $\sin x$ is Lipschitz with constant $K = 1$.
+    Prove that a Lipschitz function is (uniformly) continuous.
+\end{exercise}
+
+\begin{solution}
+    
+    Pick any two $x, y \in \mathbb{R}$, and let $h = x - y$.
+    Then we have that:
+
+    \[\lvert f(x) - f(y) \rvert = \lvert \sin(x) - \sin(y) \rvert = \lvert \sin(y + h) - \sin(y) \rvert = \Bigl\lvert 2 \sin(\frac{h}{2})\cos(\frac{y + y + h}{2}) \Bigr\rvert\]
+    \[\leq \Bigl\lvert 2\sin(\frac{h}{2}) \Bigr\rvert \leq 2 \Bigl\lvert \frac{h}{2} \Bigr\rvert \leq \lvert h \rvert = \lvert x - y \rvert,\]
+
+    where we used the identity $\sin(a) - \sin(b) = 2\sin((a - b)/2)\cos((a + b)/2)$, the fact that $\lvert \cos(a) \rvert \leq 1$ for any $a$, and the inequality $\lvert \sin(a) \rvert \leq \lvert a \rvert$ for any $a$.
+    We've thus shown that $\sin$ is Lipschitz continuous with $K = 1$.
+    Now we want to show that any Lipschitz continuous function (with constant $K$) is uniformly continuous.
+    Pick any $\epsilon$, and set $\delta = \frac{\epsilon}{K}$.
+    Then observe that, whenever $\lvert x - y \rvert < \delta$:
+
+    \[\lvert f(x) - f(y) \rvert \leq K \lvert x - y \rvert < K \delta = K \frac{\epsilon}{K} = \epsilon,\]
+
+    which is precisely the definition of uniform continuity for $f$.
+\end{solution}
+
+\begin{exercise}{20}
+    If $d$ is a metric on $M$, show that $\lvert d(x, z) - d(y, z) \rvert \leq d(x, y)$ and conclude that the function $f(x) = d(x, z)$ is continuous on $M$ for any fixed $z \in M$.
+    This says that $d(x, y)$ is \textit{separately continuous} - continuous in each variable separately.
+\end{exercise}
+
+\begin{solution}
+    
+    We have already shown this inequality in exercise 2 of chapter 3.
+    What we are then asked to show is that for any \textit{fixed} $z \in M$, and for any $x \in M$, the function $f(x) = d(x, z)$ is continuous at $x$.
+    To do this, pick any $\epsilon > 0$.
+    We need to find $\delta > 0$ such that whenever $d(x, y) < \delta$ it holds that $\lvert f(y) - f(x) \rvert < \epsilon$ (note that the metric space containing the codomain is simply $\mathbb{R}$).
+    Observe that:
+
+    \[\lvert f(y) - f(x) \rvert = \lvert d(y, z) - d(x, z) \rvert \leq d(x, y)\]
+
+    Therefore, if we set $\delta = \epsilon/2$, we obtain that $\lvert f(y) - f(x) \rvert \leq \epsilon/2 < \epsilon$, and thus that $f$ is continuous on $M$.
+\end{solution}
+
+\begin{exercise}{24}
+    Let $V$ be a normed vector space.
+    If $y \in V$ is fixed, show that the maps $a \mapsto a y$ from $\mathbb{R}$ to $V$ and $x \mapsto x + y$ from $V$ to $V$ are continuous.
+\end{exercise}
+
+\begin{solution}
+    
+    Let $g: \mathbb{R} \rightarrow V, g(a) = ay$ for a fixed $y \in V$.
+    Note that $g$ is obviously continuous if $y = 0$, so from now on assume $y \neq 0$.
+    We need to show that for any $a \in \mathbb{R}$, it holds that for any $\epsilon > 0$, there exists $\delta > 0$ such that whenever $\lvert b - a \rvert < \delta$, it holds that $\lvert \lvert g(b) - g(a) \rvert \rvert < \epsilon$ (for the usual metric on $V$).
+    By the properties of normed vector spaces, we have that:
+
+    \[\lvert \lvert g(b) - g(a) \rvert \rvert = \lvert \lvert by - ba \rvert \rvert = \lvert b - a \rvert \cdot \lvert \lvert y \rvert \rvert \]
+
+    For a given $\epsilon > 0$, set $\delta = \frac{\epsilon}{\lvert \lvert y \rvert \rvert}$.
+    Then, whenever $\lvert b - a \rvert < \delta$, the equality above shows that $\lvert \lvert g(b) - g(a) \rvert \rvert < \delta \lvert \lvert y \rvert \rvert = \epsilon$, i.e., that $g$ is indeed continuous.
+
+    Now let instead $g: V \rightarrow V$ be $g(x) = x + y$ for a fixed $y \in V$.
+    For any $x, z \in V$ we have that:
+
+    \[\lvert \lvert g(z) - g(x) \rvert \rvert = \lvert \lvert (z + y) - (x + y) \rvert \rvert = \lvert \lvert z - x \rvert \rvert\]
+
+    Therefore, for any given $\epsilon > 0$, if we set $\delta = \epsilon$, whenever $\lvert \lvert z - x \rvert \rvert < \delta$, the equality above tells us that $\lvert \lvert g(z) - g(x) \rvert \rvert < \delta = \epsilon$, and so that $g$ is continuous on any $x \in V$.
+\end{solution}
