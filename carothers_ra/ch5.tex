@@ -173,10 +173,73 @@
 
 \begin{solution}
     
-    Pick any $x \in M$ and any $\epsilon > 0$.
+    Suppose first that $K = 0$.
+    Then for any two $x, y \in M$ it holds that $\rho(f(x), f(y)) \leq 0$.
+    By the properties of metrics, we know that this means that $\rho(f(x), f(y)) = 0$, and this in turn means that $f(x) = f(y)$ for all $x, y$, thus $f$ is constant, and trivially continuous.
+
+    If $K \neq 0$, pick any $x \in M$ and any $\epsilon > 0$.
     Set $\delta = \frac{\epsilon}{K}$, and observe that whenever $d(x, y) < \delta$, we have that:
 
     \[\rho(f(x), f(y)) \leq K d(x, y) < K \delta = K \frac{\epsilon}{K} = \epsilon,\]
 
     which is precisely the definition of continuity for $f$.
+\end{solution}
+
+\begin{exercise}{26}
+    Provide the answer to a question raised in Chapter Three by showing that integration is continuous.
+    specifically, show that the map $L(f) = \int_{a}^{b} f(t) dt$ is Lipschitz with constant $K = b - a$ for $f \in C[a, b]$.
+\end{exercise}
+
+\begin{solution}
+    
+    We recall first the Frechet metric for continuous functions on $[a, b]: d(f, g) = \max_{a \leq t \leq b} \lvert f(t) - g(t) \rvert$.
+    The question raised in the beginning of Chapter Three was whether integration is continuous, which, in other words, would mean that the quantities $L(f), L(g)$ are ``close'' whenever $f, g$ are close.
+    To answer this, we observe that:
+
+    \[\lvert L(f) - L(g) \rvert = \Biggl\lvert \int_{a}^{b} f(t) dt - \int_{a}^{b} g(t) dt \Biggr\rvert = \Biggl\lvert \int_{a}^{b} (f(t) - g(t)) dt \Biggr\rvert\]
+
+    Now we call the mean value theorem for integration: there exists $c \in (a, b)$ such that $\int_{a}^{b}(f(t) - g(t))dt = (f(c) - g(c))(b - a)$.
+    Therefore:
+
+    \[\lvert L(f) - L(g) \rvert = \lvert (f(c) - g(c))(b - a) \rvert = (b - a) \lvert f(c) - g(c) \rvert \leq (b - a) \max_{a \leq t \leq b} \lvert f(t) - g(t) \rvert = (b - a)d(f, g)\]
+    
+    We've therefore shown that $\lvert L(f) - L(g) \rvert \leq (b - a)d(f, g)$, which means precisely that $L$ is Lipschitz with $K = b - a$.
+\end{solution}
+
+\begin{exercise}{30}
+    Let $f: (M, d) \rightarrow (N, \rho)$.
+    Prove that $f$ is continuous if and only if $f(\overline{A}) \subset \overline{f(A)}$ for every $A \subset M$ if and only if $f^{-1}(\mathring{B}) \subset (\mathring{f^{-1}(B)})$ for every $B \subset N$.
+    Give an example of a continuous $f$ such that $f(\overline{A}) \neq \overline{f(A)}$ for some $A \subset M$.
+\end{exercise}
+
+\begin{solution}
+    
+    For ease of notation, name the three propositions:
+
+    (a): $f$ is continuous
+
+    (b): $f(\overline{A}) \subset \overline{f(A)}$ for every $A \subset M$
+
+    (c): $f^{-1}(\mathring{B}) \subset (\mathring{f^{-1}(B)})$ for every $B \subset N$
+    \newline
+    \newline
+    (a) $\implies$ (b): Pick any $A \in M$ and any $y \in f(\overline{A})$.
+    We need to show that $y \in \overline{f(A)}$.
+    Because $y \in f(\overline{A})$, we have that there exists $x \in \overline{A}$ such that $f(x) = y$.
+    We recall that $x \in \overline{A}$ is equivalent to the existence of a sequence $(x_n) \subset A$ such that $x_n \rightarrow x$.
+    Because $f$ is continuous, we must then have that $f(x_n) \rightarrow f(x) = y$.
+    By definition of the image of a function, $f(x_n) \in f(A)$ for every $n$.
+    Once again, $f(x_n) \rightarrow y$ with $(f(x_n)) \subset f(A)$ is equivalent to $y \in \overline{f(A)}$.
+
+    (b) $\implies$ (a): For the converse, pick any $x \in M$.
+    If no sequences in $M$ converge to $x$, then there exists $\delta > 0$ such that $d(x, y) > \delta$ for every $y \in M, y \neq x$.
+    Now pick any $\epsilon > 0$ and observe that $d(x, y) < \delta$ is only satisfied when $y = x$, in which case of course $\rho(f(x), f(y)) = 0 < \epsilon$, so $f$ is continuous at $x$.
+    In the other case, we have that there exists a sequence $(x_n)$ such that $x_n \rightarrow x$.
+    Let $A = (x_n)$.
+    The uniqueness of limits along with the fact that for any set $C$ it holds that $\overline{C}$ contains precisely the points to which a sequence in $C$ converges shows that $\overline{A} = (x_n) \cup \{x\}$.
+    Then we must have that:
+    
+    \[f(\overline{A}) = f((x_n) \cup \{x\}) \subset \overline{f(A)} = \overline{f((x_n))}\]
+
+    More specifically, this means that $f(x)$ belongs in the closure of $f((x_n))$, and thus that there exists a sequence $f(x_i) \rightarrow f(x)$
 \end{solution}
