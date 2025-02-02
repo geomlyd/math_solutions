@@ -221,8 +221,7 @@
     (b): $f(\overline{A}) \subset \overline{f(A)}$ for every $A \subset M$
 
     (c): $f^{-1}(\mathring{B}) \subset (\mathring{f^{-1}(B)})$ for every $B \subset N$
-    \newline
-    \newline
+
     (a) $\implies$ (b): Pick any $A \in M$ and any $y \in f(\overline{A})$.
     We need to show that $y \in \overline{f(A)}$.
     Because $y \in f(\overline{A})$, we have that there exists $x \in \overline{A}$ such that $f(x) = y$.
@@ -234,12 +233,66 @@
     (b) $\implies$ (a): For the converse, pick any $x \in M$.
     If no sequences in $M$ converge to $x$, then there exists $\delta > 0$ such that $d(x, y) > \delta$ for every $y \in M, y \neq x$.
     Now pick any $\epsilon > 0$ and observe that $d(x, y) < \delta$ is only satisfied when $y = x$, in which case of course $\rho(f(x), f(y)) = 0 < \epsilon$, so $f$ is continuous at $x$.
-    In the other case, we have that there exists a sequence $(x_n)$ such that $x_n \rightarrow x$.
-    Let $A = (x_n)$.
-    The uniqueness of limits along with the fact that for any set $C$ it holds that $\overline{C}$ contains precisely the points to which a sequence in $C$ converges shows that $\overline{A} = (x_n) \cup \{x\}$.
-    Then we must have that:
-    
-    \[f(\overline{A}) = f((x_n) \cup \{x\}) \subset \overline{f(A)} = \overline{f((x_n))}\]
+    In the other case, we have that there exists at least one sequence in $M$ that converges to $x$.
+    By way of contradiction, assume that there $f$ is not continuous, and thus that for some $x_n \rightarrow x$ it does not hold that $f(x_n) \rightarrow f(x)$.
+    By negating the definition of the limit, we obtain that there exists $\epsilon > 0$ such that for every $N > 0$ there exists $n \geq N$ such that $\rho(f(x_n), f(x)) \geq \epsilon$.
+    Gather then an infinite sequence $(f(x_i))$ for which $\rho(f(x_i), f(x)) \geq \epsilon$, and notice that $x_i \rightarrow x$ since the corresponding $x_i$ form a subsequence of $(x_n)$.
+    We observe now that if $A = (x_i), \overline{A} = \{x_1, x_2, \ldots, \} \cup \{x\}$: this is due to the uniqueness of the limit, as well as the fact that $x_i \rightarrow x$.
+    Then $f(x) \in f(\overline{A}) \subset \overline{f(A)}$, which in turn means that there exists a sequence $(f(y_j)) \subset f(A)$ such that $f(y_j) \rightarrow f(x)$ (by the definition of the closure).
+    Since $f(A) = \{f(x_1), f(x_2), \ldots\}$, we conclude that each $f(y_j)$ must equal some $f(x_i)$.
+    But then $\rho(f(y_j), f(x)) \geq \epsilon$ for every $j$, and thus $f(y_j)$ cannot convert to $x$, a contradiction.
+    Therefore $f$ must be continuous.
 
-    More specifically, this means that $f(x)$ belongs in the closure of $f((x_n))$, and thus that there exists a sequence $f(x_i) \rightarrow f(x)$
+    (a) $\implies$ (c): Pick any $B \subset N$, and any $x \in f^{-1}(\mathring{B})$.
+    This means that there exists $\epsilon > 0$ such that, if $y = f(x)$, then $B_{\epsilon}^{\rho}(y) \subset B$.
+    Since $f$ is continuous, there exists $\delta > 0$ such that whenever $d(x', x) < \delta$ it holds that $\rho(f(x'), y) < \epsilon$.
+    Therefore, for every such $x', f(x') \in B_{\epsilon}^{\rho}(y)$, which implies $f(x') \in B$.
+    We thus obtain that $x' \in f^{-1}(B)$, and since this holds for every $x'$ with $d(x', x) < \delta$, we have that $B_{\delta}^{d}(x) \subset f^{-1}(B)$, which means precisely that $x \in \mathring{(f^{-1}(B))}$.
+
+    (c) $\implies$ (a): Suppose $B \subset N$ is open.
+    Then $B = \mathring{B}$ and we have that $f^{-1}(B) = f^{-1}(\mathring{B}) \subset \mathring{(f^{-1}(B))}$.
+    We know of course that $\mathring{f^{-1}(B)} \subset f^{-1}(B)$, which means $f^{-1}(B) = \mathring{f^{-1}(B)}$, which is equivalent to $f^{-1}(B)$ being open.
+    Since this holds for any open $B$, we have one of the conditions that are known to be equivalent to $f$ being continuous: namely, that the inverse image of any open set under $f$ is also open.
+
+    For the requested example, consider $M = \mathbb{N}$ equipped with the discrete metric, $N = \mathbb{R}$ and $f: M \rightarrow N, f(i) = \frac{1}{i}, i \neq 0, f(0) = 1$, which we easily see is continuous.
+    Then if $A = \mathbb{N}^+$, we notice that $\overline{A} = A$ and $f(\overline{A}) = \{1, 1/2, 1/3, \ldots\}$.
+    However, $\overline{f(A)} = \{0, 1, 1/2, 1/3, \ldots\}$, and so $f(\overline{A}) \neq f(\overline{A})$.
+
+\end{solution}
+
+\begin{exercise}{31}
+    Let $f: (M, d) \rightarrow (N, \rho)$.
+
+    (a) If $M = \bigcup_{n = 1}^{\infty} U_n$, where each $U_n$ is an open set in $M$, and if $f$ is continuous on each $U_n$ relative to that $U_n$, show that $f$ is continuous on $M$.
+
+    (b) If $M = U_{n=1}^{N} E_n$, where each $E_n$ is a closed set in $M$, and if $f$ is continuous on each $E_n$ relative to that $E_n$, show that $f$ is continuous on M.
+
+    (c) Give an example showing that $f$ can fail to be continuous on all of $M$ if, instead, we use a countably infinite union of closed sets $M = \bigcup_{n=1}^{\infty} E_n$ in (b).
+\end{exercise}
+
+\begin{solution}
+    
+    (a) Pick any $x \in M$.
+    Then $x \in U_i$ for at least one $i$.
+    Because $U_i$ is open, there exists $\delta_1$ such that $B_{\delta_1}^{d}(x) \subset U_i$.
+    In addition, because $f$ is continuous on $x$ relative to $U_i$, for every $\epsilon > 0$ there exists $\delta_2 > 0$ such that whenever $d(x', x) < \delta_2$ and $x' \in U_i$ it holds that $\rho(f(x'), f(x)) < \epsilon$.
+    Set $\delta = \min\{\delta_1, \delta_2\}$.
+    Then, whenever $d(x', x) < \delta$ we have $x' \in U_i$, and also $d(x', x) < \delta_2$, thus $\rho(f(x'), f(x)) < \epsilon$.
+    Therefore $f$ is indeed continuous on $x$ in the general sense.
+
+    (b) Again, pick any $x \in M$.
+    Then $x \in E_i$ for at least one $i$.
+    If $x \in \mathring{E_i}$, an argument like the one in (a) serves to show that $f$ is continuous at $x$.
+    The complication here is it may be the case that $x \in \partial E_i$, in which case for any open ball $B_{\delta}^{d}(x), B_{\delta}^{d}(x) \cap E_i^{c} \neq \emptyset$.
+    Suppose then that $x \in \partial E_i$, pick any $\epsilon > 0$ and obtain a $\delta_i > 0$ from the definition of relative continuity to $E_i$. 
+    Then set $S = B_{\delta_i}^{d}(x) \cap E_i^{c}$.
+    Any point $x' \in S$ must belong in at least one $E_j, j \neq i$.
+    For all such $E_j$, we examine whether their intersection with $S$ is non-empty (call the corresponding set of indices $I$), and if it isn't, we know that it must contain at least $x$.
+    It must thus hold that $f$ is continuous on $x$ relative to each $E_j, j \in I$.
+    From this we can obtain \textit{at most} $N - 1$ quantities $\delta_j > 0$ that satisfy the definition of relative continuity of $f$ on $x$ (with respect to each of these sets).
+    The minimum of these quantities is thus well defined, and we call it $\delta'$.
+    Notice then that $\delta = \min\{\delta_1, \delta'\}$ is such that whenever $d(x', x) < \delta$, it holds that $x'$ is in \textit{some} $E_i$, and relative continuity with respect to that $E_i$ guarantees that $\rho(f(x'), f(x)) < \epsilon$.
+    Therefore $f$ is indeed continuous on $x$ in the general sense.
+
+    (c)
 \end{solution}
