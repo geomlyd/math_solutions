@@ -97,6 +97,22 @@
     But $f(x_n)$ is a sequence entirely in $f(D)$, which means that $f(D)$ is dense in $N$, since $y$ was picked arbitrarily in $N$.
 \end{solution}
 
+\begin{exercise}{18}
+   Let $f: (M, d) \rightarrow (N, \rho)$ be continuous, and let $A$ be a separable subset of $M$.
+   Prove that $f(A)$ is separable. 
+\end{exercise}
+
+\begin{solution}
+    
+    We need to find a countable dense subset of $f(A)$.
+    Since $A$ is separable, it countains a countable and dense subset $S \subset A, S = \{a_1, a_2, \ldots\}$.
+    Pick any element $f(a)$ of $f(A)$, which means $a \in A$.
+    Since $S$ is dense, there exists a sequence $(a_n) \subset A$ such that $a_n \rightarrow a$, and because $f$ is continuous, $f(a_n) \rightarrow f(a)$.
+    Notice that this holds for any $f(a) \in f(A)$.
+    The consequence is that if we form the set $S' = \{f(a_1), f(a_2), \ldots\}$, which is clearly countable because $S$ is countable, we are always able to find a sequence in $s'$ converging to any element of $A$.
+    Therefore $f(A)$ is separable.
+\end{solution}
+
 \begin{exercise}{19}
     A function $f: \mathbb{R} \rightarrow \mathbb{R}$ is said to satisfy a \textbf{Lipschitz condition} if there is a constant $K< \infty$ such that $\lvert f(x) - f(y) \rvert \leq K \lvert x - y \rvert$ for all $x, y \in \mathbb{R}$.
     More economically, we may say that $f$ is Lipschitz (or Lipschitz with constant $K$ if a particular constant seems to matter).
@@ -295,4 +311,17 @@
     Therefore $f$ is indeed continuous on $x$ in the general sense.
 
     (c)
+    Consider first the following construction of subsets of $\mathbb{R}^2$.
+    We define $l_i$ to be the line passing through the origin at an angle of $0 + \sum_{j=1}^{i - 1}\frac{\pi}{2^j}$ with the $x'x$ axis.
+    Geometrically, this forms lines that start from an angle of 0 radians with the $x'x$ axis and tend towards an angle of $\pi$, but without ever attaining it.
+    Let now $U_i$ be the subset of $\mathbb{R}^2$ contained inside $l_i, l_{i+1}$, the lines included, i.e. increasingly small ``pie slices''.
+    Notice that each of these sets is closed.
+    Now discard $U_i$ for $i$ even, which yields a countably infinite collection of sets $\mathcal{U}$ that are closed, and every pair of which only has the origin in its intersection.
+    Define $M$ to be the union of all members of $U$, which is a metric space as a subset of $\mathbb{R}^2$, and let $N = \mathbb{R}$.
+    Then define $f: M \rightarrow N$ as:
+
+    \[f(x, y) =  i x + i y, (x, y) \in U_i\]
+
+    This function is clearly continuous on each $U_i$ relative to $U_i$, since this restriction of it is linear (furthermore, it is well-defined since it is zero at the origin no matter which $U_i$ we examine in the formula).
+    However, it fails to be continuous at (0, 0): notice that these are increasingly ``steep'' planes, each of which requires an increasingly small $\delta > 0$ in the definition of continuity for a given $\epsilon > 0$, and as such the argument used in (b) regarding a well-defined minimum $\delta$ fails.
 \end{solution}
