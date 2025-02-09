@@ -2,6 +2,51 @@
 
 \section{Continuous Functions}
 
+\begin{exercise}{4}
+    Show that $\mathcal{X}_\Delta : \mathbb{R} \rightarrow \mathbb{R}$, the characteristic function of the Cantor set, is discontinuous at each point of $\Delta$.
+\end{exercise}
+
+\begin{solution}
+    
+    We will do this by contradiction.
+    Suppose $\epsilon = 1/2$ and $x \in \Delta$.
+    If $\mathcal{X}_\Delta$ is continuous at $x$, then there exists $\delta > 0$ such that whenever $\lvert y - x \rvert < \delta$ it holds that $\lvert \mathcal{X}_\Delta(y) -\mathcal{X}_\Delta(x) \rvert < \epsilon$.
+    Pick any such $y$.
+    By definition of the characteristic function, this implies that $\mathcal{X}_\Delta(y) = 1$, and so that $y \in \Delta$.
+    But then by exercise 22 of Chapter 2 (page 29 on the book), we know that for our $x, y \in \Delta$, where either $x < y$ or $y < x$, there exists $x < z < y$ or $y < z < x$ respectively such that $z \notin \Delta$.
+    The consequence of this is that $\lvert z - x \rvert < \delta$ but $\mathcal{X}_\Delta(z) = 1$, and so $\lvert \mathcal{X}_\Delta(z) - \mathcal{X}_\Delta(x) \rvert = 1 > 1/2$, a contradiction.
+    Therefore $\mathcal{X}_\Delta$ is not continuous at $x$.
+\end{solution}
+
+\begin{exercise}{7}
+    (a) If $f: M \rightarrow \mathbb{R}$ is continuous and $a \in \mathbb{R}$, show that the sets $\{x: f(x) > a\}$ and $\{x: f(x) < a\}$ are open subsets of $M$.
+
+    (b) Conversely, if the sets $\{x: f(x) > a\}$ and $\{x: f(x) < a\}$ are open for every $a \in \mathbb{R}$, show that $f$ is continuous.
+
+    (c) Show that $f$ is continuous even if we assume only that the sets $\{x: f(x) > a\}$ and $\{x: f(x) < a\}$ are open for every \textit{rational} $a$.
+\end{exercise}
+
+\begin{solution}
+    
+    (a) For any $a \in \mathbb{R}$, consider the set $S = \{y \in \mathbb{R} \mid y > a\}$.
+    This is clearly seen to be an open set.
+    Then, theorem 5.1 (equivalent definitions of continuity) guarantees that $f^{-1}(S)$ is open in $M$.
+    This set equals $f^{-1}(S) = \{x \in M \mid f(x) \in S\} = \{x \in M \mid f(x) > a\}$.
+    The same holds if ``$>$'' is replaced by ``$<$'', thus completing the proof.
+
+    (b) Suppose $N$ is any open subset of $\mathbb{R}$.
+    If we can show that $f^{-1}(N)$ is open in $M$, then we will have equivalently shown that $f$ is continuous.
+    We know (theorem 4.6) that $N$ can be written as a countable union of disjoint open intervals:
+
+    \[N = \bigcup_{i=1}^{\infty} I_n, I_n = (a_n, b_n),\]
+
+    where $I_n \cap I_m = \emptyset$ for $n \neq m$.
+    Then we have that $f^{-1}(N) = \bigcup_{i=1}^{n} f^{-1}(I_n)$.
+    For any such $I_n$, write $I_n = (\infty, b_n) \cap (a_n, \infty)$.
+    If one of the boundaries of $I_n$ is already one of the infinities, then leave it as is.
+
+\end{solution}
+
 \begin{exercise}{8}
     Let $f: \mathbb{R} \rightarrow \mathbb{R}$ be continuous.
 
@@ -106,9 +151,9 @@
     
     We need to find a countable dense subset of $f(A)$.
     Since $A$ is separable, it countains a countable and dense subset $S \subset A, S = \{a_1, a_2, \ldots\}$.
-    Pick any element $f(a)$ of $f(A)$, which means $a \in A$.
+    Pick any element $y \in f(A)$, which means there exists $a \in A$ such that $y = f(a)$.
     Since $S$ is dense, there exists a sequence $(a_n) \subset A$ such that $a_n \rightarrow a$, and because $f$ is continuous, $f(a_n) \rightarrow f(a)$.
-    Notice that this holds for any $f(a) \in f(A)$.
+    Notice that this holds for any $y \in f(A)$.
     The consequence is that if we form the set $S' = \{f(a_1), f(a_2), \ldots\}$, which is clearly countable because $S$ is countable, we are always able to find a sequence in $s'$ converging to any element of $A$.
     Therefore $f(A)$ is separable.
 \end{solution}
@@ -155,6 +200,23 @@
     \[\lvert f(y) - f(x) \rvert = \lvert d(y, z) - d(x, z) \rvert \leq d(x, y)\]
 
     Therefore, if we set $\delta = \epsilon/2$, we obtain that $\lvert f(y) - f(x) \rvert \leq \epsilon/2 < \epsilon$, and thus that $f$ is continuous on $M$.
+\end{solution}
+
+\begin{exercise}{23}
+    Define $S: c_0 \rightarrow c_0$ by $S(x_1, x_2, \ldots) = (0, x_1, x_2, \ldots)$.
+    That is, $S$ shifts the entries forward and puts 0 in the empty slot.
+    Show that $S$ is an isometry (into).
+\end{exercise}
+
+\begin{solution}
+    
+    We need to show that for any two sequences $(x_n), (y_n) \in c_0, d(S((x_n)), S((y_n))) = d((x_n), (y_n))$, where $d((x_n), (y_n)) = \sup_{n} \lvert x_n - y_n \rvert$.
+    We notice that:
+
+    \[d(S((x_n)), S((y_n))) = \sup_{n} \{ \lvert 0 - 0 \rvert, \lvert x_1 - y_1 \rvert, \lvert x_2 - y_2 \rvert, \ldots\} = \sup_{n} \{ \lvert x_1 - y_1 \rvert , \lvert x_2 - y_2 \rvert, \ldots \},\]
+
+    since every term here is non-negative.
+    This last quantity equals precisely $d((x_n), (y_n))$, which completes the proofthat $S$ is an isometry.
 \end{solution}
 
 \begin{exercise}{24}
