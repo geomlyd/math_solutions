@@ -38,13 +38,24 @@
     If we can show that $f^{-1}(N)$ is open in $M$, then we will have equivalently shown that $f$ is continuous.
     We know (theorem 4.6) that $N$ can be written as a countable union of disjoint open intervals:
 
-    \[N = \bigcup_{i=1}^{\infty} I_n, I_n = (a_n, b_n),\]
+    \[N = \bigcup_{n=1}^{\infty} I_n, I_n = (a_n, b_n),\]
 
     where $I_n \cap I_m = \emptyset$ for $n \neq m$.
-    Then we have that $f^{-1}(N) = \bigcup_{i=1}^{n} f^{-1}(I_n)$.
-    For any such $I_n$, write $I_n = (\infty, b_n) \cap (a_n, \infty)$.
-    If one of the boundaries of $I_n$ is already one of the infinities, then leave it as is.
+    Then we have that $f^{-1}(N) = \bigcup_{n=1}^{\infty} f^{-1}(I_n)$.
+    Note that in general the boundaries of these intervals may equal the two infinities.    
+    First, in the special case where this union is simply the interval $(-\infty, \infty)$ (i.e., the chosen $N$ equals $\mathbb{R}$), we can immediately conclude that $f^{-1}(N) = M$: if this was not the case, then there would exist some $x \in M$ such that $f(x) \notin N = \mathbb{R}$, which is clearly impossible.
+    Note that, trivially, $f^{-1}(N)$ is then open (example 4.1 (a), page 51).
+    In every other case, no interval $I_n$ is of this form, and $N$ is a union of \textit{at least one} interval $(a_n, b_n)$ where not both of the endpoints are infinities.
+    We are now interested in $f^{-1}(I_n)$.
+    If both $a_n, b_n$ are real numbers, write $I_n = (-\infty, b_n) \cap (a_n, \infty)$.
+    If not, proceed with $I_n = (-\infty, b_n)$ or $I_n = (a_n, \infty)$.
+    In the last two cases, one easily sees that $f^{-1}(N) = \{x \in M: f(x) < b_n\}, f^{-1}(N) = \{x \in M: f(x) > a_n\}$ respectively, both of which are open by our hypothesis.
+    In the first case, $f^{-1}(N)$ equals a finite intersection of open sets (by utilizing what we proved just now), and as such is again open.
+    Then we conclude that $f^{-1}(N) = \bigcup_{n=1}^{\infty} f^{-1}(I_n)$ is also open as an arbitrary union of open sets, thus also obtaining that $f$ is continuous.
 
+    (c) The proof here relies on exercise 7 of chapter 4 (page 55), which states that every open set in $\mathbb{R}$ can be written as the union of countably many open intervals with rational endpoints.
+    Since disjointness was never necessary in (b), everything else follows in exactly the same way, because we know that $\{x: f(x) > a\}, \{x: f(x) < a\}$ are open for rational $a$, and every interval we will encounter here will be of this form.
+    Therefore, $f$ is again continuous.
 \end{solution}
 
 \begin{exercise}{8}
@@ -282,6 +293,16 @@
     \[\lvert L(f) - L(g) \rvert = \lvert (f(c) - g(c))(b - a) \rvert = (b - a) \lvert f(c) - g(c) \rvert \leq (b - a) \max_{a \leq t \leq b} \lvert f(t) - g(t) \rvert = (b - a)d(f, g)\]
     
     We've therefore shown that $\lvert L(f) - L(g) \rvert \leq (b - a)d(f, g)$, which means precisely that $L$ is Lipschitz with $K = b - a$.
+\end{solution}
+
+\begin{exercise}{28}
+    Given a set $A$ in $M$ and $\epsilon > 0$, show that $\{x \in M: d(x, A) < \epsilon\}$ is an open set and that $\{x \in M: d(x, A) \leq \epsilon\}$ is a closed set (and each contains $A$).
+\end{exercise}
+
+\begin{solution}
+    
+    The fact that each of these sets contains $A$ is easily seen: for any $x \in A$, we have that $d(x, A) = \inf\{d(x, a): a \in A\} = d(x, x) = 0$, and thus of course $d(x, A) \leq \epsilon$ for any $\epsilon > 0$.
+    Now let $S = \{x \in M: d(x, A) < \epsilon\}$.
 \end{solution}
 
 \begin{exercise}{30}
