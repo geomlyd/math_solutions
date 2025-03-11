@@ -122,6 +122,52 @@
 
 \begin{solution}
     
+    First of all, to see that a continuous function is indeed determined by its values on $\mathbb{Q}$, suppose that $f, g: \mathbb{R} \rightarrow \mathbb{R}$ are continuous and $f(x) = g(x)$ for all $x \in \mathbb{Q}$.
+    Then if $x \in \mathbb{R} \setminus \mathbb{Q}$, we know that there exists a sequence $(x_n) \subset \mathbb{Q}$ such that $x_n \rightarrow x$.
+    It is the case that $f(x_n) = g(x_n)$ for all $n$, and by the continuity of $f, g$ we have that $f(x) = \lim_{n \rightarrow \infty} f(x_n) = \lim_{n \rightarrow \infty} g(x_n) = g(x)$, therefore $f = g$.
+
+    We thus claim that the set of continuous functions $C^0$ is equivalent to $\mathbb{R}^{\mathbb{Q}}$.
+    Indeed, define $F: C^0 \rightarrow \mathbb{R}^{\mathbb{Q}}$ by $F(f) = g$ such that $g(q_n) = f(q_n)$ for all $q_n \in \mathbb{Q}$, which by the above is immediately seen to be an injection.
+    Define also $G: \mathbb{R}^{\mathbb{Q}} \rightarrow C^0$ by $G(g) = f$ such that $f(x) = g(x)$ for $x \in \mathbb{Q}$, while for $x \in \mathbb{R} \setminus \mathbb{Q}, f(x) = \lim_{n \rightarrow \infty}$
+
+    Therefore, if we find a set $A$ such that $\mathbb{R}^{\mathbb{Q}} \sim A$, we have that the set of continuous functions is equivalent to $A$ as well.
+    The following lemma will be useful: 
+    
+    If $A \sim B$, and $C$ is countable, then $A^{C} \sim B^{C}$.
+    Indeed, we can construct a bijection $F: A^{C} \rightarrow B^{C}$ in the following manner.
+    First, let $h$ be a bijection from $A$ to $B$, which we know exists.
+    If $f \in A^{C}$, we have $f(c_1) = a_1, f(c_2) = a_2, \ldots$.
+    We obtain $b_1, b_2, \ldots$ by $h(a_i) = b_i$, and we define $g \in B^{C}$ as $g(c_1) = b_1, g(c_2) = b_2, \ldots$.
+    We then define $F(f) = g$.
+    To prove injectivity, suppose $F(f_1) = F(f_2)$ for $f_1 \neq f_2$.
+    This means that there exists $c_n \in C$ such that $f_1(c_n) \neq f_2(c_n)$, and so $h(f_1(c_n)) = F(f_1)(c_n) \neq h(f_2(c_n)) = F(f_2)(c_n)$, due to the injectivity of $h$.
+    But then $F(f_1) \neq F(f_2)$, a contradiction.
+    For surjectivity, pick $g \in B^{C}$, which is completely determined by the values $g(c_1), g(c_2), \ldots$.
+    Let then $a_n \in A, a_n = h^{-1}(g(c_n))$, which are well-defined since $h$ is a bijection.
+    Then by defining $f \in A^{C}$ such that $f(c_n) = a_n$ we have $F(f) = g$, and thus $F$ is also a surjection, and therefore a bijection.
+
+    Notice now the following.
+    We know $\mathbb{R} \sim [0, 1]$, and by the lemma above we then have $\mathbb{R}^\mathbb{Q} \sim [0, 1]^\mathbb{Q}$ since $\mathbb{Q}$ is countable.
+    For the remaining proof, we can thus work with $[0, 1]^\mathbb{Q}$.
+    
+    Pick any $f \in [0, 1]^{\mathbb{Q}}$, and let $f(q_n) = a_n \in [0, 1]$, where we write $a_n$ in binary form, and if it can be written as both ending in infinite 1s and in infinite 0s, we choose the latter.
+    In a manner similar to Cantor's diagonal argument, we construct the following list:
+
+    \[f(q_1) = a_{11}.a_{12}a_{13}\ldots\]
+    \[f(q_2) = a_{21}.a_{22}a_{23} \ldots\]
+    \[\vdots\]
+
+    Define then $b_f = 0.a_{11}a_{21}a_{12}a_{31}a_{22}a_{13}\ldots \in [0, 1]$.
+    We claim that the function $F: [0, 1]^{\mathbb{Q}} \rightarrow [0, 1]$ defined by $F(f) = b_f$ is an injection.
+    Indeed, if $b_f = b_g$ for two such $f, g$, if $b_f, b_g$ are equal on all corresponding digits, then $f = g$ trivially.
+    If not, then one of them, say $b_f$, ends in infinite ones, and the other in infinite zeros.
+    However, this would imply that the construction above yields a $b_f$ ending in infinite ones, and thus that $f(q_i)$ end in infinite ones, which is impossible due to how we chose to construct these $b$.
+    Therefore $F$ is injective.
+    We now also find an injection $g: [0, 1] \rightarrow [0, 1]^{\mathbb{Q}}$.
+    For $a \in [0, 1]$, write $a = a_1.a_2 a_3 \ldots$ in binary form, again choosing infinite zeros over infinite ones as a postfix whenever necessary.
+    We then define $g(a) = f$ such that $f(q_i) = 0.0\ldots 0 a_i$, where the prefix is of length $i - 1$ (for $f(q_1)$, we have $f(q_1) = a_1$).
+    Notice again that this is easily seen to be an injection, since $g(a) = g(b)$ implies that all corresponding digits of $a, b$ are equal.
+    By the Cantor-Schröder-Bernstein theorem, we then have that $[0, 1]^{\mathbb{Q}} \sim [0, 1]$, and thus that $\mathbb{R}^\mathbb{Q} \sim \mathbb{R}$, i.e. there are ``as many'' continuous functions as real numbers.
 
 \end{solution}
 
