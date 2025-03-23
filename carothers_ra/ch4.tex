@@ -369,6 +369,24 @@
     and so we can indeed safely conclude that $d(x_n, A) \rightarrow d(x, A)$, which is the definition of continuity we use here.
 \end{solution}
 
+
+\begin{exercise}{28}
+    Given a set $A$ in $M$ and $\epsilon > 0$, show that $\{x \in M: d(x, A) < \epsilon\}$ is an open set and that $\{x \in M: d(x, A) \leq \epsilon\}$ is a closed set (and each contains $A$).
+\end{exercise}
+
+\begin{solution}
+    
+    The fact that each of these sets contains $A$ is easily seen: for any $x \in A$, we have that $d(x, A) = \inf\{d(x, a): a \in A\} = d(x, x) = 0$, and thus of course $d(x, A) \leq \epsilon$ for any $\epsilon > 0$.
+    Now let $S = \{x \in M: d(x, A) < \epsilon\}$, and suppose that $S$ is not open.
+    Then there must exist $x \in S$ such that there exists a sequence $x_i \rightarrow x$ with an infinite number of terms that are not in $S$.
+    Take those terms $(x_{i_k}) \subset S^c$ and form a sequence converging to $x$.
+    Observe that $d(x_{i_k}, A) \geq \epsilon$, and that by exercise 27, the function $x \rightarrow d(x, A)$ is continuous.
+    This then means that the inequality must hold at the limit, i.e.\ that $d(x, A) \geq \epsilon$, which is a contradiction.
+    Therefore $S$ is open.
+    Now set instead $S = \{x \in M: d(x, A) \leq \epsilon \}$ and pick any convergent sequence $(x_i) \subset S$  converging to $x \in M$.
+    It holds that $d(x_i, A) \geq \epsilon$, and again by exercise 27 we obtain $d(x, A) \geq \epsilon$, which means $x \in S$ and so $S$ is closed.
+\end{solution}
+
 \begin{exercise}{29}
     Show that every closed set in $M$ is the intersection of countably many open sets and that every open set in $M$ is the union of countably many closed sets.
     [Hint: What is $\cap_{n=1}^{\infty} \{x \in M : d(x, A) < 1/n\}$?]

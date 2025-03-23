@@ -126,12 +126,13 @@
     Then if $x \in \mathbb{R} \setminus \mathbb{Q}$, we know that there exists a sequence $(x_n) \subset \mathbb{Q}$ such that $x_n \rightarrow x$.
     It is the case that $f(x_n) = g(x_n)$ for all $n$, and by the continuity of $f, g$ we have that $f(x) = \lim_{n \rightarrow \infty} f(x_n) = \lim_{n \rightarrow \infty} g(x_n) = g(x)$, therefore $f = g$.
 
-    We thus claim that the set of continuous functions $C^0$ is equivalent to $\mathbb{R}^{\mathbb{Q}}$.
-    Indeed, define $F: C^0 \rightarrow \mathbb{R}^{\mathbb{Q}}$ by $F(f) = g$ such that $g(q_n) = f(q_n)$ for all $q_n \in \mathbb{Q}$, which by the above is immediately seen to be an injection.
-    Define also $G: \mathbb{R}^{\mathbb{Q}} \rightarrow C^0$ by $G(g) = f$ such that $f(x) = g(x)$ for $x \in \mathbb{Q}$, while for $x \in \mathbb{R} \setminus \mathbb{Q}, f(x) = \lim_{n \rightarrow \infty}$
+    We begin our proof by noticing that the above observation implies that there exists an injection $F: C^0 \rightarrow \mathbb{R}^{\mathbb{Q}}$.
 
-    Therefore, if we find a set $A$ such that $\mathbb{R}^{\mathbb{Q}} \sim A$, we have that the set of continuous functions is equivalent to $A$ as well.
-    The following lemma will be useful: 
+    Furthermore, there exists a trivial injection $G$ from $\mathbb{R}$ to $C^0$: map any real number $a$ to the clearly continuous $f(x) = a$.
+
+    Therefore, if we can now show that $\mathbb{R}^{\mathbb{Q}} \sim \mathbb{R}$, the existence of $F$ guarantees the existence of an injection from the set of continuous functions to $\mathbb{R}$ as well.
+    This injection coupled with $G$ will allow us to apply the Cantor-Schröder-Bernstein theorem to obtain that in fact $C^0 \sim \mathbb{R}$.
+    In showing $\mathbb{R}^{\mathbb{Q}} \sim \mathbb{R}$, the following lemma will be useful: 
     
     If $A \sim B$, and $C$ is countable, then $A^{C} \sim B^{C}$.
     Indeed, we can construct a bijection $F: A^{C} \rightarrow B^{C}$ in the following manner.
@@ -342,13 +343,21 @@
 \end{solution}
 
 \begin{exercise}{28}
-    Given a set $A$ in $M$ and $\epsilon > 0$, show that $\{x \in M: d(x, A) < \epsilon\}$ is an open set and that $\{x \in M: d(x, A) \leq \epsilon\}$ is a closed set (and each contains $A$).
+    Define $g: l_2 \rightarrow \mathbb{R}$ by $g(x) = \sum_{n=1}^{\infty} x_n/n$.
+    Is $g$ continuous?
 \end{exercise}
 
 \begin{solution}
     
-    The fact that each of these sets contains $A$ is easily seen: for any $x \in A$, we have that $d(x, A) = \inf\{d(x, a): a \in A\} = d(x, x) = 0$, and thus of course $d(x, A) \leq \epsilon$ for any $\epsilon > 0$.
-    Now let $S = \{x \in M: d(x, A) < \epsilon\}$.
+    We need to examine whether it holds that whenever $x^{(k)} \rightarrow x$ (these are both sequences of sequences), $g(x^{(k)}) \rightarrow g(x)$.
+    We have the following:
+
+    \[ \lvert g(x^{(k)}) - g(x) \rvert = \lvert \sum_{n=1}^{\infty} \frac{x_n^k}{n} - \sum_{n=1}^{\infty} \frac{x_n}{n} \rvert = \lvert \sum_{n=1}^{\infty} \frac{x_n^k - x_n}{n} \rvert \]
+
+    Consider the sequence $y = (\frac{x_1}{1}, \frac{x_2}{2}, \ldots)$, and the sequence of sequences $y^{(k)}$ such that $y_k = (\frac{x_1^k}{1}, \frac{x_2^k}{2}, \ldots)$.
+    These sequences are also in $l_2$, and then from a previous result recall that they are thus in $l_1$ as well, and in fact:
+
+
 \end{solution}
 
 \begin{exercise}{30}
@@ -453,4 +462,16 @@
 
     This function is clearly continuous on each $U_i$ relative to $U_i$, since this restriction of it is linear (furthermore, it is well-defined since it is zero at the origin no matter which $U_i$ we examine in the formula).
     However, it fails to be continuous at (0, 0): notice that these are increasingly ``steep'' planes, each of which requires an increasingly small $\delta > 0$ in the definition of continuity for a given $\epsilon > 0$, and as such the argument used in (b) regarding a well-defined minimum $\delta$ fails.
+\end{solution}
+
+\begin{exercise}{34}
+    Show that $d$ is continuous on $M \times M$, where $M \times M$ is supplied with ``the'' product metric (see Exercise 3.46).
+    This says that $d$ is jointly continuous, that is, continuous as a function of two variables.
+    [Hint: If $x_n \rightarrow x, y_n \rightarrow y$, show that $d(x_n, y_n) \rightarrow d(x, y)$.]
+\end{exercise}
+
+\begin{solution}
+    
+    By exercise 3.46, we can choose to use as the product metric the metric $d_1((x_n, y_n), (x, y)) = d(x_n, x) + d(y_n, y)$.
+    Suppose that $x_n \rightarrow^{d} x, y_n \rightarrow^{d} y$, in which case we know by the same exercise that $(x_n, y_n) \rightarrow^{d_1} (x, y)$.
 \end{solution}
