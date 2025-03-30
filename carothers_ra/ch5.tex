@@ -471,7 +471,26 @@
 \end{exercise}
 
 \begin{solution}
+
+    In order to discuss continuity of $d$ as a function defined on $M \times M$, we first need to equip $M \times M$ with an appropriate metric.
+    By exercise 3.46, we are given three choices all of which define equivalent metrics, from which we choose $e: M \times M \rightarrow \mathbb{R}$:
+
+    \[e((x, y), (a, b)) = d(x, a) + d(y, b)\]
+
+    Now we need to show that whenever $(x_n, y_n) \rightarrow^{e} (x, y)$, it holds that $d(x_n, y_n) \rightarrow d(x, y)$.
+    Select any $\epsilon > 0$, in which case we can find $N > 0$ such that whenever $n \geq N$ it holds that:
+
+    \[e((x_n, y_n), (x, y)) < \epsilon \implies d(x_n, x) + d(y_n, y) < \epsilon\]
     
-    By exercise 3.46, we can choose to use as the product metric the metric $d_1((x_n, y_n), (x, y)) = d(x_n, x) + d(y_n, y)$.
-    Suppose that $x_n \rightarrow^{d} x, y_n \rightarrow^{d} y$, in which case we know by the same exercise that $(x_n, y_n) \rightarrow^{d_1} (x, y)$.
+    By the triangle inequality for $d$ we have that:
+
+    \[d(x_n, y_n) \leq d(x_n, x) + d(x, y_n) \leq d(x_n, x) + d(x, y) + d(y, y_n) \implies d(x_n, y_n) - d(x, y) \leq d(x_n, x) + d(y, y_n)\]
+    \[\implies d(x_n, y_n) - d(x, y) < \epsilon\]
+
+    And also:
+
+    \[d(x, y) \leq d(x, x_n) + d(x_n, y) \leq d(x, x_n) + d(x_n, y_n) + d(y_n, y) \implies d(x, y) - d(x_n, y_n) \leq d(x_n, x) + d(y, y_n)\]
+    \[\implies d(x, y) - d(x_n, y_n) < \epsilon\] 
+    
+    Combining these two inequalities yields $\lvert d(x, y) - d(x_n, y_n) \rvert < \epsilon$, so by setting $\delta = \epsilon$ we obtain the desired definition of continuity for $d$.
 \end{solution}
