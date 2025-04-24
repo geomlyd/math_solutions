@@ -494,3 +494,47 @@
     
     Combining these two inequalities yields $\lvert d(x, y) - d(x_n, y_n) \rvert < \epsilon$, so by setting $\delta = \epsilon$ we obtain the desired definition of continuity for $d$.
 \end{solution}
+
+\begin{exercise}{35}
+    Show that a set $U$ is open in $M$ if and only if $U = f^{-1}(V)$ for some continuous function $f: M \rightarrow \mathbb{R}$ and some open set $V$ in $\mathbb{R}$.
+\end{exercise}
+
+\begin{solution}
+    
+    $\implies$: If $U$ is open, we have that $U^c$ is closed.
+    Define then the function $f: M \rightarrow \mathbb{R}, f(x) = d(x, U^c)$.
+    Notice first that this is continuous, as discussed in preposition 5.4.
+    Furthermore, $f(x) > 0$ iff $x \notin \overline{U^c} = U^c \iff x \in U$, where we used the fact that $U^c$ is closed.
+    Consequently, we have that $f^{-1}(\mathbb{R} \setminus \{0\}) = U$, and of course the set $\mathbb{R} \setminus \{0\}$ is open, thus completing the proof in this direction.
+
+    $\impliedby$: If we think of $f$ as a continuous function between $(M, d)$ and $(\mathbb{R}, \rho)$ where $\rho$ is the usual metric on $\mathbb{R}$, then theorem 5.1 guarantees that $f^{-1}(V) = U$ is open in $M$.
+\end{solution}
+
+\begin{exercise}{36}
+    Suppose that we are given a point $x$ and a sequence $(x_n)$ in a metric space $M$, and suppose that $f(x_n) \rightarrow f(x)$ for every continuous, real-valued function $f$ on $M$.
+    Does it follow that $x_n \rightarrow x$ in $M$? 
+    Explain.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose that it is not the case that $x_n \rightarrow x$.
+    This means that there must exist $\epsilon > 0$ such that for every $N > 0$ there exists $n \geq N$ such that $d(x_n, x) \geq \epsilon$.
+    Select the subsequence $(x_{n_k})$ that is formed by picking a different such $x_n$ for every value of $N$ (these can always be found since the statement holds for arbitrarily large $N$).
+    Let then $U = B_{\epsilon/2}(x)$, and $f(y) = d(y, U)$, which we know (prep. 5.4) is continuous.
+    Note now that $x \in U$, so $f(x) = 0$.
+    Note also that for any $z \in U$ and any $x_{n_k}$ we have that:
+
+    \[d(z, x_{n_k}) \geq \lvert d(z, x) - d(x_{n_k}, x) \rvert,\]
+
+    and we know that $d(z, x) \leq \epsilon/2, d(x_{n_k}, x) \geq \epsilon$, so we can rewrite this as $d(z, x_n) \geq d(x_{n_k}, x) - d(z, x)$.
+    Continuing:
+
+    \[d(z, x_{n_k}) \geq \epsilon - d(z, x) > \epsilon - \epsilon/2 = \epsilon/2,\]
+
+    and since this holds for any $z \in U$ by taking the infimum over them we can conclude that $d(x_{n_k}, U) \geq \epsilon/2$.
+    Therefore $f(x_{n_k}) \geq \epsilon/2$ for all $x_{n_k}$.
+    What this now means is that we can never satisfy the definition of $f(x_n) \rightarrow f(x) = 0$: we can never find $N$ such that $f(x_{n}) < \epsilon/2$, since at least one such $x_{n_k}$ will violate this no matter how large $N$ is.
+    Because we are given $f(x_n) \rightarrow f(x)$, we arrive at a contradiction.
+    This means that it must indeed be the case that $x_n \rightarrow x$.
+\end{solution}
