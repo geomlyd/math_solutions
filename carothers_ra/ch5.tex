@@ -543,6 +543,70 @@
     This means that it must indeed be the case that $x_n \rightarrow x$.
 \end{solution}
 
+\section{Homeomorphisms}
+
+\begin{exercise}{43}
+    If you are not already convinced, prove that two metrics $d, \rho$ on a set $M$ are equivalent if and only if the identity map on $M$ is a homeomorphism from $(M, d)$ to $(M, \rho)$.
+\end{exercise}
+
+\begin{solution}
+    
+    Let $i$ be the identity map from $(M, d)$ to $(M, \rho)$.
+
+    $\implies$: It is obvious that $i$ is a bijection.
+    In addition, if $x_n \rightarrow^{d} x$, we have that $x_n \rightarrow^{\rho} x$ by the equivalence of the two metrics.
+    But this then means precisely that $i(x_n) \rightarrow^{\rho} i(x)$ in $(M, \rho)$, so $i$ is continuous.
+    With a symmetrical argument we can show that $i^{-1}$ is continuous, thus completing the proof that $i$ is a homeomorphism from $(M, d)$ to $(M, \rho)$.
+
+    $\impliedby$: If $i$ is a homeomorphism from $(M, d)$ to $(M, \rho)$, then $x_n \rightarrow^{d} x$ iff $x_n \rightarrow^{\rho} x$, which is of course the definition of $d, \rho$ being equivalent.
+\end{solution}
+
+\begin{exercise}{44}
+    Check that the relation ``is homeomorphic to'' is an equivalence relation on pairs of metric spaces.
+\end{exercise}
+
+\begin{solution}
+    
+    Denote the relation ``is homeomorphic to'' with $\sim$.
+    
+    \textbf{Reflexivity}: For any metric space $(M, d)$, it is clear that $(M, d) \sim (M, d)$, since the identity function is a trivial homeomorphism.
+
+    \textbf{Symmetry}: If $(M, d) \sim (N, \rho)$, then there exists a homeomorphism $f$ from $(M, d)$ to $(N, \rho)$, and so by the defining properties of homeomorphisms, $f^{-1}$ is also a homeomorphism from $(N, \rho)$ to $(M, d)$.
+
+    \textbf{Transitivity}: If $(M, d) \sim (N, \rho), (N, \rho) \sim (O, \sigma)$, let $f, g$ be the corresponding homeomorphisms.
+    Then the function $h: M \rightarrow O, h(x) = g(f(x))$ is a bijection as a composition of bijections.
+    Furthermore, if $x_n \rightarrow^{d} x$, we have that $f(x_n) \rightarrow^{\rho} f(x)$ by the continuity of $f$, and then that $g(f(x_n)) \rightarrow^{\sigma} g(f(x))$ by the continuity of $g$, which means $h(x_n) \rightarrow^{\sigma} h(x)$, which means $h$ is continuous.
+    A symmetrical argument shows that $h^{-1}$ is also continuous, thus completing the proof that $h$ is a homeomorphism from $(M, d)$ to $(O, \sigma)$, thus showing that $(M, d) \sim (O, \sigma)$.
+    We've thus shown that $\sim$ is an equivalence relation.
+\end{solution}
+
+\begin{exercise}{46}
+    Show that every metric space is homeomorphic to one of finite diameter.
+    [Hint: Every metric is equivalent to a bounded metric.]
+\end{exercise}
+
+\begin{solution}
+    
+    As stated in the hint, recall that in Ex. 42, Ch. 3 we showed that any metric $d$ is equivalent to the \textit{bounded} metric $\tau(x, y) = \min\{d(x, y), 1\}$.
+    For any metric space $(M, d)$, consider then the metric space $(M, \tau)$.
+    Clearly, for any two elements $x, y$ of $(M, \tau)$ we have that $\tau(x, y) \leq 1$, and so the diameter of $(M, \tau)$ is at most 1.
+    Furthermore, Exercise 43 guarantees that $(M, d)$ is homeomorphic to $(M, \tau)$, thus completing the proof.
+\end{solution}
+
+\begin{exercise}{48}
+    Prove that $\mathbb{R}$ is homeomorphic to $(0, 1)$ and that $(0, 1)$ is homeomorphic to $(0, \infty)$.
+    Is $\mathbb{R}$ \textit{isometric} to $(0, 1)$?
+    To $(0, \infty)$?
+    Explain.
+\end{exercise}
+
+\begin{solution}
+    
+    Let $f: \mathbb{R} \rightarrow (0, 1), f(x) = \frac{1}{1 + e^{-x}}$, which is easily seen to be continuous and bijective, with a continuous inverse ($f^{-1}(x) = \log(\frac{x}{1 - x})$).
+    Therefore $\mathbb{R}$ is homeomorphic to $(0, 1)$.
+    Let also $g: (0, 1) \rightarrow (0, \infty), g(x) = \log(\frac{1}{1- x})$, which in (0, 1) assumes strictly positive and unbounded values, is continuous and bijective, and thus is a homeomorphism between $(0, 1)$ and $(0, \infty)$.
+\end{solution}
+
 \begin{exercise}{41}
     Let $C$ be a closed set in $\mathbb{R}$ and let $f: C \rightarrow \mathbb{R}$ be continuous.
     Show that there is a continuous function $g: \mathbb{R} \rightarrow \mathbb{R}$ with $g(x) = f(x)$ for every $x \in C$.
