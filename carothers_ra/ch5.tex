@@ -349,14 +349,18 @@
 
 \begin{solution}
     
-    We need to examine whether it holds that whenever $x^{(k)} \rightarrow x$ (these are both sequences of sequences), $g(x^{(k)}) \rightarrow g(x)$.
-    We have the following:
+    Let $y = (1, \frac{1}{2}, \frac{1}{3}, \ldots)$, i.e.\ the sequence defined by $y_k = \frac{1}{k}$, which as we know is in $l_2$.
+    We observe then that for a given sequence of sequences $(x^{(n)})$ that converges to a sequence $x$ (all sequences involved are in $l_2$), we have that:
 
-    \[ \lvert g(x^{(k)}) - g(x) \rvert = \lvert \sum_{n=1}^{\infty} \frac{x_n^k}{n} - \sum_{n=1}^{\infty} \frac{x_n}{n} \rvert = \lvert \sum_{n=1}^{\infty} \frac{x_n^k - x_n}{n} \rvert \]
+    \[ \lvert g(x^{(n)}) - g(x) \rvert = \Bigl\lvert \sum_{k=1}^{\infty} (x_k^{(n)} - x_k)/k \Bigr\rvert \leq \sum_{k=1}^{\infty} \lvert (x_k^{(n)} -x_k)/k \rvert,\]
 
-    Consider the sequence $y = (\frac{x_1}{1}, \frac{x_2}{2}, \ldots)$, and the sequence of sequences $y^{(k)}$ such that $y_k = (\frac{x_1^k}{1}, \frac{x_2^k}{2}, \ldots)$.
-    These sequences are also in $l_2$, and then from a previous result recall that they are thus in $l_1$ as well, and in fact:
+    where we note that while at this point we are not sure that the sums converge, we will see that the RHS is in fact bounded, and so we would obtain the above result by initially examining finite sums only.
+    Specifically, we observe that we can apply the Cauchy-Schwarz inequality to the RHS, since both $(x^{(n)} - x)$ and $y$ are in $l_2$.
+    From this we obtain that:
 
+    \[\lvert g(x^{(n)}) - g(x) \rvert \leq \lvert \lvert x^{(n)} - x \rvert \rvert _2 \cdot \lvert \lvert y \rvert \rvert _2\]
+
+    We've thus shown that $g$ is Lipschitz with constant $\lvert \lvert y \rvert \rvert _2$, and so also continuous.
 
 \end{solution}
 
@@ -537,4 +541,31 @@
     What this now means is that we can never satisfy the definition of $f(x_n) \rightarrow f(x) = 0$: we can never find $N$ such that $f(x_{n}) < \epsilon/2$, since at least one such $x_{n_k}$ will violate this no matter how large $N$ is.
     Because we are given $f(x_n) \rightarrow f(x)$, we arrive at a contradiction.
     This means that it must indeed be the case that $x_n \rightarrow x$.
+\end{solution}
+
+\begin{exercise}{41}
+    Let $C$ be a closed set in $\mathbb{R}$ and let $f: C \rightarrow \mathbb{R}$ be continuous.
+    Show that there is a continuous function $g: \mathbb{R} \rightarrow \mathbb{R}$ with $g(x) = f(x)$ for every $x \in C$.
+    We say that $g$ is a continuous \textit{extension} of $f$ to all of $\mathbb{R}$.
+    In particular, every continuous function on the Cantor set $\Delta$ extends continuously to all of $\mathbb{R}$.
+    [Hint: The complement of $C$ is the countable union of disjoint open intervals.
+    Define $g$ by ``connecting the dots'' across each of these open intervals.]
+\end{exercise}
+
+\begin{solution}
+    
+    Since $C$ is closed, we know that $B = C^c$ is open.
+    In particular, as stated in the hint, this means that we can write $B$ as a countable union of disjoint open intervals, $B = \cup_{j=1}^{\infty} I_j, I_j \cap I_k = \emptyset$ whenever $j \neq k$.
+    We are therefore tasked with finding values for $g$ on each $I_j = (a_j, b_j)$ such that it is continuous everywhere.
+    For $x \in I_j$, consider defining:
+
+    \[g(x) = f(a_j) + (f(b_j) - f(a_j))\frac{x - a_j}{b_j - a_j},\]
+
+    and for $x \in C, g(x) = f(x)$.
+    We then know that $g$ is continuous on all of $C$ except for the endpoints of all $I_j$ due to $f$'s continuity.
+    Furthermore, $g$ is continuous inside each $I_j$ as a linear function.
+    Lastly, by an easy computation of left and right limits on each $a_j, b_j$ we conclude that $g$ is also continuous on each of them as well.
+    Therefore $g$ is continuous everywhere.
+    An immediate consequence of this is the fact that continous functions on $\Delta$ can be continuously extended to all of $\mathbb{R}$, given that $\Delta$ is closed (Example 4.12).
+
 \end{solution}
