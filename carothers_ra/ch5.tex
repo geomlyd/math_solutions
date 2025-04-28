@@ -543,6 +543,33 @@
     This means that it must indeed be the case that $x_n \rightarrow x$.
 \end{solution}
 
+\begin{exercise}{41}
+    Let $C$ be a closed set in $\mathbb{R}$ and let $f: C \rightarrow \mathbb{R}$ be continuous.
+    Show that there is a continuous function $g: \mathbb{R} \rightarrow \mathbb{R}$ with $g(x) = f(x)$ for every $x \in C$.
+    We say that $g$ is a continuous \textit{extension} of $f$ to all of $\mathbb{R}$.
+    In particular, every continuous function on the Cantor set $\Delta$ extends continuously to all of $\mathbb{R}$.
+    [Hint: The complement of $C$ is the countable union of disjoint open intervals.
+    Define $g$ by ``connecting the dots'' across each of these open intervals.]
+\end{exercise}
+
+\begin{solution}
+    
+    Since $C$ is closed, we know that $B = C^c$ is open.
+    In particular, as stated in the hint, this means that we can write $B$ as a countable union of disjoint open intervals, $B = \cup_{j=1}^{\infty} I_j, I_j \cap I_k = \emptyset$ whenever $j \neq k$.
+    We are therefore tasked with finding values for $g$ on each $I_j = (a_j, b_j)$ such that it is continuous everywhere.
+    For $x \in I_j$, consider defining:
+
+    \[g(x) = f(a_j) + (f(b_j) - f(a_j))\frac{x - a_j}{b_j - a_j},\]
+
+    and for $x \in C, g(x) = f(x)$.
+    We then know that $g$ is continuous on all of $C$ except for the endpoints of all $I_j$ due to $f$'s continuity.
+    Furthermore, $g$ is continuous inside each $I_j$ as a linear function.
+    Lastly, by an easy computation of left and right limits on each $a_j, b_j$ we conclude that $g$ is also continuous on each of them as well.
+    Therefore $g$ is continuous everywhere.
+    An immediate consequence of this is the fact that continous functions on $\Delta$ can be continuously extended to all of $\mathbb{R}$, given that $\Delta$ is closed (Example 4.12).
+
+\end{solution}
+
 \section{Homeomorphisms}
 
 \begin{exercise}{43}
@@ -605,31 +632,4 @@
     Let $f: \mathbb{R} \rightarrow (0, 1), f(x) = \frac{1}{1 + e^{-x}}$, which is easily seen to be continuous and bijective, with a continuous inverse ($f^{-1}(x) = \log(\frac{x}{1 - x})$).
     Therefore $\mathbb{R}$ is homeomorphic to $(0, 1)$.
     Let also $g: (0, 1) \rightarrow (0, \infty), g(x) = \log(\frac{1}{1- x})$, which in (0, 1) assumes strictly positive and unbounded values, is continuous and bijective, and thus is a homeomorphism between $(0, 1)$ and $(0, \infty)$.
-\end{solution}
-
-\begin{exercise}{41}
-    Let $C$ be a closed set in $\mathbb{R}$ and let $f: C \rightarrow \mathbb{R}$ be continuous.
-    Show that there is a continuous function $g: \mathbb{R} \rightarrow \mathbb{R}$ with $g(x) = f(x)$ for every $x \in C$.
-    We say that $g$ is a continuous \textit{extension} of $f$ to all of $\mathbb{R}$.
-    In particular, every continuous function on the Cantor set $\Delta$ extends continuously to all of $\mathbb{R}$.
-    [Hint: The complement of $C$ is the countable union of disjoint open intervals.
-    Define $g$ by ``connecting the dots'' across each of these open intervals.]
-\end{exercise}
-
-\begin{solution}
-    
-    Since $C$ is closed, we know that $B = C^c$ is open.
-    In particular, as stated in the hint, this means that we can write $B$ as a countable union of disjoint open intervals, $B = \cup_{j=1}^{\infty} I_j, I_j \cap I_k = \emptyset$ whenever $j \neq k$.
-    We are therefore tasked with finding values for $g$ on each $I_j = (a_j, b_j)$ such that it is continuous everywhere.
-    For $x \in I_j$, consider defining:
-
-    \[g(x) = f(a_j) + (f(b_j) - f(a_j))\frac{x - a_j}{b_j - a_j},\]
-
-    and for $x \in C, g(x) = f(x)$.
-    We then know that $g$ is continuous on all of $C$ except for the endpoints of all $I_j$ due to $f$'s continuity.
-    Furthermore, $g$ is continuous inside each $I_j$ as a linear function.
-    Lastly, by an easy computation of left and right limits on each $a_j, b_j$ we conclude that $g$ is also continuous on each of them as well.
-    Therefore $g$ is continuous everywhere.
-    An immediate consequence of this is the fact that continous functions on $\Delta$ can be continuously extended to all of $\mathbb{R}$, given that $\Delta$ is closed (Example 4.12).
-
 \end{solution}
