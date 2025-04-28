@@ -632,4 +632,61 @@
     Let $f: \mathbb{R} \rightarrow (0, 1), f(x) = \frac{1}{1 + e^{-x}}$, which is easily seen to be continuous and bijective, with a continuous inverse ($f^{-1}(x) = \log(\frac{x}{1 - x})$).
     Therefore $\mathbb{R}$ is homeomorphic to $(0, 1)$.
     Let also $g: (0, 1) \rightarrow (0, \infty), g(x) = \log(\frac{1}{1- x})$, which in (0, 1) assumes strictly positive and unbounded values, is continuous and bijective, and thus is a homeomorphism between $(0, 1)$ and $(0, \infty)$.
+    To examine whether $\mathbb{R}$ is isometric to $(0, 1)$, we consider the following.
+    Suppose that this is indeed true, which means that there exists a homeomorphism $f$ between them with the property $\lvert f(x) - f(y) \rvert = \lvert x - y \rvert$ for all $x, y \in \mathbb{R}$.
+    Fix $x = 0$ and let $y \rightarrow \infty$.
+    Then the RHS here is unbounded.
+    However, since $f(x), f(y) \in (0, 1)$ the LHS is clearly bounded, and so we arrive at a contradiction, which means that the two spaces cannot be isometric.
+    Similarly, suppose $f$ is now a homeomorphism between $\mathbb{R}$ and $(0, 1)$ with the property $\lvert f(x) - f(y) \rvert = \lvert x - y \rvert, x, y \in \mathbb{R}$.
+    For any $x \in \mathbb{R}$, it has to hold that:
+
+    \[\lvert f(x) - f(0) \rvert = \lvert x - 0 \rvert = \lvert -x \rvert = \lvert f(-x) - f(0) \rvert\]
+    This means that for any given $x \in \mathbb{R}$, either $f(x) - f(0) = f(-x) - f(0) \implies f(x) = f(-x)$ or $f(x) - f(0) = -f(-x) + f(0) \implies f(x) + f(-x) = 2f(0)$.
+    The first case is impossible due to $f$ being one-to-one as a homeomorphism.
+    Consequently, the second equality has to hold for all $x$.
+    Notice, however, that the RHS is fixed and positive, whereas the LHS is a sum of positive quantities, which means that $f(x)$ must be bounded.
+    But then $\lvert f(x) - f(0) \rvert = \lvert x \rvert$ leads to a contradiction as $x \rightarrow \infty$.
+    Therefore, the two spaces are not isometric.
+\end{solution}
+
+\begin{exercise}{52}
+    Prove Theorem 5.5:
+
+    Let $f: (M, d) \rightarrow (N, \rho)$ be one-to-one and onto.
+    Then the following are equivalent:
+
+    (i) $f$ is a homeomorphism
+
+    (ii) $x_n \rightarrow^{d} x \iff f(x_n) \rightarrow^{\rho} f(x)$ 
+
+    (iii) $G$ is open in $M \iff f(G)$  is open in $N$
+
+    (iv) $E$ is closed in $M \iff f(E)$ is closed in $N$
+
+    (v) $\hat{d}(x, y) = \rho(f(x), f(y))$ defines a metric on $M$ equivalent to $d$
+\end{exercise}
+
+\begin{solution}
+
+    (i) $\implies$ (ii): As a homeomorphism, $f$ is continuous, and so is $f^{-1}$.
+    Then Theorem 5.1 (ii) guarantees that whenever $x_n \rightarrow^{d} x$, it holds that $f(x_n) \rightarrow^{\rho} f(x)$.
+    Also, whenever $f(x_n) \rightarrow^{\rho} f(x)$ it holds that $f^{-1}(f(x_n)) \rightarrow^{d} f^{-1}(f(x))$, i.e.\ that $x_n \rightarrow^{d} x$.
+
+    (ii) $\implies$ (i): This utilizes Theorem 5.1 (ii) in the other direction, and yields that $f, f^{-1}$ are both continuous, thus that $f$ is a homeomorphism.
+
+    (i) $\implies$ (iii): Let $G \subset M$ be open.
+    Then $(f^{-1})^{-1}(G)$ is open in $N$ by the continuity of $f^{-1}$ and Theorem 5.1 (iv).
+    We have that $f(G) = (f^{-1})^{-1}(G)$ (relatively simple to prove via set inclusions), therefore $f(G)$ is open in $N$.
+    Conversely, if $f(G)$ is open in $N$, then a direct application of Theorem 5.1 (iv) yields that $f^{-1}(f(G)) = G$ is open in $M$.
+    Therefore we've shown that (iii) holds.
+
+    (iii) $\implies$ (i): Notice that each of the two directions of the given equivalence can be used to apply Theorem 5.1 (iv) to obtain that both $f, f^{-1}$ are continuous.
+
+    (i) $\implies$ (iv), (iv) $\implies$ (i): This is done in the same way as above, except that we use Theorem 5.1 (iii) instead of (iv).
+
+    (ii) $\implies$ (v): Whenever $x_n \rightarrow^{d} x$, we have that $f(x_n) \rightarrow^{\rho} f(x)$, which means precisely that $\rho(f(x_n), f(x)) \rightarrow 0$, and so $\hat{d}(x_n, x) \rightarrow 0$, which means $x_n \rightarrow^{\hat{d}} x$.
+    Since we also have that whenever $f(x_n) \rightarrow^{\rho} f(x)$ it holds that $x_n \rightarrow^{d} x$, we obtain that whenever $\rho(f(x_n), f(x)) =\hat{d}(x_n, x)\rightarrow 0$, it also holds that $d(x_n, x) \rightarrow 0$.
+    We've thus shown that $d, \hat{d}$ are equivalent.
+    
+    (v) $\implies$ (ii): This is a simple reversal of the immediately preceding argument.
 \end{solution}
