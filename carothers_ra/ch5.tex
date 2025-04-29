@@ -690,3 +690,35 @@
     
     (v) $\implies$ (ii): This is a simple reversal of the immediately preceding argument.
 \end{solution}
+
+\begin{exercise}{53}
+    Suppose that we are given a point $x$ and a sequence $(x_n)$ in a metric space $M$, and suppose that $f(x_n) \rightarrow f(x)$ for every continuous real-valued function $f$ on $M$.
+    Prove that $x_n \rightarrow x$ in $M$.
+\end{exercise}
+
+\begin{solution}
+    
+    We have already shown this in Exercise 36, Ch. 5.
+\end{solution}
+
+\begin{exercise}{54}
+    Let $f: (M, d) \rightarrow (N, \rho)$ be one-to-one and onto.
+    Prove that the following are equivalent: (i) $f$ is a homeomorphism and (ii) $g: N \rightarrow \mathbb{R}$ is continuous if and only if $g \circ f: M \rightarrow \mathbb{R}$ is continuous. [Hint: Use the characterization given in Theorem 5.5 (ii).]
+\end{exercise}
+
+\begin{solution}
+    
+    (i) $\implies$ (ii): Suppose that $f$ is a homeomorphism.
+    First, suppose that $g$ is continuous.
+    Then, for any $x_n \rightarrow^{d} x$ we have that $f(x_n) \rightarrow^{\rho} f(x)$ due to the continuity of $f$, and by the continuity of $g, g(f(x_n)) \rightarrow g(f(x))$.
+    Therefore $g \circ f$ is clearly continuous.
+    Conversely, suppose $g \circ f$ is continuous and pick any $(y_n) \in N$ that converges to $y \in N$.
+    To show that $g$ is continuous, we need to show that $g(y_n) \rightarrow g(y)$.
+    Because $f$ is a homeomorphism, it is the case that $f^{-1}(y_n) \rightarrow f^{-1}(y)$.
+    Now recall that $g \circ f$ is continuous, and thus $(g \circ f)(f^{-1}(y_n)) \rightarrow (g \circ f)(f^{-1}(y))$, which simplifies to $g(y_n) \rightarrow g(y)$.
+    Therefore, $g$ is indeed continuous.
+
+    (ii) $\implies$ (i): Pick any $x_n \rightarrow^{d} x$, and define $g(y) = \rho(y, f(x))$, which is always well-defined since $f$ is one-to-one.
+    This is a continuous mapping (Exercise 20 Ch. 5), 
+
+\end{solution}
