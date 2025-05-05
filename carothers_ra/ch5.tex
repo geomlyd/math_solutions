@@ -719,6 +719,59 @@
     Therefore, $g$ is indeed continuous.
 
     (ii) $\implies$ (i): Pick any $x_n \rightarrow^{d} x$, and define $g(y) = \rho(y, f(x))$, which is always well-defined since $f$ is one-to-one.
-    This is a continuous mapping (Exercise 20 Ch. 5), 
+    This is a continuous mapping (Exercise 20 Ch. 5), and therefore from our assumption we have that $g \circ f$ is also continuous.
+    This means that $\rho(f(y), f(x))$ is continuous on all $y \in M$, and so that whenever $x_n \rightarrow^{d} x$, it must be the case that $\rho(f(x_n), f(x)) \rightarrow \rho(f(x), f(x)) = 0$, which means precisely that $f(x_n) \rightarrow^{\rho} f(x)$, i.e.\ that $f$ is continuous.
+    We now need to show that $f^{-1}$ is continuous as well.
+    Suppose thus that $y_n \rightarrow y, (y_n) \subset N, y \in N$.
+    Because $f$ is one-to-one and onto, there exist unique $(x_n), x$ such that $f(x_n) = y_n, f(x) = y$.
+    Keeping $x$ fixed, consider the function $g(y) = d(f^{-1}(y), x)$, which is once again continuous.
+    Therefore, $g \circ f$ is also continuous, and because $f(x_n) \rightarrow^{\rho} f(x)$, it must be the case that:
+    
+    \[(g \circ f)(f(x_n)) \rightarrow (g \circ f)(f(x)) \implies d(f^{-1}(f(x_n)), x) \rightarrow d(f^{-1}(f(x)), x) \implies d(x_n, x) \rightarrow 0,\]
+
+    which means $x_n \rightarrow^{d} x$, which means $f^{-1}$ is continuous.
+    We've therefore established that $f$ is a homeomorphism.
+
+\end{solution}
+
+\begin{exercise}{55}
+    Let $f: (M, d) \rightarrow (N, \rho)$  be a homeomorphism.
+    Prove that $M$ is separable iff $N$ is separable.
+\end{exercise}
+
+\begin{solution}
+    
+    $M$ separable $\implies N$ separable: Pick any element $y \in N$.
+    Then there exists a unique $x \in M$ such that $f(x) = y$ (since $f$ is a bijection).
+    Because $M$ is separable, there exists a countable dense subset $A$, which means that there exists a sequence $(x_n) \subset A$ such that $x_n \rightarrow x$.
+    Due to $f$ being a homeomorphism, we obtain $f(x_n) \rightarrow f(x) = y$.
+    Furthermore, because $A$ is countable and $f$ is a bijection, $f(A)$ is also countable, and we have $(f(x_n)) \subset f(A)$.
+    Since $y$ was picked arbitrarily, we conclude that $\overline{f(A)} = N$,  i.e.\ $f(A)$ is dense in $N$ and $N$ is thus separable.
+
+    $N$ separable $\implies M$ separable: The proof in this direction relies on exactly the same argument except for using $f^{-1}$ instead of $f$.
+\end{solution}
+
+\begin{exercise}{56}
+    Let $f: (M, d) \rightarrow (N, \rho)$.
+
+    (i) We say that $f$ is an \textbf{open} map if $f(U)$ is open in $N$ whenever $U$ is open in $M$; that is, $f$ maps open sets to open sets.
+    Give examples of a continuous open map that is not open and open map that is not continuous.
+    [Hint: Please note that the definition depends on the target space $N$.]
+
+    (ii) Similarly, $f$ is \textbf{closed} if it maps closed sets to closed sets.
+    Give examples of a continuous map that is not closed and a closed map that is not continuous.
+\end{exercise}
+
+\begin{solution}
+    
+    (i) Consider $M = N = \mathbb{R}$ and the function $f(x) = 1$.
+    This is clearly a continuous map, but it is not open: $\mathbb{R}$ is open and yet $f$ maps it to $\{1\}$, a closed set.
+    Consider also $M = \mathbb{R}, N = \{0, 1\}$ and $f(x) = 0, x < 0, f(x) = 1, x \geq 0$.
+    Notice that $f$ is not continuous, but that by this definition of $N$, all possible subsets of $N$ are open and thus $f$ is trivially an open map.
+
+    (ii) Consider $M = N = \mathbb{R}$ and the clearly continuous $f(x) = \frac{1}{x}$.
+    Here $f(M) = (0, \infty)$, and $M$ is closed, whereas $f(M)$ thus isn't.
+    Therefore $f$ is continuous but not closed.
+    For a map that is closed but not continuous, observe that our second example for (i) works here as well: every possible subset of $N$ is closed, so $f$ is closed but it is not continuous.
 
 \end{solution}
