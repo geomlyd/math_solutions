@@ -620,6 +620,19 @@
     Furthermore, Exercise 43 guarantees that $(M, d)$ is homeomorphic to $(M, \tau)$, thus completing the proof.
 \end{solution}
 
+\begin{exercise}{47}
+    Define $E: \mathbb{N} \rightarrow l_1$ by $E(n) = (1, \ldots, 1, 0, \ldots)$, where the first $n$ entries are 1 and the rest are 0.
+    Show that $E$ is an isometry (into).
+\end{exercise}
+
+\begin{solution}
+    
+    We need to show that $l_1(E(n), E(m)) = \lvert n - m \rvert$ for any two $n, m \in \mathbb{N}$.
+    Suppose WLOG that $n < m$, which means that:
+
+    \[l_1(E(n), E(m)) = \sum_{i=1}^{\infty} \lvert E(n)_i - E(m)_i \rvert = \sum_{i=n + 1}^{m} \lvert 0 - 1 \rvert = m - (n + 1) + 1 = m - n = \lvert n - m \rvert \]
+\end{solution}
+
 \begin{exercise}{48}
     Prove that $\mathbb{R}$ is homeomorphic to $(0, 1)$ and that $(0, 1)$ is homeomorphic to $(0, \infty)$.
     Is $\mathbb{R}$ \textit{isometric} to $(0, 1)$?
@@ -647,6 +660,42 @@
     Notice, however, that the RHS is fixed and positive, whereas the LHS is a sum of positive quantities, which means that $f(x)$ must be bounded.
     But then $\lvert f(x) - f(0) \rvert = \lvert x \rvert$ leads to a contradiction as $x \rightarrow \infty$.
     Therefore, the two spaces are not isometric.
+\end{solution}
+
+\begin{exercise}{50}
+    Let $(M, d)$ denote the set $\{0\} \cup \{(1/n): n \geq 1\}$ under its usual metric.
+    Define a second metric $\rho$ on $M$ by setting $\rho(1/n, 1/m) = \lvert 1/n - 1/m \rvert$ for $m, n \geq 2, \rho(1/n, 1) = 1/n$ for $n \geq 2, \rho(1/n, 0) = 1 - 1/n$ for $n \geq 2$, and $\rho(0, 1) = 1$.
+    Show that $(M, d)$ and $(M, \rho)$ are homeomorphic but that the identity map from $(M, d)$ to $(M, \rho)$ is \textit{not} continuous.
+\end{exercise}
+
+\begin{solution}
+    
+    Consider the following map $f: (M, d) \rightarrow (M, \rho)$:
+    
+    \[f(x) = \begin{cases}
+        1, & x = 0 \\
+        0, & x = 1 \\
+        x, & \text{otherwise}
+    \end{cases}\]
+
+    It is easy to see that this is a bijection, and that $f^{-1}(x) = f(x)$.
+    Suppose now that $x_n \rightarrow^{d} x$ for $(x_n) \subset (M, d)$.
+    We observe first that for any sequence that does not eventually become constant, this means that $x = 0$ and that after some $N$, all $x_n$ must be of the form $\frac{1}{m_n}$ for $m_n > 1$.
+    For any $\epsilon > 0$, set $\delta = \epsilon$, in which case whenever $d(x_n, x) < \epsilon$, we have that:
+
+    \[\rho(f(x_n), f(x)) = \rho\Bigl(\frac{1}{m_n}, f(0)\Bigr) = \Bigl\lvert \frac{1}{m_n} \Bigr\rvert = d(x_n, x) < \epsilon,\]
+
+    which shows that $f$ is continuous, since this holds for an arbitrary sequence $(x_n)$ (note that it trivially holds for sequences that eventually becomes constant).
+    One can show that the converse holds as well: $f(x_n) \rightarrow^{\rho} f(x) \implies x_n \rightarrow^{d} x$.
+    This is done by observing that under $\rho$, the only non-trivial way that this can happen is if $f(x) = 1$, and if after some $N$, $f(x_n)$ eventually equal $\frac{1}{m_n}$.
+    The remaining proof is then the same as above.
+    From this we conclude that $f$ is a homeomorphism between $(M, d), (M, \rho)$.
+
+    Define the sequence $(x_n) \subset M$ by $x_n = \frac{1}{n}$.
+    Notice that with the standard metric $d$ on $M$, we have $d(x_n, 0) = \lvert 0 - \frac{1}{n} \rvert = \frac{1}{n}$, which goes to zero as $n \rightarrow \infty$.
+    However, with the metric $\rho$, we have that $\rho(x_n, 0) = 1 - \frac{1}{n}$ for $n \geq 2$, which \textit{does not} go to zero as $n \rightarrow \infty$.
+    Therefore, $d, \rho$ do not generate the same convergent sequences, i.e.\ they are not equivalent.
+    Exercise 43 Ch. 5 then tells us that the identity map on $M$ cannot be a homeomorphism from $(M, d)$ to $(M, \rho)$.
 \end{solution}
 
 \begin{exercise}{52}
@@ -774,4 +823,34 @@
     Therefore $f$ is continuous but not closed.
     For a map that is closed but not continuous, observe that our second example for (i) works here as well: every possible subset of $N$ is closed, so $f$ is closed but it is not continuous.
 
+\end{solution}
+
+\begin{exercise}{57}
+    Let $f: (M, d) \rightarrow (N, \rho)$ be one-to-one and onto.
+    Show that the following are equivalent: (i) $f$ is open (ii) $f$ is closed and (iii) $f^{-1}$ is continuous.
+    Consequently, $f$ is a homeomorphism if and only if both $f, f^{-1}$ are open (closed).
+\end{exercise}
+
+\begin{solution}
+    
+    (i) $\implies$ (ii): Let $S \subset M$ be closed.
+    Then $S^{c}$ is by definition open, and $f(S^{c})$ is open because $f$ is open.
+    We thus have that $f(S^c)^c = N \setminus f(S^c)$ is closed.
+    This set consists of all elements $y \in N$ such that they do not equal any $f(x)$ for $x \in S^c$.
+    Because $f$ is one-to-one and onto, each must necessarily equal $f(x)$ for \textit{some unique} $x \in M$, and thus the only possibility is $x \in M \setminus S^{c} = S$, therefore $N \setminus f(S^c) = f(S)$, and so $f(S)$ is closed, which means $f$ is closed.
+
+    (ii) $\implies$ (i): Let $S \subset M$ be open, which means $S^{c}$ is closed and $f(S^c)$ is also closed since $f$ is closed.
+    Therefore $f(S^c)^c = N \setminus f(S^c)$ is open, and the remaining argument is as above, showing that this set equals $f(S)$, which means $f$ is open.
+
+    (i) $\implies$ (iii): Suppose $f$ is open, and pick any open $S \subset M$.
+    If we can show that $(f^{-1})^{-1}(S)$ is open in $N$, by Theorem 5.1 we will also have that $f^{-1}$ is continuous.
+    We have that $(f^{-1})^{-1}(S) = f(S)$ (easily shown using the definitions and bijectivity of $f$), and so by our assumption this set is indeed open and $f^{-1}$ is continuous.
+    
+    (ii) $\implies$ (iii): This is shown in much the same way, changing ``open'' to ``closed'' and again using Theorem 5.1.
+
+    (iii) $\implies$ (i): Suppose now $f^{-1}$ is continuous and $S \subset M$ is open.
+    Using again the fact that $(f^{-1})^{-1}(S) = f(S)$ and Theorem 5.1 in the other direction, we obtain that $f(S)$ is open, and so $f$ is open.
+
+    (iii) $\implies$ (ii): Once again it suffices to change ``open'' to ``closed'' above.
+    
 \end{solution}
