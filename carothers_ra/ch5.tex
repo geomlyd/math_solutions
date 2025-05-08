@@ -854,3 +854,34 @@
     (iii) $\implies$ (ii): Once again it suffices to change ``open'' to ``closed'' above.
     
 \end{solution}
+
+\begin{exercise}{60}
+    Let $(M, d)$ be a metric space, and let $\tau$ be the discrete metric on $M$.
+    Then, $(M, d)$ and $(M, \tau)$ are homeomorphic if and only if every subset of $M$ is open in $(M, d)$ if and only if every function $f: (M, d) \rightarrow \mathbb{R}$ is continuous.
+\end{exercise}
+
+\begin{solution}
+    
+    For convenience, we refer to the three statements as (i), (ii), (iii) in the order they are given.
+    Then:
+
+    (i) $\implies$ (ii): Suppose $f$ is a homeomorphism between $(M, d), (M, \tau)$.
+    We have seen (Example 4.1 (c)) that in a discrete space every subset is open.
+    Due to the bijectivity of $f$, every subset $S \subset (M, d)$ is mapped uniquely to a subset $S' = f(S) \subset (M, \tau)$, and from Theorem 5.5 each of them is open iff the other one is too.
+    Therefore since every $f(S)$ is open in $(M, \tau)$, every $S \subset (M, d)$ is open too.
+
+    (ii) $\implies$ (i): The argument above also works here, since Theorem 5.5 presents equivalent conditions: if every subset of $(M, d)$ is open, then of course every subset of $(M, d)$ is open iff its image in $(M, \tau)$ is open, and so the identity function is a homeomorphism between them.
+
+    (i) $\implies$ (iii): Let $g$ be a homeomorphism between $(M, d), (M, \tau)$ and $x_n \rightarrow^{d} x$.
+    Then by Theorem 5.5 we have that $g(x_n) \rightarrow^{\tau} g(x)$, which means for $\epsilon = 1/2$ there exists $N > 0$ such that for $n \geq N, \tau(g(x_n), g(x)) < \epsilon \implies g(x_n) = g(x)$ due to the definition of the discrete metric.
+    But since $g$ is a bijection, this yields $x_n = x$, so \textit{every convergent sequence in $(M, d)$ is eventually constant}.
+    Clearly then $f(x_n) \rightarrow f(x)$ will also hold for any function $f: (M, d) \rightarrow \mathbb{R}$, and so any such $f$ is continuous.
+
+    (iii) $\implies$ (ii): For any set $S \subset (M, d)$, consider the indicator function $f_S(x) = 1, x \in S, f_S(x) = 0$ otherwise.
+    By the hypothesis, this must be continuous.
+    Now pick any $S \subset (M, d)$, and any $x \in S$, and any sequence $(x_n) \subset M, x_n \rightarrow^{d} x$.
+    Due to the continuity of $f_S$, it must hold that $f_S(x_n) \rightarrow f_S(x)$, which means that for $\epsilon > 1/2$ there must exist $N > 0$ such that for $n \geq N, \lvert f_S(x_n) - f_S(x) \rvert < 1/2 \implies \lvert f_S(x_n) - 1 \rvert < 1/2$.
+    By the definition of $f_S$ this is only possible if all such $f_S(x_n)$ equal 1, which happens precisely when $x_n \in S$, and so the sequence $(x_n)$ contains only finitely many points not in $S$.
+    Therefore by Theorem 4.7, $S$ is open, and since it was picked arbitrarily we have shown (ii).
+
+\end{solution}
