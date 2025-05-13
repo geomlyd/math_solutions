@@ -698,6 +698,37 @@
     Exercise 43 Ch. 5 then tells us that the identity map on $M$ cannot be a homeomorphism from $(M, d)$ to $(M, \rho)$.
 \end{solution}
 
+\begin{exercise}{51}
+    Let $(M, \rho)$ be a separable metric space and assume that $\rho(x, y) \leq 1$ for every $x, y \in M$.
+    Given a countable dense set $\{x_n: n \geq 1\} \subset M$, define a map $f: M \rightarrow H^{\infty}$, from $M$ into the Hilbert cube (Exercise 3.10), by $f(x) = (\rho(x, x_n))_{n=1}^{\infty}$.
+
+    (i) Prove that $f$ is one-to-one and continuous.
+    In fact, $f$ satisfies $d(f(x), f(y)) \leq \rho(x, y)$, where $d$ is the metric on $H^{\infty}$.
+
+    (ii) Fix $\epsilon > 0$ and $x \in M$.
+    Find $\delta > 0$ such that $\rho(x, y) < \epsilon$ whenever $d(f(x), f(y)) < \delta$.
+    Conclude that $f$ is a homeomorphism into $H^{\infty}$.
+\end{exercise}
+
+\begin{solution}
+    
+    (i) Suppose $f(x) = f(y)$ for $x, y \in M$.
+    Then the sequences $(\rho(x, x_n))_{n=1}^{\infty}, (\rho(y, x_n))_{n=1}^{\infty}$ are equal, which means each of their respective terms is equal, i.e.\ $\rho(x, x_n) = \rho(y, x_n)$ for every $n = 1, 2, \ldots$.
+    Due to the separability of $M$, there exists a sequence $(x_{n_k}) \subset \{x_n: n \geq 1\}$ that converges to $x$.
+    Since we have that $\rho(x_{n_k}, x) = \rho(x_{n_k}, y)$, we conclude that it is also the case that $x_{n_k} \rightarrow y$, and from the uniqueness of the limit we have $x = y$, which means $f$ is one-to-one.
+    The metric used for the Hilbert cube is:
+
+    \[d(x, y) = \sum_{n=1}^{\infty}2^{-n} \lvert x_n - y_n \rvert\]
+
+    For any two $x, y \in M$, we therefore have that:
+
+    \[d(f(x), f(y)) = \sum_{n=1}^{\infty} 2^{-n} \lvert \rho(x, x_n) - \rho(y, x_n) \rvert \leq \sum_{n=1}^{\infty} 2^{-n} \rho(x, y) = \rho(x, y)\]
+
+    Notice, now, that the continuity of $f$ follows immediately from this, where for each $\epsilon$ the required $\delta$ equals $\epsilon$.
+
+    (ii)
+\end{solution}
+
 \begin{exercise}{52}
     Prove Theorem 5.5:
 
