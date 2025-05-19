@@ -1,0 +1,48 @@
+\chapter{Getting Started}
+
+\section{Insertion sort}
+
+\begin{exercise}{1}
+    Using Figure 2.2 as a model, illustrate the operation of I\textsc{nsertion-}S\textsc{ort} on an array initially containing the sequence $\langle 31, 41, 59, 26,41, 58\rangle$.
+\end{exercise}
+
+\begin{solution}
+
+    We show the steps of the algorithm below, underlining the element being processed in each iteration.
+    The element is shown as already positioned in its correct place, implying that the elements that follow it (up to and including position $i$ for the $i$-th iteration) have been shifted rightwards:
+
+    \[\langle \underline{31}, 41, 59, 26,41, 58\rangle \rightarrow \langle 31, \underline{41}, 59, 26,41, 58\rangle \rightarrow  \langle 31, 41, \underline{59}, 26,41, 58\rangle \rightarrow\]
+    \[\langle \underline{26}, 31, 41, 59, 41, 58\rangle \rightarrow
+    \langle 26, 31, 41, \underline{41}, 59, 58\rangle \rightarrow
+    \langle 26, 31, 41, 41, \underline{58}, 59\rangle\]
+\end{solution}
+
+\begin{exercise}{2}
+    Consider the procedure S\textsc{um-}A\textsc{rray}:
+
+    \begin{codebox}
+        \Procname{$\proc{Sum-Array}(A, n)$}
+        \li $sum \gets 0$
+        \li \For $i \gets 1$ \To $n$
+        \li  \Do $sum \gets sum + A[i]$
+        \End
+        \li \Return $sum$
+    \end{codebox}
+
+    It computes the sum of the $n$ numbers in aray $A[1:n]$.
+    State a loop invariant for this procedure, and use its initialization, maintenance, and termination properties to show that the S\textsc{um-}A\textsc{rray} procedure returns the sum of the numbers in $A[1:n]$.
+\end{exercise}
+
+\begin{solution}
+
+    The loop invariant is: at the start of the $i$-th iteration, the variable $sum$ contains precisely the sum of $A$'s elements at indices $1, 2, \ldots, i - 1$.
+    \begin{itemize}
+        \item \textbf{Initialization}: At the start of iteration 1, line 1 has caused $sum$ to contain 0, which equals the sum of $A$'s elements for the empty collection of indices.
+        \item \textbf{Maintenance}: Suppose the property holds before iteration $i$, which means $sum = \sum_{k=1}^{i - 1} A[k]$.
+        Then, the execution of iteration $i$ means that line 3 now causes $sum$ to be incremented by $A[i]$, and thus $\sum_{k=1}^{i} A[k]$.
+        But this means precisely that the invariant is true before iteration $i + 1$ as well.
+        \item \textbf{Termination}: The loop trivially terminates due to running for a constant number of iterations $n$.
+        Furthermore, we can think of its end as the start of an ``imaginary'' iteration $n + 1$.
+        Then, due to the invariant, it will hold that $sum = \sum_{k=1}^{n} A[n]$, which is the sum of all elements in the array.
+    \end{itemize}
+\end{solution}
