@@ -46,3 +46,85 @@
         Then, due to the invariant, it will hold that $sum = \sum_{k=1}^{n} A[n]$, which is the sum of all elements in the array.
     \end{itemize}
 \end{solution}
+
+\begin{exercise}{3}
+    Rewrite the I\textsc{nsertion-}S\textsc{ort} procedure to sort into monotonically decreasing instead of monotonically increasing order.
+\end{exercise}
+
+\begin{solution}
+    
+    All that is needed here is for the condition of line 5 to be changed to ``$j > 0$ and $A[j] < key$''.
+    It is then very easy to see that the loop invariant only changes in terms of what ``sorted order'' means, and thus the remaining proof of correctness would be the same, except that now we show that the algorithm sorts the array in decreasing order.
+\end{solution}
+
+\begin{exercise}{4}
+    Consider the \textbf{searching problem:}
+
+    \textbf{Input:} A sequence of $n$ numbers $\langle a_1, a_2, \ldots, a_n \rangle$ stored in array $A[1:n]$ and a value $x$.
+
+    \textbf{Output:} An index $i$ such that $x$ equals $A[i]$ or the special value NIL if $x$ does not appear in $A$.
+
+    Write pseudocode for \textbf{linear search}, which scans through the array from beginning to end, looking for $x$.
+    Using a loop invariant, prove that your algorithm is correct.
+    Make sure that your loop invariant fulfills the three necessary properties.
+\end{exercise}
+
+\begin{solution}
+    
+    The pseudocode is as follows:
+
+    \begin{codebox}
+        \Procname{$\proc{LinearSearch}(A, n, x)$}
+        \li $idx \gets \mathrm{NIL}$
+        \li \For $i \gets 1$ \To $n$
+        \li \Do \If $A[i] == x$
+        \li \Do $idx \gets i$
+        \li \kw{break}
+        \End
+        \End
+        \li \Return $idx$
+    \end{codebox}
+
+    We claim that the following loop invariant holds: At the start of the $i$-th iteration, none of $A[1], A[2], \ldots, A[i - 1]$ are such that $A[i] = x$.
+    \begin{itemize}
+        \item \textbf{Initialization:} At the start of the first iteration, the stated collection of indices is the empty set, and so the statement holds trivially.
+        \item \textbf{Maintenance:} If the invariant holds at the beginning of iteration $i$, then during this iteration one of two things can happen.
+        If $A[i] = x$, then the ``if'' block of lines 3-5 executes, and the loop terminates early with $idx = i$.
+        Otherwise, no variables are changed and iteration $i + 1$ begins, from which we conclude that none of $A[1], \ldots, A[i]$ equals $x$.
+        \item \textbf{Termination:} Termination is always guaranteed since the loop runs for at most $n$ iterations.
+        Furthermore, by the stated invariant, at the end of the loop (start of an ``imaginary'' $n + 1$ iteration), $x$ is not contained in $A[1:n]$.
+        This means that $idx$ has remained equal to NIL (see the point above regarding no changes in variables if  lines 3-5 doesn't execute), and this is correctly returned.
+        The only remaining case is for the loop to terminate early.
+        As we've seen above, this only happens if $x$ is found at \textit{some} position $i$, in which case $idx$ contains $i$, which is then immediately returned.
+    \end{itemize}
+    Therefore, whenever $x$ is not in $A[1:n]$ the algorithm returns NIL.
+    Whenever $x$ is in $A[1:n]$, the algorithm returns \textit{an} index $i$ such that $A[i] = x$.
+\end{solution}
+
+\newpage
+
+\begin{exercise}{5}
+    Consider the problem of adding two $n$-bit binary integers $a, b$, stored in two $n$-element arrays $A[0:n-1]$ and $B[0:n-1]$, where each element is either 0 or 1, $a = \sum_{i=0}^{n-1} A[i]2^i$, and $b = \sum_{i=0}^{n-1} B[i]2^i$.
+    The sum $c = a + b$ should be stored in binary form in an $(n + 1)$-element array $C[0:n]$, where $c = \sum_{i=0}^{n} C[i]2^i$.
+    Write a procedure A\textsc{dd-}B\textsc{inary-}I\textsc{ntegers} that takes as input arrays $A$ and $B$, along with the length $n$, and returns array $C$ holding the sum.
+\end{exercise}
+
+\begin{solution}
+    
+    The algorithm is as follows:
+
+    \begin{codebox}
+        \Procname{$\proc{Add-Binary-Integers}(A, B, n)$}
+        \li $carry \gets 0$
+        \li $C \gets \text{empty array of size } n + 1$
+        \li \For $i \gets 0$ \To $n - 1$
+        \li \Do $C[i] \gets (carry + A[i] + B[i]) \mod 2$
+        \li $carry \gets \lceil \frac{carry + A[i] + B[i]}{2} \rceil$
+        \End
+        \li $C[n] \gets carry$
+        \li \Return $C$
+    \end{codebox}    
+
+    As an outline of a correctness proof, the invariant could be that at the start of the $i$-th iteration (0-indexed), the binary number that has as most significant digit $carry$, and then as least significant digits $C[i - 1], C[i - 2], \ldots, C[0]$ (ordered from most to least significant) equals the sum of the binary numbers formed by $A[0:i - 1]$ and $B[0:i - 1]$.
+
+\end{solution}
