@@ -727,8 +727,18 @@
     Notice, now, that the continuity of $f$ follows immediately from this, where for each $\epsilon$ the required $\delta$ equals $\epsilon$.
 
     (ii) We fix $\epsilon > 0$ and $x \in M$.
-    
+    Notice, first that since the set of $x_n$ is dense, we can find one such $x_i$ such that $\rho(x, x_i) < \epsilon/4$.
+    Now, based on this $i$, suppose that $\delta = \epsilon/2^{i+2}$ and that $y$ is such that we have $d(f(x), f(y)) < \delta$.
+    Then:
 
+    \[ d(f(x), f(y)) < \delta \implies \sum_{n=1}^{\infty} 2^{-n} \lvert \rho(x, x_n) - \rho(y, x_n) \rvert < \delta \implies 2^{-i} \lvert \rho(x, x_i) - \rho(y, x_i) \rvert < \delta, \]
+
+    where we separated the term corresponding to the $x_i$ we picked above.
+    Thus:
+
+    \[\lvert \rho(x, x_i) - \rho(y, x_i) \rvert < \delta 2^{i} = \epsilon/4 \implies \rho(y, x_i) < \rho(x, x_i) + \epsilon/4 = \epsilon/2\]
+
+    Now we have that $\rho(x, y) < \rho(x, x_i) + \rho(y, x_i) = \epsilon/4 + \epsilon/2 = \epsilon \cdot 3/4 < \epsilon$, and so we have effectively shown that $f^{-1}$ (which is well-defined when thinking about it as a function inside the range of $f$ and \textit{not} all of $H^{\infty}$), thus showing that $f$ is a homeomorphism into $H^{\infty}$.
 \end{solution}
 
 \begin{exercise}{52}
@@ -919,9 +929,34 @@
 
 \end{solution}
 
+\section{The Space of Continuous Functions}
+
 \begin{exercise}{62}
     If $f, g \in C[a, b]$, show that $\lvert \lvert f g \rvert \rvert_{\infty} \leq \lvert \lvert f \rvert \rvert_{\infty} \lvert \lvert g \rvert \rvert_{\infty}$.
     Also show that $\lvert \lvert \max \{f, g\} \rvert \rvert_{\infty} \leq \max \{ \lvert \lvert f \rvert \rvert_{\infty}, \lvert \lvert g \rvert \rvert_{\infty}\}$, and that $\lvert \lvert f \rvert \rvert_{\infty} \leq \lvert \lvert g \rvert \rvert_{\infty}$ whenever $\lvert f \rvert \leq \lvert g \rvert$.
+\end{exercise}
+
+\begin{solution}
+    
+    For any $x \in [a, b], \lvert f(x) \rvert \leq \max_{a \leq t \leq b} \lvert f(t) \rvert = \lvert \lvert f \rvert \rvert_{\infty}$, and similarly $\lvert g(x) \rvert < \lvert \lvert g \rvert \rvert_{\infty}$.
+    We thus obtain $\lvert f(x) g(x) \rvert \leq \lvert \lvert f \rvert \rvert_{\infty} \cdot \lvert \lvert g \rvert \rvert_{\infty}$ and:
+
+    \[\lvert \lvert f g \rvert \rvert_{\infty} = \max_{a \leq t \leq b} \lvert f(t) g(t) \rvert \leq \lvert \lvert f \rvert \rvert_{\infty} \cdot \lvert \lvert g \rvert \rvert_{\infty}\]
+
+    We also have that:
+
+    \[ \lvert \lvert \max\{f, g\} \rvert \rvert_{\infty} = \max_{a \leq t \leq b} \lvert \max\{f, g\}(t) \rvert = \max_{a \leq t \leq b} \lvert \max\{f(t), g(t)\} \rvert \leq \max\{\lvert \lvert f \rvert \rvert_{\infty}, \lvert \lvert g \rvert \rvert_{\infty}\},\]
+
+    since every value of $f, g$ is smaller than the corresponding maximum value of the function.
+
+    Lastly, suppose $\lvert f \rvert \leq \lvert g \rvert$.
+    This means that for all $t \in [a, b], \lvert f(t) \rvert \leq g(t) \rvert$.
+    Consequently, the same inequality must hold for their maximum values, which means $\lvert \lvert f \rvert \rvert_{\infty} \leq \lvert \lvert g \rvert \rvert_{\infty}$.
+\end{solution}
+
+\begin{exercise}{64}
+    Given $n \in \mathbb{N}$ and $f, g \in C(\mathbb{R})$, let $d_n(f, g) = \max_{\lvert t \rvert \leq n} \lvert f(t) - g(t) \rvert$.
+    Then $d_n$ defines a pseudometric on $C(\mathbb{R})$ (Why?) Show that $d(f, g) = \sum_{n=1}^{\infty}2^{-n} d_n(f, g)/(1 + d_n(f, g))$ defines a metric on $C(\mathbb{R})$.
 \end{exercise}
 
 \begin{solution}
