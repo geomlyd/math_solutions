@@ -1,0 +1,27 @@
+\chapter{Connectedness}
+
+\section{Connected Sets}
+
+\begin{exercise}{1}
+    Supply the missing details in the proof of Lemma 6.3:
+
+    Let $E$ be a subset of a metric space $M$.
+    If $U$ and $V$ are disjoint open sets in $E$, then there are disjoint open sets $A$ and $B$ in $M$ such that $U = A \cap E, V = B \cap E$.
+\end{exercise}
+
+\begin{solution}
+    
+    The proof provided in the book arrives in full detail at the observation that for any two $x \in U, y \in V$ it is the case that $E \cap B_{\epsilon_x}(x) \cap B_{\epsilon_y}(y) = \emptyset$.
+    Notice that this shows that if these two open balls intersect, then their intersection must be entirely contained in $M \setminus E$.
+    If it was the case that they didn't intersect at all, then simply writing $A$ as the union of all $B_{\epsilon_x}(x)$ and $B$ as the union of all $B_{\delta_y}(y)$ would make these open as unions of open sets, and of course disjoint.
+    The claim that is given in the proof is that one can in fact achieve this by substituting $\epsilon_x$ with $\epsilon_x/2$ and $\delta_y$ with $\delta_y/2$, i.e., it holds that $B_{\epsilon_x/2}(x) \cap B_{\delta_y/2}(y) = \emptyset$ for any two $x \in U, y \in V$.
+    Suppose then that there exists $z \in M \setminus E$ such that $z \in B_{\epsilon_x/2}(x), z \in B_{\delta_y/2}$.
+    We then have:
+
+    \[d(x, y) \leq d(x, z) + d(z, y) < \frac{\epsilon_x}{2} + \frac{\delta_y}{2}\]
+
+    WLOG, assume $\delta_y \leq \epsilon_x$, in which case we conclude $d(x, y) < 2\frac{\epsilon_x}{2} = \epsilon_x$.
+    But then this means $y \in B_{\epsilon_x}(x)$, and of course $y \in E$.
+    We originally had that $E \cap B_{\epsilon_x}(x) = U$, and so $y \in U$, which is a contradiction since $y \in V$ and $U \cap V = \emptyset$.
+    Therefore $B_{\epsilon_x/2}(x) \cap B_{\delta_y/2}(y) = \emptyset$, and so indeed the open sets $A = \cup \{B_{\epsilon_x/2}(x), x \in U\}, B = \bigcup \{B_{\delta_y/2}(y), y \in V\}$ are disjoint.
+\end{solution}
