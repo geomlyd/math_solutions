@@ -961,5 +961,37 @@
 
 \begin{solution}
     
-    
+    To show that $d_n$ is a pseudometric on $C(\mathbb{R})$, we have the following:
+
+    \begin{itemize}
+        \item From its definition, it is obvious that $d_n(f, g) \geq 0$ for any two $f, g \in C(\mathbb{R})$.
+        \item Again from the definition, $d_n(f, g) = d_n(g, f)$ for any two $f, g \in C(\mathbb{R})$. 
+        \item If $f = g$, then clearly $d_n(f, g) = 0$.
+        \textit{However}, what makes $d_n$ a pseudometric instead of a metric is the fact that for e.g. $f(t) = t, t \leq n, f(t) = 2(t - n) + n$ and $g(t) = t, t \leq n, g(t) = 3(t - n) + n$ (both clearly continuous, and not equal functions), $d_n(f, g) = 0$.
+        \item For $f, g, h \in C(\mathbb{R})$, we have that:
+        
+        \[d_n(f, h) = \max_{\lvert t \rvert \leq n} \lvert f(t) - h(t) \rvert = \max_{\lvert t \rvert \leq n} \lvert f(t) - g(t) + g(t) - h(t) \rvert\]
+
+        Since it is the case that $\lvert f(t) - g(t) + g(t) - h(t) \rvert \leq \lvert f(t) - g(t) \rvert + \lvert g(t) - h(t) \rvert$, the inequality must also hold when applying $\max_{\lvert t \rvert \leq n}$ to both sides.
+        Furthermore, the maximum of a sum equals at most the sum of the two maxima, and so we obtain:
+
+        \[d_n(f, h) \leq \max_{t \leq n} \lvert f(t) - g(t) \rvert + \max_{t \leq n} \lvert g(t) - h(t) \rvert = d_n(f, g) + d_n(g, h),\]
+
+        which is the triangle inequality for $d_n$.
+    \end{itemize}
+    Now we examine $d$ in the same manner:
+    \begin{itemize}
+        \item Due to the definition of this metric as an infinite sum, we need to first determine whether it is always well-defined, i.e.\ whether the sum always converges.
+        To see this, observe that $d_n(f, g)/(1 + d_n(f, g)) \leq 1$, and so each partial sum of $d$ is bounded above by the geometric series $\sum_{n=1}^{\infty} 2^{-n}$, which we know converges.
+        Since the partial sums are also non-decreasing, $d(f, g)$ does in fact always converge.
+        \item By the non-negativity of each $d_n$, it is clear that $d(f, g) \geq 0$ always holds as well.
+        \item Similarly, by the symmetry of each $d_n$, $d(f, g) = d(g, f)$.
+        \item Clearly, $d(f, f) = 0$ for any $f \in C(\mathbb{R})$.
+        Now pick any two $f, g \in C(\mathbb{R}), f \neq g$.
+        Then there exists $x \in \mathbb{R}$ such that $f(x) \neq g(x)$.
+        This means that for $n = \lceil x \rceil, d_n(f, g) = \max_{\lvert t \rvert \leq n} \lvert f(t) - g(t) \rvert > 0$, and so $d(f, g) > 0$ as well, thus showing that $d(f, g) = 0$ iff $f = g$.
+        \item For the triangle inequality, we use Exercise 7 of Chapter 3, by observing that each term of the sum of $d$ equals $2^{-n}\sigma(d_n(f, g))$ (for the $\sigma$ of Exercise 6 of that Chapter).
+        Although $d_n$ is not a metric, the proof that for some metric $d$, $\sigma(d(x, y))$ satisfies the triangle inequality if $\sigma(x + y) \leq \sigma(x) + \sigma(y)$ only depended on $d$ satisfying the triangle inequality, which is the case for $d_n$.
+        Since the triangle inequality is satisfied for each term of the convergent sum $d$, it also holds for $d$ itself, thus completing the proof that $d$ is a metric.
+    \end{itemize}
 \end{solution}
