@@ -128,3 +128,28 @@
     As an outline of a correctness proof, the invariant could be that at the start of the $i$-th iteration (0-indexed), the binary number that has as most significant digit $carry$, and then as least significant digits $C[i - 1], C[i - 2], \ldots, C[0]$ (ordered from most to least significant) equals the sum of the binary numbers formed by $A[0:i - 1]$ and $B[0:i - 1]$.
 
 \end{solution}
+
+\section{Analyzing algorithms}
+
+\begin{exercise}{1}
+    Express the function $n^3/1000 + 100n^2 - 100n + 3$ in terms of $\Theta$-notation.
+\end{exercise}
+
+\begin{solution}
+    
+    The function is clearly $\Theta(n^3)$, since it is a polynomial of highest degree 3.
+\end{solution}
+
+\begin{exercise}{2}
+    
+\end{exercise}
+
+\begin{exercise}{4}
+    How can you modify any sorting algorithm to have a good best-case running time?
+\end{exercise}
+
+\begin{solution}
+    
+    Checking if an array is already sorted can be done in linear time: simply iterate through the array and verify each element is not smaller (or not larger) than the previous one.
+    Therefore, if one includes such a check at the beginning of any sorting algorithm, and returns the array without performing further processing if it is indeed already sorted, the best case becomes $\Theta(n)$.
+\end{solution}
