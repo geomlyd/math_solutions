@@ -25,3 +25,45 @@
     We originally had that $E \cap B_{\epsilon_x}(x) = U$, and so $y \in U$, which is a contradiction since $y \in V$ and $U \cap V = \emptyset$.
     Therefore $B_{\epsilon_x/2}(x) \cap B_{\delta_y/2}(y) = \emptyset$, and so indeed the open sets $A = \cup \{B_{\epsilon_x/2}(x), x \in U\}, B = \bigcup \{B_{\delta_y/2}(y), y \in V\}$ are disjoint.
 \end{solution}
+
+\begin{exercise}{5}
+    If $E$ and $F$ are connected subsets of $M$ with $E \cap F \neq \emptyset$, show that $E \cup F$ is connected.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose for the sake of contradiction that $E \cup F$ is disconnected.
+    Then there exist open sets $A, B, A \cap B = \emptyset$ such that $E \cup F \subset A \cup B, (E \cup F) \cap A \neq \emptyset, (E \cup F) \cap B \neq \emptyset$.
+    By the first of these conditions, we obtain $E \subset A \cup B$ and $F \subset A \cup B$.
+    By the second of these conditions, we obtain that at least one of $E \cap A \neq \emptyset$ and $F \cap A \neq \emptyset$ must be true.
+    By the third of these conditions, we obtain that at least one of $E \cap B \neq \emptyset$ and $F \cap B \neq \emptyset$ must be true.
+    Then we have the following possibilities:
+    \begin{itemize}
+        \item If $E \cap A \neq \emptyset$ and $E \cap B \neq \emptyset$ both hold, because we also have $E \subset A \cup B$, we obtain the contradiction that $E$ is disconnected.
+        \item If $E \cap A \neq \emptyset$ and $E \cap B = \emptyset$, we have necessarily that $F \cap B \neq \emptyset$.
+        Furthermore, because $E \subset A \cup B$, it must be the case that $E \subset A$.
+        Now, if it holds that $F \cap A \neq \emptyset$, by the same reasoning as above we arrive at the contradiction that $F$ is disconnected.
+        Therefore it must be the case that $F \cap A = \emptyset$, which means $F \subset B$.
+        Notice then that $E \subset A, F \subset B, A \cap B = \emptyset$, but $E \cap F \neq \emptyset$ by the hypothesis.
+        This is clearly a contradiction as well.
+        \item The case $E \cap A = \emptyset$ and $E \cap B \neq \emptyset$ is symmetric to the above.
+    \end{itemize}
+    Therefore, $E \cup F$ must be connected.
+\end{solution}
+
+\begin{exercise}{6}
+    More generally, if $\mathcal{C}$ is a collection of connected subsets of $M$, all having a point in common, prove that $\bigcup \mathcal{C}$ is connected.
+    Use this to give another proof that $\mathbb{R}$ is connected.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose for the sake of contradiction that $\bigcup \mathcal{C}$ is disconnected, which means that there exist open sets $A, B, A \cap B = \emptyset$ such that $\bigcup \mathcal{C} \subset A \cup B, \bigcup \mathcal{C} \cap A \neq \emptyset, \bigcup \mathcal{C} \cap B \neq \emptyset$.
+    Now, this means that there must exist $C_i, C_j \in \mathcal{C}$, such that $C_i \cap A \neq \emptyset$ and $C_j \cap B \neq \emptyset$.
+    Furthermore, it must hold that $C_i \cap C_j \neq \emptyset$, since all sets forming $\bigcup \mathcal{C}$ have a common point.
+    These now imply that $(C_i \cup C_j) \cap A \neq \emptyset$ and $(C_i \cup C_j) \cap B \neq \emptyset$, while it is also clear that $(C_i \cup C_j) \subset (A \cup B)$, thus yielding that $C_i \cup C_j$ is disconnected.
+    However, in Exercise 5 we showed that since $C_i, C_j$ are connected and $C_i \cap C_j \neq \emptyset$, their union is also connected, which means that we arrive at a contradiction.
+    Therefore $\bigcup \mathcal{C}$ is also connected.
+    As an application, consider the fact that $\mathbb{R} = \bigcup_{a > 0} [-a, a]$, and that each of these intervals is connected, which means that since all of the intervals have 0 as a common point, $\mathbb{R}$ is also connected.
+
+\end{solution}
