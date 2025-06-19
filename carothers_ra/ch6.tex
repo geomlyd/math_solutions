@@ -67,3 +67,16 @@
     As an application, consider the fact that $\mathbb{R} = \bigcup_{a > 0} [-a, a]$, and that each of these intervals is connected, which means that since all of the intervals have 0 as a common point, $\mathbb{R}$ is also connected.
 
 \end{solution}
+
+\begin{exercise}{7}
+    If every pair of points in $M$ is contained in some connected set, show that $M$ is itself connected.
+\end{exercise}
+
+\begin{solution}
+    
+    Fix a point $x \in M$, and observe that $M = \cup_{y \in M} (\{x\} \cup \{y\})$.
+    We know that each pair $x, y$ is contained in some connected set $A_y$.
+    Furthermore, because $M$ is the entire metric space, it must also hold that $M = \cup_{y \in M} A_y$ (i.e., it cannot be that some point in some $A_y$ is not contained in the metric space).
+    We have thus written $M$ as a union of connected sets that have a point in common, namely, $x$.
+    By exercise 6, $M$ is therefore also connected.
+\end{solution}
