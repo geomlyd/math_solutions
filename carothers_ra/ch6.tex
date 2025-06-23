@@ -80,3 +80,23 @@
     We have thus written $M$ as a union of connected sets that have a point in common, namely, $x$.
     By exercise 6, $M$ is therefore also connected.
 \end{solution}
+
+\begin{exercise}{9}
+    If $A \subset B \subset \overline{A} \subset M$, and if $A$ is connected, show that $B$ is connected.
+    In particular, $\overline{A}$ is connected.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose $B$ is disconnected.
+    Observe first that obviously it cannot be that $B = A$.
+    Because $B \subset \overline{A}$, it must then be that $B$ contains at least one $x \in \overline{A} \setminus A$, and possibly more.
+    For any such $x$, there exists some sequence $(x_n) \subset A$ such that $x_n \rightarrow x$ (by the definition of the closure).
+    Because $B$ is disconnected, by Lemma 6.5 there exists $f: B \rightarrow \{0, 1\}$ continuous and onto.
+    Note that by the corollary noted immediately after Lemma 6.5, the restriction of $f$ to $A$ must be constant because $A$ is connected.
+    This means that, WLOG, $f(a) = 0$ for each $a \in A$.
+    More specifically, $f(x_n) = 0$ for all $n$.
+    However, because $f$ is onto, it must be the case that $f(x) = 1$ for at least one of the $x$ described above.
+    But this is a contradiction due to the fact that continuous functions preserve limits on convergent sequences.
+    Therefore, $B$ must be connected.
+\end{solution}
