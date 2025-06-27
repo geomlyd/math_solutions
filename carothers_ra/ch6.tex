@@ -140,3 +140,33 @@
     In both cases, this is not an open set, which contradicts the assumption that $f$ is open.
     Therefore, $f$ is strictly monotone.
 \end{solution}
+
+\begin{exercise}{26}
+    Let $f: [0, 1] \rightarrow \mathbb{R}$ be defined as $f(x) = \sin(1/x)$ for $x \neq 0$ and $f(0) = 0$.
+    Show that although $f$ is not continuous, the graph of $f$ is a connected subset of $\mathbb{R}^2$.
+    [Hint: Use Exercise 9.]
+\end{exercise}
+
+\begin{solution}
+    
+    First we show that $f$ is not continuous at 0.
+    Indeed, pick $\epsilon = 1/2$ and observe that it should be the case that for some $\delta > 0$, whenever $\lvert x \rvert < \delta, \lvert f(x) \rvert < \epsilon$.
+    However, for any $\delta$, if we select a sufficiently large $k \in \mathbb{N}$, we obtain that $\frac{2}{4k \pi + \pi} < \delta$ but $\sin(1/x) = \sin(\frac{4k \pi + \pi}{2}) = \sin(2k\pi + \pi/2) = 1 > \epsilon$, and so $f$ cannot be continuous at 0 (this is one way to formalize the increasingly fast oscillations of this function's graph).
+    Now we show that its graph is connected in $\mathbb{R}^2$.
+    We have that the set $\{x > 0\}$ is connected (as an interval).
+    Furthermore, the map $x \mapsto (x, f(x)), x > 0$ is continuous (Lemma 5.8), and so the set $\{(x, f(x)), x > 0\}$ is connected as the image of a connected set under a continuous function.
+    Now, the closure of this set of course contains $\{(0, 0)\} \cup \{(x, f(x)), x > 0\}$ (i.e., the graph of $f$): the sequence $((\frac{1}{n\pi}, f(\frac{1}{n\pi}))), n > 0$ converges to $(0, 0)$.
+    By exercise 9, we thus have that the graph of $f$ is connected.
+\end{solution}
+
+\begin{exercise}{27}
+    Let $V$ be a normed vector space, and let $x \neq y \in V$.
+    Show that the map $f(t) = x + t(y - x)$ is a homeomorphism from $[0, 1]$ into $V$.
+    The range of $f$ is the line segment joining $x$ and $y$, and is often written $[x, y]$ (since $f$ is a homeomorphism, the interval notation is justified).
+    [Hint: That $f$ is continuous and one-to-one is easy; next, show that if $f(t_n) \rightarrow z$, then $(t_n)$ converges to some $t$ in $[0, 1]$ with $z = f(t)$.]
+\end{exercise}
+
+\begin{solution}
+    
+    To show that $f$ is one-to-one, we have that for $t_1 \neq t_2 \in (0, 1), f(t_1) = x + t_1(y - x), f(t_2) = x + t_2(y -x )$
+\end{solution}
