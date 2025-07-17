@@ -1,0 +1,39 @@
+\chapter{Completeness}
+
+\section{Completeness}
+
+\begin{exercise}{1}
+    If $A \subset B \subset M$ and \(B\) is totally bounded, then \(A\) is totally bounded.
+\end{exercise}
+
+\begin{solution}
+    
+    Pick any $\epsilon > 0$.
+    By Lemma 7.1, because $B$ is totally bounded, there exist finitely many sets $B_1, \ldots, B_n \subset B$ such that $\text{diam}(B_i) < \epsilon$ for all $i$ and $B \subset \bigcup_{i=1}^{n} B_i$.
+    Let then $A_i = B_i \cap A$, each of which is clearly a subset of $A$.
+    It holds of course that $\text{diam}(A_i) \leq \text{diam}(B_i) < \epsilon$.
+    Furthermore, because $A \subset B \subset \bigcup_{i=1}^{n} B_i$, any $x \in A$ must belong in at least one $B_i$, and hence also in the corresponding $A_i$, which means that $A \subset \bigcup_{i=1}^{n} A_i$.
+    By all of the above and Lemma 7.1, we conclude that $A$ is totally bounded.
+\end{solution}
+
+\begin{exercise}{2}
+    Show that a subset $A \subset \mathbb{R}$ is totally bounded if and only if it is bounded.
+    In particular, if $I$ is a closed, bounded, interval in $\mathbb{R}$ and $\epsilon > 0$, show that $I$ can be covered by finitely many closed subintervals $J_1, \ldots, J_n$, each of length at most $\epsilon$.
+\end{exercise}
+
+\begin{solution}
+
+    We recall example 7.2 (a): a totally bounded set $A$ is necessarily bounded.
+    To show this, pick $\epsilon = 1$ and obtain $x_1, \ldots, x_n$ such that $A \subset \bigcup_{i=1}^{n} B_1(x_i)$.
+    Set $M = \max_{i, j} d(x_i, x_j)$ and pick any two $x, y \in A$, for which it must hold that $x \in B_i, y \in B_j$ for some $i, j$.
+    By the triangle inequality:
+
+    \[d(x, y) \leq d(x, x_i) + d(x_i, x_j) + d(x_j, y) < 1 + M + 1 = M + 2\]
+
+    This of course shows that $A$ is bounded.
+    
+    Conversely, if $A \subset \mathbb{R}$ is bounded, then $\text{diam} A < R$, which in $\mathbb{R}$ is equivalent to $A \subset [-R, R]$.
+    For any $\epsilon > 0$, set $N = \lceil \frac{2R}{\epsilon} \rceil$ and subdivide $[-R, R]$ into $N$ closed subintervals of length $\epsilon, [-R, a_1], [a_1, a_2], \ldots [a_{N-1}, R]$.
+    Then observe that any element of $A$ must belong in one of these intervals, and thus is at most $\epsilon$-far from some $a_i$.
+    Since there are finitely many $a_i$, we conclude that $A$ is totally bounded.
+\end{solution}
