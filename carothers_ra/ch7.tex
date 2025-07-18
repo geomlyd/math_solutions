@@ -37,3 +37,27 @@
     Then observe that any element of $A$ must belong in one of these intervals, and thus is at most $\epsilon$-far from some $a_i$.
     Since there are finitely many $a_i$, we conclude that $A$ is totally bounded.
 \end{solution}
+
+\begin{exercise}{4}
+    Show that $A$ is totally bounded if and only if $A$ can be covered by finitely many \textit{closed} sets of diameter at most $\epsilon$ for every $\epsilon > 0$.
+\end{exercise}
+
+\begin{solution}
+    
+    $\implies$: Suppose first that $A$ is totally bounded and pick any $\epsilon > 0$.
+    Then there exist finitely many $x_1, \ldots, x_n$ such that $A \subset \bigcup_{i=1}^{n} B_{\epsilon/4}(x_i)$.
+    As in the book, we may assume that $A \cap B_{\epsilon/4}(x_i) \neq \emptyset$ for all $i$, and thus for each $x_i$ find $a_i \in A, a_i \in B_{\epsilon/4}(x_i)$.
+    Now, pick any $y \in B_{\epsilon/4}(x_i)$, and by the triangle inequality:
+
+    \[d(y, a_i) \leq d(y, x_i) + d(x_i, a_i) \leq \epsilon/4 + \epsilon/4 \leq \epsilon/2\]
+
+    This shows that all elements of $B_{\epsilon/4}(x_i)$ belong in the \textit{closed} ball of radius $\epsilon/2$ around $a_i$.
+    More specifically then, all elements of $A$ that were covered by $B_{\epsilon/4}(x_i)$ are also covered by this closed ball.
+    We conclude that the union of these $n$ closed balls ---each of which of course has diameter $\epsilon$--- covers $A$.
+
+    $\impliedby$: Conversely, suppose that for any $\epsilon > 0$, $A$ can be covered by finitely many closed sets of diameter at most $\epsilon$.
+    For any $\epsilon > 0$, use this hypothesis on $\epsilon/2$ to obtain finitely many closed sets $S_1, \ldots, S_n$ such that $A \subset \bigcup_{i=1}^{n} S_i$ and $\text{diam}(S_i) \leq \epsilon/2$ for all $i$.
+    Once again, we may safely assume that $A \cap S_i \neq \emptyset$ for all $i$, and thus for every $i$ find an $a_i \in A, a_i \in S_i$.
+    For any $y \in S_i$, it holds that $d(y, a_i) \leq \text{diam}(S_i) \leq \epsilon/2 < \epsilon$, and so $y \in B_{\epsilon}(a_i)$.
+    This means that all elements of $A$ that were covered by $S_i$ are also covered by $B_{\epsilon}(a_i)$, meaning that $A \subset \bigcup_{i=1}^{n} B_{\epsilon}(a_i)$, which is of course the definition of total boundedness for $A$.
+\end{solution}
