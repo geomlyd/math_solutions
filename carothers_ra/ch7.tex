@@ -61,3 +61,33 @@
     For any $y \in S_i$, it holds that $d(y, a_i) \leq \text{diam}(S_i) \leq \epsilon/2 < \epsilon$, and so $y \in B_{\epsilon}(a_i)$.
     This means that all elements of $A$ that were covered by $S_i$ are also covered by $B_{\epsilon}(a_i)$, meaning that $A \subset \bigcup_{i=1}^{n} B_{\epsilon}(a_i)$, which is of course the definition of total boundedness for $A$.
 \end{solution}
+
+\begin{exercise}{5}
+    Prove that $A$ is totally bounded if and only if $\overline{A}$ is totally bounded.
+\end{exercise}
+
+\begin{solution}
+    
+   $\implies$: Suppose $A$ is totally bounded and pick any $\epsilon > 0$.
+   Find $x_1, \ldots, x_n$ such that $A \subset \bigcup_{i=1}^{n} B_{\epsilon/2} (x_i)$, which is always possible due to $A$ being totally bounded.
+   For any $z \in \overline{A}$, we have the following.
+   If $z \in A$, we have that $z$ is inside at least one of these $n$ balls of radius $\epsilon/2$, and thus also inside the corresponding ball of radius $\epsilon$.
+   If $z \notin A$, by the definition of the closure it must be that $y_i \rightarrow z$ for some $(y_i) \subset A$.
+   Then there exists $N > 0$ such that for all $i > N, d(y_i, z) < \epsilon/2$.
+   Pick any of these $y_i$, and find a corresponding $x_j$ such that $y_i \in B_{\epsilon/2}(x_j)$.
+   By the triangle inequality, $d(y_i, x_j) \leq d(y_i, z) + d(z, x_j) < \epsilon/2 + \epsilon/2 = \epsilon$, which means that $y_i \in B_{\epsilon}(x_j)$.
+   We've therefore shown total boundedness for $\overline{A}$.
+
+   $\impliedby$: In the other direction, recall that $A \subset \overline{A}$, so by Exercise 1 if $\overline{A}$ is totally bounded, $A$ is as well.
+\end{solution}
+
+\begin{exercise}{9}
+    Give an example of a closed bounded subset of $l_{\infty}$ that is not totally bounded.
+\end{exercise}
+
+\begin{solution}
+    
+    Consider the sequence formed in the following way:
+
+
+\end{solution}

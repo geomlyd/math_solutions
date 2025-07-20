@@ -168,5 +168,36 @@
 
 \begin{solution}
     
-    To show that $f$ is one-to-one, we have that for $t_1 \neq t_2 \in (0, 1), f(t_1) = x + t_1(y - x), f(t_2) = x + t_2(y -x )$
+    To show that $f$ is one-to-one, we have that if $f(t_1) = f(t_2)$:
+
+    \[f(t_1) = f(t_2) \implies x + t_1(y - x) = x + t_2(y - x) \implies (t_1 - t_2)(y - x) = 0,\]
+
+    by the properties of vector spaces.
+    Because $y \neq x, y - x$ cannot equal the zero vector, and so it must be the case that $t_1 = t_2$, thus showing that $f$ is one-to-one.
+    The \textit{into} part of the statement implies that we do not need to show that $f$ is onto, since we only care about its range.
+    For continuity, notice that:
+
+    \[\lvert \lvert f(t_1) - f(t_2) \rvert \rvert = \lvert \lvert x + t_1(y - x) - x - t_2(y - x) \rvert \rvert = \lvert \lvert (t_1 - t_2)(y - x) \rvert \rvert = \lvert t_1 - t_2 \rvert \cdot \lvert \lvert y - x \rvert \rvert,\]
+
+    and so $f$ is in fact Lipschitz with constant $\lvert \lvert y - x \rvert \rvert$, and therefore continuous.
+    The only thing that remains is showing that $f^{-1}$ (defined in $f$'s range) is also continuous.
+    To do this, we follow the hint: suppose $f(t_n) \rightarrow z = f(t)$.
+    Then, for any given $\epsilon > 0$, set $\delta = \epsilon \lvert \lvert y - x \rvert \rvert$ and we have that for $n \geq N$ for some $N$:
+
+    \[\lvert \lvert f(t_n) - f(t) \rvert \rvert < \delta \implies \lvert t_n - t \rvert \cdot \lvert \lvert y - x \rvert \rvert < \epsilon \lvert \lvert y - x \rvert \rvert \implies \lvert t_n - t \rvert < \epsilon,\]
+
+    which of course shows that $t_n \rightarrow t$, which completes the proof that $f^{-1}$ is continuous, and thus $f$ is a homeomorphism into $V$.
+\end{solution}
+
+\begin{exercise}{28}
+    Deduce from Exercises 7 and 27 that any normed space $V$ is connected.
+\end{exercise}
+
+\begin{solution}
+    
+    If we can show that any pair of vectors $x, y \in V$ is contained in some connected set, we will have shown that $V$ is connected (Exercise 7).
+    The observation here is that for any two such vectors, consider the set $\{x + t(y - x), t \in [0, 1]\} \subset V$.
+    This is the image $f([0, 1])$ if $f$ is defined as in Exercise 27.
+    Because $[0, 1]$ is connected as an interval and because $f$ is continuous, we conclude that $f([0, 1])$ is also connected.
+    This set contains $x, y$, and is connected, so by our initial observation we conclude that the normed vector space $V$ is connected.
 \end{solution}
