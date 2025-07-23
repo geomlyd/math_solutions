@@ -87,7 +87,25 @@
 
 \begin{solution}
     
-    Consider the sequence formed in the following way:
+    Consider the set corresponding to the sequence examined in Example 7.2 (d):
+    \[S = \{(1, 0, \ldots), (0, 1, 0, \ldots), (0, 0, 1, \ldots), \ldots\} \subset l_{\infty}\]
 
+    It's easy to see that the set is bounded, since all of its elements have a $l_\infty$ norm of 1.
+    At the same time, it is closed, since the only convergent sequences it contains are eventually constant ones.
+    However, the observation given in that example shows that it is not totally bounded: any two of its elements are at a distance of 1, and hence no finite number of balls of radius less than 1 can cover it.
 
+\end{solution}
+
+\begin{exercise}{10}
+    Prove that a totally bounded metric space $M$ is separable. [Hint: For each $n$, let $D_n$ be a finite $(1/n)$-net for $M$.
+    Show that $D = \bigcup_{n=1}^{\infty} D_n$ is a countable dense set.]
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose $M$ is totally bounded, and form the construction indicated in the hint.
+    Namely, for each $n$, collect the \textit{finite}, due to total boundedness, $x_1, x_2, \ldots, x_{k_n}$ needed to cover $M$ with balls of radius $1/n$.
+    Call this set of $k_n$ elements $D_n$, and let $D = \bigcup_{n=1}^{\infty} D_n$, which is countable as a countable union of countable sets.
+    Now, select any $y \in M$ and for each $i$, select an element $x_i \in D_i$ such that $d(y, x_i) < 1/i$, which is guaranteed to exist.
+    Notice that this sequence gets arbitrarily close to $y$, and hence $D$ is also dense, showing that $M$ is separable.
 \end{solution}
