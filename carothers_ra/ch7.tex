@@ -109,3 +109,29 @@
     Now, select any $y \in M$ and for each $i$, select an element $x_i \in D_i$ such that $d(y, x_i) < 1/i$, which is guaranteed to exist.
     Notice that this sequence gets arbitrarily close to $y$, and hence $D$ is also dense, showing that $M$ is separable.
 \end{solution}
+
+\begin{exercise}{11}
+    Prove that $H^{\infty}$ is totally bounded (see Exercises 3.10 and 4.48).
+\end{exercise}
+
+\begin{solution}
+    
+    Recall the methodology we followed in Exercise 4.48.
+    In particular, recall the observation that given any $\epsilon > 0$, we can find $N$ such that for any $x \in H^{\infty}$ and any sequence $r = (r_1, \ldots, r_N, 0, \ldots)$ it holds that under the metric of $H^{\infty}$:
+
+    \[d(x, r) < \sum_{n=1}^{N} \lvert x_n - r_n \rvert + \frac{\epsilon}{2}\]
+
+    If we can show that for any $\epsilon > 0$ we can select \textit{finitely} many sequences of the form $r = (r_1, \ldots, r_N, 0, 0, \ldots)$ such that for any $x \in H^{\infty}$, it is the case that for at least one of them it holds that $\sum_{n=1}^{N} \lvert x_n - r_{i,n} \rvert < \epsilon/2$, we will have shown that $d(x, r_i) < \epsilon$, and thus that $H^{\infty}$ is totally bounded.
+    Let then $K = \lceil \frac{4N}{\epsilon} \rceil$, and consider subdividing the interval $[-1, 1]$ in $K$ equal subintervals, each of length $\frac{2}{K}$.
+    Let $r_1, r_2, \ldots, r_K$ be the endpoints of these subintervals.
+    Then, for any given sequence $(x_n)$, and for any of its terms $x_i$, it must hold that for some $r_j$:
+
+    \[\lvert x_i - r_j \rvert < \frac{2}{K} < \frac{2}{\frac{4N}{\epsilon}} < \frac{\epsilon}{2N}\]
+
+    We form $r$ by selecting such an $r_j$ for each $i = 1, 2, \ldots, N$, and then we have that:
+
+    \[d(x, r) < \sum_{n=1}^{N} \frac{\epsilon}{2N} + \frac{\epsilon}{2} = \epsilon\]
+
+    To summarize, for any $\epsilon > 0$, pick first $N$ as described previously, then select $r_1, \ldots, r_K$ as above (where $K$ is a function of $N, \epsilon$), and then set $R = \{(\rho_1, \rho_2, \ldots, \rho_N, 0, 0, \ldots), \rho_i \in \{r_1, r_2, \ldots, r_K\}\}$, which is a finite set such that for any $x \in H^{\infty}, d(x, r) < \epsilon$ for some $r \in R$.
+    Therefore, $H^{\infty}$ is totally bounded.
+\end{solution}
