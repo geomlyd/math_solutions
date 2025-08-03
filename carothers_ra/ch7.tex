@@ -135,3 +135,17 @@
     To summarize, for any $\epsilon > 0$, pick first $N$ as described previously, then select $r_1, \ldots, r_K$ as above (where $K$ is a function of $N, \epsilon$), and then set $R = \{(\rho_1, \rho_2, \ldots, \rho_N, 0, 0, \ldots), \rho_i \in \{r_1, r_2, \ldots, r_K\}\}$, which is a finite set such that for any $x \in H^{\infty}, d(x, r) < \epsilon$ for some $r \in R$.
     Therefore, $H^{\infty}$ is totally bounded.
 \end{solution}
+
+\section{Completeness}
+
+\begin{exercise}{12}
+    Let $(A, d)$ be a subset of an arbitrary metric space \((M, d)\).
+    If \((A, d)\) is complete, show that \(A\) is closed in \(M\).
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose $(x_n) \subset A$ is a sequence that converges to $x$.
+    By Exercise 36 of Ch. 3, we know that $(x_n)$ is Cauchy as a convergent sequence.
+    Because $A$ is complete, this means that $(x_n)$ must converge to a point inside $A$, which of course shows that $x \in A$, meaning that $A$ is indeed closed in $M$.
+\end{solution}
