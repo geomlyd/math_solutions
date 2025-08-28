@@ -201,3 +201,56 @@
     Exchanging the roles of $M, N$ shows that the same holds for $N$.
 
 \end{solution}
+
+\begin{exercise}{18}
+    Fill in the details of the proofs that $l_1, l_{\infty}$ are complete.
+\end{exercise}
+
+\begin{solution}
+    
+    The two proofs are done in much the same way as the proof that $l_2$ is complete.
+    We begin with $l_1$.
+    Consider a Cauchy sequence (of sequences) $(f_n) \subset l_1$, where we write $f_n = (f_n(k))_{k=1}^{\infty}$.
+    Fix any $k \in \mathbb{N}$ and consider the sequence $(f_n(k))$.
+    Select any $\epsilon > 0$ and observe that because $(f_n)$ is Cauchy, there exists $N > 0$ such that for any $n, m \geq N$ we have that $\lvert \lvert f_n - f_m \rvert \rvert _{1} < \epsilon$.
+    Thus, it also holds that:
+
+    \[\lvert f_n(k) - f_m(k) \rvert \leq \lvert \lvert f_n - f_m \rvert \rvert _{1} < \epsilon,\]
+
+    which shows that the sequence $(f_1(k), f_2(k), \ldots)$ is Cauchy in $\mathbb{R}$ and thus converges.
+    Call its limit $f(k)$ and set $f = (f(1), f(2), \ldots)$.
+    We now show that $f \in l_1$.
+    Fix any $N \in \mathbb{N}$, and consider the ``prefix'' $(f(1), f(2), \ldots, f(N))$.
+    We have that:
+
+    \[\sum_{n=1}^{N} \lvert f(n) \rvert = \sum_{n=1}^{N} \lvert \lim_{m \rightarrow \infty} f_m(n) \rvert = \lim_{m \rightarrow \infty} \sum_{n=1}^{N} \lvert f_m(n) \rvert\]
+
+    Notice now that the RHS here is bounded, since $f_m \in l_1$ for any $m$.
+    Therefore, for any $N, \sum_{n=1}^{N} \lvert f(n) \rvert \leq B$, and since limits preserve non-strict inequalities, $\lvert \lvert f \rvert \rvert _{1} \leq B \implies f \in l_1$.
+    Finally, we need to show that $f_n \rightarrow f$ in $l_1$.
+    Again, fix $N$.
+    Select $m_0$ such that for $m, l \geq m_0, \lvert \lvert f_m - f_l \rvert \rvert _{1} < \epsilon$ and observe that if $m \geq m_0$:
+
+    \[\sum_{n=1}^{N} \lvert f_m(n) - f(n) \rvert = \sum_{n=1}^{N} \lvert \lim_{k \rightarrow \infty} f_k(n) - f_m(n) \rvert = \lim_{k \rightarrow \infty} \sum_{n=1}^{N} \lvert f_k(n) - f_m(n) \rvert \leq \lim_{k \rightarrow \infty} \lvert \lvert f_k - f_m \rvert \rvert _{1} \leq \epsilon\]
+
+    Since this holds for any $N$, we have that indeed $f_n \rightarrow f$, and we've thus shown that $l_1$ is complete (any Cauchy sequence in it converges to a point in it).
+
+
+\end{solution}
+
+\begin{exercise}{20}
+    If $(x_n), (y_n)$ are Cauchy in $(M, d)$ show that $(d(x_n, y_n))_{n=1}^{\infty}$ is Cauchy in $\mathbb{R}$.
+\end{exercise}
+
+\begin{solution}
+    
+    Pick any $\epsilon > 0$.
+    We have first that:
+    
+    \[\lvert d(x_n, y_n) - d(x_m, y_m) \rvert = \lvert d(x_n, y_n) - d(x_m, y_n) + d(x_m, y_n) - d(x_m, y_m) \rvert \leq \]
+    \[\lvert d(x_n, y_n) - d(x_m, y_n) \rvert + \lvert d(x_m, y_n) - d(x_m, y_m) \rvert \leq d(x_n, x_m) + d(y_n, y_m),\]
+
+    where we've used the triangle inequality in $\mathbb{R}$ and Exercise 2 of Ch. 3 (reverse triangle inequality in a metric space).
+    Due to $(x_n), (y_n)$ being Cauchy, we can find $N, M > 0$ such that whenever $n, m \geq N, d(x_n, x_m) < \epsilon/2$ and whenever $n, m \geq M, d(y_n, y_m) < \epsilon/2$.
+    Set $K = \max\{N, M\}$ and then we conclude that for $n, m \geq K, d(x_n, x_m) < \epsilon/2, d(y_n, y_m) < \epsilon/2$, which by the above inequality shows that $\lvert d(x_n, y_n) - d(x_m, y_m) \rvert < \epsilon$, i.e.\, that $(d(x_n, y_n))_{n=1}^{\infty}$ is Cauchy in $\mathbb{R}$.
+\end{solution}
