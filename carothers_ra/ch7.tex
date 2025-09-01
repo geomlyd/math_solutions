@@ -228,13 +228,54 @@
     Notice now that the RHS here is bounded, since $f_m \in l_1$ for any $m$.
     Therefore, for any $N, \sum_{n=1}^{N} \lvert f(n) \rvert \leq B$, and since limits preserve non-strict inequalities, $\lvert \lvert f \rvert \rvert _{1} \leq B \implies f \in l_1$.
     Finally, we need to show that $f_n \rightarrow f$ in $l_1$.
-    Again, fix $N$.
-    Select $m_0$ such that for $m, l \geq m_0, \lvert \lvert f_m - f_l \rvert \rvert _{1} < \epsilon$ and observe that if $m \geq m_0$:
+    
+    Pick any $\epsilon > 0$ and select $m_0$ such that for $m, l \geq m_0, \lvert \lvert f_m - f_l \rvert \rvert _{1} < \epsilon$.
+    Again, fix $N$ and observe that if $m \geq m_0$:
 
-    \[\sum_{n=1}^{N} \lvert f_m(n) - f(n) \rvert = \sum_{n=1}^{N} \lvert \lim_{k \rightarrow \infty} f_k(n) - f_m(n) \rvert = \lim_{k \rightarrow \infty} \sum_{n=1}^{N} \lvert f_k(n) - f_m(n) \rvert \leq \lim_{k \rightarrow \infty} \lvert \lvert f_k - f_m \rvert \rvert _{1} \leq \epsilon\]
+    \[\sum_{n=1}^{N} \lvert f_m(n) - f(n) \rvert = \sum_{n=1}^{N} \lvert \lim_{k \rightarrow \infty} f_k(n) - f_m(n) \rvert = \lim_{k \rightarrow \infty} \sum_{n=1}^{N} \lvert f_k(n) - f_m(n) \rvert\]
 
-    Since this holds for any $N$, we have that indeed $f_n \rightarrow f$, and we've thus shown that $l_1$ is complete (any Cauchy sequence in it converges to a point in it).
+    Notice also that for any $m, k \geq m_0$:
+    
+    \[ \sum_{n=1}^{N} \lvert f_k(n) - f_m(n) \rvert \leq \lvert \lvert f_k - f_m \rvert \rvert_1 < \epsilon \]
+    
+    Taking the limit wrt. $k$ we obtain that:
 
+    \[\lim_{k \rightarrow \infty} \sum_{n=1}^{N} \lvert f_k(n) - f_m(n) \rvert \leq \epsilon \implies \sum_{n=1}^{N} \lvert f_m(n) - f(n) \rvert \leq \epsilon\]
+
+
+    Finally, since this holds for any $N$, we have that $\lvert \lvert f_m -f \rvert \rvert \leq \epsilon$ for $m \geq m_0$ and so $f_n \rightarrow f$, and we've thus shown that $l_1$ is complete (any Cauchy sequence in it converges to a point in it).
+
+    Now we do the same for $l_{\infty}$.
+    Let $(f_n) \subset l_{\infty}$ be Cauchy.
+    First, fix $k \in \mathbb{N}$ and examine $(f_n(k))$ (sequence of reals). 
+    We have that, for any $\epsilon > 0$ there exists $N > 0$ such that for $n, m \geq N$ it holds that $\lvert \lvert f_n - f_m \rvert \rvert_{\infty} < \epsilon$.
+    From this we obtain:
+
+    \[\lvert f_n(k) - f_m(k) \rvert \leq \sup_{l} \lvert f_n(l) - f_m(l) \rvert = \lvert \lvert f_n - f_m \rvert \rvert < \epsilon,\]
+
+    showing that $(f_n(k))$ is Cauchy in $\mathbb{R}$ and thus converges, say to $f(k)$.
+    We again define $f$ as $f = (f(1), f(2), \ldots)$, and we need to show that $f \in l_{\infty}$.
+    For any fixed $N$:
+
+    \[\max_{n \leq N} \lvert f(n) \rvert = \max_{n \leq N} \lvert \lim_{m \rightarrow \infty} f_m(n) \rvert = \lim_{m \rightarrow \infty} \max_{n \leq N} \lvert f_m(n) \rvert\]
+
+    Because all $f_m \in l_{\infty}$, the RHS here is bounded, and since this holds for any $N$, we have also that $f \in l_{\infty}$.
+    Now we need to show that $f_n \rightarrow f$.
+    Pick any $\epsilon > 0$, and select $m_0$ such that for $m, l \geq m_0, \lvert \lvert f_m - f_l \rvert \rvert _{\infty} < \epsilon$.
+    To begin, fix $N$ and observe that if $m \geq m_0$:
+
+    \[\max_{n \leq N} \lvert f_m(n) - f(n) \rvert = \max_{n \leq N} \lvert \lim_{k \rightarrow \infty} (f_k(n) - f_m(n) ) \rvert = \lim_{k \rightarrow \infty} \max_{n \leq N} \lvert f_k(n) -f_m(n) \rvert \]
+
+    Now, for any $k \geq m_0$ we have that:
+
+    \[\max_{n \leq N} \lvert f_k(n) - f_m(n) \rvert \leq \sup_{n} \lvert f_k(n) -f_m(n) \rvert = \lvert \lvert f_k -f_m \rvert \rvert _{\infty} < \epsilon,\]
+
+    and thus taking the limit wrt. $k$ yields that:
+
+    \[\lim_{k \rightarrow \infty} \max_{n \leq N} \lvert f_k(n) - f_m(n) \rvert \leq \epsilon\]
+
+    Therefore $\max_{n \leq N} \lvert f_m(n) - f(n) \rvert \leq \epsilon$, and since this holds for any $N$, we conclude that $\lvert f_m - f \rvert \leq \epsilon$, showing that $f_n \rightarrow f \in l_{\infty}$ and hence that $l_{\infty}$ is complete.
+    
 
 \end{solution}
 
@@ -253,4 +294,43 @@
     where we've used the triangle inequality in $\mathbb{R}$ and Exercise 2 of Ch. 3 (reverse triangle inequality in a metric space).
     Due to $(x_n), (y_n)$ being Cauchy, we can find $N, M > 0$ such that whenever $n, m \geq N, d(x_n, x_m) < \epsilon/2$ and whenever $n, m \geq M, d(y_n, y_m) < \epsilon/2$.
     Set $K = \max\{N, M\}$ and then we conclude that for $n, m \geq K, d(x_n, x_m) < \epsilon/2, d(y_n, y_m) < \epsilon/2$, which by the above inequality shows that $\lvert d(x_n, y_n) - d(x_m, y_m) \rvert < \epsilon$, i.e.\, that $(d(x_n, y_n))_{n=1}^{\infty}$ is Cauchy in $\mathbb{R}$.
+\end{solution}
+
+\begin{exercise}{21}
+    If $(M, d)$ is complete, prove that two Cauchy sequences $(x_n), (y_n)$ have the same limit if and only if $d(x_n, y_n) \rightarrow 0$.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose first that $d(x_n, y_n) \rightarrow 0$.
+    Because $(M, d)$ is complete, we have that $(x_n)$ converges to some $x$ as a Cauchy sequence.    
+    Pick any $\epsilon > 0$, and obtain $N$ such that for $n \geq N, d(x_n, y_n) < \epsilon/2$.
+    By the reverse triangle inequality:
+
+    \[\lvert d(y_n, x) - d(x_n, x) \rvert \leq d(y_n, x_n) < \epsilon/2 \implies d(x_n, x) - \epsilon/2 < d(y_n, x) < \epsilon/2 + d(x_n, x)\]
+    
+    There exists $M > 0$ such that for $n \geq M, d(x_n, x) < \epsilon/2$.
+    For $n \geq \max\{N, M\}$, we then have that:
+
+    \[d(y_n, x) < \epsilon/2 + d(x_n, x) < \epsilon/2 + \epsilon/2 \implies d(y_n, x) < \epsilon,\]
+
+    which shows that $y_n \rightarrow x$.
+    Conversely, if $x_n \rightarrow x, y_n \rightarrow x$, we have that:
+
+    \[d(x_n, y_n) \leq d(x_n, x) + d(x, y_n)\]
+
+    Since the RHS can be made arbitrarily small, we obtain that $d(x_n, y_n) \rightarrow 0$.
+\end{solution}
+
+\begin{exercise}{25}
+    True or false?
+    If $f: \mathbb{R} \rightarrow \mathbb{R}$ is continuous and if $(x_n)$ is Cauchy, then $(f(x_n))$ is Cauchy.
+    Examples?
+    How about if we insist that $f$ be strictly increasing?
+    Show that the answer is ``true'' if $f$ is Lipschitz.
+\end{exercise}
+
+\begin{solution}
+    
+    
 \end{solution}
