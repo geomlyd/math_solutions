@@ -322,6 +322,60 @@
     Since the RHS can be made arbitrarily small, we obtain that $d(x_n, y_n) \rightarrow 0$.
 \end{solution}
 
+\begin{exercise}{22}
+    Let $D$ be a dense subset of a metric space $M$, and suppose that every Cauchy sequence from $D$ converges to some point of $M$.
+    Prove that $M$ is complete.
+\end{exercise}
+
+\begin{solution}
+    
+    Pick any Cauchy sequence $(x_n)$ in $M$.
+    Now, construct a sequence $(y_n) \subset D$ in the following manner.
+    For any $n$, pick $y_n \in D$ such that $d(x_n, y_n) < \frac{1}{2^n}$.
+    This is always possible due to $D$ being dense in $M$.
+    We show now that $(y_n)$ is Cauchy.
+    Pick any $\epsilon > 0$ and find $N > 0$ such that $\frac{1}{2^N} < \frac{\epsilon}{3}$.
+    By the construction of $(y_n)$, for any $n, m \geq N$, it holds that $d(x_n, y_n) < \epsilon/3, d(x_m, y_m) < \epsilon / 3$.
+    Furthermore, because $(x_n)$ is Cauchy we can find $M$ such that for $n, m \geq M, d(x_n, x_m) < \epsilon/3$.
+
+    Setting $K = \max\{N, M\}$, we observe that for $n, m \geq K$:
+
+    \[d(y_n, y_m) \leq d(x_n, y_n) + d(x_n, y_m) \leq d(x_n, y_n) + d(x_n, x_m) + d(x_m, y_m) < \epsilon/3 + \epsilon/3 + \epsilon/3 = \epsilon\]
+
+    This shows that $(y_n)$ is Cauchy in $D$, and thus, by the hypothesis, converges to a point in $M$.
+    Now, since $d(x_n, y_n) \rightarrow 0$, we can apply Exercise 21 (Ch. 7) to conclude that $(x_n), (y_n)$ have the same limit, and hence that $(x_n)$ converges to a point in $M$, showing that $M$ is complete.
+\end{solution}
+
+\begin{exercise}{23}
+    Prove that $M$ is complete if and only if every sequence $(x_n)$ in $M$ satisfying $d(x_n, x_{n+1}) < 2^{-n}$, for all $n$, converges to a point in $M$.
+\end{exercise}
+
+\begin{solution}
+    
+    First, we observe that every sequence that satisfies this constraint is Cauchy.
+    Indeed, if $(x_n)$ is one such sequence, pick any $\epsilon > 0$ and set $N = \lceil \log(\frac{1}{\epsilon}) \rceil$, in which case $2^N > \frac{1}{\epsilon} \implies \epsilon > 2^{-N}$.
+    For any $n, m > N$ (suppose $m > n$) it holds that:
+
+    \[d(x_n, x_m) \leq d(x_n, x_{n+1}) + d(x_{n+1}, x_m) \leq d(x_n, x_{n+1}) + d(x_{n + 1}, x_{n + 2}) + d(x_{n + 2}, x_m) \leq \ldots \leq\]
+    \[\sum_{i = n}^{m - 1} d(x_i, x_{i+1}) = \sum_{j = 0}^{m - n - 1} d(x_{n + j}, x_{n + j + 1})\]
+
+    Now notice that for each such term it holds that $d(x_{n + j}, x_{n + j + 1}) < 2^{-n - j}$.
+    Substituting:
+
+    \[d(x_n, x_m) < \sum_{j = 0}^{m - n - 1} \frac{1}{2^{n + j}} = \frac{1}{2^{n}} \sum_{j = 0}^{m - n - 1} \frac{1}{2^j} < \frac{2}{2^n} = \frac{1}{2^{n - 1}} \leq \frac{1}{2^N} < \epsilon,\]
+
+    completing the proof that the sequence is indeed Cauchy.
+    The immediate consequence is that if $M$ is complete, any such sequence in $M$ converges to a point in $M$ (by the definition of completeness).
+
+    Conversely, suppose that any such sequence in $M$ converges to a point in $M$, and let $(y_n) \subset M$ be Cauchy.
+
+    Construct the following subsequence $(y_{n_k})$.
+    For any $k = 1, 2, \ldots$, set $\epsilon_k = 2^{-k}$, and obtain $N_k$ such that for $i, j \geq N_k, d(x_i, x_j) < \epsilon_k = 2^{-k}$.
+    Set $y_{n_k}$ to be equal to the first $x_i, i \geq N_k$ that has not yet been previously selected (this is always possible since $x_n$ has infinite terms).
+    Now notice that by its definition, $d(y_{n_k}, y_{n_{k+1}}) < \epsilon_k = 2^{-k} \leq 2^{-n_k}$ (since $n_k \leq k$ always holds due to the fact that we select each term to be different from all previous ones).
+    By our hypothesis, $(y_{n_k})$ converges to a point in $M$, and then Exercise 15 Ch. 1 guarantees that $(y_n)$ converges to the same point as a Cauchy sequence with a convergent subsequence.
+\end{solution}
+
 \begin{exercise}{25}
     True or false?
     If $f: \mathbb{R} \rightarrow \mathbb{R}$ is continuous and if $(x_n)$ is Cauchy, then $(f(x_n))$ is Cauchy.
