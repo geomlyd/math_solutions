@@ -1,6 +1,6 @@
 \chapter{Completeness}
 
-\section{Completeness}
+\section{Totally Bounded Sets}
 
 \begin{exercise}{1}
     If $A \subset B \subset M$ and \(B\) is totally bounded, then \(A\) is totally bounded.
@@ -136,7 +136,7 @@
     Therefore, $H^{\infty}$ is totally bounded.
 \end{solution}
 
-\section{Completeness}
+\section{Complete Metric Spaces}
 
 \begin{exercise}{12}
     Let $(A, d)$ be a subset of an arbitrary metric space \((M, d)\).
@@ -374,6 +374,43 @@
     Set $y_{n_k}$ to be equal to the first $x_i, i \geq N_k$ that has not yet been previously selected (this is always possible since $x_n$ has infinite terms).
     Now notice that by its definition, $d(y_{n_k}, y_{n_{k+1}}) < \epsilon_k = 2^{-k} \leq 2^{-n_k}$ (since $n_k \leq k$ always holds due to the fact that we select each term to be different from all previous ones).
     By our hypothesis, $(y_{n_k})$ converges to a point in $M$, and then Exercise 15 Ch. 1 guarantees that $(y_n)$ converges to the same point as a Cauchy sequence with a convergent subsequence.
+\end{solution}
+
+\begin{exercise}{24}
+    Prove that the Hilbert cube $H^{\infty}$ is complete.
+\end{exercise}
+
+\begin{solution}
+    
+    Let $(x_n) \subset H^{\infty}$ be a Cauchy sequence, and consider, for any $k$, the sequence formed by taking the $k$-term of each of these, i.e. $(x_{11}, x_{21}, x_{31}, \ldots)$, and call it $y_k$.
+    For any $\epsilon > 0$, set $\epsilon' = \epsilon/2^k$.
+    Since $(x_n)$ is Cauchy, we can find $N$ such that for $n, m \geq N, d(x_n, x_m) < \epsilon$, which means:
+
+    \[d(x_n, x_m) < \epsilon \implies \sum_{i=1}^{\infty} 2^{-i} \lvert x_{ni} - x_{mi} \rvert < \epsilon' \implies 2^{-k} \lvert x_{nk} - x_{mk} \rvert < \epsilon/2^{k} \implies \lvert x_{nk} - x_{mk} \rvert < \epsilon\]
+    \[\implies \lvert y_{k_n} - y_{k_m} \rvert < \epsilon\]
+
+    We have thus shown that $y_k$ is Cauchy in $\mathbb{R}$, and thus converges, say to $l_k$.
+    This holds for any $k$, so let $l = (l_1, l_2, \ldots)$.
+    Because it holds that $\lvert x_{nk} \rvert \leq 1$, it is also the case that $\lvert l_k \rvert \leq 1$ for any $k$, and so $l \in H^{\infty}$.
+
+    We now only need to show that $x_n \rightarrow l$.
+    Take any $\epsilon > 0$, and fix any $N > 0$.
+    We examine the quantity $\sum_{k=1}^{N} 2^{-k} \lvert x_{nk} - l_k \rvert$.
+    We have that:
+
+    \[\sum_{k=1}^{N} 2^{-k} \lvert x_{nk} - l_k \rvert = \sum_{k=1}^{N} 2^{-k}\lvert x_{nk} - \lim_{m \rightarrow \infty} x_{mk} \rvert = \lim_{m \rightarrow \infty} \sum_{k=1}^{N} 2^{-k} \lvert x_{nk} - x_{mk} \rvert\]
+
+    We now pick $M > 0$ such that $d(x_n, x_m) < \epsilon$ (possible since $(x_n)$ is Cauchy), and examine the quantity inside the limit for $n, m \geq M$:
+
+    \[\sum_{k=1}^{N} 2^{-k} \lvert x_{nk} - x_{mk} \rvert \leq \sum_{k=1}^{\infty} 2^{-k} \lvert x_{nk} - x_{mk} \rvert = d(x_n, x_m) < \epsilon\]
+
+    Since this holds for any $m \geq M$, we can take limits to obtain that $\lim_{m \rightarrow \infty} \sum_{k=1}^{N} 2^{-k} \lvert x_{nk} - x_{mk} \rvert \leq \epsilon$.
+    Finally, since this holds for any$N$, we observe that we can thus also take the limit wrt. to $N$ in this inequality to obtain that:
+
+    \[\sum_{k=1}^{\infty} 2^{-k} \lvert x_{nk} - l_k \rvert \leq \epsilon \implies d(x_n, l) \leq \epsilon,\]
+
+    as long as $n \geq M$, where $M$ is defined as above.
+    Since this holds for any $\epsilon > 0$, we conclude that $x_n \rightarrow l \in H^{\infty}$, hence that $H^{\infty}$ is complete.
 \end{solution}
 
 \begin{exercise}{25}
