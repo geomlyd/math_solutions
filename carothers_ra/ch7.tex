@@ -423,5 +423,57 @@
 
 \begin{solution}
     
+    We know that every Cauchy sequence in $\mathbb{R}$ converges, which means that $x_n \rightarrow x$ for some $x$.
+    Then the continuity of $f$ implies that $f(x_n) \rightarrow f(x)$.
+    Now, select any $\epsilon > 0$ and pick $N$ such that for any $n \geq N, \lvert f(x_n) - f(x) \rvert < \epsilon/2$.
+    For any $n, m \geq N$ we have that:
+
+    \[\lvert f(x_n) - f(x_m) \rvert \leq \lvert f(x_n) - f(x) + f(x) - f(x_m) \rvert \leq \lvert f(x_n) - f(x) \rvert + \lvert f(x_m) - f(x) \rvert < \epsilon/2 + \epsilon/2 = \epsilon,\]
+
+    which shows that $f(x_n)$ is Cauchy.
+    The remaining questions in the exercise are obvious.
+\end{solution}
+
+\begin{exercise}{26}
+    Just as with the nested interval theorem, it is essential that the sets $F_n$ used in the nested set theorem be both closed and bounded.
+    Why?
+    Is the condition $\text{diam}(F_n) \rightarrow 0$ really necessary?
+    Explain.
+\end{exercise}
+
+\begin{solution}
     
+    One simple reason is the fact that the counterexamples presented for the case of intervals are of course counterexamples for the case of sets too.
+    Differently, we can extend the reasoning of these counterexamples in any metric space $M$.
+    For example, if $x \in M$ and we set $F_n = \{y \in M: d(y, x) \leq \frac{1}{n}\} \setminus \{x\}$ (bounded but not closed), we observe that even though $F_1 \supset F_2 \supset \ldots$, the infinite intersection must be the empty set: if it were to contain any point $z$, then $d(z, x) \leq \frac{1}{n}$ for all $n$, which would mean $z = x$.
+    Similarly, if we set $F_n = \{y \in M: d(y, x) \geq n\}$ in a metric space where these sets are not bounded, we again have $F_1 \supset F_2 \supset \ldots$, but again the infinite intersection must be the empty set, otherwise there would have to exist a $z$ such that $d(z, x) \geq n$ for all $n$, which is of course impossible (metrics are finite-valued).
+
+    Regarding the condition $\text{diam}(F_n) \rightarrow 0$, suppose $x, y \in M$ with $d(x, y) < 1$ and let $F_n = \{z \in M: d(z, x) \leq 1 + \frac{1}{n}\}$.
+    Here the sets are nested but the diameter clearly does not go to zero: each $F_n$ will always contain both $x, y$, since $d(x, y) < 1 \leq 1 + \frac{1}{n}$ for every $n$.
+    Therefore the diameter will always be at least $d(x, y)$, and the consequence is that we can no longer conclude that the infinite intersection contains only one point.
+    Other than that, the nested set theorem still holds in the sense that the infinite intersection is not empty.
+\end{solution}
+
+\begin{exercise}{27}
+    Note that the version of the Bolzano-Weierstrass theorem given in Theorem 7.11 replaces boundedness with total boundedness.
+    Is this really necessary?
+    Explain.
+\end{exercise}
+
+\begin{solution}
+    
+    We know that the metric space $l_1$ is complete (Exercise 18 Ch. 7).
+    Consider the set $\{e_n\}$, where $e_n = (0, 0, \ldots, 1, 0, \ldots)$, i.e., $e_n$ has 1 in its $n$-th coordinate and 0 elsewhere (example 7.2 (d)).
+    As discussed in the example, this is a bounded but not totally bounded set in $l_1$.
+    Suppose that it contains some convergent sequence $x_i \rightarrow x \in l_1$, as would have to be the case if Theorem 7.3 (i) $\implies$ (iii) held for \textit{bounded} sets.
+    Note that this sequence cannot be eventually constant, otherwise we would not be able to obtain a limit point as defined in Exercise 4.33.
+    Then, for $\epsilon = 1$ there must exist $N > 0$ such that for $i \geq N$:
+
+    \[\lvert \lvert x_i - x \rvert \rvert _1 < \epsilon \implies \sum_{j=1}^{\infty} \lvert x_{ij} - x_j \rvert < \epsilon\]
+
+    Because all $x_n$ are drawn from the set of $e_n$, if we consider the infinitely many terms $x_i, i \geq N$, an infinite number of them must be drawn from the set $\{e_m, e_{m + 1}, \ldots\}$ for \textit{any} $m$.
+    These must then have $x_{ij} = 0$ for $i < m$, and hence from the inequality we have also $x_j = 0$ for $j < m$.
+    Since this holds for any $m, x = (0, 0, 0, \ldots)$.
+    But then by definition it must be that $\lvert \lvert x_i - x \rvert \rvert = 1 = \epsilon$, since these differ in precisely one coordinate.
+    This makes it impossible for the inequality above to hold, and thus the sequence fails to converge, showing that boundedness of a set alone is not enough in the nested set theorem.
 \end{solution}
