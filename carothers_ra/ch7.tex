@@ -477,3 +477,30 @@
     But then by definition it must be that $\lvert \lvert x_i - x \rvert \rvert = 1 = \epsilon$, since these differ in precisely one coordinate.
     This makes it impossible for the inequality above to hold, and thus the sequence fails to converge, showing that boundedness of a set alone is not enough in the nested set theorem.
 \end{solution}
+
+\begin{exercise}{30}
+    If $(M, d)$ is complete, prove that every open subset $G \subset M$ is homeomorphic to a complete metric space.
+    [Hint: Let $F = M \setminus G$ and consider the metric $\rho(x, y) = d(x, y) + \lvert d(x, F)^{-1} - d(y, F)^{-1} \rvert$ on $G$.]
+\end{exercise}
+
+\begin{solution}
+    
+    Based on the hint, we will show that the function $i: (G, d) \rightarrow (G, \rho), i(x) = x$ is an homeomorphism.
+    We know (Theorem 5.5) that this is equivalent to showing that $x_n \rightarrow^{d} x \iff f(x_n) \rightarrow^{\rho} f(x)$.
+    Suppose therefore that $x_n \rightarrow^{d} x$.
+    Recall that by preposition 5.4 we know that $x \rightarrow d(x, F)$ is a continuous function.
+    This means that $d(x_n, F) \rightarrow d(x, F)$.
+    We observe also that $d(x, F) > 0, d(x_n, F) > 0$ must always hold: indeed, $x_n, x \in G$, and because $G \cap F = \emptyset, \overline{F} = F$ ($F$ is closed), it can never be that $d(x_n, F) = 0, d(x, F) = 0$ since this would mean that these are in $\overline{F}$.
+    Therefore the function $x \rightarrow d(x, F)^{-1}$ defined for $x \in G$ is also well-defined and continuous.
+    Pick now any $\epsilon > 0$.
+    There exists $N_1 > 0$ such that for $n \geq N_1, \lvert d(x_n, F)^{-1} - d(x, F)^{-1} \rvert < \epsilon/2$, and $N_2 > 0$ such that for $n \geq N_2, \lvert d(x_n, x) < \epsilon/2$.
+    Therefore for $n \geq \max\{N_1, N_2\}$:
+
+    \[\rho(x_n, x) = d(x_n, x) + \lvert d(x_n, F)^{-1} - d(x, F)^{-1} \rvert < \epsilon/2 + \epsilon/2 = \epsilon,\]
+
+    which shows that $x_n \rightarrow^{\rho} x$.
+    Conversely, suppose $x_n \rightarrow^{\rho} x$, which means that for any $\epsilon > 0$, there exists $N > 0$ s. t. for $n \geq N, \rho(x_n, x) < \epsilon \implies d(x_n, x) < \epsilon$, which shows that $x_n \rightarrow^{d} x$.
+    This completes the proof that $i$ is a homeomorphism between $(G, d), (G, \rho)$.
+    We also need to show that $(G, \rho)$ is complete.
+    Suppose therefore $(x_n) \subset G$ is Cauchy under $\rho$.
+\end{solution}
