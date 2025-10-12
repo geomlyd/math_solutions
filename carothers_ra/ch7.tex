@@ -523,3 +523,43 @@
     Therefore $x \notin F \implies x \in G$, which completes the proof.
 
 \end{solution}
+
+\begin{exercise}{31}
+    If $\sum_{n=1}^{\infty} x_n$ is a convergent series in a normed vector space $X$, show that  $\lvert \lvert \sum_{n=1}^{\infty} x_n \rvert \rvert \leq \sum_{n=1}^{\infty} \lvert \lvert x_n \rvert \rvert$.
+\end{exercise}
+
+\begin{solution}
+
+    If the RHS of the inequality doesn't converge, then the statement holds trivially.
+    If it does converge, then consider the following for any $N$:
+
+    \[\lvert \lvert \sum_{n=1}^{N} x_n \rvert \rvert \leq \sum_{n=1}^{N} \lvert \lvert x_n \rvert \rvert\]
+    
+    Because norms are continuous, we know that the LHS converges as $N \rightarrow \infty$, and in fact it converges to $\lvert \lvert \sum_{n=1}^{\infty} x_n \rvert \rvert$.
+    We thus have that both sides converge, and since limits preserve non-strict inequalities we obtain that $\lvert \lvert\sum_{n=1}^{\infty} x_n \rvert \rvert \leq \sum_{n=1}^{\infty} \lvert \lvert x_n \rvert \rvert$.
+\end{solution}
+
+\begin{exercise}{36}
+    The function $f(x) = x^2$ has two obvious fixed points: $p_0 = 0, p_1 = 1$.
+    Show that there is a $0 < \delta < 1$ such that $\lvert f(x) - p_0 \rvert < \lvert x - p_0 \rvert$ whenever $\lvert x - p_0 \rvert < \delta, x \neq p_0$.
+    Conclude that $f^{(n)}(x) \rightarrow p_0$ whenever $\lvert x - p_0 \rvert < \delta, x \neq p_0$.
+    This means that $p_0$ is an \textit{attracting} fixed point for $f$; every orbit that starts out near 0 converges to 0.
+    In contrast, find a $\delta > 0$ such that if $\lvert x - p_1 \rvert < \delta, x \neq p_1$, then $\lvert f(x) - p_1 \rvert > \lvert x - p_1 \rvert$.
+    This means that $p_1$ is a \textit{repelling} fixed point for $f$; orbits that start out near 1 are pushed away from 1.
+    In fact, given any $x \neq 1$, we have $f^{(n)}(x) \nrightarrow 1$.
+\end{exercise}
+
+\begin{solution}
+    
+    For the first case, we are interested in the inequality $\lvert f(x) - 0 \rvert < \lvert x - 0 \rvert \iff \lvert x^2 \rvert < \lvert x \rvert$.
+    For $x \neq 0$, this simplifies to $\lvert x \rvert < 1$.
+    Therefore, select, for example, $\delta = 1/2$.
+    For any $x$ such that $\lvert x - 0 \rvert < 1/2$, it holds that $\lvert f(x) - 0 \rvert < \lvert x - 0 \rvert$.
+    Since $f(x)$ will also be in $(-1/2, 1/2)$, this will hold upon re-application of $f$ too.
+    This shows that $f^{(n)}(x) \rightarrow 0$.
+    Now consider the second case, where we are interested in $\lvert f(x) - 1 \rvert > \lvert x - 1 \rvert \iff \lvert x^2 - 1 \rvert > \lvert x - 1 \rvert$.
+    For $x \neq 1$, this simplifies to $\lvert x + 1 \rvert > 1$.
+    Therefore, pick, for example, $\delta = 1/2$, in which case whenever $\lvert x - 1 \rvert < 1/2$ we have more specifically that $x > 0$, and so $\lvert x + 1 \rvert > 1$.
+    Therefore for all such $x$ with $x \neq 1$, we get $\lvert f(x) - 1 \rvert > \lvert x - 1 \rvert$.
+    Observe that this suffices to see why it can never be the case that $f^{(n)}(x) \nrightarrow 1$ for $x \neq 1$: if at any point a term of this sequence ends up in $(1 - 1/2, 1 + 1/2)$ (which it must, in order to converge to 1), a re-application of $f$ will push the next term away again, and thus we can never obtain convergence.
+\end{solution}
