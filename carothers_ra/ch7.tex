@@ -563,3 +563,24 @@
     Therefore for all such $x$ with $x \neq 1$, we get $\lvert f(x) - 1 \rvert > \lvert x - 1 \rvert$.
     Observe that this suffices to see why it can never be the case that $f^{(n)}(x) \nrightarrow 1$ for $x \neq 1$: if at any point a term of this sequence ends up in $(1 - 1/2, 1 + 1/2)$ (which it must, in order to converge to 1), a re-application of $f$ will push the next term away again, and thus we can never obtain convergence.
 \end{solution}
+
+\begin{exercise}{37}
+    Suppose that $f: (a, b) \rightarrow (a, b)$ has a fixed point $p$ in $(a, b)$ and that $f$ is differentiable at $p$.
+    If $\lvert f'(p) \rvert < 1$, prove that $p$ is an attracting fixed point for $f$.
+    If $\lvert f'(p) \rvert > 1$, prove that $f$ is a repelling fixed point for $f$.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose first that $\lvert f'(p) \rvert < 1$.
+    We recall the definition of the derivative: $f'(p) = \lim_{h \rightarrow 0} \frac{f(p + h) - (p)}{h}$, meaning that for every $\epsilon > 0$ there exists $\delta > 0$ such that whenever $\lvert h \rvert < \delta$ it holds that:
+
+    \[\Bigl\lvert \frac{f(p + h) - f(p)}{h} - f'(p) \Bigr\rvert < \epsilon \implies \Biggl \lvert \Bigl \lvert \frac{f(p + h) - f(p)}{h} \Bigr \rvert - \lvert f'(p) \rvert \Biggr \rvert < \epsilon \implies \Bigl \lvert \frac{f(p + h) - f(p)}{h} \Bigr \rvert < \epsilon + \lvert f'(p) \rvert\]
+
+    Since $\lvert f'(p) \rvert < 1$, let $\epsilon = 1 - \lvert f'(p) \rvert$, obtain the corresponding $\delta$ and rewrite the above as:
+
+    \[\lvert f(p + h) - f(p) \rvert < \lvert h \rvert(1 - \lvert f'(p) \rvert + \lvert f'(p) \rvert) = \lvert h \rvert\]
+
+    This holds for $\lvert h \rvert < \delta$, or, by substituting $x = p + h$, for $\lvert x - p \rvert < \delta$, which means $\lvert f(x) - f(p) \rvert < \lvert x - p \rvert$.
+    Recall that $f(p) = p$ since $p$ is a fixed point for $f$, and observe that we have arrived at the same conclusion as in the previous exercise: if we choose $x_0 \in (p - \delta, p + \delta)$, it will always be the case that $\lvert f(x_0) - p \rvert < \lvert x_0 - p \rvert$, and this distance will monotonously shrink as we re-apply $f$, leading us to conclude that $f^{(n)}(x_0) \rightarrow p$, which means $p$ is indeed an attracting fixed point for $f$.
+\end{solution}
