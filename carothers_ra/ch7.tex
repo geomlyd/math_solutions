@@ -582,7 +582,7 @@
     \[\lvert f(p + h) - f(p) \rvert < \lvert h \rvert(1 - \lvert f'(p) \rvert + \lvert f'(p) \rvert) = \lvert h \rvert\]
 
     This holds for $\lvert h \rvert < \delta$, or, by substituting $x = p + h$, for $\lvert x - p \rvert < \delta$, which means $\lvert f(x) - f(p) \rvert < \lvert x - p \rvert$.
-    Recall that $f(p) = p$ since $p$ is a fixed point for $f$, and observe that we have arrived at the same conclusion as in the previous exercise: if we choose $x_0 \in (p - \delta, p + \delta)$, it will always be the case that $\lvert f(x_0) - p \rvert < \lvert x_0 - p \rvert$, and this distance will monotonously shrink as we re-apply $f$, leading us to conclude that $f^{(n)}(x_0) \rightarrow p$, which means $p$ is indeed an attracting fixed point for $f$.
+    Recall that $f(p) = p$ since $p$ is a fixed point for $f$, and observe that we have arrived at the same conclusion as in the previous exercise: if we choose $x_0 \in (p - \delta, p + \delta)$, it will always be the case that $\lvert f(x_0) - p \rvert < \lvert x_0 - p \rvert$, and this distance will monotonically shrink as we re-apply $f$, leading us to conclude that $f^{(n)}(x_0) \rightarrow p$, which means $p$ is indeed an attracting fixed point for $f$.
     Now suppose instead that $\lvert f'(p) \rvert > 1$.
     Again, for every $\epsilon > 0$ there exists $\delta > 0$ such that for $\lvert h \rvert < \delta$:
 
@@ -630,4 +630,26 @@
     \[1 - \lambda \geq 1 \implies 0 \geq \lambda, 5\lambda + 2 \leq 2 \implies \lambda \leq 0\]
 
     All in all, it suffices to pick $\lambda < 0, \lambda > -1/11$, so for example $\lambda = -1/10$ does the job, and we can find the fixed point of $g$ (and hence of $f$, and hence the root of $x^3 -x - 1$) by iterating over $g$.
+\end{solution}
+
+\begin{exercise}{40}
+    Extend the result in Example 7.15 as follows:
+    Suppose that $F: [a, b] \rightarrow \mathbb{R}$ is continuous on $[a, b]$, differentiable in $(a, b)$, and satisfies $F(a) < 0, F(b) > 0$, and $0 < K_1 \leq F'(x) \leq K_2$.
+    Show that there is a unique solution to the equation $F(x) = 0$, and describe a methodology that is guaranteed to approximate it with arbitrary accuracy.
+    [Hint: Consider the equation $f(x) = x$, where $f(x) = x - \lambda F(x)$ for some suitably chosen $\lambda$.]
+\end{exercise}
+
+\begin{solution}
+    
+    First, the fact that $F(a) < 0, F(b) > 0$ and that $F$ is continuous on $[a, b]$ allows us to use the intermediate value theorem to conclude that there exists at least one solution to $F(x) = 0, x \in (a, b)$.
+    Secondly, $F'(x) > 0$ means that the function is monotonically increasing in $[a, b]$, and hence this solution is unique.
+    In a generalization of the previous problem (39), we would like to solve this by finding a fixed point of $F(x) - x$.
+    However, the same issues that were described above arise, since we don't know whether $\lvert F'(x) \rvert < 1$ in $(a, b)$.
+    Consider the function $f(x) = x -\lambda F(x)$, and observe that for $\lambda \neq 0$, it holds that if $f(x) = x$, then $\lambda F(x) = 0 \implies F(x) = 0$.
+    Therefore we can find roots of $F$ by finding fixed points of $f$.
+    In order for this to be meaningful it must be the case that $f([a, b]) \subset [a, b]$.
+    We have that:
+
+    \[f'(x) = 1 - \lambda F'(x)\]
+
 \end{solution}
