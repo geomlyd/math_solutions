@@ -653,3 +653,26 @@
     \[f'(x) = 1 - \lambda F'(x)\]
 
 \end{solution}
+
+\begin{exercise}{43}
+    Show that each of the hypotheses of the contraction mapping principle is necessary by finding examples of a space $M$ and a map $f: M \rightarrow M$ having no fixed point where:
+
+    (a) $M$ is incomplete (but $f$ is still a strict contraction)
+
+    (b) $f$ satisfies only $d(f(x), f(y)) < d(x, y)$ for all $x \neq y$ (but $M$ is still complete)
+\end{exercise}
+
+\begin{solution}
+    
+    (a) Let $M = (0, 1]$, which is incomplete due to the fact that we can find Cauchy sequences inside $M$ that converge to $0 \notin M$.
+    Let also $f(x) = \frac{x^2}{4}$, for which $f'(x) = \frac{x}{2}$.
+    It's clear that $f((0, 1]) = (0, 1/4] \subset (0, 1]$.
+    Furthermore, since $\lvert f'(x) \rvert < 1$ in $(0, 1)$, $f$ is a strict contraction.
+    To find fixed points of $f$ we have that:
+
+    \[f(x) = x \implies \frac{x^2}{4} = x \implies x^2 - 4x = 0 \implies x(x - 4) = 0 \implies x = 0 \text{ or } x = 4\]
+
+    Neither of these points are in $M$, and thus $f$ has no fixed points when considered as a map from $M$ to $M$.
+
+    (b) 
+\end{solution}
