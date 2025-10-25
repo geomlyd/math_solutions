@@ -647,9 +647,71 @@
     However, the same issues that were described above arise, since we don't know whether $\lvert F'(x) \rvert < 1$ in $(a, b)$.
     Consider the function $f(x) = x -\lambda F(x)$, and observe that for $\lambda \neq 0$, it holds that if $f(x) = x$, then $\lambda F(x) = 0 \implies F(x) = 0$.
     Therefore we can find roots of $F$ by finding fixed points of $f$.
-    In order for this to be meaningful it must be the case that $f([a, b]) \subset [a, b]$.
     We have that:
 
     \[f'(x) = 1 - \lambda F'(x)\]
+
+    We want:
+    
+    \[\lvert f'(x) \rvert < 1 \implies \lvert 1 - \lambda F'(x)  \rvert < 1 \implies -1 < 1 - \lambda F'(x) < 1 \implies \lambda F'(x) > 0, \lambda F'(x) < 2\]
+
+    Since $F'(x) > 0$ for all $x \in (a, b)$, the first condition simplifies to $\lambda > 0$.
+    In addition, from the second condition we obtain $\lambda < \frac{2}{F'(x)} \leq \frac{2}{K_1}$, since $K_1 \leq F'(x)$ for $x \in (a, b)$.
+    In order for any of this to be applicable, it must be the case that $f([a, b]) \subset [a, b]$.
+    The analysis here would be simplified if $f$ was strictly increasing, so let's examine what this would require:
+
+    \[f'(x) > 0 \implies 1 > \lambda F'(x) \implies \lambda < \frac{1}{F'(x)} \leq \frac{1}{K_1}\]
+
+    This is consistent with our constraints so far, since $0 < \frac{1}{K_1} < \frac{2}{K_1}$.
+    We can thus assume that $\lambda$ is such that $f$ is strictly increasing, in which case:
+
+    \[f([a, b]) = [f(a), f(b)] = [a - \lambda F(a), b - \lambda F(b)]\]
+
+    We want $b - \lambda F(b) \leq b \implies 0 \leq \lambda F(b)$, which, because $F(b) > 0$, is always true for $\lambda > 0$.
+    We also want $a - \lambda F(a) \geq a \implies \lambda F(a) \leq 0$, which, because $F(a) < 0$, is always true for $\lambda > 0$.
+    Therefore, picking any $\lambda \in (0, \frac{1}{K_1})$ results in $f$ having a unique and attracting fixed point in $(a, b)$, and so iterative applications of $f$ will always converge to it starting from any initial ``guess'' in $(a, b)$.
+    As we observed, this fixed point $p$ will satisfy $F(p) = 0$.
+
+\end{solution}
+
+\begin{exercise}{41}
+    Let $M$ be complete and let $f: M \rightarrow M$ be continuous.
+    If $f^{(k)}$ is a strict contraction for some integer $k > 1$, show that $f$ has a unique fixed point.
+\end{exercise}
+
+\begin{solution}
+    
+    By Theorem 7.13 we know that $f^{(k)}$ has a unique fixed point $p$.
+    We first show that if $f$ has a fixed point, it must be unique.
+    Indeed, suppose $p' \in M$ is such that $f(p') = p'$.
+    This means of course that $f^{(k)}(p') = p'$, and so $p'$ is a fixed point of $f^{(k)}$, which has a unique fixed point.
+    We've therefore more specifically shown that if $f$ has a fixed point, this must be $p$.
+    Furthermore, we know that for any $x_0 \in M$, it is the case that $\lim_{n \rightarrow \infty} (f^{(k)})^{(n)}(x_0) = p$.
+    This can be thought of as a sequence of the form:
+
+    \[f^{(k)}(x_0), f^{(2k)}(x_0), f^{(3k)}(x_0), \ldots\]
+
+    Consider the sequence $f^{(n)}(x_0)$.
+    For any $n$, by the division theorem for integers we know that there exist unique $q, r \in \mathbb{N}$ such that $n = qk + r, r \in \{0, 1, \ldots, k - 1\}$.
+    Therefore, we have that:
+
+    \[d(f^{(n)}(x_0), p) = d(f^{(qk + r)}(x_0), p) \leq d(f^{(qk)}(f^{(r)}(x_0)), f^{(qk)}(x_0)) + d(f^{(qk)}(x_0), p)\]
+    \[\leq a^{q}d(f^{(r)}(x_0), x_0) + d(f^{(qk)}(x_0), p),\]
+
+    where $a$ is the contraction factor for $f^{(k)}$.
+    Notice that the second term of the RHS here can be made arbitrarily small  after some $N_1$ due to $\lim_{n \rightarrow \infty}(f^{(k)})^{(n)}(x_0) = p$.
+    Furthermore, notice that $r$ can only take $k$ different values, and so we can define:
+    
+    \[M = \max_{r \in \{0, 1, \ldots, k - 1\}}\{d(f^{(r)}(x_0), x_0)\},\]
+
+    leading to $d(f^{(n)}(x_0), p) \leq a^qM + d(f^{(qk)}(x_0), p)$.
+    Notice then that because $a < 1$, by selecting $n \geq N_2$ large enough so that $q$ also grows large enough, the first term of the RHS above can \textit{also} be made arbitrarily small.
+    This leads us to conclude that for any given $\epsilon > 0$, after some sufficiently large $N = \max\{N_1, N_2\}$, for all $n \geq N$ it holds that $d(f^{(n)}(x_0), p) < \epsilon$.
+    Therefore:
+
+    \[\lim_{n \rightarrow \infty} f^{(n)}(x_0) = p \implies f(p) = \lim_{n \rightarrow \infty} f^{(n + 1)}(x_0) = \lim_{n \rightarrow \infty} f^{(n)}(x_0) = p,\]
+
+    where we have used the continuity of $f$.
+    We thus conclude that $p$ is indeed a fixed point of $f$.
 
 \end{solution}
