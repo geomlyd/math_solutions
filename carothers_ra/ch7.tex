@@ -736,8 +736,16 @@
 
     Neither of these points are in $M$, and thus $f$ has no fixed points when considered as a map from $M$ to $M$.
 
-    (b) Consider the function $f(x) = \frac{1}{x}$ and the complete metric space $M = [1 + \epsilon, \infty)$ for some $\epsilon > 0$.
-    Notice, first, that the equation $f(x) = x \implies 1 = x^2$ only has two solutions, $x = 1, x = -1$, neither of which is in $M$.
-    Furthermore, for any $x \geq 1 + \epsilon$ we have $\frac{1}{1 + \epsilon} \geq \frac{1}{x}$
-    Therefore $f: M \rightarrow M$ has no fixed points.
+    (b) Consider the metric space $M = [0, \infty)$, which is complete as a closed subset of $\mathbb{R}$.
+    Let $f:M \rightarrow \mathbb{R}, f(x) = x + \frac{1}{x + 1}$, which has $f(x) > 0$ whenever $x \geq 0$, and so we can think of it as $f: M \rightarrow M$.
+    Notice that $f(x) = x \implies \frac{1}{x + 1} = 0$, which has no solutions, and hence $f$ has no fixed points.
+    Pick any two $x, y$ with $x < y$. We have that $d(x, y) = y - x$.
+    Furthermore:
+
+    \[d(f(x), f(y)) = \Bigl \lvert x + \frac{1}{x + 1} - y - \frac{1}{y + 1}\Bigr \rvert = \Bigl \lvert x - y + \frac{y + 1 - x - 1}{(x + 1)(y + 1)}\Bigr \rvert = \Bigl \lvert (y - x)(-1 + \frac{1}{(x + 1)(y + 1)}) \Bigr \rvert\]
+
+    \[= d(x, y) \Bigl \lvert 1 - \frac{1}{(x + 1)(y + 1)} \Bigr \rvert\]
+
+    Notice that the factor that multiplies $d(x, y)$ here is always strictly less than 1, since $x, y \geq 0$, and so indeed $d(f(x), f(y)) < d(x, y)$.
+    Nevertheless, by making $x, y$ increasingly large, we can make this factor arbitrarily close to 1, meaning that no constant $a < 1$ would satisfy $d(f(x), f(y)) \leq ad(x, y)$ for all $x, y, x \neq y$.
 \end{solution}
