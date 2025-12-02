@@ -749,3 +749,35 @@
     Notice that the factor that multiplies $d(x, y)$ here is always strictly less than 1, since $x, y \geq 0$, and so indeed $d(f(x), f(y)) < d(x, y)$.
     Nevertheless, by making $x, y$ increasingly large, we can make this factor arbitrarily close to 1, meaning that no constant $a < 1$ would satisfy $d(f(x), f(y)) \leq ad(x, y)$ for all $x, y, x \neq y$.
 \end{solution}
+
+\begin{exercise}{2}
+    Let $E = \{x \in \mathbb{Q} : 2 < x^2 < 3 \}$, considered as a subset of $\mathbb{Q}$ (with its usual metric).
+    Show that $E$ is closed and bounded but \textit{not} compact.
+\end{exercise}
+
+\begin{solution}
+    
+    First, we notice that any element $x \in E$ must be such that $\sqrt{2} < \lvert x \rvert < \sqrt{3}$.
+    This means that for any two $x, y \in E$:
+
+    \[\sqrt{2} < \lvert x \rvert < \sqrt{3}, \sqrt{2} < \lvert y \rvert < \sqrt{3} \implies -\sqrt{2} < x < \sqrt{3}, -\sqrt{3} < -y < \sqrt{2} \implies \]
+    \[ -(\sqrt{3} + \sqrt{2}) < x - y < \sqrt{3} + \sqrt{2} \implies \lvert x - y \rvert < \sqrt{3} + \sqrt{2}\]
+
+    This shows that $E$ is indeed bounded (has bounded diameter).
+
+
+\end{solution}
+
+\begin{exercise}{3}
+    If $A$ is compact in $M$, prove that $\text{diam}(A)$ is finite.
+    Moreover, if $A$ is nonempty, show that there exist points $x, y \in A$ such that $\text{diam}(A) = d(x, y)$.
+\end{exercise}
+
+\begin{solution}
+    
+    Because $A$ is compact, it must be totally bounded, and hence also bounded.
+    We've seen this (totally bounded $\implies$ bounded) in example 7.2 (a) and provided a proof in Ex. 2 of Ch. 7.
+    Therefore, $A$ has finite diameter.
+    Now suppose $A$ is nonempty.
+    We know that $\text{diam}(A) = \sup\{d(x, y), x, y \in A\}$
+\end{solution}
