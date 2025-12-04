@@ -764,6 +764,23 @@
     \[ -(\sqrt{3} + \sqrt{2}) < x - y < \sqrt{3} + \sqrt{2} \implies \lvert x - y \rvert < \sqrt{3} + \sqrt{2}\]
 
     This shows that $E$ is indeed bounded (has bounded diameter).
+    To show that it is closed, suppose $(x_n) \subset E$ converges to some $x \in \mathbb{Q}$.
+    Suppose that it was the case that $x^2 > 3$.
+    By the continuity of the squaring function, we have that $x_n^2 \rightarrow x^2$, and this then means that the terms $x_n^2$ get infinitely close to $3 + \epsilon$, and thus more specifically eventually become larger than 3, a contradiction.
+    Similarly, it cannot be that $x^2 < 2$.
+    The only possibilities that remain for $x \notin E$ are $x^2 = 2$ or $x^2 = 3$.
+    Suppose $x^2 = 2$.
+    This would mean that $x_n^2 \rightarrow x^2$, and by the continuity of the square root function we would have that $x_n \rightarrow \sqrt{2}$.
+    However, $\sqrt{2}$ is \textit{not} a rational, which is a contradiction since we began with the assumption that $x_n$ converges to some limit in the metric space.
+    The same holds for $x^2 = 3$.
+    Therefore $x \in E$ always, and thus $E$ is closed.
+    However, consider the sequence constructed as follows.
+    Start with $x_1 = 3/2 \in E$. 
+    Between any two real numbers we can always find a rational number, and so pick $x_2$ to be between $\sqrt{2}, (\sqrt{2} + x_1)/2$.
+    Continue this way to form a sequence that is Cauchy: the distance between subsequent terms is iteratively divided by two.
+    Nevertheless, as observed above this sequence does \textit{not} converge in $\mathbb{Q}$.
+    In fact all its subsequences converge to $\sqrt{2}$, so none of them can converge in $\mathbb{Q}$, and thus more specifically in $E$, and thus by theorem 8.2, $E$ is not compact.
+
 
 
 \end{solution}
@@ -779,5 +796,5 @@
     We've seen this (totally bounded $\implies$ bounded) in example 7.2 (a) and provided a proof in Ex. 2 of Ch. 7.
     Therefore, $A$ has finite diameter.
     Now suppose $A$ is nonempty.
-    We know that $\text{diam}(A) = \sup\{d(x, y), x, y \in A\}$
+    We know that $\text{diam}(A) = \sup\{d(x, y), x, y \in A\}$ is finite.
 \end{solution}
