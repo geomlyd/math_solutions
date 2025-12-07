@@ -1,0 +1,98 @@
+\chapter{Compactness}
+
+\section{Compact Metric Spaces}
+
+\begin{exercise}{1}
+    If $K$ is a nonempty compact subset of $\mathbb{R}$, show that $\sup K, \inf K$ are elements of $K$.
+\end{exercise}
+
+\begin{solution}
+    
+    First, observe that $\sup K$ is a well-defined real number since $K$ is (totally) bounded.
+    Second, recall the $\epsilon$-based characterization of the supremum: for every $\epsilon > 0$, there exists $x \in K$ such that $x > \sup K - \epsilon$.    
+    Form then a sequence $(x_n) \subset K$ such that $x_n > \sup K - \frac{1}{n}$, and notice that this converges to the supremum.
+    Because $K$ is also closed, it must be that $\sup K \in K$ as a limit point.
+    The proof for the infimum is exactly symmetrical.
+\end{solution}
+
+\begin{exercise}{2}
+    Let $E = \{x \in \mathbb{Q} : 2 < x^2 < 3 \}$, considered as a subset of $\mathbb{Q}$ (with its usual metric).
+    Show that $E$ is closed and bounded but \textit{not} compact.
+\end{exercise}
+
+\begin{solution}
+    
+    First, we notice that any element $x \in E$ must be such that $\sqrt{2} < \lvert x \rvert < \sqrt{3}$.
+    This means that for any two $x, y \in E$:
+
+    \[\sqrt{2} < \lvert x \rvert < \sqrt{3}, \sqrt{2} < \lvert y \rvert < \sqrt{3} \implies -\sqrt{2} < x < \sqrt{3}, -\sqrt{3} < -y < \sqrt{2} \implies \]
+    \[ -(\sqrt{3} + \sqrt{2}) < x - y < \sqrt{3} + \sqrt{2} \implies \lvert x - y \rvert < \sqrt{3} + \sqrt{2}\]
+
+    This shows that $E$ is indeed bounded (has bounded diameter).
+    To show that it is closed, suppose $(x_n) \subset E$ converges to some $x \in \mathbb{Q}$.
+    Suppose that it was the case that $x^2 > 3$.
+    By the continuity of the squaring function, we have that $x_n^2 \rightarrow x^2$, and this then means that the terms $x_n^2$ get infinitely close to $3 + \epsilon$, and thus more specifically eventually become larger than 3, a contradiction.
+    Similarly, it cannot be that $x^2 < 2$.
+    The only possibilities that remain for $x \notin E$ are $x^2 = 2$ or $x^2 = 3$.
+    Suppose $x^2 = 2$.
+    This would mean that $x_n^2 \rightarrow x^2$, and by the continuity of the square root function we would have that $x_n \rightarrow \sqrt{2}$.
+    However, $\sqrt{2}$ is \textit{not} a rational, which is a contradiction since we began with the assumption that $x_n$ converges to some limit in the metric space.
+    The same holds for $x^2 = 3$.
+    Therefore $x \in E$ always, and thus $E$ is closed.
+    However, consider the sequence constructed as follows.
+    Start with $x_1 = 3/2 \in E$. 
+    Between any two real numbers we can always find a rational number, and so pick $x_2$ to be between $\sqrt{2}, (\sqrt{2} + x_1)/2$.
+    Continue this way to form a sequence that is Cauchy: the distance between subsequent terms is iteratively divided by two.
+    Nevertheless, as observed above this sequence does \textit{not} converge in $\mathbb{Q}$.
+    In fact all its subsequences converge to $\sqrt{2}$, so none of them can converge in $\mathbb{Q}$, and thus more specifically in $E$, and thus by theorem 8.2, $E$ is not compact.
+\end{solution}
+
+\newpage
+
+\begin{exercise}{3}
+    If $A$ is compact in $M$, prove that $\text{diam}(A)$ is finite.
+    Moreover, if $A$ is nonempty, show that there exist points $x, y \in A$ such that $\text{diam}(A) = d(x, y)$.
+\end{exercise}
+
+\begin{solution}
+    
+    Because $A$ is compact, it must be totally bounded, and hence also bounded.
+    We've seen this (totally bounded $\implies$ bounded) in Example 7.2 (a) and provided a proof in Ex. 2 of Ch. 7.
+    Therefore, $A$ has finite diameter.
+    Now suppose $A$ is nonempty.
+    We know that $\text{diam}(A) = \sup\{d(x, y), x, y \in A\}$ is finite.
+\end{solution}
+
+\begin{exercise}{4}
+    If $A, B$ are compact sets in $M$, show that $A \cup B$ is compact.
+\end{exercise}
+
+\begin{solution}
+    
+    Let $(c_i) \subset A \cup B$ be a non-trivial sequence (i.e., not eventually constant).
+    If $(c_i)$ contains an infinite number of terms $a_i \in A$, then this sequence of $a_i$ has a subsequence that converges to a point in $A$, since $A$ is compact.
+    A subsequence of a subsequence is also a subsequence of the sequence itself, and thus $(c_i)$ contains a sequence converging to a point in $A \cup B$.
+    If $(c_i)$ contains only a finite number of terms from $A$, then it contains an infinite number of terms from $B$, and we use the same argument to show that it contains a subsequence converging to a point in $B$.
+    Therefore, $A \cup B$ is compact, by Theorem 8.2.
+\end{solution}
+
+\begin{exercise}{10}
+    Show that the Heine-Borel theorem (closed, bounded sets in $\mathbb{R}$ are compact) implies the Bolzano-Weierstrass theorem.
+    Conclude that the Heine-Borel theorem is equivalent to the completeness of $\mathbb{R}$.
+\end{exercise}
+
+\begin{solution}
+    
+    The Bolzano-Weierstrass theorem states that every bounded infinite subset of $\mathbb{R}$ has a limit point in $\mathbb{R}$.
+    Suppose $A$ is such a subset, and consider its closure, $\overline{A}$, which must also be bounded (if not, due to the definition of the closure, there would be points of $A$ infinitely close to points of $\partial A$ that form an unbounded sequence, a contradiction).
+    Because $\overline{A}$ is also closed, then by our assumption of the Heine-Borel theorem, it is compact.
+    Then Theorem 8.2 guarantees that every sequence in $A \subset \overline{A}$ has a subsequence converging to a point in $\overline{A}$, which means we've shown the Bolzano-Weierstrass theorem.
+    Observe, also, that what we've shown implies the completeness of the reals: any Cauchy sequence in $\mathbb{R}$ has a bounded infinite range, and hence has a convergent subsequence, which for a Cauchy sequence means that it itself converges.
+
+    For a stronger version of this exercise, we work with the hypothesis that any closed \textit{interval} $[a, b]$ is compact.
+    For a bounded, infinite subset of $\mathbb{R}$ we know that it has \textit{a} lower bound $m$, and \textit{an} upper bound $M$, which means $A \subset [m, M]$.
+    Importantly, we do not assume that least upper bounds or greatest lower bounds exist, since this is the axiom of completeness.
+    This interval is compact by our hypothesis.
+    Thus, for any sequence in $A \subset [m, M]$, we can use theorem 8.2 to obtain a sequence with a subsequence converging to a point in $[m, M] \subset \mathbb{R}$, thus showing the Bolzano-Weierstrass theorem again.
+
+\end{solution}
