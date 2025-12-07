@@ -749,3 +749,31 @@
     Notice that the factor that multiplies $d(x, y)$ here is always strictly less than 1, since $x, y \geq 0$, and so indeed $d(f(x), f(y)) < d(x, y)$.
     Nevertheless, by making $x, y$ increasingly large, we can make this factor arbitrarily close to 1, meaning that no constant $a < 1$ would satisfy $d(f(x), f(y)) \leq ad(x, y)$ for all $x, y, x \neq y$.
 \end{solution}
+
+\section{Completions}
+
+\begin{exercise}{46}
+    If $A$ is a dense subset of a metric space $(M, d)$, show that $(A, d)$ and $(M, d)$ have the same completion (isometrically).
+    [Hint: If $\hat{M}$ is the completion for $M$, then $A$ is dense in $\hat{M}$.
+    Why?]
+\end{exercise}
+
+\begin{solution}
+    
+    Since so far in the book we haven't worked with the strict definition (i.e., we've assumed for simplicity that a set is a subset of its completion), we will do this here for the sake of working through all the details at least once.
+    Suppose then that $\hat{M}$ is a/the completion for $M$.
+    This means that $M$ is isometric to a dense subset of $\hat{M}$, in other words that there exists a function $F: M \rightarrow \hat{M}$ that is an \textit{into} isometry, and is such that $F(M)$ is dense in $\hat{M}$.
+    Clearly, the function $F\vert_A: A \rightarrow \hat{M}, F\vert_A(x) = F(x)$ is also an isometry.
+    The question is whether $F\vert_A(A)$ is dense in $\hat{M}$.
+    Let therefore $y \in \hat{M}$.
+    Because $F(M)$ is dense in $\hat{M}$, there exists $(y_n) \subset F(M)$ such that $y_n \rightarrow y$.
+    For any $\epsilon > 0$, we can thus find $N$ such that for $n \geq N, \hat{d}(y_n, y) < \epsilon/2$.
+    Now, there exist $x_n \in M$ such that $F(x_n) = y_n$.
+    Because $A$ is dense in $M$, there exists $(z_n) \subset A$ such that $z_n \rightarrow x_N$.
+    Pick $K > 0$ such that $d(z_n, x_N) < \epsilon/2$ for all $n \geq K$.
+    We observe that, for any $n \geq K$:
+
+    \[\hat{d}(F(z_n), y) \leq \hat{d}(F(z_n), y_N) + \hat{d}(y_N, y) = d(z_n, x_N) + \hat{d}(y_N, y) < \epsilon/2 + \epsilon/2 = \epsilon\]
+
+    If, then, for increasingly small $\epsilon$ (e.g., $1/n$) we pick $z_n \in A$ as described above, we know that the sequence $F(z_n) \subset F\vert_A(A)$ converges to $y$, which means precisely that $F\vert_A(A)$ is dense in $\hat{M}$, and so $A, M$ indeed have the same completion isometrically.
+\end{solution}
