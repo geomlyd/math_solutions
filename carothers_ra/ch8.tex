@@ -76,6 +76,21 @@
     Therefore, $A \cup B$ is compact, by Theorem 8.2.
 \end{solution}
 
+\begin{exercise}{6}
+    If $A$ is compact in $M$ and $B$ is compact in $N$, show that $A \times B$ is compact in $M \times N$ (see Exercise 3.46).
+\end{exercise}
+
+\begin{solution}
+    
+    Let $((x_i, y_i)) \subset A \times B$ be a sequence.
+    By Theorem 8.2, $(x_i) \subset A$ has a convergent subsequence $(x_{i_k}) \subset A$, such that $x_{i_k} \rightarrow x \in A$, since $A$ is compact in $M$.
+    Take the subsequence $(y_{i_k}) \subset B$.
+    Again, because $B$ is compact in $N$, there exists $(y_{i_{k_l}}) \subset B$ such that $y_{i_{k_l}} \rightarrow y \in B$.
+    Any subsequence of $(x_{i_k})$ converges to $x$, so take the corresponding $x_{i_{k_l}} \rightarrow x$.
+    By Exercise 3.46, the sequence $((x_{i_{k_l}}, y_{i_{k_l}})) \subset A \times B$ converges to $(x, y) \in A \times B$.
+    Since this is a subsequence of $((x_i, y_i))$, we 've shown that $A \times B$ is compact in $M \times N$.
+\end{solution}
+
 \begin{exercise}{10}
     Show that the Heine-Borel theorem (closed, bounded sets in $\mathbb{R}$ are compact) implies the Bolzano-Weierstrass theorem.
     Conclude that the Heine-Borel theorem is equivalent to the completeness of $\mathbb{R}$.
@@ -95,4 +110,23 @@
     This interval is compact by our hypothesis.
     Thus, for any sequence in $A \subset [m, M]$, we can use theorem 8.2 to obtain a sequence with a subsequence converging to a point in $[m, M] \subset \mathbb{R}$, thus showing the Bolzano-Weierstrass theorem again.
 
+\end{solution}
+
+\newpage
+
+\begin{exercise}{11}
+    Prove that compactness is not a relative property.
+    That is, if $K$ is compact in $M$, show that $K$ is compact in \textit{any} metric space that contains it (isometrically).
+\end{exercise}
+
+\begin{solution}
+    
+    Let $(N, \rho)$ be any metric space such that for a subset $L \subset N$ it holds that $i: K \rightarrow L$ is an isometry onto $L$. 
+    We need to show that $L$ is compact in $N$.
+    Pick any sequence $(y_i) \subset L$.
+    Because $K, L$ are isometric, there exists a unique sequence $(x_i) \subset K$ such that $i(x_i) = y_i$.
+    Now, since $K$ is compact in $M$, by Theorem 8.2, $(x_i)$ contains a convergent subsequence $(x_{i_k})$ such that $x_{i_k} \rightarrow^{d} x \in K$.
+    Notice now that $i$ is a homeomorphism, and thus $i(x_{i_k}) \rightarrow^{\rho} i(x)$, which means $y_{i_k} \rightarrow^{\rho} i(x)$.
+    Because $i$ is onto, $i(x) \in L$.
+    We've therefore shown that $(y_i)$ contains a convergent subsequence $y_{i_k} \rightarrow^{\rho} i(x) \in L$, which by Theorem 8.2 means that $L$ is compact in $(N, \rho)$.
 \end{solution}
