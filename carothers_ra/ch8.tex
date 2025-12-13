@@ -61,6 +61,15 @@
     Therefore, $A$ has finite diameter.
     Now suppose $A$ is nonempty.
     We know that $\text{diam}(A) = \sup\{d(x, y), x, y \in A\}$ is finite.
+    By the definition of the supremum, for every $\epsilon > 0$, there exist $x, y \in A$ such that $d(x, y) > \text{diam}(A) - \epsilon$.
+    For successive $\epsilon_i = \frac{1}{i}$, find $x_i, y_i$ such that $d(x_i, y_i) > \text{diam}(A) - \epsilon_i$.
+    Form two sequences, $(x_i), (y_i) \subset A$.
+    Because $A$ is compact, by Theorem 8.2, the sequence $(x_i)$ contains a convergent subsequence $x_{i_k} \rightarrow x \in A$.
+    Select the corresponding subsequence $(y_{i_k})$ that satisfies the above inequality when paired with $(x_{i_k})$.
+    Notice that again by Theorem 8.2, we can select a sub-subsequence $(y_{{i_k}_{l}})$ such that $y_{{i_k}_l} \rightarrow y \in A$.
+    Of course, a subsequence of a convergent subsequence converges, so take also the corresponding $(x_{{i_k}_l})$, which converges to $x$.
+    By our initial inequality above we have $d(x_{{i_k}_l}, y_{{i_k}_l}) \rightarrow \text{diam}(A)$, .
+    By Exercise 34, Ch. 3, we know that $d(x_{{i_k}_l}, y_{{i_k}_l}) \rightarrow d(x, y)$, and thus by the uniqueness of the limit we conclude that $d(x, y) = \text{diam}(A)$.
 \end{solution}
 
 \begin{exercise}{4}
@@ -94,5 +103,15 @@
     Importantly, we do not assume that least upper bounds or greatest lower bounds exist, since this is the axiom of completeness.
     This interval is compact by our hypothesis.
     Thus, for any sequence in $A \subset [m, M]$, we can use theorem 8.2 to obtain a sequence with a subsequence converging to a point in $[m, M] \subset \mathbb{R}$, thus showing the Bolzano-Weierstrass theorem again.
+
+\end{solution}
+
+\begin{exercise}{11}
+    Prove that compactness is not a relative property.
+    That is, if $K$ is compact in $M$, show that $K$ is compact in any metric space that contains it (isometrically).
+\end{exercise}
+
+\begin{solution}
+    
 
 \end{solution}
