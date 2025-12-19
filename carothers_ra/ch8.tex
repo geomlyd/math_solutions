@@ -143,3 +143,37 @@
     Therefore, it is complete (Theorem 7.9).
     Furthermore, by Exercise 7.5, we know that $A$ is totally bounded iff $\overline{A}$ is totally bounded, and thus $\overline{A}$ is totally bounded, from which we can conclude that it is compact.
 \end{solution}
+
+\begin{exercise}{17}
+    If $M$ is compact, show that $M$ is also separable.
+\end{exercise}
+
+\begin{solution}
+    
+    By Exercise 7.10, we know that a totally bounded metric space is separable.
+    Compact metric spaces are by definition totally bounded, and hence also separable.
+\end{solution}
+
+\begin{exercise}{20}
+    Let $E$ be a noncompact subset of $\mathbb{R}$.
+    Find a continuous function $f: E \rightarrow \mathbb{R}$ that is (i) not bounded; (ii) bounded but has no maximum value.
+\end{exercise}
+
+\begin{solution}
+    
+    By the Heine-Borel theorem, any closed and bounded subset of $\mathbb{R}$ is compact.
+    Therefore, any noncompact set $E \subset \mathbb{R}$ must be either not closed or unbounded.
+    We have that:
+    \begin{itemize}
+        \item If $E$ is unbounded, then let $(x_n) \subset E$ be a sequence formed by selecting $x_i$ such that $\lvert x_i \rvert > i$.
+        In fact, WLOG, suppose $x_i > i$, since the case for a subset not bounded below is symmetric.
+        Then the function $f: E \rightarrow \mathbb{R}, f(x) = x$ is continuous but clearly unbounded, as evidenced by examining $(f(x_n))$.
+        Again on $E$, the function $f(x) = 1 - \frac{1}{1 + x^2}$ is continuous, bounded by 0 and 1, but achieves no maximum value, since $(f(x_n))$ approaches 1 arbitrarily.
+        \item If $E$ is bounded but not closed (the only case not covered above), then it must contain at least one convergent sequence $(x_n)$ that converges to a point $y \notin E$.
+        Then let $f: E \rightarrow \mathbb{R}$ be such that $f(x) = \frac{1}{x - y}$, which is well defined since $y \notin E$.
+        This is continuous, but unbounded on $(x_n)$.
+        For our other counterexample, suppose, WLOG, that $y \geq 0$, since the other case will be symmetric.
+        Then the function $f: E \rightarrow \mathbb{R}, f(x) = x, x < y, f(x) = - x + 2y, x > y$ is bounded (because $E$ is bounded), but achieves no maximum value: indeed, as $x_n \rightarrow y$, the function's value approaches arbitrarily close to $y$, and for any $x \in E$ it is the case that $f(x) < y$.
+        
+    \end{itemize} 
+\end{solution}
