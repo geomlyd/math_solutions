@@ -121,8 +121,6 @@
 
 \end{solution}
 
-\newpage
-
 \begin{exercise}{11}
     Prove that compactness is not a relative property.
     That is, if $K$ is compact in $M$, show that $K$ is compact in \textit{any} metric space that contains it (isometrically).
@@ -152,12 +150,27 @@
     Therefore, it is complete (Theorem 7.9).
     Furthermore, by Exercise 7.5, we know that $A$ is totally bounded iff $\overline{A}$ is totally bounded, and thus $\overline{A}$ is totally bounded, from which we can conclude that it is compact.
 \end{solution}
-\begin{exercise}{11}
-    Prove that compactness is not a relative property.
-    That is, if $K$ is compact in $M$, show that $K$ is compact in any metric space that contains it (isometrically).
+
+\begin{exercise}{16}
+    Show that a metric space $M$ is totally bounded if and only if its completion $\hat{M}$ is compact.
 \end{exercise}
 
 \begin{solution}
-    
 
+    $\implies$: By definition, $\hat{M}$ is complete, as a completion.
+    To show that it is totally bounded, we have the following.
+    For any $\epsilon > 0$, let $x_1, \ldots, x_n \in M$ be such that $M \subset \bigcup_{i=1}^{n} B_{\epsilon}^{d}(x_i)$, which is always feasible due to $M$ being totally bounded.
+    Now, because $i:M \rightarrow \hat{M}$ is an isometry into $\hat{M}$, it is easy to see from the above that $i(M)$ is totally bounded.
+    Take then any $\epsilon > 0$ and find $y_1, \ldots, y_n \in i(M)$ such that $i(M) \subset \bigcup_{i=1}^{n} B_{\epsilon/2}^{\hat{d}} (y_i)$.
+    Because $i(M)$ is dense in $\hat{M}$, for any $y \in \hat{M}$ there exists $z \in i(M)$ such that $\hat{d}(y, z) < \epsilon/2$.
+    But then since $z \in \bigcup_{i=1}^{n} B_{\epsilon/2}^{\hat{d}} (y_i)$, it must be the case that $d(z, y_i) < \epsilon/2$ for at least one $y_i$.
+    Consequently:
+
+    \[d(y, y_i) \leq d(y, z) + d(z, y_i) < \epsilon/2 + \epsilon/2 = \epsilon\]
+
+    We conclude then that in fact $\hat{M} \subset \bigcup_{i=1}^{n} B_{\epsilon}^{\hat{d}} (y_i)$, which means that $\hat{M}$ is totally bounded and thus also compact.
+
+    $\impliedby$: Conversely, assume $\hat{M}$ is compact.
+    Then it is totally bounded, and thus any subset of it, more specifically $i(M)$, is totally bounded as well.
+    By using the same argument as in the forward direction, we can show that $M$ is then also totally bounded.
 \end{solution}
