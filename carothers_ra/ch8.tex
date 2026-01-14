@@ -186,6 +186,23 @@
     Since it was also shown to be complete in $l_2$, it is thus compact in $l_2$.
 \end{solution}
 
+\begin{exercise}{13}
+    Given $c_n \geq 0$ for all $n$, prove that the set $\{x \in l_2: \lvert x_n \rvert \leq c_n, n \geq 1\}$ is compact in $l_2$ if and only if $\sum_{n=1}^{\infty} c_n^2 < \infty$.
+\end{exercise}
+
+\begin{solution}
+    
+    $\implies$: Suppose first that $S = \{x \in l_2 : \lvert x_n \rvert \leq c_n, n \geq 1\}$ is compact in $l_2$.
+    By Corollary 8.3, it must then be closed in $l_2$.
+    Construct the sequence (of sequences) $(x_n)_k = (c_1 - \frac{1}{k}, c_2 - \frac{1}{k}, \ldots)$.
+    It's relatively easy to see that $(x_n)_k \rightarrow (c_1, c_2, \ldots)$, and because $S$ is closed, it must be the case that $(c_1, c_2, \ldots) \in S \subset l_2$, which means of course that $\sum_{n=1}^{\infty} c_n^2 < \infty$.
+
+    $\impliedby$: Suppose now that $\sum_{n=1}^{\infty} c_n^2 < \infty$.
+    More specifically, this implies that $c_n \rightarrow 0$.
+    Let $((x_n)_k)$ be any sequence (of sequences) in $S$.
+    To show that $S$ is compact in $l_2$, it suffices, by Theorem 8.2, to show that $((x_n)_k)$ contains a subsequence that converges to a point in $S$.
+    We note, first, that $\sum_{n=1}^{\infty} c_n^2 < \infty$, which means that 
+
 \begin{exercise}{15}
     If $A$ is a totally bounded subset of a complete metric space $M$, show that $\overline{A}$ is compact in $M$.
     For this reason, totally bounded sets are sometimes called \textit{precompact} or \textit{conditionally compact}.
