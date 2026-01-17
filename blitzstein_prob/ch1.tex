@@ -1,0 +1,77 @@
+
+\chapter{Probability and counting}
+
+\section{Counting}
+
+\begin{exercise}{1}
+    How many ways are there to permute the letters in the word MISSISSIPPI?
+\end{exercise}
+
+\begin{solution}
+
+    The word has 11 letters and the following letter frequencies. 
+    M: 1, I: 4, S: 4, P: 2.
+    We can find the number of permutations by counting as follows: pick the places for the M's first, then out of the remaining places pick the places for P's, then for S's, and then the places for I's are determined uniquely.
+    Then, apply the multiplication rule.
+    Note that within each selection of places, the order doesn't matter since we don't distinguish between ``instances'' of the same letter.
+    We thus have that the number of permutations is:
+
+    \[\binom{11}{1} \cdot \binom{10}{2} \cdot \binom{8}{4} = 11 \cdot \frac{10!}{8! \cdot 2!} \cdot \frac{8!}{4! \cdot 4!} = 11 \cdot \frac{10!}{4! \cdot 4! \cdot 2!} = 11 \cdot \frac{10\cdot 9 \ldots 5}{4! \cdot 2} = 34,650\]
+\end{solution}
+
+\begin{exercise}{4}
+    A \textit{round-robin} tournament is being held with $n$ tennis players; this means that every player will play against every other player exactly once.
+
+    (a) How many possible outcomes are there for the tournament (the outcome lists out who won and who lost for each game)?
+
+    (b) How many games are played in total?
+\end{exercise}
+
+\begin{solution}
+    
+    (a) Consider ordering the players in some arbitrary but fixed order.
+    Then we can count the number of outcomes as follows.
+    For the first player, there are 2 possible outcomes (win/lose) against all other $n - 1$ players.
+    This is equivalent to sampling with replacement $n - 1$ times from a set of two elements.
+    For the second player in the ordering, the outcome against the first player has already been decided/accounted for, so there are $n - 2$ outcomes against all other players.
+    We continue this way and apply the multiplication rule to obtain the total number of outcomes:
+
+    \[\prod_{k=1}^{n}2^{n-k} = 2^{\sum_{k=1}^{n}n - k} = 2^{\sum_{k=1}^{n - 1}k} = 2^{\frac{n(n-1)}{2}}\]
+
+    (b) The first player in the ordering plays in $n - 1$ games.
+    The second player plays in $n - 2$ games \textit{more}, since the match against player 1 was already accounted for.
+    We continue this way to obtain the total number of games:
+
+    \[\sum_{k=1}^{n} (n - k) = \frac{n(n - 1)}{2}\]
+
+    Notice that this is consistent with the answer from (a): another way of getting the number of possible outcomes is listing the number of different games between two players, and assigning a win/lose outcome to each.
+\end{solution}
+
+\begin{exercise}{5}
+    A \textit{knock-out tournament}  is being held with $2^n$ tennis players.
+    This means that for each round, the winners move on to the next round and the losers are eliminated, until only one person remains.
+    For example, if initially there were $2^4 = 16$ players, then there are 8 games on the first round, then the 8 winners move on to round 2, then the 4 winners move on to round 3, then the 2 winners move on to round 4, the winner of which is declared the winner of the tournament. (There are various systems for determining who plays whom within a round, but these do not matter for this problem.)
+
+    (a) How many rounds are there?
+
+    (b) Count how many games in total are played, by adding up the numbers of games played in each round.
+
+    (c) Count how many games in total are played, this time by directly thinking about it without doing almost any calculation.
+
+    Hint: How many players need to be eliminated?
+\end{exercise}
+
+\begin{solution}
+    
+    (a) The number of players per round is halved every time, until two players remain, or, in other words, until the exponent of $2^k$ drops to 1.
+    This corresponds of course to $n - 1$ rounds.
+
+    (b) In each round, every winner plays exactly one game against exactly one loser.
+    In other words, out of $2^k$ players of the round, $2^{k-1}$ games are formed.
+    Since there are $n - 1$ rounds, the total number of games is:
+
+    \[\sum_{k=1}^{n} 2^{k - 1} = \sum_{k=0}^{n-1}2^k = 2^{n} - 1\]
+
+    (c) In order to obtain the final winner, $2^{n} - 1$ players will need to be eliminated (all but one).
+    Every game in the tournament has exactly one loser, and each time someone loses they never play again, which means that the number of games equals the number of eliminated players, and so we obtain $2^{n} - 1$ once again.
+\end{solution}
