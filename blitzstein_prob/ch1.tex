@@ -75,3 +75,46 @@
     (c) In order to obtain the final winner, $2^{n} - 1$ players will need to be eliminated (all but one).
     Every game in the tournament has exactly one loser, and each time someone loses they never play again, which means that the number of games equals the number of eliminated players, and so we obtain $2^{n} - 1$ once again.
 \end{solution}
+
+\begin{exercise}{10}
+    To fulfill the requirements for a certain degree, a student can choose to take any 7 out of a list of 20 courses, with the constraint that at least 1 of the 7 courses must be a statistics course.
+    Suppose that 5 out of the 20 courses are statistics courses.
+
+    (a) How many choices are there for which 7 courses to take?
+
+    (b) Explain intuitively why the answer to (a) is not $\binom{5}{1} \cdot \binom{19}{6}$.
+\end{exercise}
+
+\begin{solution}
+    
+    (a) A way to compute this is to compute the possible ways in which a student can pick 7 courses, \textit{none} of which is statistics courses, and then subtracting it from the total number of choices.
+    Picking 7 courses with no statistics ones means selecting 7 distinct courses from a pool of 20 - 5 = 15.
+    The total number of choices ---without constraints--- can be computed as choosing 7 out of 20.
+    This means that the number of choices for completing the degree is:
+
+    \[\binom{20}{7} - \binom{15}{7} = \frac{1}{7!}(\frac{20!}{13!} - \frac{15!}{8!}) = \frac{1}{7!}(20 \cdot 19 \cdot \ldots \cdot 14 - 15 \cdot 14 \cdot \ldots \cdot 9) = 71,085\]
+
+    (b) The expression here arises from the following line of thought: first, pick one statistics course ($\binom{5}{1}$ ways to do this), and then pick 6 more courses out of the remaining 19 ones.
+    However, this results in double counting: order does not matter here, but picking, for example, statistics course \#1 as the mandatory one, and then statistics course \#2 as the first elective will be counted separately from picking statistics course \#2 as the mandatory one and statistics course \#1 as the first elective.
+\end{solution}
+
+\begin{exercise}{12}
+    Four players, named A, B, C, D, are playing a card game.
+    A standard, well-shuffled deck of cards is dealt to the players (so each player receives a 13-card hand).
+
+    (a) How many possibilities are there for the hand that player A will get? (Within a hand, the order in which cards were received doesn't matter).
+
+    (b) How many possibilities are there overall for what hands everyone will get, assuming that it matters which player gets which hand, but not the order of cards within a hand?
+\end{exercise}
+
+\begin{solution}
+    
+    (a) This is simply $\binom{52}{13}$: we choose 13 cards out of 52, without repetition, and without the order mattering.
+
+    (b) We can compute this by fixing the order in which we examine the players as, say, A, B, C, D.
+    For player A, there are $\binom{52}{13}$ possible hands.
+    For each of these hands, there remain 52 - 13 = 39 cards out of which the 13 cards for player B are picked.
+    We continue this way (and using the multiplication rule) to compute the possible number of hands for everyone as:
+
+    \[\binom{52}{13} \cdot \binom{39}{13} \cdot \binom{26}{13} \cdot \binom{13}{13} = \binom{52}{13} \cdot \binom{39}{13} \cdot \binom{26}{13}\]
+\end{solution}
