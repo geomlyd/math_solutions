@@ -197,11 +197,32 @@
     Construct the sequence (of sequences) $(x_n)_k = (c_1 - \frac{1}{k}, c_2 - \frac{1}{k}, \ldots)$.
     It's relatively easy to see that $(x_n)_k \rightarrow (c_1, c_2, \ldots)$, and because $S$ is closed, it must be the case that $(c_1, c_2, \ldots) \in S \subset l_2$, which means of course that $\sum_{n=1}^{\infty} c_n^2 < \infty$.
 
-    $\impliedby$: Suppose now that $\sum_{n=1}^{\infty} c_n^2 < \infty$.
-    More specifically, this implies that $c_n \rightarrow 0$.
-    Let $((x_n)_k)$ be any sequence (of sequences) in $S$.
-    To show that $S$ is compact in $l_2$, it suffices, by Theorem 8.2, to show that $((x_n)_k)$ contains a subsequence that converges to a point in $S$.
-    We note, first, that $\sum_{n=1}^{\infty} c_n^2 < \infty$, which means that 
+    $\impliedby$: We need to show that $S$ is both complete and totally bounded.
+    We will do this in a similar manner as in Exercise 8.12.
+    First, recall that $l_2$ is complete, and so for completeness it suffices to show that $S$ is closed.
+    Suppose then $(x_n)_k \rightarrow (l_n)$ is a sequence of sequences in $S$ converging to $(l_n)$.
+    To show that $(l_n) \in S$, we need to show that $\lvert l_n \rvert \leq c_n$ for all $n$.
+    Suppose that this is not the case, and that for some $N, \lvert l_N \rvert > c_N$.
+    Then let $\epsilon = \lvert l_N \rvert - c_N$.
+    For any term of the sequence of sequences $(x_n)_k$ (i.e., for a fixed $k$), we obtain:
+
+    \[\lvert x_{kN} \rvert \leq c_N \implies \lvert x_{kN} - l_N + l_N \rvert \leq c_N \implies \Bigl \lvert \lvert x_{kN} - l_N \rvert - \lvert l_N \rvert \Bigr \rvert \leq c_N\]
+    \[\implies - c_N \leq \lvert x_{kN} - l_N \rvert - \lvert l_N \rvert \implies \lvert x_{KN} - l_N \rvert \geq \epsilon\]
+
+    Notice that imposes a lower bound on $\lvert \lvert (x_n)_k - (l_n) \rvert \rvert_2$, which means that $(x_n)_k$ does \textit{not} converge to $(l_n)$, a contradiction.
+    Therefore, $\lvert l_n \rvert < c_n$ for all $n$, and so $(l_n) \in S$, which means $S$ is closed in $l_2$ and thus complete.
+    We now examine total boundedness.
+    Once again, as in Ex. 8.12, we examine sequences of the form $(x_1, x_2, \ldots, x_{N - 1}, 0, 0, \ldots)$ for a fixed $N > 0$.
+    In particular, we take the intervals $[-c_1, c_1], [-c_2, c_2], \ldots, [-c_{N - 1}, c_{N - 1}]$, and subdivide each into $N$ subintervals of equal length.
+    Then the $i$-th interval is subdivided into $N$ subintervals, each of which has length $\frac{2c_i}{N}$ (note that if $c_i = 0$, everything collapses to a single point).
+    We gather the endpoints of all intervals ($N + 1$ endpoints for the $i$-th interval, $x_{i, 1}, \ldots, x_{i, N + 1}$) and form the set:
+
+    \[B = \{(x_{i_1, 1}, x_{_2, 2}, \ldots, x_{i_{N - 1}, N-1}, 0, 0, \ldots) \vert i_j \in \{1, 2, \ldots, N + 1\}, j = 1, 2, \ldots, N - 1\},\]
+
+    which contains a finite number of points.
+
+    
+\end{solution}
 
 \begin{exercise}{15}
     If $A$ is a totally bounded subset of a complete metric space $M$, show that $\overline{A}$ is compact in $M$.
