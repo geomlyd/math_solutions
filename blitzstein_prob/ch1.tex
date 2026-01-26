@@ -118,3 +118,22 @@
 
     \[\binom{52}{13} \cdot \binom{39}{13} \cdot \binom{26}{13} \cdot \binom{13}{13} = \binom{52}{13} \cdot \binom{39}{13} \cdot \binom{26}{13}\]
 \end{solution}
+
+\begin{exercise}{13}
+    A certain casino uses 10 standard decks of cards mixed together into one big deck, which we will call a \textit{superdeck}.
+    Thus, the superdeck has $52 \cdot 10 = 520$ cards, with 10 copies of each card.
+    How many different 10-card hands can be dealt from the superdeck?
+    The order of the cards does not matter, nor does it matter which of the original 10 decks the cards came from.
+    Express your answer as a binomial coefficient.
+    [Hint: Bose-Einstein.]
+\end{exercise}
+
+\begin{solution}
+    
+    The Bose-Einstein counting problem asks how many ways are there to choose $k$ times from a set of $n$ objects with replacement, if order doesn't matter.
+    Consider thinking about the problem here as drawing 10 times from a deck of 52 cards, noting down the card we drew and then putting it back for the next draw.
+    We can then map results of this experiment bijectively to results of the experiment in the exercise: drawing card $i$ from deck $j$ corresponds to drawing card $i$ on the $j$-th trial.
+    We then see that the number of possible hands corresponds to choosing 10 times from the deck, \textit{with} replacement, and \textit{without} order mattering, which by the Bose-Einstein solution gives:
+
+    \[\binom{52 + 10 - 1}{10}\]
+\end{solution}
