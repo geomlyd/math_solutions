@@ -194,8 +194,20 @@
     
     $\implies$: Suppose first that $S = \{x \in l_2 : \lvert x_n \rvert \leq c_n, n \geq 1\}$ is compact in $l_2$.
     By Corollary 8.3, it must then be closed in $l_2$.
-    Construct the sequence (of sequences) $(x_n)_k = (c_1 - \frac{1}{k}, c_2 - \frac{1}{k}, \ldots)$.
-    It's relatively easy to see that $(x_n)_k \rightarrow (c_1, c_2, \ldots)$, and because $S$ is closed, it must be the case that $(c_1, c_2, \ldots) \in S \subset l_2$, which means of course that $\sum_{n=1}^{\infty} c_n^2 < \infty$.
+    Consider now forming the sequence of sequences $(c_n)_k = (c_1, c_2, \ldots, c_k, 0 ,0, \ldots)$, where all coordinates after the $k$-th one are zero.
+    Importantly, $(c_n)_k \subset S$, and because $S$ is compact, by Theorem 8.2, $(c_n)_k$ contains a subsequence that converges to an element $L = (L_1, L_2, \ldots)$ of $S$.
+    Our claim is now that $L = (c_1, c_2, \ldots)$.
+    Notice that if we can prove this, then we immediately obtain that $\sum_{n=1}^{\infty} c_n^2 < \infty$: because $S$ is closed, $L \in S \subset l_2$, and so  $(c_1, c_2, \ldots) \in l_2$.
+    Suppose then that for some $i, L_i \neq c_i \implies \lvert L_i - c_i \rvert = \epsilon > 0$.
+    Any subsequence $(c_n)_{k_j}$ of $(c_n)_k$ must eventually contain terms of which the $i$-th coordinate equals $c_i$.
+    Consequently, for sufficiently large $k_j$:
+
+    \[\sum_{n=1}^{\infty} \lvert c_{k_j, n} - L_i \rvert^2 \geq \lvert c_{i} - L_i \rvert^2 > \epsilon^2\]
+
+    This directly contradicts the fact that a subsequence of $(c_n)_k$ converges to $L$.
+    By the argument presented above, this also shows that $(c_1, c_2, \ldots) \in l_2$.
+
+    Because $S$ is closed, it must be the case that $(c_1, c_2, \ldots) \in S \subset l_2$, which means of course that $\sum_{n=1}^{\infty} c_n^2 < \infty$.
 
     $\impliedby$: We need to show that $S$ is both complete and totally bounded.
     We will do this in a similar manner as in Exercise 8.12.
@@ -220,7 +232,42 @@
     \[B = \{(x_{i_1, 1}, x_{_2, 2}, \ldots, x_{i_{N - 1}, N-1}, 0, 0, \ldots) \vert i_j \in \{1, 2, \ldots, N + 1\}, j = 1, 2, \ldots, N - 1\},\]
 
     which contains a finite number of points.
+    Suppose now $(y_n) \in S$, and form the sequence $(z_n) \in B$ that has $z_i$ equal to the $x_{i, j}$ that is closest to $y_i$ for each $i = 1, \ldots, N -1$, and $z_i = 0$ for all other $i$.
+    Notice that $\lvert y_i - z_i \rvert < 2c_i/N$ by our construction above.
+    Then:
 
+    \[\sum_{k=1}^{\infty} \lvert y_k - z_k \rvert^2 = \sum_{k = 1}^{N - 1} \lvert y_k - z_k \rvert^2 + \sum_{k = N}^{\infty} \lvert y_k - 0 \rvert^2 \leq \sum_{k = 1}^{N - 1} 4c_i^2/N^2 + \sum_{k = N}^{\infty} \lvert y_k \rvert^2 \leq \frac{4}{N^2} \sum_{k = 1}^{N - 1} c_i^2 + \sum_{k = N}^{\infty} \lvert y_k \rvert^2\]
+
+    Because $y_k \in l_2$, the second term can be made arbitrarily small by selecting a sufficiently large $N$.
+    Notice, also, that $\sum_{n=1}^{\infty}c_n^2 < \infty$, therefore the term $\sum_{k=1}^{N - 1} c_i^2$ is upper bound, and so again the first term of the inequality can be made arbitrarily small by selecting sufficiently large $N$ (so that $\frac{4}{N^2}$ becomes sufficiently small).
+    We conclude that $\sum_{k=1}^{\infty} \lvert y_k - z_k \rvert^2$ can be upper bound by any arbitrarily small $\epsilon$, and so a set $B$ containing a sufficiently large but finite number of elements $z_k$ constitutes an $\epsilon$-net for $S$, showing that $S$ is totally bounded, and hence compact.
+\end{solution}
+
+\begin{exercise}{14}
+    Show that the Hilbert cube $H^{\infty}$ is compact.
+    [Hint: First show that $H^{\infty}$ is complete (Ex. 7.24).
+    Now, given $\epsilon > 0$, choose $N$ so that $\sum_{n=N}^{\infty} 2^{-n} < \epsilon$ and argue that $H^{\infty}$ is ``within $\epsilon$'' of the set $\{x \in H^{\infty}: \lvert x_n \rvert = 0\}$ for $n \geq N$.]
+\end{exercise}
+
+\begin{solution}
+    
+    In Ex. 7.24, we showed that the Hilbert cube is complete.
+    We now need to examine total boundedness as indicated in the hint.
+    Pick any $\epsilon > 0$, and observe that we can find $N > 0$ such that $\sum_{n=N}^{\infty} 2^{-n} < \epsilon$: this is possible due to the series $1, 1 + 1/2, 1 + 1/2 + 1/4, \ldots$ converging.
+    Consider also partitioning the interval $[-1, 1]$ into $N$ subintervals of equal length, as in Exercises 8.12, 8.13 above, collecting all endpoints $x_1, x_2, \ldots, x_{N+1}$ and forming the set:
+
+    \[B = \{(x_{i, 1}, x_{i, 2}, \ldots, x_{i, N - 1}, 0, 0, \ldots): i_j \in \{1, 2, \ldots, N + 1\}, j = 1, \ldots, N - 1\} \subset H^{\infty}\]
+    Let then $(y_n) \in H^{\infty}$, and let $(z_n) \in B$ be the element of $B$ such that $\lvert y_{i} - z_i \rvert$ is minimized for each $i = 1, \ldots, N - 1$ (i.e., for each $i$ we select the subinterval endpoint that is closest to $y_i$).
+    Then $\lvert y_i - z_i \rvert < \frac{2}{N}$.
+    Using the metric of $H^{\infty}$, we have that:
+
+    \[d((y_n), (z_n)) = \sum_{n=1}^{\infty}2^{-n} \lvert y_n - z_n \rvert = \sum_{n = 1}^{N - 1} 2^{-n} \lvert y_n - z_n \rvert + \sum_{n = N}^{\infty} 2^{-n} \lvert y_n \rvert \leq \sum_{n=1}^{N-1}2^{-n}\frac{2}{N} + \sum_{n=N}^{\infty} 2^{-n}\]
+    \[\leq \frac{4}{N} + \sum_{n=N}^{\infty} 2^{-n}\]
+
+    where we used the fact that $\lvert y_n \rvert < 1$, and we upper-bounded the first term by the geometric series sum $1 + \frac{1}{2} + \frac{1}{4} + \ldots = 2$.
+    Notice now that, as observed above, we can pick a sufficiently large $N$ such that the second term is made to be smaller than any $\epsilon > 0$.
+    Furthermore, the first term again becomes smaller than any $\epsilon > 0$ for sufficiently large $N$.
+    This shows that $d((y_n), (z_n))$ can in turn be made arbitrarily small, and thus that $B$ ---which contains a finite number of elements--- constitutes an $\epsilon$-net for $H^{\infty}$, thus showing that $H^{\infty}$ is totally bounded, and thus compact.
     
 \end{solution}
 
@@ -269,6 +316,28 @@
     
     By Exercise 7.10, we know that a totally bounded metric space is separable.
     Compact metric spaces are by definition totally bounded, and hence also separable.
+\end{solution}
+
+\begin{exercise}{19}
+    Prove that $M$ is separable if and only if $M$ is homeomorphic to a totally bounded metric space (specifically, a subset of the Hilbert cube).
+    [Hint: See Exercise 4.49.]
+\end{exercise}
+
+\begin{solution}
+    
+    $\implies$: Suppose $(M, \rho)$ is a separable metric space, and suppose, WLOG, that $\rho(x, y) \leq 1$.
+    This is possible due to Exercise 3.42, where we proved that any metric is equivalent to a bounded metric.
+    In Exercise 5.51 we showed that if $\{x_n: n \geq 1\}$ is a countable dense subset of $M$, the function $f(x) = (\rho(x, x_n))_{n=1}^{\infty}$ acts as a homeomorphism from $M$ into $H^{\infty}$, meaning that the image $f(M)$ is totally bounded as a subset of a totally bounded set ($H^{\infty}$).
+
+    $\impliedby$: Now suppose that $(M, \rho)$ is homeomorphic to a subset $S$ of the Hilbert cube.
+    $S$ is totally bounded as a subset of a totally bounded metric space, and hence by Exercise 7.10 is also separable.
+    Let then $T = \{(x_n)_1, (x_n)_2, \ldots\}$ be a countable dense subset of $S$, and suppose that $f$ is a homeomorphism between $M$ and $S$.
+    Find the unique $a_1, a_2, \ldots \in M$ such that $f(a_i) = (x_n)_i$.
+    The set $T_M = \{a_1, a_2, \ldots\} \subset M$ is of course countable.
+    Furthermore, let $b \in M$, and obtain $(y_n) = f(b) \in S$.
+    By the denseness of $T$ in $S$, there exists a sequence $(x_n)_k$ such that $(x_n)_k \rightarrow^{d} (y_n)$, where $d$ is the metric of $H^{\infty}$.
+    By the properties of homeomorphisms, this also means that the corresponding sequence $a_k \rightarrow^{\rho} b$.
+    This shows that $T_M$ is dense in $M$, and thus that $M$ is separable.
 \end{solution}
 
 \begin{exercise}{20}
