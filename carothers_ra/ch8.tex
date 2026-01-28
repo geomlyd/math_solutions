@@ -363,3 +363,38 @@
         
     \end{itemize} 
 \end{solution}
+
+\begin{exercise}{21}
+    Prove Corollary 8.6: If $f: [a, b] \rightarrow \mathbb{R}$ is continuous, then the range of $f$ is a compact interval $[c, d]$ for some $c, d \in \mathbb{R}$.
+\end{exercise}
+
+\begin{solution}
+    
+    The statement is obvious in the degenerate case $a = b$, which implies that $f([a, b]) = [f(a), f(a)]$.
+    In the non-degenerate case, because $[a, b]$ is compact, we can apply Corollary 8.5 to obtain that $f$ is bounded on $[a, b]$ and attains its maximum and minimum values, $M, m$ respectively.
+\end{solution}
+
+\begin{exercise}{22}
+    If $M$ is compact and $f: M \rightarrow N$ is continuous, prove that $f$ is a closed map.
+\end{exercise}
+
+\begin{solution}
+    
+    We need to show that $f$ maps closed sets to closed sets.
+    Suppose then that $A \subset M$ is closed.
+    Because $M$ is compact, by Corollary 8.3 we have that $A$ is compact.
+    Because $f$ is continuous, by Theorem 8.4 we have that $f(A)$ is compact in $N$, and Corollary 8.3 then implies that $f(A)$ is closed in $N$.
+\end{solution}
+
+\begin{exercise}{23}
+    Suppose that $M$ is compact and that $f: M \rightarrow N$ is continuous, one-to-one, and onto.
+    Prove that $f$ is a homeomorphism.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose $d, \rho$ are the metrics on $M, N$ respectively.
+    Pick any $(x_n) \subset M$ such that $x_n \rightarrow^{d} x \in M$.
+    By the continuity of $f$, we have that $f(x_n) \rightarrow^{\rho} f(x)$.
+    Now suppose that $y_n \rightarrow^{\rho} y, (y_n) \subset N, y \in N$.
+\end{solution}
