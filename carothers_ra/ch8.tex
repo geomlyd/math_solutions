@@ -371,7 +371,10 @@
 \begin{solution}
     
     The statement is obvious in the degenerate case $a = b$, which implies that $f([a, b]) = [f(a), f(a)]$.
-    In the non-degenerate case, because $[a, b]$ is compact, we can apply Corollary 8.5 to obtain that $f$ is bounded on $[a, b]$ and attains its maximum and minimum values, $M, m$ respectively.
+    It is also obvious for the case where $[a, b]$ is a non-degenerate interval but $f$ is constant.
+    If neither of these hold, we first apply Corollary 6.7 to obtain that $f([a, b])$ is an interval.
+    We also apply Corollary 8.5 to obtain that $f$ is bounded on $[a, b]$ and attains its maximum and minimum values, $M, m$ respectively.
+    The only way that these can both hold is if $f([a, b]) = [m, M]$: if it was an open or half-open interval, then $f$ would not achieve at least one of $m, M$.
 \end{solution}
 
 \begin{exercise}{22}
@@ -397,4 +400,15 @@
     Pick any $(x_n) \subset M$ such that $x_n \rightarrow^{d} x \in M$.
     By the continuity of $f$, we have that $f(x_n) \rightarrow^{\rho} f(x)$.
     Now suppose that $y_n \rightarrow^{\rho} y, (y_n) \subset N, y \in N$.
+    Since $f$ is one-to-one and onto, there exists a unique sequence $(x_n) \subset M$ and a unique $x \in M$ such that $y_n = f(x_n), y = f(x)$.
+    To show that $f$ is a homeomorphism, it suffices to show that $x_n \rightarrow^{d} x$.
+    Suppose then that this is not the case, which means that there exists $\epsilon > 0$ such that for every $N > 0$ there exists $n \geq N$ such that $d(x_n, x) \geq \epsilon$.
+    Then, form a subsequence $x_{n_k}$ by selecting as the $k$-term the first of the above $x_n$ for which $n \geq k$, and which has not yet been selected.
+    Notice that this is always possible, since the condition ``for every $N > 0$'' implies that there exist an infinite number of $x_n$ that satisfy the inequality.
+    In this way we have formed a subsequence $x_{n_k}$ of the original $(x_n)$ for which $d(x_{n_k}, x) \geq \epsilon$ for all $k$.
+    Because $M$ is compact, we can apply Theorem 8.2 to obtain a subsequence $(x_{n_{k_l}})$ (that is, a sub-subsequence of the original $(x_n)$) that converges to some $x'$.
+    Because $f$ is continuous, we then obtain that $(f(x_{n_{k_l}}))$ converges to $f(x')$.
+    But $(f(x_{n_{k_l}}))$ is a subsequence of $(y_n)$, and thus it must converge to the same limit, $y$, which means $f(x) = y = f(x')$.
+    Consequently, $x' = x$ since $f$ is one-to-one, and so $x_{n_{k_l}} \rightarrow x$.
+    This contradicts the definition of $(x_{n_{k_l}})$, and so it must indeed be that $x_n \rightarrow^{d} x$, which means $f$ is a homeomorphism.
 \end{solution}
