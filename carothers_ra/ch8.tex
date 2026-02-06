@@ -462,3 +462,44 @@
     It is furthermore \textit{onto}, as long as we think of it as a function from $[0, 1]$ to $f([0, 1]) \subset V$.
     Furthermore, $[0, 1]$ is compact (Heine-Borel), and so we can apply Exercise 8.23 to conclude that $f$ is a homeomorphism \textit{into} $V$.
 \end{solution}
+
+\newpage
+
+\begin{exercise}{30}
+    Prove Lemma 8.8: In a metric space $M$, the following are equivalent:
+
+    (a) If $\mathcal{G}$ is any collection of open sets in $M$ with $\cup\{G: G \in \mathcal{G}\} \supset M$, then there are finitely many sets $G_1, \ldots, G_n \in \mathcal{G}$ with $\cup_{i=1}^{n} G_i \supset M$.
+
+    (b) If $\mathcal{F}$ is any collection of closed sets in $M$ such that $\cap_{i=1}^{n} F_i \neq \emptyset$ for all choices of finitely many sets $F_1, \ldots, F_n \in \mathcal{F}$, then $\cap \{F: F \in \mathcal{F}\} \neq \emptyset$.
+\end{exercise}
+
+\begin{solution}
+    
+    (a) $\implies$ (b): Let $\mathcal{F}$ be any collection of closed sets with the property that any choice of finitely many $F_1, \ldots, F_n \in \mathcal{F}$ have a nonempty intersection.
+    Form the collection $\mathcal{G} = \{\overline{F}: F \in \mathcal{F}\}$, i.e., gather all complements of the sets in $\mathcal{F}$.
+    Each of these is by definition open.
+    The statement we would like to prove can be rewritten via DeMorgan's laws as:
+
+    \[\cap \{F: F \in \mathcal{F} \} \neq \emptyset \iff \overline{\cup\{\overline{F}: F \in \mathcal{F}\}} \neq \emptyset \iff \cup \{G: G \in \mathcal{G} \} \neq M\]
+
+    Suppose that this does not hold, i.e., that $\cup\{G: G \in \mathcal{G}\} = M$.
+    Then by our hypothesis (a), there exist finitely many $G_1, \ldots, G_n$ such that:
+
+    \[\bigcup_{i=1}^{n} G_i = M \implies \bigcup_{i=1}^{n} \overline{F_i} = M \implies \overline{\bigcap_{i=1}^{n} F_i} = M \implies \bigcap_{i=1}^{n} F_i = \emptyset\]
+
+    But this directly contradicts the defining property of $\mathcal{F}$, since any choice of finitely many $F_i \in \mathcal{F}$ must have a nonempty intersection.
+    We've therefore shown that $\cap\{F: F \in \mathcal{F}\} \neq \emptyset$, i.e., that the implication stated by (b) holds.
+
+    (b) $\implies$ (a): Suppose $\mathcal{G}$ is a collection of open sets with $\cup\{G: G \in \mathcal{G}\} \supset M$, and suppose that \textit{no choice} of finitely many $G_1, \ldots, G_n \in \mathcal{G}$ is such that $\cup_{i=1}^{n} G_i \supset M$.
+    Form the collection of the complements $\mathcal{F} = \{\overline{G}: G \in \mathcal{G}\}$, and notice that each of these sets is closed.
+    For any finitely many $G_1, \ldots, G_n \in \mathcal{G}$, it must hold that:
+
+    \[\cup_{i=1}^{n} \{G: G \in \mathcal{G}\} \neq M \iff \overline{\cap_{i=1}^{n} \{\overline{G}: G \in \mathcal{G}\}} \neq M \iff \cap_{i=1}^{n} \{F: F \in \mathcal{F}\} \neq \emptyset\]
+
+    We have shown that the hypothesis of (b) holds for $\mathcal{F}$, therefore the conclusion holds as well.
+    This means that:
+
+    \[\cap\{F: F \in \mathcal{F}\} \neq \emptyset \implies \overline{\cup\{\overline{F}: F \in \mathcal{F}\}} \neq \emptyset \implies \cup\{G: G \in \mathcal{G}\} \neq M\]
+
+    But this directly contradicts the defining property of $\mathcal{G}$, and so it must be the case that there exists a choice of finitely many $G_1, \ldots, G_n \in \mathcal{G}$ such that $\cup_{i=1}^{n} G_i \supset M$, and the implication stated by (a) holds.
+\end{solution}

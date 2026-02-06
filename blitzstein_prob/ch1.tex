@@ -137,3 +137,46 @@
 
     \[\binom{52 + 10 - 1}{10}\]
 \end{solution}
+
+\section{Story Proofs}
+
+\begin{exercise}{15}
+    Give a story proof that $\sum_{k=0}^{n} \binom{n}{k} = 2^n$.
+\end{exercise}
+
+\begin{solution}
+    
+    Imagine having a set of $n$ distinct objects and wanting to count the number of possible subsets.
+    As we already know, this is equal to $2^n$ (for each object, choose to either include it or not in a subset).
+    Another equivalent way of counting this would be to count all possible subsets of size $0, 1, 2, \ldots, n$ and sum the resulting quantities.
+    We don't care about the order of object selection, so the number of ways to choose a subset of size $k$ is $\binom{n}{k}$, which means that summing $\sum_{k=0}^{n} \binom{n}{k}$ must equal $2^n$.
+\end{solution}
+
+\newpage
+
+\begin{exercise}{16}
+    Show that for all positive integers $n$ and $k$ with $n \geq k$,
+
+    \[\binom{n}{k} + \binom{n}{k - 1} = \binom{n + 1}{k},\]
+
+    doing this in two ways: (a) algebraically and (b) with a story, giving an interpretation for why both sides count the same thing.
+
+    Hint for the story proof: Imagine an organization consisting of $n + 1$ people, with one of them pre-designated as the president of the organization.
+\end{exercise}
+
+\begin{solution}
+
+    (a) For an algebraic proof, notice that, from previous identities and some calculations:
+
+    \[\binom{n}{k} + \binom{n}{k - 1} = \binom{n}{n - k} + \binom{n}{n - k + 1} = \frac{n!}{(n - k)! \cdot k!} + \frac{n!}{(k - 1)! \cdot (n - k + 1)!}\]
+    \[= \frac{n!}{(k - 1)!}\Bigl(\frac{1}{k(n - k)!} + \frac{1}{(n - k + 1)!}\Bigr) = \frac{n!}{(k - 1)!(n - k)!}\Bigl(\frac{1}{k} + \frac{1}{n - k + 1}\Bigr)\]
+    \[= \frac{n!}{(k - 1)!(n - k )!}\cdot \frac{n + 1}{k(n - k + 1)} = \frac{(n + 1)!}{k!\cdot(n - k + 1)!} = \binom{n+1}{k}\]
+
+    (b) For a story proof, think about it as follows.
+    We want to choose a commitee of $k$ people from a total of $n + 1$, which is clearly equal to the RHS.
+    Another way of counting the possible ways to do this, is by choosing a pre-designated ``president'' of the commitee, and the remaining $k - 1$ members separately.
+    Fix any president, which results in having to choose $k - 1$ members from $n - 1$ people ($\binom{n}{k - 1}$ ways).
+    Notice that this misses all commitees in which this particular person is not present at all: this is equal to the number of ways to choose $k$ members from the remaining $n$ people ($\binom{n}{k}$).
+    The sum of these two counts must equal precisely the number of possible commitees.
+    Notice, also, that in the second count we didn't have to utilize the ``president'' argument.
+\end{solution}
