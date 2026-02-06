@@ -412,3 +412,53 @@
     Consequently, $x' = x$ since $f$ is one-to-one, and so $x_{n_{k_l}} \rightarrow x$.
     This contradicts the definition of $(x_{n_{k_l}})$, and so it must indeed be that $x_n \rightarrow^{d} x$, which means $f$ is a homeomorphism.
 \end{solution}
+
+\newpage
+
+\begin{exercise}{24}
+    Let $f: [0, 1] \rightarrow [0, 1] \times [0, 1]$ be continuous and one-to-one.
+    Show that $f$ cannot be onto.
+    Moreoever, show that the range of $f$ is \textit{nowhere dense} in $[0, 1] \times [0, 1]$.
+    [Hint: The range of $f$ is closed (why?); if it has nonempty interior, then it contains a closed rectangle.
+    Argue that this rectangle is the image of some subinterval of $[0, 1]$.]
+\end{exercise}
+
+\begin{solution}
+    
+    We note first that if we can prove that the range of $f$ is nowhere dense in $[0, 1] \times [0, 1]$ (that is, that it cannot have a non-empty interior), we will have also shown that $f$ cannot be onto.
+    Indeed, if it were, its range would equal the entire unit square, whose interior equals itself.
+    Suppose then, as stated in the hint, that $f$'s range has a non-empty interior $I$.
+    Note that $f$ is continuous and defined on the compact metric space $[0, 1]$, so by Exercise 8.22 it is a closed map.
+    Furthermore, $f$ is a homeomorphism \textit{into} the unit square (Exercise 8.23).
+    Therefore its range is also closed, since $[0, 1]$ is closed.
+    Because $I$ is an open set, it contains a point $x$ such that there exists $\epsilon > 0$ for which $B_{\epsilon}(x) \subset I$.
+
+    Then, by taking a sufficiently small $\epsilon'$, we can always find a closed square of side $\epsilon'$ that is a proper subset of $B_{\epsilon}(x)$.
+    Notice that this holds even if $x$ lies on the ``boundary'' of the unit square, because a disk of radius $\epsilon$ around it always has a non-empty intersection with the ``open'' square $(0, 1) \times (0, 1)$ (this means that the square does not degenerate to a segment).
+    Call this closed square $S$, and since it is closed and $f$ is a homeomorphism, $f^{-1}(S)$ must be closed as well (Theorem 5.5).
+    Not only that, but $S$ is also connected, and so $f^{-1}(S)$ is connected (Theorem 6.6 applied on $f^{-1}$).
+    The only possibility is thus that $S$ is the image of a closed subinterval of $[0, 1]$.
+
+    Call this subinterval $[a, b]$, and notice that $[0, 1] \setminus [a, b]$ must be of one of the forms $[0, a), [0, a) \cup (b, 1], (b, 1]$.
+    In any one of these cases, we examine the behavior of $f$ on the closure of these intervals, $[0, a], [0, a] \cup [b, 1]$ and $[b, 1]$ respectively, and we call this closure $C$ (regardless of the specific case).
+    These are all closed subsets of a compact space, and so are compact themselves (Corollary 8.3), while furthermore their images under $f$ are also compact (Theorem 8.4).
+    We argue that this is a contradiction.
+    Indeed, it must hold that $B_{\epsilon}(x) \setminus S \subset f(C)$, and because $f$ is one-to-one, \textit{at most two} points of $S, f(a)$ and/or $f(b)$ belong in $f(C)$.
+    However, there are infinitely many Cauchy sequences that can be defined inside $B_{\epsilon}(x)$ that converge to points on the boundary of $S$ which do not belong in $f(C)$, which means that $f(C)$ is not complete, which is a contradiction.
+
+    Therefore, the range of $f$ must be nowhere dense in $[0, 1] \times [0, 1]$, and as discussed above, this means that $f$ can also never be onto.
+
+\end{solution}
+
+\begin{exercise}{25}
+    Let $V$ be a normed vector space and let $x \neq y \in V$.
+    Show that the map $f(t) = x + t(y - x)$ is a homeomorphism from $[0, 1]$ into $V$.
+    The range of $f$ is the line segment joining $x$ and $y$; it is often written $[x, y]$.
+\end{exercise}
+
+\begin{solution}
+    
+    In Exercise 6.27, we showed that $f$ is continuous and one-to-one.
+    It is furthermore \textit{onto}, as long as we think of it as a function from $[0, 1]$ to $f([0, 1]) \subset V$.
+    Furthermore, $[0, 1]$ is compact (Heine-Borel), and so we can apply Exercise 8.23 to conclude that $f$ is a homeomorphism \textit{into} $V$.
+\end{solution}
