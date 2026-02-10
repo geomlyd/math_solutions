@@ -453,3 +453,37 @@
 
     But this directly contradicts the defining property of $\mathcal{G}$, and so it must be the case that there exists a choice of finitely many $G_1, \ldots, G_n \in \mathcal{G}$ such that $\cup_{i=1}^{n} G_i \supset M$, and the implication stated by (a) holds.
 \end{solution}
+
+\begin{exercise}{42}
+    Let $M$ be compact and let $f: M \rightarrow M$ satisfy $d(f(x), f(y)) \geq d(x, y)$ for all $x, y \in M$.
+    Prove that $f$ is an isometry of $M$ onto itself.
+\end{exercise}
+
+\begin{solution}
+    
+    Notice that if we can prove that the given inequality is in fact always an equality, then we can apply Exercise 8.40 to directly obtain that $f$ is an onto isometry.
+    Suppose, therefore, that there exist $x, y \in m$ such that $d(x, y) < d(f(x), f(y))$.
+    Form the sequences $f^{(n)}(x), f^{(n)}(y)$, and notice that for $n \geq 1$, it holds that $d(f^{(n)}(x), f^{(n)}(y)) \geq d(f(x), f(y))$, due to the given property of $f$.
+    Now, $M$ is compact, and hence by Theorem 8.2, there exists a subsequence $(f^{(n_k)}(x))$ that converges to a point in $M$.
+    If we then take these indices $n_k$ and form the subsequence $(f^{(n_k)}(y))$, we can again apply Theorem 8.2 to obtain a further subsequence $(f^{(n_{k_l})}(y))$ that converges to a point in $M$.
+    Because any subsequence of a convergent sequence also converges, we can safely work with both $(f^{n_{k_l}}(x)), (f^{(n_{k_l})}(y))$ as convergent subsequences.
+    Since these are convergent, they are also Cauchy.
+    This means that for any given $\epsilon > 0$, there exists $N_1 > 0$ such that for $l_1, l_2 \geq N_1$ (WLOG, $l_1 < l_2$), it holds that:
+
+    \[d(f^{(n_{k_{l_1}})}(x), f^{{(n_{k_{l_2}})}}(x)) < \epsilon \implies d(x, f^{(n_{k_{l_2}} - n_{k_{l_1}})}(x)) < \epsilon,\]
+
+    where we have again (repeatedly) used the defining property of $f$.
+    Notice that what this says is that a subsequence of $f^{(n_{k_l})}(x)$ converges to $x$, which means that this must hold for the sequence $f^{(n_k)}(x) $itself (since it's a convergent one).
+    The exact same argument can be applied to show that $f^{(n_{k})}(y)$ converges to $y$.
+    Now, for $\epsilon = \frac{d(f(x), f(y)) - d(x, y)}{2}$, obtain $N_1 > 0, N_2 > 0$ such that for $l_1 \geq N_1, l_2 \geq N_2$:
+
+    \[d(x, f^{(n_{k_{l_1}})}(x)) < \epsilon, d(y, f^{(n_{k_{l_2}})}(y)) < \epsilon\]
+
+    Consequently, for $l \geq \max\{N_1, N_2\}$:
+
+    \[d(f^{(n_{k_l})}(x), f^{(n_{k_l})}(y)) \leq d(x, f^{(n_{k_l})}(x)) + d(x, f^{(n_{k_l})}(y)) \leq d(x, f^{(n_{k_l})}(x)) + d(x, y) + d(y, f^{(n_{k_l})}(y))\]
+    \[\leq 2\epsilon + d(x, y) = d(f(x), f(y)) - d(x, y) + d(x, y) = d(f(x), f(y))\]
+
+    But this directly contradicts our initial observation that for $n \geq 1, d(f^{(n)}(x), f^{(n)}(y)) \geq d(f(x), f(y))$, and therefore it must always be the case that $d(f(x), f(y)) = d(x, y)$, which as discussed above means that $f$ is an isometry onto $M$.
+
+\end{solution}
