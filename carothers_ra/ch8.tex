@@ -415,6 +415,22 @@
 
 \newpage
 
+\begin{exercise}{29}
+    Let $M$ be a compact metric space and suppose that $f: M \rightarrow M$ satisfies $d(f(x), f(y)) < d(x, y)$ whenever $x \neq y$.
+    Show that $f$ has a fixed point.
+    [Hint: First note that $f$ is continuous; next, consider $g(x) = d(x, f(x))$.]
+\end{exercise}
+
+\begin{solution}
+    
+    As indicated in the hint, we first show that $f$ is continuous by observing that it is in fact Lipschitz continuous with constant $K = 1$.
+    Now pick $x_0 \in M$, and consider the orbit $(f^{(n)}(x_0))$.
+    If $g(x) = d(x, f(x))$, then the sequence $(g(f^{(n)}(x_0)))$ satisfies the following property:
+
+    \[d(x, f(x)) < d(f(x), f^{(2)}(x)) < d(f^{(2)}(x), f^{(3)}(x)) < \ldots\]
+
+\end{solution}
+
 \begin{exercise}{30}
     Prove Lemma 8.8: In a metric space $M$, the following are equivalent:
 
@@ -486,4 +502,21 @@
 
     But this directly contradicts our initial observation that for $n \geq 1, d(f^{(n)}(x), f^{(n)}(y)) \geq d(f(x), f(y))$, and therefore it must always be the case that $d(f(x), f(y)) = d(x, y)$, which as discussed above means that $f$ is an isometry onto $M$.
 
+\end{solution}
+
+\begin{exercise}{43}
+    Let $M$ be compact and suppose that $f: M \rightarrow M$ is one-to-one, onto, and satisfies $d(f(x), f(y)) \leq d(x, y)$ for all $x, y \in M$.
+    Prove that $f$ is an isometry of $M$ onto itself.
+    [Hint: Exercise 42.]
+\end{exercise}
+
+\begin{solution}
+    
+    Since $f$ is both one-to-one and onto, it is invertible.
+    Then, for any two $x, y \in M$:
+
+    \[d(f(x), f(y)) \leq d(x, y) \implies d(x, y) \leq d(f^{-1}(x), f^{-1}(y))\]
+
+    We can therefore directly apply Exercise 8.42 to conclude that $f^{-1}$ is an isometry of $M$ onto itself.
+    It's easy to see that this implies that $f$ is then also an isometry of $M$ onto itself.
 \end{solution}
