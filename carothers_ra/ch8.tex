@@ -424,10 +424,15 @@
 \begin{solution}
     
     As indicated in the hint, we first show that $f$ is continuous by observing that it is in fact Lipschitz continuous with constant $K = 1$.
-    Now pick $x_0 \in M$, and consider the orbit $(f^{(n)}(x_0))$.
-    If $g(x) = d(x, f(x))$, then the sequence $(g(f^{(n)}(x_0)))$ satisfies the following property:
+    Now consider the function $g(x) = d(x, f(x))$.
+    This is easily seen to be continuous as well: if $x_n \rightarrow x$, then $f(x_n) \rightarrow f(x)$, and hence $d(x_n, f(x_n)) \rightarrow d(x, f(x))$ (a simple application of the triangle inequality shows this).
+    By Corollary 8.5, $g$ is bounded and attains its minimum value $m$, which means that for some $x_0 \in M, d(x_0, f(x_0)) = m$.
+    We claim that $f(x_0)$ is a fixed point for $f$.
+    Indeed, if it is not it must be that $f(x_0) \neq f(f(x_0))$ and then it also holds that:
 
-    \[d(x, f(x)) < d(f(x), f^{(2)}(x)) < d(f^{(2)}(x), f^{(3)}(x)) < \ldots\]
+    \[d(f(x_0), f(f(x_0))) < d(x_0, f(x_0)) = m,\]
+
+    which is impossible by the definition of $m$.
 
 \end{solution}
 
@@ -519,4 +524,36 @@
 
     We can therefore directly apply Exercise 8.42 to conclude that $f^{-1}$ is an isometry of $M$ onto itself.
     It's easy to see that this implies that $f$ is then also an isometry of $M$ onto itself.
+\end{solution}
+
+\newpage
+
+\section{Uniform Continuity}
+
+\begin{exercise}{44}
+    Show that any Lipschitz map $f: (M, d) \rightarrow (N, \rho)$ is uniformly continuous.
+    In particular, any isometry is uniformly continuous.
+\end{exercise}
+
+\begin{solution}
+    
+    If $f: (M, d) \rightarrow (N, \rho)$ is Lipschitz continuous, there exists $K \geq 0$ such that $\rho(f(x), f(y)) \leq K d(x, y)$ for any two $x, y \in M$.
+    if $K = 0$, then $f$ is trivially uniformly continuous, since $f(x) = f(y)$ for any two $x, y \in M$.
+    If $K > 0$, then for any $\epsilon > 0$, let $\delta = \frac{\epsilon}{K}$.
+    Then, whenever $d(x, y) < \delta$, we have:
+
+    \[\rho(f(x), f(y)) \leq K d(x, y) < K \frac{\epsilon}{K} = \epsilon\]
+
+    The selection of $\delta$ is independent of $x, y$, and therefore $f$ is indeed uniformly continuous.
+    Now, an isometry is Lipschitz continuous with $K = 1$, and therefore it follows immediately that it is also uniformly continuous.
+\end{solution}
+
+\begin{exercise}{45}
+    Prove that \textit{every} map $f: \mathbb{N} \rightarrow \mathbb{R}$ is uniformly continuous.
+\end{exercise}
+
+\begin{solution}
+    
+    Take any $\epsilon$ and take $\delta = 1/2$.
+    Then for any two $x, y \in \mathbb{N}$ such that $\lvert m - n \rvert < \delta$, it vacuously holds that $\lvert f(m) - f(n) \rvert < \epsilon$, since no two natural numbers satisfy $\lvert m - n \rvert < 1/2$ except if $m = n$ (in which case clearly $\lvert f(m) - f(n) \rvert = 0$).
 \end{solution}
