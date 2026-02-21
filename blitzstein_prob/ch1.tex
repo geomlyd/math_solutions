@@ -180,3 +180,48 @@
     The sum of these two counts must equal precisely the number of possible commitees.
     Notice, also, that in the second count we didn't have to utilize the ``president'' argument.
 \end{solution}
+
+\begin{exercise}{20}
+    (a) Show using a story proof that
+
+    \[\binom{k}{k} + \binom{k + 1}{k} + \binom{k + 2}{k} + \ldots + \binom{n}{k} = \binom{n + 1}{k + 1},\]
+
+    where $n, k$ are positive integers with $n \geq k$.
+    This is called the \textit{hockey stick identity}.
+    Hint: Imagine arranging a group of people by age, and then think about the oldest person in a chosen subgroup.
+
+    (b) Suppose that a large pack of Haribo gummi bears can have anywhere between 30 and 50 gummi bears.
+    There are 5 delicious flavors: pineapple (clear), raspberry (red), orange(orange), strawberry (green, mysteriously), and lemon (yellow).
+    There are 0 non-delicious flavors.
+    How many possibilities are there for the composition of such a pack of gummi bears?
+    You can leave your answer in terms of a couple of binomial coefficients, but not a sum of lots of binomial coefficients.
+\end{exercise}
+
+\begin{solution}
+    
+    (a) Suppose we have a group of $n + 1$ people, from which we want to choose $k + 1$ without caring about the order.
+    We know that there are $\binom{n + 1}{k + 1}$ ways to do this.
+    We will show that this equals the LHS by describing another way of getting all such possible choices.
+    Arrange the people in the group by age, labeling them $\#1, \#2, \ldots, \#n + 1$.
+    Then, every possible combination of people of size $k + 1$ has an oldest person.
+    If the oldest person is $\#1$, then there are $\binom{n}{k}$ ways to choose all remaining others.
+    If the oldest person is $\#2$, then there are $\binom{n - 1}{k}$ ways to choose all the others.
+    This holds all the way to the oldest being $\#n - k$, in which case there is a unique choice of the rest ($\binom{k}{k}$).
+    Since the group has size $k + 1$, it cannot be that the oldest person is anyone after that point.
+    Notice that this also does not ``double-count'' anything, since by choosing the oldest person first we guarantee that we never encounter the same combination again.
+    This leads us to conclude that the resulting sum $\binom{n}{k} + \binom{n - 1}{k} + \ldots + \binom{k + 1}{k} + \binom{k}{k}$ must equal $\binom{n + 1}{k + 1}$.
+
+    (b) We begin by noting that this is similar to the Bose-Einstein setting.
+    If we think of having five objects (the gummi bear flavors), we are selecting, with replacement, between 30 and 50 from them in order to make a pack, and we only care about how many times each flavor is selected.
+    Therefore, $k = 5$ always, and $n$ varies between 30 and 50.
+    The total number of possible packs must then equal:
+
+    \[\binom{5 + 30 - 1}{30} + \binom{5 + 31 - 1}{31} + \ldots + \binom{5 + 50 - 1}{50} = \binom{34}{4} + \binom{35}{4} + \ldots + \binom{54}{4},\]
+
+    where we use Example 1.5.1, $\binom{n}{k} = \binom{n}{n - k}$.
+    We can simplify further by using the hockey stick identity from part (a):
+
+    \[\binom{34}{4} + \binom{35}{4} + \ldots + \binom{54}{4} = \binom{4}{4} + \binom{5}{4} + \ldots + \binom{34}{4} + \ldots + \binom{54}{4} - \Biggl(\binom{4}{4} + \ldots + \binom{33}{4}\Biggr)\]
+    \[= \binom{54 + 1}{4 + 1} - \binom{33 + 1}{4 + 1} = \binom{55}{5} - \binom{34}{5}\]
+
+\end{solution}

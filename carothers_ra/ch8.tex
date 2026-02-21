@@ -627,3 +627,86 @@
     Let $M$ be compact and let $f: M \rightarrow M$ satisfy $d(f(x), f(y)) \geq d(x, y)$ for all $x, y \in M$.
     Prove that $f$ is an isometry of $M$ onto itself.
 \end{exercise}
+
+\begin{exercise}{42}
+    Let $M$ be compact and let $f: M \rightarrow M$ satisfy $d(f(x), f(y)) \geq d(x, y)$ for all $x, y \in M$.
+    Prove that $f$ is an isometry of $M$ onto itself.
+\end{exercise}
+
+\begin{solution}
+    
+    Notice that if we can prove that the given inequality is in fact always an equality, then we can apply Exercise 8.40 to directly obtain that $f$ is an onto isometry.
+    Suppose, therefore, that there exist $x, y \in m$ such that $d(x, y) < d(f(x), f(y))$.
+    Form the sequences $f^{(n)}(x), f^{(n)}(y)$, and notice that for $n \geq 1$, it holds that $d(f^{(n)}(x), f^{(n)}(y)) \geq d(f(x), f(y))$, due to the given property of $f$.
+    Now, $M$ is compact, and hence by Theorem 8.2, there exists a subsequence $(f^{(n_k)}(x))$ that converges to a point in $M$.
+    If we then take these indices $n_k$ and form the subsequence $(f^{(n_k)}(y))$, we can again apply Theorem 8.2 to obtain a further subsequence $(f^{(n_{k_l})}(y))$ that converges to a point in $M$.
+    Because any subsequence of a convergent sequence also converges, we can safely work with both $(f^{n_{k_l}}(x)), (f^{(n_{k_l})}(y))$ as convergent subsequences.
+    Since these are convergent, they are also Cauchy.
+    This means that for any given $\epsilon > 0$, there exists $N_1 > 0$ such that for $l_1, l_2 \geq N_1$ (WLOG, $l_1 < l_2$), it holds that:
+
+    \[d(f^{(n_{k_{l_1}})}(x), f^{{(n_{k_{l_2}})}}(x)) < \epsilon \implies d(x, f^{(n_{k_{l_2}} - n_{k_{l_1}})}(x)) < \epsilon,\]
+
+    where we have again (repeatedly) used the defining property of $f$.
+    Notice that what this says is that a subsequence of $f^{(n_{k_l})}(x)$ converges to $x$, which means that this must hold for the sequence $f^{(n_k)}(x) $itself (since it's a convergent one).
+    The exact same argument can be applied to show that $f^{(n_{k})}(y)$ converges to $y$.
+    Now, for $\epsilon = \frac{d(f(x), f(y)) - d(x, y)}{2}$, obtain $N_1 > 0, N_2 > 0$ such that for $l_1 \geq N_1, l_2 \geq N_2$:
+
+    \[d(x, f^{(n_{k_{l_1}})}(x)) < \epsilon, d(y, f^{(n_{k_{l_2}})}(y)) < \epsilon\]
+
+    Consequently, for $l \geq \max\{N_1, N_2\}$:
+
+    \[d(f^{(n_{k_l})}(x), f^{(n_{k_l})}(y)) \leq d(x, f^{(n_{k_l})}(x)) + d(x, f^{(n_{k_l})}(y)) \leq d(x, f^{(n_{k_l})}(x)) + d(x, y) + d(y, f^{(n_{k_l})}(y))\]
+    \[\leq 2\epsilon + d(x, y) = d(f(x), f(y)) - d(x, y) + d(x, y) = d(f(x), f(y))\]
+
+    But this directly contradicts our initial observation that for $n \geq 1, d(f^{(n)}(x), f^{(n)}(y)) \geq d(f(x), f(y))$, and therefore it must always be the case that $d(f(x), f(y)) = d(x, y)$, which as discussed above means that $f$ is an isometry onto $M$.
+
+\end{solution}
+
+\begin{exercise}{43}
+    Let $M$ be compact and suppose that $f: M \rightarrow M$ is one-to-one, onto, and satisfies $d(f(x), f(y)) \leq d(x, y)$ for all $x, y \in M$.
+    Prove that $f$ is an isometry of $M$ onto itself.
+    [Hint: Exercise 42.]
+\end{exercise}
+
+\begin{solution}
+    
+    Since $f$ is both one-to-one and onto, it is invertible.
+    Then, for any two $x, y \in M$:
+
+    \[d(f(x), f(y)) \leq d(x, y) \implies d(x, y) \leq d(f^{-1}(x), f^{-1}(y))\]
+
+    We can therefore directly apply Exercise 8.42 to conclude that $f^{-1}$ is an isometry of $M$ onto itself.
+    It's easy to see that this implies that $f$ is then also an isometry of $M$ onto itself.
+\end{solution}
+
+\newpage
+
+\section{Uniform Continuity}
+
+\begin{exercise}{44}
+    Show that any Lipschitz map $f: (M, d) \rightarrow (N, \rho)$ is uniformly continuous.
+    In particular, any isometry is uniformly continuous.
+\end{exercise}
+
+\begin{solution}
+    
+    If $f: (M, d) \rightarrow (N, \rho)$ is Lipschitz continuous, there exists $K \geq 0$ such that $\rho(f(x), f(y)) \leq K d(x, y)$ for any two $x, y \in M$.
+    if $K = 0$, then $f$ is trivially uniformly continuous, since $f(x) = f(y)$ for any two $x, y \in M$.
+    If $K > 0$, then for any $\epsilon > 0$, let $\delta = \frac{\epsilon}{K}$.
+    Then, whenever $d(x, y) < \delta$, we have:
+
+    \[\rho(f(x), f(y)) \leq K d(x, y) < K \frac{\epsilon}{K} = \epsilon\]
+
+    The selection of $\delta$ is independent of $x, y$, and therefore $f$ is indeed uniformly continuous.
+    Now, an isometry is Lipschitz continuous with $K = 1$, and therefore it follows immediately that it is also uniformly continuous.
+\end{solution}
+
+\begin{exercise}{45}
+    Prove that \textit{every} map $f: \mathbb{N} \rightarrow \mathbb{R}$ is uniformly continuous.
+\end{exercise}
+
+\begin{solution}
+    
+    Take any $\epsilon$ and take $\delta = 1/2$.
+    Then for any two $x, y \in \mathbb{N}$ such that $\lvert m - n \rvert < \delta$, it vacuously holds that $\lvert f(m) - f(n) \rvert < \epsilon$, since no two natural numbers satisfy $\lvert m - n \rvert < 1/2$ except if $m = n$ (in which case clearly $\lvert f(m) - f(n) \rvert = 0$).
+\end{solution}
