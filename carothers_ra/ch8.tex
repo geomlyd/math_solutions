@@ -503,3 +503,127 @@
 
     But this directly contradicts the defining property of $\mathcal{G}$, and so it must be the case that there exists a choice of finitely many $G_1, \ldots, G_n \in \mathcal{G}$ such that $\cup_{i=1}^{n} G_i \supset M$, and the implication stated by (a) holds.
 \end{solution}
+
+\begin{exercise}{31}
+    Given an arbitrary metric space $M$, show that a decreasing sequence of nonempty compact sets in $M$ has nonempty intersection.
+\end{exercise}
+
+\begin{solution}
+    
+    Consider such a sequence of sets $S_1 \supset S_2 \supset \ldots$.
+    Think of $S_1$ as a compact metric space.
+    Then, inside $S_1$, any number of finitely many sets from $S_2, S_3, \ldots$ have nonempty intersections: indeed, the intersection equals the smallest of these finitely many sets (i.e., the one with the largest subscript).
+    Because $S_1$ is compact, we can apply Theorem 8.9 to conclude that statement (b) from Lemma 8.8 holds, and so that $\cap_{i \geq 2} S_i \neq \emptyset$.
+    Obviously, since $S_2 \subset S_1$ the elements of this intersection belong in $S_1$ as well, and so we conclude that the entire decreasing sequence of sets has nonempty intersection.
+\end{solution}
+
+\newpage
+
+\begin{exercise}{32}
+    Prove Corollary 8.11 ($M$ is compact iff every countable open cover admits a finite subcover), by showing that the following two statements are equivalent:
+
+    (i) Every decreasing sequence of nonempty closed sets in $M$ has nonempty intersection.
+
+    (ii) Every countable open cover of $M$ admits a finite subcover; that is, if $(G_n)$ is a sequence of open sets in $M$ satisfying $\cup_{n=1}^{\infty} G_n \supset M$, then $\cup_{n=1}^{N} G_n \supset M$ for some (finite) $N$.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose first that every decreasing sequence of nonempty closed sets in $M$ has nonempty intersection, and suppose that $G_1, G_2, \ldots$ is a countable open cover of $M$.
+    Form the sequence of sets:
+
+    \[\overline{G_1}, \overline{G_1} \cap \overline{G_2}, \overline{G_1} \cap \overline{G_2} \cap \overline{G_3}, \ldots\]
+
+    Each of these sets is closed as a finite intersection of closed sets (complements of open sets).
+    Furthermore, suppose that any of them is empty:
+
+    \[G_1 \cap G_2 \cap \ldots \cap G_n = \emptyset \implies \overline{G_1 \cup \ldots \cup G_n} = \emptyset \implies \cup_{i=1}^{n} G_i = M\]
+
+    This means that the countable open cover admits a finite subcover.
+    If \textit{none} of them are empty, then observe that they form a decreasing subsequence, and so we can use the hypothesis to obtain that the infinite sequence has nonempty intersection:
+
+    \[\cap_{i=1}^{\infty} \overline{G_i} \neq \emptyset \implies \overline{\cup_{i=1}^{\infty} G_i} \neq \emptyset \implies \cup_{i=1}^{\infty}G_i \neq M,\]
+
+    which contradicts the fact that $G_i$ form a cover of $M$.
+    Therefore, it is eventually the case that $G_1 \cap \ldots \cap G_i$ becomes empty, and so the countable open cover must admit a finite subcover.
+
+    Now suppose that every countable open cover admits a finite subcover, and pick a decreasing sequence $F_1 \supset F_2 \supset \ldots$ of closed, nonempty sets in $M$.
+    Form the sequence of sets:
+
+    \[\overline{F_1}, \overline{F_2}, \overline{F_3}, \ldots\]
+
+    All of these sets are open as complements of closed sets.
+    Suppose now that the infinite union of $\overline{F_i}$ does not cover the metric space.
+    Then there exists $x \notin \overline{F_i}$ for all $i$, which means $x \in \cap_{i=1}^{\infty} F_i$, and so the infinite intersection of all $F_i$ is nonempty.
+    If it does cover the metric space, then as a countable open cover it admits, by our hypothesis, a finite subcover $\overline{F_1} \cup \ldots \cup \overline{F_n} = M$.
+    This means that $\overline{F_1 \cap \ldots \cap F_n} = M$, and consequently that $F_1 \cap \ldots \cap F_n = \emptyset$.
+    Because these sets are nested, the only way that this is possible is if $F_j = \emptyset$ for all $j$ after some $i \leq n$, which contradicts our hypothesis.
+    Therefore, the decreasing sequence $F_1 \supset F_2 \supset \ldots$ has nonempty intersection.
+    Having shown this equivalence, we recall from Corollary 8.10 that $M$ is compact iff (i) holds, and so indeed $M$ is compact iff (ii) holds (Corollary 8.11).
+\end{solution}
+
+\begin{exercise}{36}
+    Let $F$ and $K$ be disjoint, nonempty subsets of a metric space $M$ with $F$ closed and $K$ compact.
+    Show that $d(F, K) = \inf\{d(x, y): x \in F, y \in K\} > 0$.
+    Show that this many fail if we assume only that $F$ and $K$ are disjoint closed sets.
+\end{exercise}
+
+\begin{solution}
+    
+    Notice first that this quantity is indeed a real number, since $K$ is compact, which means that it is bounded.
+    Suppose then that it is not the case that $d(F, K) > 0$, which means $d(F, K) = 0$.
+    This means that for any $\epsilon > 0$, there exist $x \in F, y \in K$ such that $d(x, y) < \epsilon$.
+    For the sequence of epsilons $\epsilon_i = \frac{1}{i}$, select $x_i, y_i$ such that $d(x_i, y_i) < \epsilon_i$.
+    Because the sequence $(y_n)$ is in the compact set $K$, it contains a convergent subsequence $(y_{n_k})$, which converges to $y \in K$ (Theorem 8.2).
+    Form the corresponding subsequence $(x_{n_k})$.
+    For any given $\epsilon > 0$, find $N$ such that for $k \geq N, d(y_{n_k}, y) < \epsilon/2$.
+    Find also $M > 0$ such that for $k \geq M, d(x_{n_k}, y_{n_k}) < \epsilon/2$, which is always possible from the definition of $(x_n), (y_n)$.
+    Notice that for any $k \geq \max\{N, M\}, d(x_{n_k}, y) \leq d(x_{n_k}, y_{n_k}) + d(y_{n_k}, y) < \epsilon/2 + \epsilon/2 = \epsilon$.
+    This means that $(x_{n_k}) \subset F$ converges to $y \notin F$, which contradicts the fact that $F$ is closed.
+    Therefore $d(F, K) > 0$.
+    To show that it does not suffice for $K$ to be closed only, consider $M = \mathbb{R}^2, F = \{(x, 0): x \in \mathbb{R}\}, K = \{(x, \frac{1}{x}): x > 0\}$.
+    It's easy enough to see that these are both closed by examining their complements, and they are also clearly disjoint.
+    However, notice that for any $\epsilon > 0, d((\frac{2}{\epsilon}, 0), (\frac{2}{\epsilon}, \frac{1}{2/\epsilon})) = \epsilon/2$, which means that $d(F, K)$ must be zero.
+\end{solution}
+
+\begin{exercise}{40}
+    Let $M$ be compact and let $f: M \rightarrow M$ satisfy $d(f(x), f(y)) = d(x, y)$ for all $x, y \in M$.
+    Show that $f$ is onto.
+    [Hint: If $B_{\epsilon}(x) \cap f(M) = \emptyset$, consider the sequence $(f^{(n)}(x))$.]
+\end{exercise}
+
+\begin{solution}
+    
+    Notice that $f$ is an isometry, and thus continuous.
+    Therefore, the set $f(M)$ must be compact in $M$ (Theorem 8.4).
+    Suppose then that it is the case that there exists $x \notin f(M)$, i.e., that $f$ is not onto.
+    We claim that there exists $\epsilon > 0$ such that the entire open ball $B_{\epsilon}(x)$ lies outside $f(M)$.
+    If this was not the case, then by taking successive $x_n$ such that $d(x_n, x) < \frac{1}{n}$, we could easily construct a Cauchy sequence $(x_n) \subset f(M)$ that converges to $x \notin f(M)$, which would be a contradiction because $f(M)$ is complete.
+    Now consider what happens if, as indicated in the hint, we examine the sequence $(f^{(n)}(x))$.
+    Since this belongs entirely in the compact set $f(M)$, it must contain a convergent subsequence (Theorem 8.2) $(f^{(n_k)}(x))$, converging to some $y \in f(M)$.
+    Because this subsequence converges, it must be Cauchy.
+    Therefore, there exists some $N$ such that for $k, l \geq N$ (WLOG, $k < l$) it holds that:
+
+    \[d(f^{(n_k)}(x), f^{(n_l)}(x)) < \epsilon \implies d(x, f^{(n_l - n_k)}(x)) < \epsilon\]
+
+    What this implies, of course, is that $f^{(n_k - n_l)}(x)$ lies inside the ball $B_{\epsilon}(x)$, which as we saw above is impossible.
+    Therefore, it cannot be the case that $x \notin f(M)$ for some $x$, and so $f$ is onto.
+\end{solution}
+
+\begin{exercise}{41}
+    Is compactness necessary in Exercise 40?
+    That is, is it possible for a metric space to be isometric to a proper subset of itself?
+    Explain.
+\end{exercise}
+
+\begin{solution}
+    
+    Consider the clearly non-compact metric space $M = [1, +\infty)$, and the function $f: M \rightarrow M, f(x) = x + 1$.
+    The range of $f$ is $f(M) = [2, +\infty)$, which is a proper subset of $M$.
+    We can easily see that $f$ is an isometry, and so $[1, +\infty)$ is isometric to $[2, +\infty)$.
+\end{solution}
+
+\begin{exercise}{42}
+    Let $M$ be compact and let $f: M \rightarrow M$ satisfy $d(f(x), f(y)) \geq d(x, y)$ for all $x, y \in M$.
+    Prove that $f$ is an isometry of $M$ onto itself.
+\end{exercise}
