@@ -463,7 +463,26 @@
     Furthermore, $[0, 1]$ is compact (Heine-Borel), and so we can apply Exercise 8.23 to conclude that $f$ is a homeomorphism \textit{into} $V$.
 \end{solution}
 
-\newpage
+\begin{exercise}{29}
+    Let $M$ be a compact metric space and suppose that $f: M \rightarrow M$ satisfies $d(f(x), f(y)) < d(x, y)$ whenever $x \neq y$.
+    Show that $f$ has a fixed point.
+    [Hint: First note that $f$ is continuous; next, consider $g(x) = d(x, f(x))$.]
+\end{exercise}
+
+\begin{solution}
+    
+    As indicated in the hint, we first show that $f$ is continuous by observing that it is in fact Lipschitz continuous with constant $K = 1$.
+    Now consider the function $g(x) = d(x, f(x))$.
+    This is easily seen to be continuous as well: if $x_n \rightarrow x$, then $f(x_n) \rightarrow f(x)$, and hence $d(x_n, f(x_n)) \rightarrow d(x, f(x))$ (a simple application of the triangle inequality shows this).
+    By Corollary 8.5, $g$ is bounded and attains its minimum value $m$, which means that for some $x_0 \in M, d(x_0, f(x_0)) = m$.
+    We claim that $f(x_0)$ is a fixed point for $f$.
+    Indeed, if it is not it must be that $f(x_0) \neq f(f(x_0))$ and then it also holds that:
+
+    \[d(f(x_0), f(f(x_0))) < d(x_0, f(x_0)) = m,\]
+
+    which is impossible by the definition of $m$.
+
+\end{solution}
 
 \begin{exercise}{30}
     Prove Lemma 8.8: In a metric space $M$, the following are equivalent:
@@ -628,11 +647,6 @@
     Prove that $f$ is an isometry of $M$ onto itself.
 \end{exercise}
 
-\begin{exercise}{42}
-    Let $M$ be compact and let $f: M \rightarrow M$ satisfy $d(f(x), f(y)) \geq d(x, y)$ for all $x, y \in M$.
-    Prove that $f$ is an isometry of $M$ onto itself.
-\end{exercise}
-
 \begin{solution}
     
     Notice that if we can prove that the given inequality is in fact always an equality, then we can apply Exercise 8.40 to directly obtain that $f$ is an onto isometry.
@@ -679,8 +693,6 @@
     It's easy to see that this implies that $f$ is then also an isometry of $M$ onto itself.
 \end{solution}
 
-\newpage
-
 \section{Uniform Continuity}
 
 \begin{exercise}{44}
@@ -709,4 +721,47 @@
     
     Take any $\epsilon$ and take $\delta = 1/2$.
     Then for any two $x, y \in \mathbb{N}$ such that $\lvert m - n \rvert < \delta$, it vacuously holds that $\lvert f(m) - f(n) \rvert < \epsilon$, since no two natural numbers satisfy $\lvert m - n \rvert < 1/2$ except if $m = n$ (in which case clearly $\lvert f(m) - f(n) \rvert = 0$).
+\end{solution}
+
+\newpage
+
+\begin{exercise}{46}
+    Show that $\lvert d(x, z) - d(y, z) \rvert \leq d(x, y)$ and conclude that the map $x \mapsto d(x, z)$ is uniformly continuous on $M$ for each fixed $z \in M$.
+\end{exercise}
+
+\begin{solution}
+    
+    For the inequality, we already know it to hold from Exercise 3.2.
+    Now, consider any $\epsilon > 0$ and set $\delta = \epsilon$.
+    Then, based on the ``reverse triangle inequality'', whenever $d(x, y) < \delta$, we have that:
+
+    \[\lvert d(x, z) - d(y, z) \rvert \leq d(x, y) < \delta = \epsilon,\]
+
+    which shows that the map $x \mapsto d(x, z)$ is uniformly continuous for any fixed $z \in M$.
+\end{solution}
+
+\begin{exercise}{47}
+    Given a nonempty subset $A \subset M$, show that $\lvert d(x, A) - d(y, A) \rvert \leq d(x, y)$, and conclude that the map $x \mapsto d(x, A)$ is uniformly continuous on $M$.
+\end{exercise}
+
+\begin{solution}
+    
+    We know that this inequality holds from Proposition 5.4.
+    Then, for any $\epsilon > 0$, set $\delta = \epsilon$ and observe that whenever $d(x, y) < \delta$, we have that:
+
+    \[\lvert d(x, A) - d(y, A) \rvert \leq d(x, y) < \delta = \epsilon,\]
+
+    and so the map from $x$ to $d(x, A)$ is uniformly continuous on $M$ for any fixed $A$.
+\end{solution}
+
+\begin{exercise}{48}
+    Prove that a uniformly continuous map sends Cauchy sequences into Cauchy sequences.
+\end{exercise}
+
+\begin{solution}
+    
+    Let $f: (M, d) \rightarrow (N, \rho)$ be uniformly continuous, and $(x_n) \subset M$ be Cauchy.
+    Pick any $\epsilon > 0$, and obtain $\delta > 0$ for which it holds that $d(x, y) < \delta \implies \rho(f(x), f(y)) < \epsilon$ for any two $x, y \in M$, which exists because $f$ is uniformly continuous.
+    Furthermore, pick $N > 0$ such that $d(x_n, x_m) < \delta$ for any $n, m \geq N$, which exists because $(x_n)$ is Cauchy.
+    Then, for any $n, m \geq N$ it must hold that $d(x_n, x_m) < \delta$, and thus also that $\rho(f(x_n), f(x_m)) < \epsilon$, which shows precisely that $(f(x_n))$ is Cauchy in $N$.
 \end{solution}
