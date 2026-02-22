@@ -765,3 +765,39 @@
     Furthermore, pick $N > 0$ such that $d(x_n, x_m) < \delta$ for any $n, m \geq N$, which exists because $(x_n)$ is Cauchy.
     Then, for any $n, m \geq N$ it must hold that $d(x_n, x_m) < \delta$, and thus also that $\rho(f(x_n), f(x_m)) < \epsilon$, which shows precisely that $(f(x_n))$ is Cauchy in $N$.
 \end{solution}
+
+\begin{exercise}{49}
+    Show that the sum of uniformly continuous maps is uniformly continuous.
+    Is the product of uniformly continuous maps always uniformly continuous?
+    Explain.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose $(N, \lvert \lvert \cdot \rvert \rvert$ is a normed vector space and $f, g: (M, d) \rightarrow (N, \lvert \lvert \cdot \rvert \rvert)$ are uniformly continuous.
+    Pick any $\epsilon > 0$, and obtain $\delta_1 > 0, \delta_2 > 0$ such that whenever $d(x, y) < \delta_1$ it holds that $\lvert \lvert f(x) - f(y) \rvert \rvert < \epsilon/2$ and whenever $d(x, y) < \delta_2$ it holds that $\lvert \lvert g(x) - g(y) \rvert \rvert < \epsilon/2$ (where we're using the induced metric on $N$).
+    Then, whenever $d(x, y) < \min\{\delta_1, \delta_2\}$ holds, we can obtain that:
+
+    \[\lvert \lvert (f(x) + g(x)) - (f(y) + g(y)) \rvert \rvert \leq \lvert \lvert f(x) - f(y) \rvert \rvert + \lvert \lvert g(x) - g(y) \rvert \rvert < \epsilon/2 + \epsilon/2 = \epsilon,\]
+
+    which shows that $f + g$ is also uniformly continuous.
+    However, the same does \textit{not} hold for the product.
+    To see this, we consider $N = \mathbb{R}$, and $f(x) = x, g(x) = x$, both uniformly continuous.
+    Then $f(x) \cdot g(x) = x^2$, which is not uniformly continuous.
+\end{solution}
+
+\begin{exercise}{54}
+    Let $E$ be a bounded noncompact subset of $\mathbb{R}$.
+    Show that there is a continuous function $f: E \rightarrow \mathbb{R}$ that is not uniformly continuous.
+\end{exercise}
+
+\begin{solution}
+    
+    By the Heine - Borel theorem, any subset of $\mathbb{R}$ is compact iff it is closed and bounded.
+    This means that $E$, as a bounded noncompact subset, must necessarily \textit{not} be closed.
+    Consequently, there must exist at least one convergent sequence $(x_n) \subset E$ that converges to some $x \notin E$.
+    Let then $f(y) = \frac{1}{y - x}$, which is well-defined and continuous (quotient of continuous functions where the denominator is never zero) in all of $E$.
+    However, observe that $(x_n)$, a Cauchy sequence (since it converges, albeit to a point ouside $E$), is mapped via $f$ to a sequence that is \textit{not} Cauchy: 
+
+    \[\lvert \frac{1}{x_n - y} - \frac{1}{x_m - y} \rvert = \frac{x_m - x_n}{}\]
+\end{solution}
