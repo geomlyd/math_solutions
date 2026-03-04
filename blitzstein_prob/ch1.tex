@@ -225,3 +225,68 @@
     \[= \binom{54 + 1}{4 + 1} - \binom{33 + 1}{4 + 1} = \binom{55}{5} - \binom{34}{5}\]
 
 \end{solution}
+
+\begin{exercise}{22}
+    The Dutch mathematician R. J. Stroeker remarked:
+    
+    \textit{
+        Every beginning student of number theory surely must have marveled at the miraculous fact that for each natural number $n$ the sum of the first $n$ consecutive cubes is a perfect square.}
+    
+        Furthermore, it is the square of the sum of the first $n$ positive integers! That is,
+
+        \[1^3 + 2^3 + \ldots + n^3 = (1 + 2 + \ldots + n)^2\]
+
+        Uusually this identity is proven by induction, but that does not give much insight into why the result is true, nor does it help much if we wanted to compute the left-hand side but didn't already know this result.
+        In this problem, you will give a story proof of the identity.
+
+        (a) Give a story proof of the identity
+
+        \[1 + 2 \ldots + n = \binom{n + 1}{2}\]
+
+        Hint: Consider a round-robin tournament (see Exercise 4).
+
+        (b) Give a story proof of the identity
+
+        \[1^3 + 2^3 + \ldots + n^3 = 6\binom{n + 1}{4} + 6\binom{n + 1}{3} + \binom{n + 1}{2}\]
+
+        It is then just basic algebra (not required for this problem) to check that the square of the RHS in (a) is the RHS in (b).
+
+        Hint: Imagine choosing a number between 1 and $n$ and then choosing 3 numbers between 0 and $n$ smaller than the original number, with replacement.
+        Then consider cases based on how many distinct numbers were chosen.
+\end{exercise}
+
+\begin{solution}
+    
+    (a) Imagine having $n + 1$ tennis players in a round-robin tournament, and wanting to count the total number of games that will be played (regardless of win-lose).
+    This equals $\binom{n + 1}{2}$, since every pair of players must play against each other.
+    Another way of counting this is labeling the players from $1, 2, \ldots, n + 1$, and counting all games in which each player will play.
+    For player 1, this equals $n$ games, for player 2, it equals $n - 1$ (since we've already counted the game against 1), and so on.
+    This means that the total number of games also equals $n + n - 1 + \ldots + 2 + 1$, thus showing the required identity.
+
+    (b) Suppose we choose a number $k$ between 1 and $n$, inclusive, and then sample 3 times, with replacement, a number between $0$ and $k - 1$, inclusive.
+    Suppose we also want to record and count results in the form ``chosen number - first sample - second sample - third sample'', where the order matters.
+    For any given $k$, there are $k^3$ possible sampling outcomes, and so the total count we are interested in is $1^3 + 2^3 + \ldots + n^3$.
+    Now consider a different way of counting this, based on how many distinct numbers are chosen.
+    Clearly, there are three cases: one, two, and three distinct numbers.
+    Choosing one distinct number is feasible whenever $k = 1, 2, \ldots n$, and by thinking about the fact that for a given $k$ there are $k$ choices, this can be counted as:
+
+    \[\binom{1}{1} + \binom{2}{1} + \ldots + \binom{n}{1} = \binom{n + 1}{2},\]
+
+    where we make use of the hockey stick identity from Exercise 1.20.
+
+    Similarly, choosing two distinct numbers is feasible whenever $k = 2, 3, \ldots, n$, and by a similar observation yields:
+
+    \[\binom{2}{2} + \binom{3}{2} + \ldots + \binom{n}{2} = \binom{n + 1}{3}\]
+
+    Note, however, that since we're dealing with combinations, we do not account for the fact that in our count here \textit{order matters}.
+    To account for this, note that given a combination of 3 items, 6 permutations can be made, and therefore we need to multiply the above count by 6.
+    Finally, choosing three distinct numbers is feasible when $k = 3, 4, \ldots, n$ and yields:
+
+    \[\binom{3}{3} + \binom{4}{3} + \ldots + \binom{n}{3} = \binom{n + 1}{4},\]
+
+    where for the same reason as above we are under-counting by a factor of 6.
+    Putting it all together, we end up with the equality:
+
+    \[1^3 + 2^3 + \ldots + n^3 = 6\binom{n + 1}{4} + 6\binom{n + 1}{3} + \binom{n + 1}{2}\]
+
+\end{solution}
