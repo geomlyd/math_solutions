@@ -10,7 +10,7 @@
 
 \usepackage{mathrsfs} % This allows for the use of \mathscr{P} which is the same font used for the powerset notation in Velleman's book.
 
-\newtheorem{corollary}{Corollary}
+% \newtheorem{corollary}{Corollary}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{arrows}
@@ -38,9 +38,28 @@
     
 \renewcommand{\thesubsection}{\thesection.\alph{subsection}}
 
+\definecolor{nonexercisecol}{HTML}{CDC392}
+
 \newenvironment{exercise}[2][Exercise]
     { \begin{mdframed}[backgroundcolor=gray!20] \textbf{#1 #2} \\}
     {  \end{mdframed}}
+
+\newenvironment{proposition}[2][Proposition]
+    { \begin{mdframed}[backgroundcolor=nonexercisecol] \textbf{#1 #2} \\}
+    {  \end{mdframed}}    
+
+\newenvironment{theorem}[2][Theorem]
+{ \begin{mdframed}[backgroundcolor=nonexercisecol] \textbf{#1 #2} \\}
+{  \end{mdframed}}  
+
+\newenvironment{corollary}[2][Corollary]
+{ \begin{mdframed}[backgroundcolor=nonexercisecol] \textbf{#1 #2} \\}
+{  \end{mdframed}}  
+
+\newenvironment{definition}[2][Definition]
+{ \begin{mdframed}[backgroundcolor=nonexercisecol] \textbf{#1 - #2} \\}
+{  \end{mdframed}}  
+
 
 % Define solution environment
 
@@ -70,9 +89,9 @@
   {\endinnercustomgeneric}
 }
 
-\newcustomtheorem{theorem}{Theorem}
-\newcustomtheorem{definition}{Definition}
-\newcustomtheorem{lemma}{Lemma}
+% \newcustomtheorem{theorem}{Theorem}
+% \newcustomtheorem{definition}{Definition}
+% \newcustomtheorem{lemma}{Lemma}
 
 
   \setlength{\parindent}{0pt}
