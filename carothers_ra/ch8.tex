@@ -817,3 +817,32 @@
     Obtain $\delta$ such that whenever $\lvert x - y \rvert < \delta$ it holds that $\lvert f(x) - f(y) \rvert < \epsilon$.
     Consider also the function $f: \mathbb{R} \rightarrow \mathbb{R}, f(x) = x$, which is continuous and unbounded, but is trivially uniformly continuous, thus yielding an answer of ``yes'' to the second question.
 \end{solution}
+
+\begin{exercise}{58}
+    Show that any function $f: \mathbb{R} \rightarrow \mathbb{R}$ having a bounded derivative is Lipschitz of order 1.
+    [Hint: Use the mean value theorem.]
+\end{exercise}
+
+\begin{solution}
+    
+    Since $f$ is differentiable, for any two $x, y \in \mathbb{R}, x < y$ we can apply the mean value theorem to obtain $a \in (x, y)$ such that:
+
+    \[f(y) - f(x) = f'(a)(y - x) \implies \lvert f(y) - f(x) \rvert \leq \lvert f'(a) \rvert \cdot \lvert y - x \rvert\]
+
+    Now, because the derivative of $f$ is bounded, there exists $K \geq 0$ such that $\lvert f'(x) \rvert \leq K$ for all $x \in \mathbb{R}$, and so more specifically:
+
+    \[\lvert f'(y) - f'(x) \rvert \leq K \cdot \lvert y - x \rvert,\]
+
+    which shows that $f$ is Lipschitz of order 1.
+\end{solution}
+
+\begin{exercise}{61}
+    Two metric spaces $(M, d), (N, \rho)$ are said to be \textbf{uniformly homeomorphic} if there is a one-to-one and onto map $f: M \rightarrow N$ such that both $f, f^{-1}$ are \textit{uniformly} continuous.
+    In this case we say that $f$ is a \textbf{uniform homeomorphism}.
+    Prove that completeness is preserved by uniform homeomorphisms.
+\end{exercise}
+
+\begin{solution}
+    
+    
+\end{solution}
