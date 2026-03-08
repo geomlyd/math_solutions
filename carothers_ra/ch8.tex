@@ -786,6 +786,8 @@
     Then $f(x) \cdot g(x) = x^2$, which is not uniformly continuous.
 \end{solution}
 
+\newpage
+
 \begin{exercise}{54}
     Let $E$ be a bounded noncompact subset of $\mathbb{R}$.
     Show that there is a continuous function $f: E \rightarrow \mathbb{R}$ that is not uniformly continuous.
@@ -797,6 +799,21 @@
     This means that $E$, as a bounded noncompact subset, must necessarily \textit{not} be closed.
     Consequently, there must exist at least one convergent sequence $(x_n) \subset E$ that converges to some $x \notin E$.
     Let then $f(y) = \frac{1}{y - x}$, which is well-defined and continuous (quotient of continuous functions where the denominator is never zero) in all of $E$.
-    Now suppose that $f$ is uniformly continuous, and fix $\epsilon > 0$.
-    Obtain $\delta > 0$ such that whenever $\lvert x_n - x \rvert < \delta$ (which does eventually happen since $x_n \rightarrow x$), it holds that $\left \lvert \frac{1}{x_n - x} - \frac{1}
+    Because we are in $\mathbb{R}$, the sequence $(x_n)$ must actually be Cauchy, as a convergent sequence.
+    Notice, however, that the sequence $f((x_n))$ is not convergent (the terms go to infinity), much less Cauchy.
+    By Exercise 8.48, it follows that $f$ cannot be uniformly continuous.
+\end{solution}
+
+\begin{exercise}{55}
+    Give an example of a bounded continuous map $f: \mathbb{R} \rightarrow \mathbb{R}$ that is not uniformly continuous.
+    Can an unbounded continuous function $f: \mathbb{R} \rightarrow \mathbb{R}$ be uniformly continuous?
+\end{exercise}
+
+\begin{solution}
+    Consider the function $f(x) = \sin(e^x)$.
+    Clearly, this is both bounded and continuous (composition of continuous functions).
+    However, it is not uniformly continuous.
+    To see why, assume that it is, and pick, for example, $\epsilon = 0.1$.
+    Obtain $\delta$ such that whenever $\lvert x - y \rvert < \delta$ it holds that $\lvert f(x) - f(y) \rvert < \epsilon$.
+    Consider also the function $f: \mathbb{R} \rightarrow \mathbb{R}, f(x) = x$, which is continuous and unbounded, but is trivially uniformly continuous, thus yielding an answer of ``yes'' to the second question.
 \end{solution}
