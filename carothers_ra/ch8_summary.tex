@@ -3,7 +3,7 @@
 \section{Uniform Continuity}
 
 \begin{definition}{Uniform continuity}
-    $f: (M, d) \rightarrow (N, \rho)$ is uniformly continuous if for every $\epsilon > 0$, there exists $\delta > 0$ such that $\rho(f(x), f(y)) < \epsilon$ whenever $d(x, y) < \delta$.
+    $f: (M, d) \rightarrow (N, \rho)$ is uniformly continuous if for every $\epsilon > 0$, there exists $\delta > 0$ such that $\rho(f(x), f(y)) < \epsilon$ whenever $d(x, y) < \delta$. 
 \end{definition}
 
 \begin{exercise}{8.44}
@@ -15,3 +15,34 @@
     \textit{Every} map $f: \mathbb{N} \rightarrow \mathbb{R}$ is uniformly continuous.
     Intuitively, this is because natural numbers never get ``arbitrarily close'' to each other.
 \end{exercise}
+
+\begin{exercise}{48}
+    A uniformly continuous map sends Cauchy sequences to Cauchy sequences.
+\end{exercise}
+
+\begin{exercise}{8.54}
+    In bounded, noncompact subsets of $\mathbb{R}$, continuous functions need not uniformly continuous.
+\end{exercise}
+
+\begin{exercise}{8.55}
+    Bounded continuous maps in $\mathbb{R}$ need not be uniformly continuous: for example, $f(x) = \sin(e^x)$, which oscillates ``increasingly fast''.
+    Furthermore, unbounded continuous functions \textit{can} be uniformly continuous, as easily seen by the identity function.
+\end{exercise}
+
+\begin{exercise}{8.56}
+    \textbf{A criterion for uniform continuity}: $f: (M, d) \rightarrow (N, \rho)$ is uniformly continuous iff $\rho(f(x_n), f(y_n)) \rightarrow 0$ for any pair of sequences $(x_n), (y_n) \subset M$ such that $d(x_n, y_n) \rightarrow 0$.
+\end{exercise}
+
+\begin{exercise}{8.58}
+    Any function $f: \mathbb{R} \rightarrow \mathbb{R}$ with a bounded derivative is Lipschitz of order 1.
+\end{exercise}
+
+\begin{exercise}{8.61}
+    In general, we know that completeness is not necessarily maintained by homeomorphisms.
+    However, if $f, f^{-1}$ are \textit{uniformly continuous} homeomorphisms (\textbf{uniform homeomorphisms}) between two metric spaces, then completeness is preserved.
+    We call such metric spaces $\textbf{uniformly homeomorphic}$.
+\end{exercise}
+
+\begin{proposition}{8.14}
+    If $f: M \rightarrow N$ is uniformly continuous, then $f$ maps totally bounded sets into totally bounded sets
+\end{proposition}

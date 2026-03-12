@@ -810,10 +810,51 @@
 \end{exercise}
 
 \begin{solution}
+
     Consider the function $f(x) = \sin(e^x)$.
     Clearly, this is both bounded and continuous (composition of continuous functions).
     However, it is not uniformly continuous.
-    To see why, assume that it is, and pick, for example, $\epsilon = 0.1$.
-    Obtain $\delta$ such that whenever $\lvert x - y \rvert < \delta$ it holds that $\lvert f(x) - f(y) \rvert < \epsilon$.
-    Consider also the function $f: \mathbb{R} \rightarrow \mathbb{R}, f(x) = x$, which is continuous and unbounded, but is trivially uniformly continuous, thus yielding an answer of ``yes'' to the second question.
+    To see why this is the case, consider the sequences $x_n = \log(2 n \pi), y_n = \log(2n \pi + \frac{\pi}{2})$.
+    For any $n$, we easily see that $f(x_n) = 0, f(y_n) = 1$.
+    However:
+
+    \[\lvert y_n - x_n \rvert = \lvert \log(2n \pi + \frac{\pi}{2}) - \log(2 n \pi) \rvert = \left\vert \log \left(\frac{2 n \pi + \pi/2}{2 n \pi}\right) \right\vert = \left\vert\log\left(1 + \frac{1}{4n}\right)\right\vert,\]
+
+    which tends to zero as $n \rightarrow \infty$, i.e.\, $d(x_n, y_n) \rightarrow 0$.
+    But then Exercise 8.56 tells us that if $f$ were uniformly continuous, it would map $(x_n), (y_n)$ to sequences that also arbitrarily approach each other, which is not the case here.
+
+    Now consider also the function $f: \mathbb{R} \rightarrow \mathbb{R}, f(x) = x$, which is continuous and unbounded, but is trivially uniformly continuous, thus yielding an answer of ``yes'' to the second question.
+\end{solution}
+
+\begin{exercise}{58}
+    Show that any function $f: \mathbb{R} \rightarrow \mathbb{R}$ having a bounded derivative is Lipschitz of order 1.
+    [Hint: Use the mean value theorem.]
+\end{exercise}
+
+\begin{solution}
+    
+    Since $f$ is differentiable, for any two $x, y \in \mathbb{R}, x < y$ we can apply the mean value theorem to obtain $a \in (x, y)$ such that:
+
+    \[f(y) - f(x) = f'(a)(y - x) \implies \lvert f(y) - f(x) \rvert \leq \lvert f'(a) \rvert \cdot \lvert y - x \rvert\]
+
+    Now, because the derivative of $f$ is bounded, there exists $K \geq 0$ such that $\lvert f'(x) \rvert \leq K$ for all $x \in \mathbb{R}$, and so more specifically:
+
+    \[\lvert f'(y) - f'(x) \rvert \leq K \cdot \lvert y - x \rvert,\]
+
+    which shows that $f$ is Lipschitz of order 1.
+\end{solution}
+
+\begin{exercise}{61}
+    Two metric spaces $(M, d), (N, \rho)$ are said to be \textbf{uniformly homeomorphic} if there is a one-to-one and onto map $f: M \rightarrow N$ such that both $f, f^{-1}$ are \textit{uniformly} continuous.
+    In this case we say that $f$ is a \textbf{uniform homeomorphism}.
+    Prove that completeness is preserved by uniform homeomorphisms.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose $M$ is complete, and let $(y_n) \subset N$ be Cauchy.
+    Due to the existence of $f, f^{-1}$, there exist (unique) $x_n \in M$ such that $x_n = f^{-1}(y_n), f(x_n) = y_n$.
+    Furthermore, the sequence $(x_n)$ is Cauchy in $M$, because $f^{-1}$ is uniformly continuous.
+    Then, because $M$ is complete, $x_n \rightarrow^{d} x$ for some $x \in M$, and consequently $f(x_n) \rightarrow^{\rho} f(x)$, since $f$ is a homeomorphism.
+    But then this means that $(y_n)$ converges to $f(x)$, and so $N$ is complete.
 \end{solution}
