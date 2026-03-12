@@ -858,3 +858,25 @@
     Then, because $M$ is complete, $x_n \rightarrow^{d} x$ for some $x \in M$, and consequently $f(x_n) \rightarrow^{\rho} f(x)$, since $f$ is a homeomorphism.
     But then this means that $(y_n)$ converges to $f(x)$, and so $N$ is complete.
 \end{solution}
+
+\begin{exercise}{62}
+    Two metrics $d, \rho$ on a set $M$ are said to be \textbf{uniformly equivalent} if the identity map between $(M, d), (M, \rho)$ is uniformly continuous in both directions (i.e., if the identity map is a uniform homeomorphism).
+    If there are constants $0 < c, C < \infty$ such that $c\rho(x, y) \leq d(x, y) \leq C\rho(x, y)$ for every pair of points $x, y \in M$, prove that $d, \rho$ are uniformly equivalent.
+\end{exercise}
+
+\begin{solution}
+    
+    Pick any $\epsilon > 0$, and let $\delta = \epsilon \cdot c$.
+    Then, whenever $d(x, y) < \delta$, we have that:
+
+    \[c \cdot \rho(x, y) \leq d(x, y) < \epsilon \cdot c \implies \rho(x, y) < \epsilon,\]
+
+    which shows that the map $i: (M, d) \rightarrow (M, \rho), i(x) = x$ is uniformly continuous.
+    Similarly, for any $\epsilon > 0$, let $\delta = \epsilon/C$.
+    Then, whenever $\rho(x, y) < \epsilon/C$, we have that:
+
+    \[d(x, y) \leq C \rho(x, y) < C(\epsilon/C) = \epsilon,\]
+
+    which shows that the map $i^{-1}: (M, \rho) \rightarrow (M, d), i^{-1}(x) = x$ is also uniformly continuous.
+    Therefore, the identity map is a uniform homeomorphism, and so $d, \rho$ are uniformly equivalent on $M$.
+\end{solution}
