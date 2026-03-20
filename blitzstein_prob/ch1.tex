@@ -302,5 +302,55 @@
 
 \begin{solution}
     
+    Let us first examine the number of possible outcomes.
+    We can think of an outcome as a sequence of three numbers, each from 2 to 10, inclusive.
+    These can be repeated, since e.g. 223 would mean that the first person pressed the button for floor 2, the second person also wanted the second one and thus pressed no button, and the third pressed the button for floor 3.
+    In total, there are then $9^3$ events (sampling 3 times with replacement from a set of 9 elements).
+    We can count the number of favorable outcomes by observing that if we take an outcome and sort it by floor numbers, we end up with 7 possible ways to get 3 consecutive floors:
+
+    \[(2, 3, 4), (3, 4, 5), \ldots, (8, 9, 10)\]
+
+    Now, each of these sorted lists can originate from $3!$ outcomes, its permutations.
+    This means that the favorable outcomes are $7 \cdot 3! = 42$, and the probability of the event we're interested in is:
+
+    \[\frac{42}{9^3} = \frac{42}{729} \approx 0.0576\]
+
+\end{solution}
+
+\newpage
+
+\begin{exercise}{26}
+    A survey is being conducted in a city with 1 million residents.
+    It would be far too expensive to survey all of the residents, so a random sample of size 1000 is chosen (in practice, there are many challenges with sampling, such as obtaining a complete list of everyone in the city, and dealing with people who refuse to participate).
+    The survey is conducted by choosing people one at a time, \textit{with} replacement and with equal probabilities.
+
+    (a) Explain how sampling with vs. without replacement here relates to the birthday problem.
+
+    (b) Find the probability that at least one person will get chosen more than once.
+\end{exercise}
+
+\begin{solution}
     
+    (a) Imagine that a year had, instead of 365 days, 1 million ones.
+    Then, choosing 1,000 people \textit{with} replacement is in essence an instance of the ``general'' birthday problem in a setting where a room has 1,000 people and a year has 1 million days.
+    If instead we sample without replacement, it's as if we're choosing $1,000 < 10^6$ unique birthdays to create a room where no two people have the same birthday.
+
+    (b) Using the birthday problem result with the adjustments described in (a) we obtain the desired probability as:
+
+    \[1 - \frac{10^6 \cdot (10^6 - 1) \cdot \ldots \cdot (10^6 - 1,000 + 1)}{10^{6\cdot 1000}}  = 1 - 1 \cdot(1 - \frac{1}{10^6}) \cdot \ldots \cdot (1 - \frac{999}{10^6}) \approx 0.393\]
+
+\end{solution}
+
+\begin{exercise}{31}
+    Elk dwell in a certain forest.
+    There are $N$ elk, of which a simple random sample of size $n$ are captured and tagged (``simple random sample'' means that all $\binom{N}{n}$ sets of $n$ elk are equally likely).
+    The captured elk are returned to the population, and then a new sample is drawn, this time with size $m$.
+    This is an important method that is widely used in ecology, known as \textit{capture-recapture}.
+    What is the probability that exactly $k$ of the $m$ elk in the new sample were previously tagged?
+    (Assume that an elk that was captured before doesn't become more or less likely to be captured again.)
+\end{exercise}
+
+\begin{solution}
+    
+
 \end{solution}
