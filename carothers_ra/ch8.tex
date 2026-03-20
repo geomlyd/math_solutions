@@ -844,6 +844,36 @@
     which shows that $f$ is Lipschitz of order 1.
 \end{solution}
 
+\newpage
+
+\begin{exercise}{59}
+    The Lipschitz condition is interesting only for $a \leq 1$; show that a function satisfying a Lipschitz condition of order $a > 1$ is \textit{constant}.
+\end{exercise}
+
+\begin{solution}
+    
+    Let $f$ be such a function, and pick any two $x, y, x < y$.
+    Pick, furthermore, any integer $n \geq 1$.
+    We then have that:
+
+    \begin{align*}
+        & \lvert f(y) - f(x) \rvert \leq \Biggl\lvert\left(f\left(x + \frac{y - x}{n}\right) - f(x)\right) + \left(f\left(x + 2\frac{y - x}{n}\right) - f\left(x + \frac{y - x}{n}\right)\right) + \ldots + \\\\
+        & \left(f(y) - f(x + (n - 1)\frac{y - x}{n})\right)\Biggr\rvert \leq \sum_{i=1}^{n} \left\vert \left(f\left(x + i\frac{y - x}{n}\right) - f\left(x + (i-1)\frac{y-x}{n}\right) \right) \right\vert
+    \end{align*}
+
+    Now we take advantage of the Lipschitz condition to observe that:
+    
+    \[\left\vert f\left(x + i\frac{y - x}{n}\right) - f\left(x + (i - 1)\frac{y - x}{n}\right) \right\vert \leq K\left\vert \frac{y - x}{n} \right\vert^{a}\]
+
+    And therefore:
+
+    \[\lvert f(y) - f(x) \rvert \leq n K \left\vert \frac{y - x}{n} \right\vert^{a} = \frac{K \lvert y - x \rvert^{a}}{n^{a - 1}}\]
+
+    Now notice that the numerator of this fraction is constant, whereas the denominator is a function of the form $n^{\epsilon}$ for some $\epsilon > 0$, since $a > 1$.
+    Therefore, as $n \rightarrow \infty$, the RHS \textit{goes to zero}, and hence the only way that this can hold for all $n$ is if $f(y) = f(x)$.
+    Since $x, y$ were selected arbitrarily, $f$ is constant.
+\end{solution}
+
 \begin{exercise}{61}
     Two metric spaces $(M, d), (N, \rho)$ are said to be \textbf{uniformly homeomorphic} if there is a one-to-one and onto map $f: M \rightarrow N$ such that both $f, f^{-1}$ are \textit{uniformly} continuous.
     In this case we say that $f$ is a \textbf{uniform homeomorphism}.
