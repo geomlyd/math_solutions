@@ -910,3 +910,36 @@
     which shows that the map $i^{-1}: (M, \rho) \rightarrow (M, d), i^{-1}(x) = x$ is also uniformly continuous.
     Therefore, the identity map is a uniform homeomorphism, and so $d, \rho$ are uniformly equivalent on $M$.
 \end{solution}
+
+\begin{exercise}{66}
+    If $f: (0, 1) \rightarrow \mathbb{R}$ is uniformly continuous, show that $\lim_{x \rightarrow 0+} f(x)$ exists.
+    Conclude that $f$ is bounded in (0, 1).
+\end{exercise}
+
+\begin{solution}
+    
+    Take any sequence $(x_n) \subset (0, 1)$ converging to 0.
+    Any convergent sequence is Cauchy, and by Exercise 8.48, uniformly continuous maps map Cauchy sequences  to Cauchy sequences, hence $(f(x_n))$ must be Cauchy.
+    Because $\mathbb{R}$ is complete, $(f(x_n))$ converges to \textit{some} limit.
+    It hence suffices to show that any two $(f(x_n)), (f(y_n))$ converge to the same limit.
+    Take the interleaved sequence $x_1, y_1, x_2, y_2, \ldots$, which also converges to zero.
+    Then by the argument presented above, $f(x_1), f(y_1), f(x_2), f(y_2), \ldots$ converges to some limit, which we know must equal the limit of any of its convergent subsequences, and so it must necessarily be that $(f(x_n)), (f(y_n))$ converge to the same limit, thus completing the proof.
+
+\end{solution}
+
+\begin{exercise}{69}
+    Prove Theorem 8.15 by supplying the details to the ``proof by picture'' in the general case.
+\end{exercise}
+
+\begin{solution}
+    
+    Theorem 8.15 states that if $M$ is a compact metric space, then every continuous map $f: (M, d) \rightarrow (N, \rho)$ is uniformly continuous.
+    To show this, we will work by using the contrapositive of the condition for uniform continuity.
+    Namely, given any $\epsilon > 0$ we will show that there exists $\delta > 0$ such that whenever $\rho(f(x), f(y)) \geq \epsilon$, it also holds that $d(x, y) \geq \delta$.
+    Let $g: M \times M \rightarrow \mathbb{R}$ be the function $g(x, y) = \rho(f(x), f(y))$.
+    By Theorem 5.1, we know that $g^{-1}([\epsilon, \infty]) \subset M \times M$ must be a closed set, and because $M \times M$ is compact, it must itself be compact.
+    This is precisely the set $E = \{(x, y) \in M \times M : \rho(f(x), f(y)) \geq \epsilon\}$.
+    Because $E$ is compact, the continuous function $d(x, y)$ must achieve a minimum value on it (Corollary 8.5), which means indeed that there exists $\delta > 0$ such that $d(x, y) \geq \delta$ whenever $\rho(f(x), f(y)) \geq \epsilon$.
+    Consequently, $f$ is uniformly continuous on $M$.
+
+\end{solution}
