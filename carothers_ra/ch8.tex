@@ -917,13 +917,13 @@
 \end{exercise}
 
 \begin{solution}
-    
+
     Take any sequence $(x_n) \subset (0, 1)$ converging to 0.
-    Any convergent sequence is Cauchy, and by Exercise 8.48, uniformly continuous maps map Cauchy sequences to Cauchy sequences, hence $(f(x_n))$ must be Cauchy.
-    Furthermore, by Proposition 8.14, $f((0, 1))$ must be totally bounded, since $(0, 1)$ is totally bounded.
-    More specifically, it must then be bounded.
-    Then the set $\overline{f((0, 1))}$ is of course closed and bounded, hence compact (Heine-Borel), hence complete.
-    Because $(f(x_n)) \subset \overline{f((0, 1))}$, it then converges as a Cauchy sequence to some limit $L$, which, since $(x_n)$ was selected arbitrarily, means $\lim_{x \rightarrow 0+} f(x)$ exists.
+    Any convergent sequence is Cauchy, and by Exercise 8.48, uniformly continuous maps map Cauchy sequences  to Cauchy sequences, hence $(f(x_n))$ must be Cauchy.
+    Because $\mathbb{R}$ is complete, $(f(x_n))$ converges to \textit{some} limit.
+    It hence suffices to show that any two $(f(x_n)), (f(y_n))$ converge to the same limit.
+    Take the interleaved sequence $x_1, y_1, x_2, y_2, \ldots$, which also converges to zero.
+    Then by the argument presented above, $f(x_1), f(y_1), f(x_2), f(y_2), \ldots$ converges to some limit, which we know must equal the limit of any of its convergent subsequences, and so it must necessarily be that $(f(x_n)), (f(y_n))$ converge to the same limit, thus completing the proof.
 \end{solution}
 
 \begin{exercise}{68}
@@ -938,4 +938,47 @@
     We have the following:
 
     \[\lvert \lvert g(x_1) - g(x_2) \rvert \rvert_1 = \sum_{n=1}^{\infty} \lvert x_{1n}y_n - x_{2n}y_n \rvert = \sum_{n=1}^{\infty} \lvert y_n \rvert \cdot \lvert x_{1n} - x_{2n} \rvert \leq B  \lvert \lvert x_1 - x_2 \rvert \rvert_1\]
+
+    This shows that $g$ is Lipschitz continuous with constant $B$, and hence also uniformly continuous.
+\end{solution}
+
+\begin{exercise}{69}
+    Prove Theorem 8.15 by supplying the details to the ``proof by picture'' in the general case.
+\end{exercise}
+
+\begin{solution}
+    Theorem 8.15 states that if $M$ is a compact metric space, then every continuous map $f: (M, d) \rightarrow (N, \rho)$ is uniformly continuous.
+    To show this, we will work by using the contrapositive of the condition for uniform continuity.
+    Namely, given any $\epsilon > 0$ we will show that there exists $\delta > 0$ such that whenever $\rho(f(x), f(y)) \geq \epsilon$, it also holds that $d(x, y) \geq \delta$.
+    Let $g: M \times M \rightarrow \mathbb{R}$ be the function $g(x, y) = \rho(f(x), f(y))$.
+    By Theorem 5.1, we know that $g^{-1}([\epsilon, \infty]) \subset M \times M$ must be a closed set, and because $M \times M$ is compact, it must itself be compact.
+    This is precisely the set $E = \{(x, y) \in M \times M : \rho(f(x), f(y)) \geq \epsilon\}$.
+    Because $E$ is compact, the continuous function $d(x, y)$ must achieve a minimum value on it (Corollary 8.5), which means indeed that there exists $\delta > 0$ such that $d(x, y) \geq \delta$ whenever $\rho(f(x), f(y)) \geq \epsilon$.
+    Consequently, $f$ is uniformly continuous on $M$.
+\end{solution}
+
+\section{Equivalent Metrics}
+
+\begin{exercise}{73}
+    Given any metric space $(M, d)$, show that the metric $\rho = d/(1 + d)$ is always uniformly equivalent to $d$ but that there are cases in which the inequality $d \leq C \rho$ may fail to hold.
+\end{exercise}
+
+\begin{solution}
+    
+    For the first part, pick any $\epsilon > 0$.
+    Let $\epsilon' = \min\{\epsilon, 0.9\}$, and $\delta = \frac{\epsilon'}{1 - \epsilon'} > 0$.
+    Then, whenever $d(x, y) < \delta$:
+
+    \[d(x, y) < \delta \implies d(x, y) < \frac{\epsilon'}{1 - \epsilon'} \implies d(x, y) - \epsilon' d(x, y) < \epsilon' \implies d(x, y) < \epsilon'(1 + d(x, y))\]
+    \[\frac{d(x, y)}{1 + d(x, y)} < \epsilon' \leq \epsilon \implies \rho(x, y) < \epsilon\]
+
+    This shows that $i: (M, d) \rightarrow (M, \rho)$ is uniformly continuous.
+    Similarly, for any $\epsilon > 0$, the choice of $\delta = \frac{\epsilon}{\epsilon + 1}$ shows that whenever $\rho(x, y) < \delta$, it holds that $\delta(x, y) < \epsilon$ (details omitted for brevity), which means that $i^{-1}$ is also uniformly continuous, and thus the two metrics are uniformly equivalent.
+    Now let's examine whether it can be the case that for some constant $C > 0, d(x, y) \leq C\rho(x, y)$ for any two $x, y \in M$.
+    This would imply that
+
+    \[d(x, y) \leq C\frac{d(x, y)}{1 + d(x, y)} \implies d(x, y) + d^2(x, y) \leq Cd(x, y) \implies d(x, y)(1 + d(x, y) - C) \leq 0\]
+
+    Due to the non-negativity of metrics, it must thus hold that $1 + d(x, y) - C \leq 0 \implies C \geq d(x, y) + 1$ for all $x, y$.
+    We thus see that this cannot hold if $d$ is an unbounded metric on $M$.
 \end{solution}
