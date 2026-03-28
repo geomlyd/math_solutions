@@ -33,8 +33,16 @@
     \textbf{A criterion for uniform continuity}: $f: (M, d) \rightarrow (N, \rho)$ is uniformly continuous iff $\rho(f(x_n), f(y_n)) \rightarrow 0$ for any pair of sequences $(x_n), (y_n) \subset M$ such that $d(x_n, y_n) \rightarrow 0$.
 \end{exercise}
 
+\begin{exercise}{8.57}
+    A type of Lipschitz continuity: If $\lvert f(x) - f(y) \rvert \leq K \lvert x - y \rvert^a$ for $a > 0$ then $f$ is uniformly continuous.
+\end{exercise}
+
 \begin{exercise}{8.58}
     Any function $f: \mathbb{R} \rightarrow \mathbb{R}$ with a bounded derivative is Lipschitz of order 1.
+\end{exercise}
+
+\begin{exercise}{8.59}
+    A function satisfying a Lipschitz condition as in Ex. 8.57 for $a > 1$ is \textbf{necessarily constant}.
 \end{exercise}
 
 \begin{exercise}{8.61}
@@ -44,5 +52,9 @@
 \end{exercise}
 
 \begin{proposition}{8.14}
-    If $f: M \rightarrow N$ is uniformly continuous, then $f$ maps totally bounded sets into totally bounded sets
+    If $f: M \rightarrow N$ is uniformly continuous, then $f$ maps totally bounded sets into totally bounded sets.
 \end{proposition}
+
+\begin{theorem}{8.15}
+    If $M$ is a compact metric space, then every continuous map $f: M \rightarrow N$ is uniformly continuous.
+\end{theorem}

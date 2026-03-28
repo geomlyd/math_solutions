@@ -910,3 +910,32 @@
     which shows that the map $i^{-1}: (M, \rho) \rightarrow (M, d), i^{-1}(x) = x$ is also uniformly continuous.
     Therefore, the identity map is a uniform homeomorphism, and so $d, \rho$ are uniformly equivalent on $M$.
 \end{solution}
+
+\begin{exercise}{66}
+    If $f: (0, 1) \rightarrow \mathbb{R}$ is uniformly continuous, show that $\lim_{x \rightarrow 0+} f(x)$ exists.
+    Conclude that $f$ is bounded in $(0, 1)$.
+\end{exercise}
+
+\begin{solution}
+    
+    Take any sequence $(x_n) \subset (0, 1)$ converging to 0.
+    Any convergent sequence is Cauchy, and by Exercise 8.48, uniformly continuous maps map Cauchy sequences to Cauchy sequences, hence $(f(x_n))$ must be Cauchy.
+    Furthermore, by Proposition 8.14, $f((0, 1))$ must be totally bounded, since $(0, 1)$ is totally bounded.
+    More specifically, it must then be bounded.
+    Then the set $\overline{f((0, 1))}$ is of course closed and bounded, hence compact (Heine-Borel), hence complete.
+    Because $(f(x_n)) \subset \overline{f((0, 1))}$, it then converges as a Cauchy sequence to some limit $L$, which, since $(x_n)$ was selected arbitrarily, means $\lim_{x \rightarrow 0+} f(x)$ exists.
+\end{solution}
+
+\begin{exercise}{68}
+    Fix $y \in l_{\infty}$ and define $g: l_1 \rightarrow l_1$ by $g(x) = (x_ny_n)_{n=1}^{\infty}$.
+    Show that $g$ is uniformly continuous.
+\end{exercise}
+
+\begin{solution}
+    
+    Since $y \in l_{\infty}$, we have that there exists $B > 0$ such that $\lvert y_i \rvert < B$ for all $i$.
+    Now take any two sequences $x_1, x_2 \in l_1$ and any $\epsilon > 0$.
+    We have the following:
+
+    \[\lvert \lvert g(x_1) - g(x_2) \rvert \rvert_1 = \sum_{n=1}^{\infty} \lvert x_{1n}y_n - x_{2n}y_n \rvert = \sum_{n=1}^{\infty} \lvert y_n \rvert \cdot \lvert x_{1n} - x_{2n} \rvert \leq B  \lvert \lvert x_1 - x_2 \rvert \rvert_1\]
+\end{solution}
