@@ -982,3 +982,29 @@
     Due to the non-negativity of metrics, it must thus hold that $1 + d(x, y) - C \leq 0 \implies C \geq d(x, y) + 1$ for all $x, y$.
     We thus see that this cannot hold if $d$ is an unbounded metric on $M$.
 \end{solution}
+
+\begin{exercise}{76}
+    Fix $y \in \mathbb{R}^n$ and define a linear map $L: \mathbb{R}^n \rightarrow \mathbb{R}$ by $L(x) = \langle x, y \rangle$.
+    Show that $L$ is continuous and compute $\lvert \lvert L \rvert \rvert = \sup_{x \neq 0} \lvert L(x) \rvert / \lvert \lvert x \rvert \rvert_2$.
+    [Hint: Cauchy-Schwarz.]
+\end{exercise}
+
+\begin{solution}
+    
+    Firstly, if $y = 0$, $L$ is the zero map, which is of course continuous, and its operator norm is 0.
+    For the rest of the exercise suppose thus that $y \neq 0$.
+    It suffices to show that $L$ is continuous at 0 (Theorem 8.20).
+    Pick any $\epsilon > 0$, and let $\delta = \frac{\epsilon}{\lvert \lvert y \rvert \rvert}$.
+    Then, for any $x \in \mathbb{R}^n$ such that $\lvert \lvert x \rvert \rvert < \delta$ we have that
+
+    \[\lvert L(x) - L(0) \rvert = \lvert \langle x, y \rangle - 0 \rvert \leq \lvert \lvert x \rvert \rvert \cdot \lvert \lvert y \rvert \rvert < \frac{\epsilon}{\lvert \lvert y \rvert \rvert} \cdot \lvert \lvert y \rvert \rvert = \epsilon,\]
+
+    which shows that $L$ is continuous at 0.
+    To compute the operator norm, we once again employ the Cauchy-Schwarz inequality to obtain that
+
+    \[\sup_{x \neq 0} \frac{\lvert L(x) \rvert}{\lvert \lvert x \rvert \rvert_2} = \sup_{x \neq 0} \frac{\lvert \langle x, y \rangle \rvert}{\lvert \lvert x \rvert \rvert_2} \leq \frac{\lvert \lvert x \rvert \rvert_2 \cdot \lvert \lvert y \rvert \rvert_2}{\lvert \lvert x \rvert \rvert_2} = \lvert \lvert y \rvert \rvert_2\]
+
+    Furthermore, we know that when $x, y$ are colinear, this upper bound for the Cauchy-Schwarz inequality is achieved, from which we can conclude that the above supremum \textit{equals} $\lvert \lvert y \rvert \rvert_2$.
+    Therefore, $\lvert \lvert L \rvert \rvert = \lvert \lvert y \rvert \rvert_2$.
+
+\end{solution}
