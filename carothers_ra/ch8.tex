@@ -1008,3 +1008,45 @@
     Therefore, $\lvert \lvert L \rvert \rvert = \lvert \lvert y \rvert \rvert_2$.
 
 \end{solution}
+
+\begin{exercise}{79}
+    If $S, T \in B(V, W)$, show that $S + T \in B(V, W)$ and that $\lvert \lvert S + T \rvert \rvert \leq \lvert \lvert S \rvert \rvert + \lvert \lvert T \rvert \rvert$.
+    Using this, complete the proof that $B(V, W)$ is a normed space under the operator norm.
+\end{exercise}
+
+\begin{solution}
+
+    If $S, T \in B(V, W)$, there exist $C_1, C_2$ such that $\lvert \lvert S(x) \rvert \rvert_W \leq C_1 \lvert \lvert x \rvert \rvert_V, \lvert \lvert T(x) \rvert \rvert_W \leq C_2 \lvert \lvert x \rvert \rvert_V$ for all $x \in V$.
+    Then for any $x \in V$, we have that
+
+    \[\lvert \lvert (S + T)(x) \rvert \rvert_W \leq \lvert \lvert S(x) \rvert \rvert_W + \lvert \lvert T(x) \rvert \rvert_W \leq C_1 \lvert \lvert x \rvert \rvert_V + C_2 \lvert \lvert x \rvert \rvert_V = (C_1 + C_2) \lvert \lvert x \rvert \rvert_V,\]
+
+    where we used the triangle inequality for the norm $\lvert \lvert \cdot \rvert \rvert_W$, and the boundedness of $S, T$.
+    Notice then that this directly gives us that $S + T$ is bounded as well, while it must furthermore be true that its operator norm, i.e., the smallest $C$ that satisfies the inequality above for all $x$, is \textit{at most} $C_1 + C_2$.
+    Therefore, $\lvert \lvert S + T \rvert \rvert \leq \lvert \lvert S \rvert \rvert + \lvert \lvert T \rvert \rvert$.
+    We can then observe that:
+    \begin{itemize}
+        \item $B(V, W)$ is closed under addition.
+        \item $B(V, W)$ is closed under scalar multiplication: this is very easy to see from the definition.
+        \item The zero operator clearly belongs in $B(V, W)$.
+        \item Commutativity, associativity and all remaining properties of vector spaces are ``inherited'' from the fact that $L(V, W)$ is a vector space.
+        \item The operator norm satisfies the triangle inequality.
+        \item The operator norm is by definition always non-negative.
+        \item Clearly, if $T = 0$, then $\lvert \lvert T \rvert \rvert = 0$.
+        Conversely, if $\lvert \lvert T \rvert \rvert = 0$, then $\lvert \lvert T(x) \rvert \rvert_W \leq 0$ for all $x \in V$.
+        Because $\lvert \lvert \cdot \rvert \rvert_W$ is a norm, this is only possible if $T(x) = 0$ for all $x \in V$, that is, if $T = 0$.
+        \item For a scalar $a$ in the corresponding field, $\lvert \lvert a T \rvert \rvert = \inf_{C \geq 0} \{ \lvert \lvert a T(x) \rvert \rvert_W \leq C \lvert \lvert x \rvert \rvert \quad \forall x \in V \}$.
+        If $a = 0$, then clearly $\lvert \lvert a T \rvert \rvert = 0$.
+        If $a \neq 0$, then if it was the case that $\lvert \lvert a T \rvert \rvert < \lvert a \rvert \cdot \lvert \lvert T \rvert \rvert$, there would exist $C < \lvert a \rvert \cdot \lvert \lvert T \rvert \rvert$ such that for every $x$
+
+        \[\lvert \lvert a T(x) \rvert \rvert_W \leq C \lvert \lvert x \rvert \rvert_V \implies \lvert \lvert T(x) \rvert \rvert_W \leq \frac{C \cdot \lvert \lvert x \rvert \rvert_V}{\lvert a \rvert} \]
+
+        But this implies that $\lvert \lvert T \rvert \rvert \leq \frac{C}{\lvert a \rvert} < \lvert \lvert T \rvert \rvert$, which is a contradiction.
+        A similar argument shows that it cannot be that $\lvert \lvert a T \rvert \rvert > \lvert a \rvert \cdot \lvert \lvert T \rvert \rvert$, hence we have $\lvert \lvert a T \rvert \rvert = \lvert a \rvert \cdot \lvert \lvert T \rvert \rvert$.
+    \end{itemize}
+    From these properties we conclude that $B(V, W)$ is indeed a normed space under the operator norm.
+\end{solution}
+
+\begin{exercise}{82}
+    For $T \in B(V, W)$, prove that $\lvert \lvert T \rvert \rvert = \sup\{\lvert \lvert T(x) \rvert \rvert_W : \lvert \lvert x \rvert \rvert_V = 1\}$.
+\end{exercise}
