@@ -1050,3 +1050,14 @@
 \begin{exercise}{82}
     For $T \in B(V, W)$, prove that $\lvert \lvert T \rvert \rvert = \sup\{\lvert \lvert T(x) \rvert \rvert_W : \lvert \lvert x \rvert \rvert_V = 1\}$.
 \end{exercise}
+
+\begin{solution}
+    
+    Let $C = \sup\{\lvert \lvert T(x) \rvert \rvert_W : \lvert \lvert x \rvert \rvert_V = 1\}$ and suppose that $\lvert \lvert T \rvert \rvert \neq C$.
+    Clearly, it has to be that $\lvert \lvert T \rvert \rvert > C$.
+    This means that there must exist some $x \neq 0$ with $\lvert \lvert x \rvert \rvert_v \neq 1$ such that
+
+    \[\lvert \lvert T(x) \rvert \rvert_W > C \lvert \lvert x \rvert \rvert_V \implies \frac{1}{\lvert \lvert x \rvert \rvert_V} \lvert \lvert T(x) \rvert \rvert_W > C \implies \left\vert \left\vert T\left(\frac{x}{\lvert \lvert x \rvert \rvert_V}\right) \right\vert \right\vert_W > C\]
+
+    Notice then that the vector $\frac{x}{\lvert \lvert x \rvert \rvert_V}$ is of unit norm, which means that this inequality contradicts the definition of $C$, thus showing that $\lvert \lvert T \rvert \rvert = C$.
+\end{solution}
