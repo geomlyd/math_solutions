@@ -1061,3 +1061,23 @@
 
     Notice then that the vector $\frac{x}{\lvert \lvert x \rvert \rvert_V}$ is of unit norm, which means that this inequality contradicts the definition of $C$, thus showing that $\lvert \lvert T \rvert \rvert = C$.
 \end{solution}
+
+\begin{exercise}{85}
+    Fill in the missing details in the proof of Theorem 8.22: Any two norms on a finite-dimensional vector space are equivalent.
+\end{exercise}
+
+\begin{solution}
+    
+    The following points in the proof given in the book warrant further clarification:
+    \begin{itemize}
+        \item The unit sphere $S = \{x \in V: \lvert \lvert x \rvert \rvert = 1\}$ is \textit{compact} in $(V, \lvert \lvert \cdot \rvert \rvert)$ because the corresponding set in $\mathbb{R}^n$ is compact.
+        To see why this is the case, we think of $S' = \{x \in \mathbb{R}^n: \lvert \lvert x \rvert \rvert = 1\}$.
+        It's relatively easy to see that this is closed and bounded in $\mathbb{R}^n$, and hence compact.
+        Furthermore, the identity map $i^{-1}: \mathbb{R}^n \rightarrow V$ is continuous as a linear isometry, and therefore by Theorem 8.4, $S = i^{-1}(S')$ is compact in $V$.
+        \item For any norm $\lvert \lvert \lvert \cdot \rvert \rvert \rvert$ on $V$, we've seen that $\lvert \lvert \lvert \sum_{i=1}^{n} a_i x_i \rvert \rvert \rvert \leq C \lvert \lvert x \rvert \rvert$, with $\lvert \lvert \cdot \rvert \rvert$ being our ``$l_1$-like'' norm on $V$.
+        We saw, also, that this implies that $\lvert \lvert \lvert \cdot \rvert \rvert \rvert$ is continuous on $S$, and thus it attains a minimum value $c$ on it (Corollary 8.5, since $S$ is compact).
+        This means that $c > 0$.
+        Indeed, if it was the case that $c = 0$, then because $\lvert \lvert \lvert \cdot \rvert \rvert \rvert$ is a norm, we would have that $0 \in S$.
+        But then $\lvert \lvert 0 \rvert \rvert = 0$, which contradicts the definition of $S$.
+    \end{itemize}
+\end{solution}
