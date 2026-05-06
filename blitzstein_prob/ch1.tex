@@ -341,16 +341,29 @@
 
 \end{solution}
 
-\begin{exercise}{31}
-    Elk dwell in a certain forest.
-    There are $N$ elk, of which a simple random sample of size $n$ are captured and tagged (``simple random sample'' means that all $\binom{N}{n}$ sets of $n$ elk are equally likely).
-    The captured elk are returned to the population, and then a new sample is drawn, this time with size $m$.
-    This is an important method that is widely used in ecology, known as \textit{capture-recapture}.
-    What is the probability that exactly $k$ of the $m$ elk in the new sample were previously tagged?
-    (Assume that an elk that was captured before doesn't become more or less likely to be captured again.)
+\begin{exercise}{40}
+    There are $n$ balls in a jar, labeled with the numbers $1, 2, \ldots, n$.
+    A total of $k$ balls are drawn, one by one \textit{with replacement}, to obtain a sequence of numbers.
+
+    (a) What is the probability that the sequence obtained is strictly increasing?
+
+    (b) What is the probability that the sequence obtained is increasing (but not necessarily strictly increasing, i.e., there can be repetitions)?
 \end{exercise}
 
 \begin{solution}
     
+    (a) We begin by noting that there $n^k$ possible sequences in total.
+    To count the number of strictly increasing ones, we note that for each $k$ balls that all different from each other, there exists precisely one sequence that contains all of them and is strictly increasing: the sequence resulting from sorting them.
+    The converse is of course also true, i.e., a strictly increasing sequence can be mapped uniquely to $k$ balls selected \textit{without} replacement and without caring about the order.
+    We conclude that the problem is equivalent to counting the number of unique combinations of $k$ out of $n$ balls, which of course means that the requested probability is
 
+    \[\frac{\binom{n}{k}}{n^k}\]
+
+    (b) The reasoning here is similar.
+    First, any increasing sequence can be mapped uniquely to a selection of $k$ out of $n$ balls where we count the number of times each ball was selected (corresponding to equalities in the result).
+    Conversely, any selection of $k$ out of $n$ balls with replacement, and where we count the number of times each ball is drawn can be uniquely mapped to an increasing sequence.
+    This is again done by sorting the balls, except that now equality of adjacent elements in the result is allowed, and corresponds to a ball being selected more than one time.
+    We conclude that the problem is equivalent to the Bose-Einstein counting problem, and so the requested probability is
+
+    \[\frac{\binom{n + k - 1}{k}}{n^k}\]
 \end{solution}
