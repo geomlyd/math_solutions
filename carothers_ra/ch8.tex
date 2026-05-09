@@ -1090,3 +1090,53 @@
     
     
 \end{solution}
+
+\newpage
+
+\begin{exercise}{87}
+    Prove Corollary 8.24: Any two finite-dimensional normed vector spaces of the same dimension are uniformly homeomorphic.
+    In fact, we can even find a linear (and hence Lipschitz) homeomorphism between them.
+\end{exercise}
+
+\begin{solution}
+    
+    Let $V, W$ be two finite-dimensional normed vector spaces of the same dimension, and let $v_1, \ldots, v_n$ and $w_1, \ldots, w_n$ be corresponding bases.
+    Let $T: V \rightarrow W$ be the function 
+    
+    \[T(v) = T(\sum_{i=1}^{n} a_i v_i) = \sum_{i=1}^{n} a_i w_i\]
+
+    Using linear algebra, it's easy to show that $T$ is one-to-one and onto, hence invertible.
+    Now, because $T$ is a map whose domain is a finite-dimensional normed space, Corollary 8.23 tells us that it is continuous.
+    Theorem 8.20 then tells us that it is in fact Lipschitz.
+    The same applies to $T^{-1}$.
+    Putting it all together, we conclude that $T$ is a uniformly continuous homeomorphism between $V, W$, and thus these spaces are uniformly homeomorphic.
+\end{solution}
+
+\begin{exercise}{88}
+    Prove Corollary 8.25: Every finite-dimensional normed vector space is complete.
+\end{exercise}
+
+\begin{solution}
+    
+    Let $V$ be a finite-dimensional normed vector space of dimension $n$.
+    By Corollary 8.24, we know that it is then uniformly homeomorphic to $\mathbb{R}^n$, which by Example 7.7 we know is complete.
+    By Exercise 8.61 we can then conclude that $V$ is also complete.
+\end{solution}
+
+\begin{exercise}{89}
+    Corollary 8.26 (a finite-dimensional linear subspace of any normed vector space is always closed) is of interest because an infinite-dimensional normed space may have nonclosed subspaces.
+    For example, show that $\{x \in l_1: x_n = 0 \text{ for all but finitely many } n\}$ is a proper \textit{dense} linear subspace of $l_1$.
+\end{exercise}
+
+\begin{solution}
+    
+    Let $x = (x_1, x_2, \ldots) \in l_1$, and let $S$ be the given set.
+    First, it's rather easy to see that $S$ is a linear subspace, since it is closed under addition, scalar multiplication, and contains the zero sequence.
+    Now let $(y_n)_k \subset S$ be the sequence of sequences 
+
+    \[(y_n)_1 = \{x_1, 0, 0, \ldots\}, (y_n)_2 = \{x_1, x_2, 0, \ldots\}, \ldots\]
+
+    Notice that for any given $\epsilon > 0$, because $x \in l_1$ it has to be the case that starting at some $K > 0, \sum_{i=K}^{\infty} \lvert x_i \rvert < \epsilon$.
+    But then for $k \geq K, \lvert \lvert (y_n)_k - x \rvert \rvert = \sum_{i=k}^{\infty} \lvert x_i \rvert < \epsilon$, which means that $(y_n)_k \rightarrow x$, and so $S$ is dense in $l_1$.
+    It is of course also obviously a proper subspace, and hence it cannot be closed (since there exist sequences in it converging to points outside it).
+\end{solution}

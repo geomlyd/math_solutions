@@ -352,5 +352,14 @@
 
 \begin{solution}
     
+    There are $\binom{N}{m}$ ways of choosing the second sample.
+    We can think of forming a sample that satisfies our constraints as follows.
+    First, select $k$ out of the $n$ tagged elk.
+    There are $\binom{N}{k}$ ways of doing this.
+    Then, select $m - k$ out of the $N - n$ untagged elk.
+    There are $\binom{N - n}{m - k}$ ways of doing this.
+    Then the total number of samples that satisfy our constraints is $\binom{N}{k} \cdot \binom{N - n}{m - k}$, one for each combination of two subsamples.
+    We thus conclude that the the probability of choosing exactly $k$ previously tagged elk in our new sample of $m$ elk is:
 
+    \[\frac{\binom{N}{k} \cdot \binom{N - n}{m - k}}{\binom{N}{m}}\]
 \end{solution}
