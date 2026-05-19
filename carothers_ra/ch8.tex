@@ -1066,6 +1066,24 @@
     From these properties we conclude that $B(V, W)$ is indeed a normed space under the operator norm.
 \end{solution}
 
+\begin{exercise}{80}
+    Show that the definite integral $I(f) = \int_{a}^{b} f(t) dt$ is continuous from $C[a, b]$ into $\mathbb{R}$.
+    What is $\lvert \lvert I \rvert \rvert$?
+\end{exercise}
+
+\begin{solution}
+    
+    Notice that for any $t \in [a, b]$ we have
+
+    \[\lvert f(t) - g(t) \rvert \leq \lvert \lvert f - g \rvert \rvert \implies - \lvert \lvert f - g \rvert \rvert \leq f(t) - g(t) \leq \lvert \lvert f - g \rvert \rvert \implies \]
+    \[-(b - a) \lvert \lvert f - g \rvert \rvert \leq \int_{a}^{b} (f(t) - g(t)) dt \leq (b - a) \lvert \lvert f - g \rvert \rvert \implies \lvert I(f -g) \rvert \leq (b - a) \lvert \lvert f - g \rvert \rvert, \]
+
+    where we have used the properties of integration to show that $I$ is in fact Lipschitz continuous in $[a, b]$.
+    Regarding the operator norm, by setting $g = 0$ in the above inequality we obtain that $\lvert I(f) \rvert \leq (b - a) \lvert \lvert f \rvert \rvert$, which already tells us that $\lvert \lvert I \rvert \rvert \leq b - a$.
+    Consider the case $f(t) = 1$, for which it holds that $\lvert \lvert f \rvert \rvert = 1$ and $I(f) = b - a$.
+    This shows that the upper bound above is in fact achieved, and so $\lvert \lvert I \rvert \rvert = b - a$.
+\end{solution}
+
 \begin{exercise}{82}
     For $T \in B(V, W)$, prove that $\lvert \lvert T \rvert \rvert = \sup\{\lvert \lvert T(x) \rvert \rvert_W : \lvert \lvert x \rvert \rvert_V = 1\}$.
 \end{exercise}
