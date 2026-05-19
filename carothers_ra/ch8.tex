@@ -1009,6 +1009,25 @@
 
 \end{solution}
 
+\begin{exercise}{77}
+    Fix $k \geq 1$ and define $f: l_{\infty} \rightarrow \mathbb{R}$ by $f(x) = x_k$.
+    Show that $f$ is linear and has $\lvert \lvert f \rvert \rvert = 1$.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose $x = (x_1, x_2, \ldots), y = (y_1, y_2, \ldots) \in l_{\infty}$ are sequences.
+    We know that $x + y \in l_{\infty}$, and that consequently $f(x + y) = x_k + y_k$ is well-defined, and in fact $f(x + y) = f(x) + f(y)$.
+    Furthermore, for $a \in \mathbb{R}$, we know that $a \cdot x \in l_{\infty}$, and then we directly have that $f(a \cdot x) = a x_k = a \cdot f(x)$.
+    We conclude that $f$ is linear.
+    We then also have that the operator norm of $f$ is
+
+    \[\lvert \lvert f \rvert \rvert = \sup_{x \neq 0} \frac{\lvert x_k \rvert}{\lvert \lvert x \rvert \rvert_1}\]
+
+    Clearly, $\lvert \lvert x \rvert \rvert \leq 1$, since $\lvert \lvert x \rvert \rvert_1 = \sup_{k}\{\lvert x_k \rvert\}$.
+    At the same time, observe that for, e.g., $x = (0, 0, \ldots, x_k, \ldots)$, it holds that $\lvert \lvert x \rvert \rvert_1 = \lvert x_k \rvert$, so this upper bound is in fact achieved, which means that $\lvert \lvert f \rvert \rvert = 1$.
+\end{solution}
+
 \begin{exercise}{79}
     If $S, T \in B(V, W)$, show that $S + T \in B(V, W)$ and that $\lvert \lvert S + T \rvert \rvert \leq \lvert \lvert S \rvert \rvert + \lvert \lvert T \rvert \rvert$.
     Using this, complete the proof that $B(V, W)$ is a normed space under the operator norm.
