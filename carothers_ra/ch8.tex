@@ -1107,17 +1107,20 @@
     
     Recall Theorem 7.12: a normed vector space is complete iff every absolutely summable series in it is summable.
     Take, then, $\sum_{i=1}^{\infty} T_i$ to be any absolutely summable series in $B(V, W)$, that is, a series of linear maps $T_i$ such that $\sum_{i=1}^{\infty} \lvert \lvert T_i \rvert \rvert = C \in \mathbb{R}$ (using the operator norm).
-    Take also any $\epsilon > 0$.
-    There exists $N > 0$ such that for all $n \geq N$,
+    We claim that for any $x \in V$, $\sum_{i=1}^{\infty} \lvert \lvert T_i(x) \rvert \rvert_W$ converges.
+    Indeed, suppose this is not the case for some $x \neq 0$ (the only interesting case).
+    Because this is a non-decreasing series that does not converge, it must necessarily be unbounded.
+    Then, for any $B > 0$ we can find $N > 0$ such that for $n \geq N$
 
-    \[\left\vert \sum_{i=1}^{n} \lvert \lvert T_i \rvert \rvert - C \right\vert < \epsilon \implies \left\vert \sum_{i=1}^{n} \sup_{x \neq 0} \frac{\lvert \lvert T_i(x) \rvert \rvert_W}{\lvert \lvert x \rvert \rvert_V} - C \right\vert < \epsilon \implies \left\vert \sum_{i=1}^{n} \sup_{x \neq 0} \left(\frac{\lvert \lvert T_i(x) \rvert \rvert_W}{\lvert \lvert x \rvert \rvert_V} - C\right) \right\vert < \epsilon\]
-    \[\implies \left\vert \sup_{x \neq 0} \left(\sum_{i=1}^{n} \frac{\lvert \lvert T_i(x) \rvert \rvert_W - C \lvert \lvert x \rvert \rvert_V}{\lvert \lvert x \rvert \rvert_V}\right) \right\vert < \epsilon\]
+    \[\sum_{i=1}^{n} \lvert \lvert T_i(x) \rvert \rvert_W > B \implies \frac{\sum_{i=1}^{n} \lvert \lvert T_i(x) \rvert \rvert_W}{\lvert \lvert x \rvert \rvert_V} > \frac{B}{\lvert \lvert x \rvert \rvert_V},\]
 
-    More specifically, this means that for \textit{every} $x \neq 0$,
+    and since $\lvert \lvert x \rvert \rvert_V$ is a constant, the LHS here is also unbounded.
+    However, we know that $\sum_{i=1}^{\infty} \lvert \lvert T_i \rvert \rvert$ converges.
+    Therefore, for every $\epsilon > 0$ we can find $N > 0$ such that for $n \geq N$,
 
-    \[\left\vert \sum_{i=1}^{n} \lvert \lvert T_i(x) \rvert \rvert_W - C \lvert \lvert x \rvert \rvert_V \right\vert < \epsilon \lvert \lvert x \rvert \rvert_V\]
+    \[\left\vert \sup_{x \neq 0} \frac{\sum_{i=1}^{n}\lvert \lvert T_i(x) \rvert \rvert_W}{\lvert \lvert x \rvert \rvert_V} - C \right\vert < \epsilon \implies \sup_{x \neq 0}\frac{\sum_{i=1}^{n} \lvert \lvert T_i(x) \rvert \rvert_W}{\lvert \lvert x \rvert \rvert_V} < C + \epsilon\]
 
-    We have thus shown that for a fixed $x \in V, x \neq 0$, the series $\sum_{i=1}^{\infty} \lvert \lvert T_i(x) \rvert \rvert_W$ converges to $C \lvert \lvert x \rvert \rvert_V$.
+    But this directly contradicts the above inequality, and so it must be the case that $\sum_{i=1}^{\infty} \lvert \lvert T_i(x) \rvert \rvert_W$ always converges.
     Because $W$ is complete, Theorem 7.12 tells us that $\sum_{i=1}^{\infty} T_i(x)$ also converges to some $y(x) \in W$.
     Define then the map $T: V \rightarrow W, T(0) = 0, T(x) = y(x), x \neq 0$.
     Notice that by the properties of infinite series regarding addition and scalar multiplication, $T$ is a linear map.
