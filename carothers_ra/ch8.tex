@@ -1124,27 +1124,6 @@
     Because $W$ is complete, Theorem 7.12 tells us that $\sum_{i=1}^{\infty} T_i(x)$ also converges to some $y(x) \in W$.
     Define then the map $T: V \rightarrow W, T(0) = 0, T(x) = y(x), x \neq 0$.
     Notice that by the properties of infinite series regarding addition and scalar multiplication, $T$ is a linear map.
-    We now examine whether $\sum_{i=1}^{\infty} T_i = T$.
-    By Exercise 8.82, for any $n > 0$, we have that
-
-    \[\left\vert \left\vert \sum_{i=1}^{n} T_i - T \right\vert \right\vert = \sup\left\{ \left\vert \left\vert \sum_{i=1}^{n} T_i(x) - T(x) \right\vert \right\vert_W : \lvert \lvert x \rvert \rvert_V = 1 \right\}\]
-
-    Now suppose that we are given any $\epsilon > 0$.
-    The set $\{x \in V, \lvert \lvert x \rvert \rvert_V = 1\}$ is compact, and hence totally bounded.
-    Find then a finite number of $x_1, \ldots, x_N$ such that for any $x$ there exists $x_j$ such that $\lvert \lvert x - x_j \rvert \rvert < \epsilon$.
-    In addition, define $M$ as the minimum $M$ such that for $m \geq M$, $\left\vert \left\vert \sum_{i=1}^{m} T_i(x_j) - T(x_j) \right\vert \right\vert_W < \epsilon$ for all $j = 1, 2, \ldots, N$ (always possible since $x_i$ are finitely many).
-    Then for any $x$ on the unit ball on $V$, find its nearest $x_j$.
-    For any $m \geq M$ we have that
-
-    \[\left\vert \left\vert \sum_{i=1}^{m} T_i(x) - T(x) \right\vert \right\vert \leq \left\vert \left\vert \sum_{i=1}^{m} T_i(x_j) - T(x_j) \right\vert \right\vert + \left\vert \left\vert \sum_{i=1}^{m} T_i(x_j - x) - T(x - x_j) \right\vert \right\vert\]
-
-    The first term here can be bound by $\epsilon$.
-    For the second term, call it $S$, by the triangle inequality and the definition of the operator norm we have that
-
-    \[S \leq \lvert \lvert T \rvert \rvert \cdot \lvert \lvert x - x_j \rvert \rvert + \left\vert \left\vert \sum_{i=1}^{m} T_i \right\vert \right\vert \cdot \lvert \lvert x - x_j \rvert \rvert\]
-
-    By total boundedness and by the fact that $T_i$ are absolutely summable, the RHS here is a constant multiple of epsilon.
-    Therefore, recalling Hubbard \& Hubbard's ``elegance is not required'' we have shown that $\sum_{i=1}^{\infty} T_i = T$, and hence by Theorem 7.12, that $B(V, W)$ is indeed complete.
     
 \end{solution}
 
