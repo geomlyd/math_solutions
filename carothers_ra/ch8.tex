@@ -1124,7 +1124,20 @@
     Because $W$ is complete, Theorem 7.12 tells us that $\sum_{i=1}^{\infty} T_i(x)$ also converges to some $y(x) \in W$.
     Define then the map $T: V \rightarrow W, T(0) = 0, T(x) = y(x), x \neq 0$.
     Notice that by the properties of infinite series regarding addition and scalar multiplication, $T$ is a linear map.
-    
+    Now we examine whether it holds that $\sum_{i=1}^{n} T_i \rightarrow T$.
+    For any $n$ and any $x$, we have that
+
+    \[\left\vert \left\vert \sum_{i=1}^{n} T_i(x) - T(x) \right\vert \right\vert_W = \left\vert \left\vert \sum_{i=n + 1}^{\infty} T_i(x) \right\vert \right\vert_W \leq \sum_{i = n + 1}^{\infty} \lvert \lvert T_i(x) \rvert \rvert_W \leq \lvert \lvert x \rvert \rvert \cdot \sum_{i=n + 1}^{\infty} \lvert \lvert T_i \rvert \rvert\]
+
+    Notice that the first equality is due to the fact that $\sum_{i=1}^{\infty} T_i(x) = T(x)$ is well-defined.
+    The first of the two inequalities comes from the triangle inequality applied to sums from $n + 1$ to arbitrarily large $N$, and the fact that $\sum_{i=1}^{\infty} \lvert \lvert T_i(x) \rvert \rvert_W$ always converges (limits preserve non-strict inequalities).
+    Similarly, the second of the two inequalities comes again from an application of the triangle inequality  to arbitrarily large $N$, the property of the operator norm, and the fact that $\sum_{i=1}^{\infty} \lvert \lvert T_i \rvert \rvert$ converges.
+    Now, restricting the analysis to $x$ with $\lvert \lvert x \rvert \rvert = 1$, we have that
+
+    \[\left\vert \left\vert \sum_{i=1}^{n} T_i - T \right\vert \right\vert = \sup_{\lvert \lvert x \rvert \rvert = 1} \left\{ \left\vert \left\vert \sum_{i=1}^{n} T_i(x) - T(x) \right\vert \right\vert_W \right\} \leq \sum_{i=n + 1}^{\infty} \lvert \lvert T_i \rvert \rvert,\]
+
+    where we used the result from above for $\lvert \lvert x \rvert \rvert = 1$.
+    Now, since the RHS here tends to zero as $n \rightarrow \infty$, we conclude that it is indeed the case that $\sum_{i=1}^{\infty} T_i \rightarrow T$.
 \end{solution}
 
 \begin{exercise}{85}
