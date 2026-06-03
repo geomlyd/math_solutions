@@ -342,12 +342,7 @@
 \end{solution}
 
 \begin{exercise}{31}
-    Elk dwell in a certain forest.
-    There are $N$ elk, of which a simple random sample of size $n$ are captured and tagged (``simple random sample'' means that all $\binom{N}{n}$ sets of $n$ elk are equally likely).
-    The captured elk are returned to the population, and then a new sample is drawn, this time with size $m$.
-    This is an important method that is widely used in ecology, known as \textit{capture-recapture}.
-    What is the probability that exactly $k$ of the $m$ elk in the new sample were previously tagged?
-    (Assume that an elk that was captured before doesn't become more or less likely to be captured again.)
+    
 \end{exercise}
 
 \begin{solution}
@@ -355,11 +350,82 @@
     There are $\binom{N}{m}$ ways of choosing the second sample.
     We can think of forming a sample that satisfies our constraints as follows.
     First, select $k$ out of the $n$ tagged elk.
-    There are $\binom{N}{k}$ ways of doing this.
+    There are $\binom{n}{k}$ ways of doing this.
     Then, select $m - k$ out of the $N - n$ untagged elk.
     There are $\binom{N - n}{m - k}$ ways of doing this.
     Then the total number of samples that satisfy our constraints is $\binom{N}{k} \cdot \binom{N - n}{m - k}$, one for each combination of two subsamples.
     We thus conclude that the the probability of choosing exactly $k$ previously tagged elk in our new sample of $m$ elk is:
 
-    \[\frac{\binom{N}{k} \cdot \binom{N - n}{m - k}}{\binom{N}{m}}\]
+    \[\frac{\binom{n}{k} \cdot \binom{N - n}{m - k}}{\binom{N}{m}}\]
+
+\begin{exercise}{40}
+    There are $n$ balls in a jar, labeled with the numbers $1, 2, \ldots, n$.
+    A total of $k$ balls are drawn, one by one \textit{with replacement}, to obtain a sequence of numbers.
+
+    (a) What is the probability that the sequence obtained is strictly increasing?
+
+    (b) What is the probability that the sequence obtained is increasing (but not necessarily strictly increasing, i.e., there can be repetitions)?
+\end{exercise}
+
+    (a) We begin by noting that there $n^k$ possible sequences in total.
+    To count the number of strictly increasing ones, we note that for each $k$ balls that all different from each other, there exists precisely one sequence that contains all of them and is strictly increasing: the sequence resulting from sorting them.
+    The converse is of course also true, i.e., a strictly increasing sequence can be mapped uniquely to $k$ balls selected \textit{without} replacement and without caring about the order.
+    We conclude that the problem is equivalent to counting the number of unique combinations of $k$ out of $n$ balls, which of course means that the requested probability is
+
+    \[\frac{\binom{n}{k}}{n^k}\]
+
+    (b) The reasoning here is similar.
+    First, any increasing sequence can be mapped uniquely to a selection of $k$ out of $n$ balls where we count the number of times each ball was selected (corresponding to equalities in the result).
+    Conversely, any selection of $k$ out of $n$ balls with replacement, and where we count the number of times each ball is drawn can be uniquely mapped to an increasing sequence.
+    This is again done by sorting the balls, except that now equality of adjacent elements in the result is allowed, and corresponds to a ball being selected more than one time.
+    We conclude that the problem is equivalent to the Bose-Einstein counting problem, and so the requested probability is
+
+    \[\frac{\binom{n + k - 1}{k}}{n^k}\]
+\end{solution}
+
+\newpage
+
+\begin{exercise}{43}
+    Show that for any events $A, B$,
+
+    \[P(A) + P(B) - 1 \leq P(A \cap B) \leq P(A \cup B) \leq P(A) + P(B)\]
+
+    For each of these three inequalities, give a simple criterion for when the inequality is actually an equality (e.g., give a simple condition such that $P(A \cap B) = P(A \cup B)$ if only if the condition holds).
+\end{exercise}
+
+\begin{solution}
+    
+    Recall that $P(A \cup B) = P(A) + P(B) - P(A \cap B)$, and that probabilities are non-negative, meaning that
+
+    \[P(A \cup B) = P(A) + P(B) - P(A \cap B) \leq P(A) + P(B)\]
+
+    This becomes an equality precisely whenever $P(A \cap B) = 0$.
+    We also know that $A \cap B \subset A \implies$ $P(A \cap B) \leq P(A)$, and similarly $A \cap B \subset B \implies P(A \cap B) \leq P(B)$. Therefore,
+
+    \[2P(A \cap B) \leq P(A) + P(B) \implies P(A \cap B) \leq P(A) + P(B) - P(A \cap B) = P(A \cup B)\]
+
+    This becomes an equality precisely when the first two inequalities become equalities, i.e., when $P(A \cap B) = P(A) = P(B)$.
+    Finally, we have that 
+    
+    \[P(A \cup B) \leq 1 \implies P(A) + P(B) - P(A \cap B) \leq 1 \implies P(A) + P(B) - 1 \leq P(A \cap B)\]
+
+    This becomes an equality precisely when $P(A \cup B) = 1$.
+\end{solution}
+
+\begin{exercise}{44}
+    Let $A, B$ be events.
+    The \textit{difference} $B - A$ is defined to be the set of all elements of $B$ that are not in $A$.
+    Show that if $A \subset B$, then
+
+    \[P(B - A) = P(B) - P(A),\]
+
+    directly using the axioms of probability.
+\end{exercise}
+
+\begin{solution}
+
+    If $A \subset B$, we can write $B = (B - A) \cup A$, where $A, B - A$ are disjoint.
+    Then, using the second axiom of probability, we obtain that
+
+    \[P(B) = P((B - A) \cup A) = P(B - A) + P(A) \implies P(B - A) = P(B) - P(A)\]
 \end{solution}
