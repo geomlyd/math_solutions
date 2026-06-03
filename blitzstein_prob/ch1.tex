@@ -429,3 +429,50 @@
 
     \[P(B) = P((B - A) \cup A) = P(B - A) + P(A) \implies P(B - A) = P(B) - P(A)\]
 \end{solution}
+
+\newpage
+
+\begin{exercise}{48}
+    Arby has a belief system assigning a number $P_{Ar}(A)$ between 0 and 1 to every event $A$ (for some sample space).
+    This represents Arby's degree of belief about how likely $A$ is to occur.
+    For any event $A$, Arby is willing to pay a price of $1000\cdot P_{Ar}(A)$ dollars to buy a certificate such as the one shown below:
+
+    \begin{mdframed}
+    Certificate:
+
+    The owner of this certificate can redeem it for $\$ 1000$ if $A$ occurs.
+    No value if $A$ does not occur, except as required by federal, state, or local law.
+    No expiration date.
+    \end{mdframed}
+
+    Likewise, Arby is willing to sell such a certificate at the same price.
+    Indeed, Arby is willing to buy or sell any number of certificates at this price, as Arby considers it the ``fair'' price.
+    Arby stubbornly refuses to accept the axioms of probability.
+    In particular, suppose that there are two \textit{disjoint} events $A, B$ with
+
+    \[P_{Ar}(A \cup B) \neq P_{Ar}(A) + P_{Ar}(B)\]
+
+    Show how to make Arby go bankrupt, by giving a list of transactions Arby is willing to make that will \textit{guarantee} that Arby will lose money (you can assume it will be known whether $A$ occurred and whether $B$ occurred the day after any certificates are bought/sold).
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose first that $P_{Ar}(A \cup B) > P_{Ar}(A) + P_{Ar}(B)$.
+    Consider then the following transactions:
+    \begin{itemize}
+        \item We, as an opposing party, offer to sell Arby a certificate for $A \cup B$ at his nominated price.
+        \item We then offer to buy from him a certificate for $A$ and a certificate for $B$.
+        \item In total, this means that Arby has incurred a loss of $-P_{Ar}(A \cup B) + P_{Ar}(A) + P_{Ar}(B) < 0$, in the hopes, of course, of making money when the events are realized.
+    \end{itemize}
+    The following day, and since $A, B$ are disjoint, there are only three possible outcomes:
+    \begin{itemize}
+        \item Neither $A$ nor $B$ occur.
+        In this case, Arby neither makes nor loses any more money.
+        \item $A$ occurs, in which case we have to pay Arby $\$1000$, but he also has to pay us $\$1000$.
+        This therefore means that he again has no profit or loss.
+        \item $B$ occurs, in which case exactly the same observations apply.
+    \end{itemize}
+    We therefore conclude that this series of transactions is \textit{guaranteed} to decrease Arby's balance, which means that if we were to repeat it an appropriate number times (by the problem setting, ``Arby is willing to buy or sell any number of certificates''), Arby goes bankrupt regardless of his initial money.
+    If, instead, it was the case that $P_{Ar}(A \cup B) < P_{Ar}(A) + P_{Ar}(B)$, we have but to reverse the strategy presented above, buying certificates for $A \cup B$ and selling certificates for $A$ and $B$.
+    Arby's reasoning will therefore cause him to go bankrupt in all cases.
+\end{solution}

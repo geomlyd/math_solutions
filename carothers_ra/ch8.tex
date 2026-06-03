@@ -1009,6 +1009,25 @@
 
 \end{solution}
 
+\begin{exercise}{77}
+    Fix $k \geq 1$ and define $f: l_{\infty} \rightarrow \mathbb{R}$ by $f(x) = x_k$.
+    Show that $f$ is linear and has $\lvert \lvert f \rvert \rvert = 1$.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose $x = (x_1, x_2, \ldots), y = (y_1, y_2, \ldots) \in l_{\infty}$ are sequences.
+    We know that $x + y \in l_{\infty}$, and that consequently $f(x + y) = x_k + y_k$ is well-defined, and in fact $f(x + y) = f(x) + f(y)$.
+    Furthermore, for $a \in \mathbb{R}$, we know that $a \cdot x \in l_{\infty}$, and then we directly have that $f(a \cdot x) = a x_k = a \cdot f(x)$.
+    We conclude that $f$ is linear.
+    We then also have that the operator norm of $f$ is
+
+    \[\lvert \lvert f \rvert \rvert = \sup_{x \neq 0} \frac{\lvert x_k \rvert}{\lvert \lvert x \rvert \rvert_1}\]
+
+    Clearly, $\lvert \lvert x \rvert \rvert \leq 1$, since $\lvert \lvert x \rvert \rvert_1 = \sup_{k}\{\lvert x_k \rvert\}$.
+    At the same time, observe that for, e.g., $x = (0, 0, \ldots, x_k, \ldots)$, it holds that $\lvert \lvert x \rvert \rvert_1 = \lvert x_k \rvert$, so this upper bound is in fact achieved, which means that $\lvert \lvert f \rvert \rvert = 1$.
+\end{solution}
+
 \begin{exercise}{79}
     If $S, T \in B(V, W)$, show that $S + T \in B(V, W)$ and that $\lvert \lvert S + T \rvert \rvert \leq \lvert \lvert S \rvert \rvert + \lvert \lvert T \rvert \rvert$.
     Using this, complete the proof that $B(V, W)$ is a normed space under the operator norm.
@@ -1047,6 +1066,24 @@
     From these properties we conclude that $B(V, W)$ is indeed a normed space under the operator norm.
 \end{solution}
 
+\begin{exercise}{80}
+    Show that the definite integral $I(f) = \int_{a}^{b} f(t) dt$ is continuous from $C[a, b]$ into $\mathbb{R}$.
+    What is $\lvert \lvert I \rvert \rvert$?
+\end{exercise}
+
+\begin{solution}
+    
+    Notice that for any $t \in [a, b]$ we have
+
+    \[\lvert f(t) - g(t) \rvert \leq \lvert \lvert f - g \rvert \rvert \implies - \lvert \lvert f - g \rvert \rvert \leq f(t) - g(t) \leq \lvert \lvert f - g \rvert \rvert \implies \]
+    \[-(b - a) \lvert \lvert f - g \rvert \rvert \leq \int_{a}^{b} (f(t) - g(t)) dt \leq (b - a) \lvert \lvert f - g \rvert \rvert \implies \lvert I(f -g) \rvert \leq (b - a) \lvert \lvert f - g \rvert \rvert, \]
+
+    where we have used the properties of integration to show that $I$ is in fact Lipschitz continuous in $[a, b]$.
+    Regarding the operator norm, by setting $g = 0$ in the above inequality we obtain that $\lvert I(f) \rvert \leq (b - a) \lvert \lvert f \rvert \rvert$, which already tells us that $\lvert \lvert I \rvert \rvert \leq b - a$.
+    Consider the case $f(t) = 1$, for which it holds that $\lvert \lvert f \rvert \rvert = 1$ and $I(f) = b - a$.
+    This shows that the upper bound above is in fact achieved, and so $\lvert \lvert I \rvert \rvert = b - a$.
+\end{solution}
+
 \begin{exercise}{82}
     For $T \in B(V, W)$, prove that $\lvert \lvert T \rvert \rvert = \sup\{\lvert \lvert T(x) \rvert \rvert_W : \lvert \lvert x \rvert \rvert_V = 1\}$.
 \end{exercise}
@@ -1060,6 +1097,47 @@
     \[\lvert \lvert T(x) \rvert \rvert_W > C \lvert \lvert x \rvert \rvert_V \implies \frac{1}{\lvert \lvert x \rvert \rvert_V} \lvert \lvert T(x) \rvert \rvert_W > C \implies \left\vert \left\vert T\left(\frac{x}{\lvert \lvert x \rvert \rvert_V}\right) \right\vert \right\vert_W > C\]
 
     Notice then that the vector $\frac{x}{\lvert \lvert x \rvert \rvert_V}$ is of unit norm, which means that this inequality contradicts the definition of $C$, thus showing that $\lvert \lvert T \rvert \rvert = C$.
+\end{solution}
+
+\begin{exercise}{84}
+    Prove that $B(V, W)$ is complete whenever $W$ is complete.
+\end{exercise}
+
+\begin{solution}
+    
+    Recall Theorem 7.12: a normed vector space is complete iff every absolutely summable series in it is summable.
+    Take, then, $\sum_{i=1}^{\infty} T_i$ to be any absolutely summable series in $B(V, W)$, that is, a series of linear maps $T_i$ such that $\sum_{i=1}^{\infty} \lvert \lvert T_i \rvert \rvert = C \in \mathbb{R}$ (using the operator norm).
+    We claim that for any $x \in V$, $\sum_{i=1}^{\infty} \lvert \lvert T_i(x) \rvert \rvert_W$ converges.
+    Indeed, suppose this is not the case for some $x \neq 0$ (the only interesting case).
+    Because this is a non-decreasing series that does not converge, it must necessarily be unbounded.
+    Then, for any $B > 0$ we can find $N > 0$ such that for $n \geq N$
+
+    \[\sum_{i=1}^{n} \lvert \lvert T_i(x) \rvert \rvert_W > B \implies \frac{\sum_{i=1}^{n} \lvert \lvert T_i(x) \rvert \rvert_W}{\lvert \lvert x \rvert \rvert_V} > \frac{B}{\lvert \lvert x \rvert \rvert_V},\]
+
+    and since $\lvert \lvert x \rvert \rvert_V$ is a constant, the LHS here is also unbounded.
+    However, we know that $\sum_{i=1}^{\infty} \lvert \lvert T_i \rvert \rvert$ converges.
+    Therefore, for every $\epsilon > 0$ we can find $N > 0$ such that for $n \geq N$,
+
+    \[\left\vert \sup_{x \neq 0} \frac{\sum_{i=1}^{n}\lvert \lvert T_i(x) \rvert \rvert_W}{\lvert \lvert x \rvert \rvert_V} - C \right\vert < \epsilon \implies \sup_{x \neq 0}\frac{\sum_{i=1}^{n} \lvert \lvert T_i(x) \rvert \rvert_W}{\lvert \lvert x \rvert \rvert_V} < C + \epsilon\]
+
+    But this directly contradicts the above inequality, and so it must be the case that $\sum_{i=1}^{\infty} \lvert \lvert T_i(x) \rvert \rvert_W$ always converges.
+    Because $W$ is complete, Theorem 7.12 tells us that $\sum_{i=1}^{\infty} T_i(x)$ also converges to some $y(x) \in W$.
+    Define then the map $T: V \rightarrow W, T(0) = 0, T(x) = y(x), x \neq 0$.
+    Notice that by the properties of infinite series regarding addition and scalar multiplication, $T$ is a linear map.
+    Now we examine whether it holds that $\sum_{i=1}^{n} T_i \rightarrow T$.
+    For any $n$ and any $x$, we have that
+
+    \[\left\vert \left\vert \sum_{i=1}^{n} T_i(x) - T(x) \right\vert \right\vert_W = \left\vert \left\vert \sum_{i=n + 1}^{\infty} T_i(x) \right\vert \right\vert_W \leq \sum_{i = n + 1}^{\infty} \lvert \lvert T_i(x) \rvert \rvert_W \leq \lvert \lvert x \rvert \rvert \cdot \sum_{i=n + 1}^{\infty} \lvert \lvert T_i \rvert \rvert\]
+
+    Notice that the first equality is due to the fact that $\sum_{i=1}^{\infty} T_i(x) = T(x)$ is well-defined.
+    The first of the two inequalities comes from the triangle inequality applied to sums from $n + 1$ to arbitrarily large $N$, and the fact that $\sum_{i=1}^{\infty} \lvert \lvert T_i(x) \rvert \rvert_W$ always converges (limits preserve non-strict inequalities).
+    Similarly, the second of the two inequalities comes again from an application of the triangle inequality  to arbitrarily large $N$, the property of the operator norm, and the fact that $\sum_{i=1}^{\infty} \lvert \lvert T_i \rvert \rvert$ converges.
+    Now, restricting the analysis to $x$ with $\lvert \lvert x \rvert \rvert = 1$, we have that
+
+    \[\left\vert \left\vert \sum_{i=1}^{n} T_i - T \right\vert \right\vert = \sup_{\lvert \lvert x \rvert \rvert = 1} \left\{ \left\vert \left\vert \sum_{i=1}^{n} T_i(x) - T(x) \right\vert \right\vert_W \right\} \leq \sum_{i=n + 1}^{\infty} \lvert \lvert T_i \rvert \rvert,\]
+
+    where we used the result from above for $\lvert \lvert x \rvert \rvert = 1$.
+    Now, since the RHS here tends to zero as $n \rightarrow \infty$, we conclude that it is indeed the case that $\sum_{i=1}^{\infty} T_i \rightarrow T$.
 \end{solution}
 
 \begin{exercise}{85}
