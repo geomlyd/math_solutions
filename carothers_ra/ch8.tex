@@ -1166,7 +1166,24 @@
 
 \begin{solution}
     
-    
+    By Corollary 8.24, we know that there exists a linear homeomorphism $T$ between $V$ and $\mathbb{R}^n$.
+    Define then a function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ such that $f(x) = \lvert \lvert T^{-1}(x) \rvert \rvert$, where we use the well-defined (linear) inverse of $T$.
+    We claim, first of all, that $f$ is a norm.
+    Indeed, we have that:
+    \begin{itemize}
+        \item $f(0) = \lvert \lvert T^{-1}(x) \rvert \rvert = \lvert \lvert 0 \rvert \rvert = 0$, since $T^{-1}$ is a linear map.
+        Also, $f(x) = 0 \implies \lvert \lvert T^{-1}(x) \rvert \rvert = 0 \implies T^{-1}(x) = 0 \implies x = 0$ since $\lvert \lvert \cdot \rvert \rvert$ is a norm and $T^{-1}$ is a linear map.
+        \item Clearly, $f(x) \geq 0$ for all $x \in \mathbb{R}^n$, since $\lvert \lvert \cdot \rvert \rvert$ is a norm.
+        \item For any $a \in \mathbb{R}, x \in \mathbb{R}^n, f(ax) = \lvert \lvert T^{-1}(ax) \rvert \rvert = \lvert a \rvert \cdot \lvert \lvert T^{-1}(x) \rvert \rvert = \lvert a \rvert \cdot f(x)$, since $\lvert \lvert \cdot \rvert \rvert$ is a norm and $T^{-1}$ is linear.
+        \item For any two $x, y \in \mathbb{R}^n, f(x + y) = \lvert \lvert T^{-1}(x + y) \rvert \rvert = \lvert \lvert T^{-1}(x) + T^{-1}(y) \rvert \rvert \leq \lvert \lvert T^{-1}(x) \rvert \rvert + \lvert \lvert T^{-1}(y) \rvert \rvert = f(x) + f(y)$.
+    \end{itemize}
+    Thus setting $\lvert \lvert \lvert x \rvert \rvert \rvert = f(x)$ defines a norm.
+    We now need to check whether under this norm $T$ constitutes an isometry.
+    For any $v \in V$, we have that
+
+    \[\lvert \lvert \lvert T(v) \rvert \rvert \rvert = \lvert \lvert T^{-1}(T(v)) \rvert \rvert = \lvert \lvert v \rvert \rvert,\]
+
+    showing that $V, \mathbb{R}^n$ are indeed linearly isometric.
 \end{solution}
 
 \newpage
