@@ -983,6 +983,27 @@
     We thus see that this cannot hold if $d$ is an unbounded metric on $M$.
 \end{solution}
 
+\begin{exercise}{74}
+    Let $d(x, y) = \lvert \lvert x - y \rvert \rvert_2$ be the usual (Euclidean) metric on $\mathbb{R}^2$, and define a second metric $\rho$ on $\mathbb{R}^2$ by
+
+    \[\rho(x, y) = \frac{\lvert \lvert x - y \rvert \rvert_2}{(1 + \lvert \lvert x \rvert \rvert_2^2)^{1/2}(1 + \lvert \lvert y \rvert \rvert_2^2)^{1/2}}\]
+
+    Show that $d, \rho$ are equivalent but not uniformly equivalent.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose that $x_n \rightarrow^{d} x$.
+    For any $x_n$, we have that
+
+    \[1 \leq (1 + \lvert \lvert x_n \rvert \rvert_2^2)^{1/2}(1 + \lvert \lvert x \rvert \rvert_2^2)^{1/2} \implies \frac{1}{(1 + \lvert \lvert x_n \rvert \rvert_2^2)^{1/2}(1 + \lvert \lvert x \rvert \rvert_2^2)^{1/2}} \leq 1\]
+    \[\implies \frac{\lvert \lvert x_n - x \rvert \rvert_2}{(1 + \lvert \lvert x_n \rvert \rvert_2^2)^{1/2}(1 + \lvert \lvert x \rvert \rvert_2^2)^{1/2}} \leq \lvert \lvert x_n - x \rvert \rvert_2 \implies \rho(x_n, x) \leq d(x_n, x)\]
+
+    Clearly then it is also the case that $x_n \rightarrow^{\rho} x$.
+    Conversely, suppose $x_n \rightarrow^{\rho} x$.
+    
+\end{solution}
+
 \begin{exercise}{76}
     Fix $y \in \mathbb{R}^n$ and define a linear map $L: \mathbb{R}^n \rightarrow \mathbb{R}$ by $L(x) = \langle x, y \rangle$.
     Show that $L$ is continuous and compute $\lvert \lvert L \rvert \rvert = \sup_{x \neq 0} \lvert L(x) \rvert / \lvert \lvert x \rvert \rvert_2$.
