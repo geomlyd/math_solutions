@@ -1001,6 +1001,41 @@
 
     Clearly then it is also the case that $x_n \rightarrow^{\rho} x$.
     Conversely, suppose $x_n \rightarrow^{\rho} x$.
+    Suppose, furthermore, that $(x_n)$ is not bounded under $d$, meaning that $\lvert \lvert x_{n_k} \rvert \rvert \rightarrow \infty$ for some subsequence.
+    We have that
+
+    \[
+    \rho(x_{n_k}, x) = \frac{\lvert \lvert x_{n_k} - x \rvert \rvert_2}{(1 + \lvert \lvert x_{n_k} \rvert \rvert_2^2)^{1/2}(1 + \lvert \lvert x \rvert \rvert_2^2)^{1/2}} \geq \frac{\Bigl\vert \lvert \lvert x_{n_k} \rvert \rvert_2 - \lvert \lvert x \rvert \rvert_2 \Bigr\vert}{(1 + \lvert \lvert x_{n_k} \rvert \rvert_2^2)^{1/2}(1 + \lvert \lvert x \rvert \rvert_2^2)^{1/2}}
+    \] 
+    \[
+    \implies \frac{\lvert \lvert x_{n_k} \rvert \rvert_2}{(1 + \lvert \lvert x_{n_k} \rvert \rvert_2^2)^{1/2}(1 + \lvert \lvert x \rvert \rvert_2^2)^{1/2}} \leq \rho(x_{n_k}, x) + \frac{\lvert \lvert x \rvert \rvert_2}{(1 + \lvert \lvert x_{n_k} \rvert \rvert_2^2)^{1/2}(1 + \lvert \lvert x \rvert \rvert_2^2)^{1/2}}
+    \]
+    \[
+    \implies \frac{\lvert \lvert x_{n_k} \rvert \rvert_2^2}{(1 + \lvert \lvert x_{n_k} \rvert \rvert_2^2)^{1/2}} \leq (1 + \lvert \lvert x \rvert \rvert_2^2)^{1/2}\rho(x_{n_k}, x) + \frac{\lvert \lvert x \rvert \rvert_2}{(1 + \lvert \lvert x_{n_k} \rvert \rvert_2^2)^{1/2}}
+    \]
+    \[
+    \implies \frac{1}{(1 + \lvert \lvert x_{n_k} \rvert \rvert_2^{-2})^{1/2}} \leq (1 + \lvert \lvert x \rvert \rvert_2^2)^{1/2}\rho(x_{n_k}, x) + \frac{\lvert \lvert x \rvert \rvert_2}{(1 + \lvert \lvert x_{n_k} \rvert \rvert_2^2)^{1/2}}
+    \]
+
+    We note now that as $n \rightarrow \infty$, the RHS tends to zero: indeed, $\rho(x_{n_k}, x) \rightarrow 0$ (subsequence of convergent sequence), $\lvert \lvert x_{n_k} \rvert \rvert_2 \rightarrow \infty$.
+
+    However, the LHS tends to 1, since $\lvert \lvert x_{n_k} \rvert \rvert_2^{-2} \rightarrow 0$.
+    Having arrived at a contradiction, we conclude that $(x_n)$ must be bounded under $d$.
+    Therefore, there also exists some $B$ such that for all $n,$
+
+    \[ (1 + \lvert \lvert x_n \rvert \rvert_2^2)^{1/2} \leq B \implies \lvert \lvert x_n - x \rvert \rvert_2 \leq \frac{B\cdot \lvert \lvert x_n - x \rvert \rvert_2}{(1 + \lvert \lvert x_n \rvert \rvert_2^2)^{1/2}} = B \cdot (1 + \lvert \lvert x \rvert \rvert_2^2)^{1/2}) \cdot \rho(x_n, x)\]
+
+    Consequently, it is the case that as $\rho(x_n, x) \rightarrow 0$, we also have $d(x_n, x) \rightarrow 0$.
+    Therefore, the two metrics are indeed equivalent.
+    Now we examine whether they are uniformly equivalent.
+    We know (Ex. 8.56) that for this to hold, it must be the case that whenever $\rho(x_n, y_n) \rightarrow 0$ for two sequences $(x_n), (y_n)$, it also holds that $d(x_n, y_n) \rightarrow 0$.
+    Consider the sequences $x_n = (0, 2^n), y_n = (1, 2^n)$.
+    We have that
+
+    \[\rho(x_n, y_n) = \frac{\lvert \lvert x_n - y_n \rvert \rvert_2}{(1 + \lvert \lvert x_n \rvert \rvert_2^2)^{1/2}(1 + \lvert \lvert y_n \rvert \rvert_2^2)^{1/2}} = \frac{1}{\sqrt{1 + 2^n}\sqrt{2 + 2^{2n}}},\]
+
+    which clearly means that $\rho(x_n, y_n) \rightarrow 0$.
+    However, it is the case that $d(x_n, y_n) = 1$, so $d(x_n, y_n) \rightarrow 0$ does not hold, and the two metrics cannot be uniformly equivalent.
     
 \end{solution}
 
