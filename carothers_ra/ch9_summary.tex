@@ -1,0 +1,19 @@
+
+\chapter{Category}
+
+\section{Discontinuous Functions}
+
+\begin{definition}{Oscillation on an interval}
+    Given a bounded interval $I$ and $f: \mathbb{R} \rightarrow \mathbb{R}$, we define $\omega(f; I) = \sup\{\lvert f(x) - f(y) \rvert: x, y \in I\}$.
+    Note: $0 \leq \omega(f; I) \leq 2 \sup_{x \in I} \lvert f(x) \rvert$.
+    If $f$ is unbounded on $I$, we define $\omega(f; I) = \infty$.
+\end{definition}
+
+\begin{definition}{Oscillation at a point}
+    Given a point $a \in \mathbb{R}$ and $f: \mathbb{R} \rightarrow \mathbb{R}$, we define $\omega_f(a) = \lim_{h \rightarrow 0^+} \text{diam} f(B_h(a))$.
+    If $f$ is unbounded in \textit{every} neighborhood of $a$, we define $\omega_f(a) = \infty$.
+\end{definition}
+
+\begin{theorem}{9.2}
+    If $f: \mathbb{R} \rightarrow \mathbb{R}$, then $D(f)$ is the \textbf{countable} union of \textbf{closed} sets in $\mathbb{R}$.
+\end{theorem}

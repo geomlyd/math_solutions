@@ -1,0 +1,21 @@
+\chapter{Category}
+
+\begin{exercise}{1}
+    If $f$ is increasing, show that $\omega_f(a) = f(a+) - f(a-)$.
+\end{exercise}
+
+\begin{solution}
+    
+    We have that:
+
+    \[f(a+) - f(a-) = \lim_{h \rightarrow 0^+} f(a + h) - \lim_{h \rightarrow 0^+} f(a - h) = \lim_{h \rightarrow 0^+}(f(a + h) - f(a - h))\]
+
+    Notice that these limits are both well-defined since $f$ can only have jump discontinuities (Theorem 2.17).
+    We now observe that
+
+    \[\text{diam} f(B_{2h}(a)) = \text{diam} f((a - h, a + h)) = \sup\{\lvert f(x) - f(y) \rvert, x, y \in (a - h, a + h)\} = f(a + h) - f(a - h)\]
+
+    This is due to the fact that $f$ is increasing, and thus $f(a - h) \leq f(x) \leq f(a + h)$ for any $x \in (a - h, a+ h)$.
+    By substituting in the equality $f(a+) - f(a-) = \lim_{h \rightarrow 0^+}(f(a + h) - f(a - h))$ and changing the variable of the limit, we obtain that $\omega_f(a) = f(a^+) - f(a-)$.
+
+\end{solution}
