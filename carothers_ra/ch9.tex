@@ -5,17 +5,32 @@
 \end{exercise}
 
 \begin{solution}
+
+    First of all, we note that due to $f$ being increasing, $f(a+), f(a-)$ are well-defined and finite: if any of these limits was infinite, we would not be able to define a value for $f(a)$ that would make $f$ increasing.
+    For the same reason, $\omega_f(a)$ is also finite.
+    Furthermore, because $f$ is increasing, we that, for any $h > 0$, and any $x \in (a - h, a+ h)$
+
+    \[f(a - h) \leq f(x) \leq f(a + h)\]
     
-    We have that:
+    It must therefore also hold that 
+    
+    \[\sup_{x, y \in (a - h, a + h)} \lvert f(x) - f(y) \rvert \leq f(a + h) - f(a - h) \implies \omega_f(a) \leq f(a+) - f(a-),\]
 
-    \[f(a+) - f(a-) = \lim_{h \rightarrow 0^+} f(a + h) - \lim_{h \rightarrow 0^+} f(a - h) = \lim_{h \rightarrow 0^+}(f(a + h) - f(a - h))\]
+    where we have taken limits on both sides.
+    Now suppose that $(f(a+) - f(a-)) - \omega_f(a) = \epsilon > 0$.
+    Expanding the limits, we obtain:
 
-    Notice that these limits are both well-defined since $f$ can only have jump discontinuities (Theorem 2.17).
-    We now observe that
+    \[\lim_{h \rightarrow 0+} f(a + h) - \lim_{h \rightarrow 0+} f(a - h) - \lim_{h \rightarrow 0+} \text{diam} f((a - h, a + h)) = \epsilon > 0 \implies\]
 
-    \[\text{diam} f(B_{2h}(a)) = \text{diam} f((a - h, a + h)) = \sup\{\lvert f(x) - f(y) \rvert, x, y \in (a - h, a + h)\} = f(a + h) - f(a - h)\]
+    \[\lim_{h \rightarrow 0+}(f(a + h) - f(a - h) - \text{diam}f((a - h, a + h))) = \epsilon > 0\]
 
-    This is due to the fact that $f$ is increasing, and thus $f(a - h) \leq f(x) \leq f(a + h)$ for any $x \in (a - h, a+ h)$.
-    By substituting in the equality $f(a+) - f(a-) = \lim_{h \rightarrow 0^+}(f(a + h) - f(a - h))$ and changing the variable of the limit, we obtain that $\omega_f(a) = f(a^+) - f(a-)$.
+    This means that there exists $\delta > 0$ such that whenever $0 < h < \delta$, it holds that
 
+    \[\lvert f(a + h) - f(a - h) - \text{diam}f((a - h, a+ h)) - \epsilon \rvert < \epsilon \implies\]
+    \[f(a + h) - f(a - h) - \text{diam}f((a - h, a + h)) - \epsilon > -\epsilon \implies f(a + h) - f(a - h) > \text{diam}f((a - h, a + h))\]
+    \[\implies \sup_{x, y \in (a - h, a + h)} \lvert f(x) - f(y) \rvert < f(a + h) - f(a - h)\]
+
+    Notice then that it must be the case that \textit{at least} one of $f((a + h)-), f((a - h)+)$ does not equal $f(a + h), f(a - h)$ respectively.
+    If this was not the case, the supremum would \textit{equal} the RHS.
+    We conclude that $f$ has at least one discontinuity for every $h$ in $(0, \delta)$, and so it has uncountably many discontinuities in $(0, \delta$), which, by Theorem 2.17 is a contradiction.
 \end{solution}
