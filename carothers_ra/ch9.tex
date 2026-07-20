@@ -34,3 +34,27 @@
     If this was not the case, the supremum would \textit{equal} the RHS.
     We conclude that $f$ has at least one discontinuity for every $h$ in $(0, \delta)$, and so it has uncountably many discontinuities in $(0, \delta$), which, by Theorem 2.17 is a contradiction.
 \end{solution}
+
+\newpage
+
+\begin{exercise}{2}
+    Prove that $f$ is continuous at $a$ iff $\omega_f(a) = 0$.
+\end{exercise}
+
+\begin{solution}
+    
+    Suppose first that $f$ is continuous at $a$.
+    Then, for any $\epsilon > 0$, there exists $\delta > 0$ such that whenever $\lvert x - a \rvert < \delta, \lvert f(x) - f(a) \rvert < \epsilon$.
+    We thus have that for any two $x, y \in B_{\delta}(a), \lvert f(x) - f(y) \rvert \leq \lvert f(x) - f(a) \rvert + \lvert f(y) - f(a) \rvert < 2\epsilon$.
+    Therefore, $\sup_{x, y \in B_{\delta}(a)} \lvert f(x) - f(y) \rvert \leq 2 \epsilon \implies \text{diam} f(B_{\delta}(a)) \leq 2\epsilon$.
+    In other words, the quantity $\text{diam} f(B_{\delta}(a))$ tends to zero.
+    Therefore, $\omega_f(a) = \lim_{h \rightarrow 0+} \text{diam} f(B_h(a)) = 0$.
+    Conversely, suppose $\omega_f(a) = \lim_{h \rightarrow 0+} \text{diam} f(B_h(a)) = 0$.
+    Pick any $\epsilon > 0$.
+    Then there exists $\delta > 0$ such that whenever $h < \delta, \text{diam} f(B_{h}(a)) < \epsilon$.
+    In other words,
+
+    \[\sup_{x, y \in B_h(a)} \lvert f(x) - f(y) \rvert < \epsilon \implies \sup_{x \in B_h(a)} \lvert f(x) - f(a) \rvert < \epsilon\]
+
+    This means that for all $x$ with $\lvert x - a \rvert < h < \delta, \lvert f(x) - f(a) \rvert < \epsilon$, which means that $f$ is continuous at $a$.
+\end{solution}
