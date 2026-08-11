@@ -66,5 +66,24 @@
 
 \begin{solution}
     
-    
+    Consider first the functions $g(x) = 0, x \in \mathbb{R}$ and $h(x) = 1$ for $x \in \mathbb{Q}$, $h(x) = -1$ for $x \in \mathbb{R} \setminus \mathbb{Q}$.
+    Notice first that $g$ is continuous everywhere, whereas $f$ is discontinuous everywhere (any real can be approached by a sequence of rationals and vice versa).
+    We define the following function $f: \mathbb{R} \rightarrow \mathbb{R}$
+
+    \[f(x) = \begin{cases}
+        g(x), & x \in \mathbb{R} \setminus E \\
+        h(x), & x \in E
+    \end{cases}\]
+
+    Notice that $f$ is clearly bounded.
+    We claim that $f$ is continuous on all of $\mathbb{R} \setminus E$ and discontinuous on all of $E$.
+    To begin, observe that $\mathbb{R} \setminus E$ is an open set.
+    Therefore, for any $x \in \mathbb{R} \setminus E$ and any sequence $(x_n), x_n \rightarrow x$, we know that all but finitely many terms of $(x_n)$ are inside $\mathbb{R} \setminus E$.
+    Consequently, $(f(x_n))$ eventually becomes the zero sequence, which converges to $f(x) = 0$.
+    Therefore $f$ is indeed continuous on all of $\mathbb{R} \setminus E$.
+    Now let $x \in E$.
+    If $x \in \mathbb{R} \setminus \mathbb{Q}$, then form a sequence $x_n \rightarrow x$ consisting entirely of rationals, which is always possible.
+    We then have that $f(x_n) = 0$ or $f(x_n) = 1$ for all $x_n$, and therefore it cannot be that $f(x_n) \rightarrow f(x) = -1$.
+    Similarly, suppose $x \in \mathbb{Q}$, and approach $x$ with a sequence $(x_n) \subset \mathbb{R} \setminus \mathbb{Q}$, in which case $f(x_n) = 0$ or $f(x_n) = -1$ and $f(x) = 1$, thus making convergence impossible.
+    Therefore, $f$ is discontinuous precisely at every point of $E$, and $D(f) = E$.
 \end{solution}
